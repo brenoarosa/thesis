@@ -1,7 +1,7 @@
 \chapter{Introdução}
 
-As redes sociais se tornaram um dos principais meios de comunicação nas últimas
-duas décadas.
+Nas últimas duas décadas as redes sociais se tornaram um dos principais meios de
+comunicação.
 Esse crescimento, em parte, se justifica pela massificação do acesso a internet
 incluindo dispositivos móveis como \textit{smartphones} e \textit{tablets}.
 Também alavancado pelos avanços computacionais e pelo desenvolvimento acelerado
@@ -10,28 +10,27 @@ processamento de linguagem natural, tem essas redes como importante objeto de
 estudo.
 
 Desde a chamada Revolução Digital observamos um progressivos barateamento e
-facilidade de uso de dispositivos eletrônicos.
+facilitação do uso de dispositivos eletrônicos.
 A medida que essas tecnologias passaram a ser acessíveis não apenas para as
 corporações mas também para os indivíduos, houve um crescente processo de
 digitalização de diversos aspectos de nossas vidas.
-Com a comunicação não foi diferente, o email, por exemplo, desde os anos 70
-substitui operações que até então eram apenas possíveis de forma analógica, como
-pelo uso de cartas.
+Com a comunicação não foi diferente.
+O email, por exemplo, desde os anos 70 substitui operações que até então eram
+apenas possíveis de forma analógica, como pelo uso de cartas.
 Nesse contexto, as redes sociais, ou mídias sociais, abordam aspectos diferente
 da comunicação, uma comunicação mais dinâmica e informal.
 
-Apesar de já estar presente desde os anos 90, é com a virada do milênio e que as
+Apesar de já existirem desde os anos 90, é com a virada do milênio que as
 primeiras grandes mídias sociais online aparecem, como \textit{LinkedIn},
 \textit{MySpace} e \textit{Orkut}.
-Desde então há um crescimento de ano-a-ano na quantidade de seus usuários.
+Desde então há um aumento de ano-a-ano da quantidade de seus usuários.
 Atualmente estima-se que 3,5 bilhões de pessoas, ou 45\% da população mundial
 utilize pelo menos uma rede social.
 Este número torna-se ainda mais interessante quando considerado que 4,4 bilhões
 de pessoas tem acesso a internet, portanto, quase 80\% dos usuários de internet
 estão em alguma das mídias sociais.
 No Brasil esses números se acentuam ainda mais, no qual 70\% da população tem
-acesso a internet e 66\% utilizam as redes sociais.
-% dados do we are social
+acesso a internet e 66\% utilizam as redes sociais~\cite{social19}.
 
 Além da alta penetração na sociedade, devido a disponibilidade proporcionadas
 pelos dispositivos móveis, consumimos boa parte de nosso tempo nessas redes.
@@ -40,12 +39,87 @@ No mundo, gastamos em média 2 horas e 16 minutos por dia e novamente esse núme
 segundo país no mundo a usar por mais tempo as redes no mundo, ficando atrás
 apenas das Filipinas.
 
-... lazer, trabalho
-.. com isso torna-se importante a análise dessas informações
+Essa forte presença fez com que as mídias sociais não impactassem apenas as
+comunicações.
+Atualmente esses meios também são comumente utilizados para busca de
+relacionamentos, compartilhamento de notícias, divulgação de serviços,
+atendimento ao público, entre outros.
+As informações que trafegam nas redes exercem grande influência na formação de
+opnião das pessoas, seja ela em relação a um produto, um evento e até mesmo em
+temas politicos como observamos nas eleições pelo mundo nos últimos anos.
+
+Portanto, a análise dessas informações que presentes nas redes é importante para
+as mais diversos aplicações.
+Contudo, essa grande quantidade de usuários também se reflete no número de dados
+provindos das mídias sociais.
+Dentre as estatísticas de uso do ano de 2018 fornecidas pelas próprias redes
+sociais temos que diariamente 300 milhões de fotos são publicadas no
+\textit{Facebook}, 5 bilhões de vídeos são vistos no \textit{YouTube}, 43
+bilhões de mensagens são enviadas no \textit{WhatsApp} e 100 milhões de usuários
+interagem pelo \textit{Twitter}.
+% dados de https://dustinstout.com/social-media-statistics/
+
+O massivo volume de dados inviabiliza que essas análises sejam feitas
+manualmente, se tornando necessario o desenvolvimento de ferramentas capazes de
+automatizar esse processo.
+Entram aí as técnicas desenvolvidas pelo campo do Processamento de Linguagem
+Natural, do inglês \textit{Natural Language Processing} (NLP).
+\abbrev{NLP}{Natural Language Processing}
+Foi a partir do anos 50 que esse termo passou a aparecer como um ramo da
+Inteligência Artificial.
+Devido a complexidade da linguagem natural acabou se tornando um critério de
+inteligência, como proposto no teste de Turing~\cite{turing50}.
+
+O Processamento de Linguagem Natural é uma area ampla de pesquisa, abrangendo o
+estudo de diferentes estágios da língua, desde os níveis de abstração mais
+baixos como o estudo da fonologia e da sintaxe quanto os maiores que lidam com a
+semântica de determinado conteúdo.
+Neste ramo busca-se desenvolver métodos capazes de auxiliar e/ou automatizar
+tarefas como: o reconhecimento de fala, análise sintática de frases, extração de
+entidades, segmentação por tópicos, entre outras.
+
+Esse conjunto de ferramentas desenvolvidas pelo NLP que são essenciais para
+tratar o volume de textos gerado pelas redes sociais.
+Em especial, nos últimos anos como o avanço de técnicas de \textit{Deep
+Learning} observamos um avanço significativo de desempenho, que permitiu até que
+tarefas de grande dificuldade como a automatização de traduções e aplicações de
+atendimento ao cliente por conversação sejam possíveis.
+
+Entretanto, apesar do grande potêncial dessas técnicas, as mídias sociais
+apresentam características que diferenciam seu conteúdo dos tipos textuais que
+tradicionalmente se analisam em NLP, como artigos e textos jornalísticos e que
+dificultam o processamento dessa informação.
+Outras características, apesar de presentes em outras formas de texto aparecem
+aqui acentuadas.
+Em geral, as redes sociais se apresentam como meio de conversação ágil, logo,
+as mensagem que circulam pela mesma costumam ser extremamente curtas, com amplo
+uso de abreviações.
+Por seu caráter informal, observamos alta taxa de erros gramaticais e utilização
+de \textit{emoticons}.
+O fato de serem meios de comunicação global também ressalta a presença de
+estrangeirismos.
+A dinamicidade das redes sociais faz com que a evolução de sentido das palavras
+seja acelerada.
+A Fígura X mostra um exemplo de mensagem que contém alguns desses pontos.
+% descrever o que pode ser ressaltado da figura na legenda
+
+Porém, o principal fator que distingue as informações de redes de outros meios é
+a forte interligação entre diferentes tipos de mídia como textos, imagens,
+áudios, fotos e vídeos.
+Além de metadados importantes como localização, data e horário, uma propriedade
+importante de redes sociais são os atributos referentes as redes de usuário.
+Exemplos desses dados são o número de amizades de um usuários da rede, e o
+número de recompartilhamentos de uma mensagem.
+
+De certa maneira as interações entre usuários são o cerne das mídias sociais.
+Logo, técnicas que se dispõem a analisar esse tipo de informação...
+% falar de ferramentas de redes tb
 
 \section{Motivação}
+% dado a grande utilidade falar de produtos, impactos no mercado e etc
 \section{Objetivo}
 \section{Contribuições}
+% tirar?
 \section{Organização do Texto}
 
 % ======================
