@@ -1,4 +1,5 @@
 \chapter{Introdução}
+\label{chapter:intro}
 
 Nas últimas duas décadas as redes sociais se tornaram um dos principais meios de
 comunicação.
@@ -149,17 +150,19 @@ coletadas.
 
 A busca por informação de qualidade sobre um serviço ou produto sempre foi
 importante para consumidores.
-Enquanto essa pesquisa era feita no boca-a-boca ou a partir de revistas
-especializadas, com a criação da internet e das redes sociais estas passaram
-também a exercer essa função.
-Com o beneficio de se encontrar opiniões de forma espontânea em grande quantidade,
-as mídias sociais se tornaram um dos principais meios de compartilhamento dessa
+Quando não havia as tecnologias que usamos hoje essas pesquisa eram feitas
+majoritariamente no boca-a-boca ou a partir de revistas especializadas.
+Com a criação da internet e das redes sociais estas passaram também a exercer
+essa função, com o beneficio de se encontrar opiniões de forma espontânea e em
+grande quantidade.
+As mídias sociais se tornaram um dos principais meios de compartilhamento dessa
 informação.
 As empresas, por sua vez, tem a oportunidade de utilizar as opiniões que
 trafegam nas redes para identificar falhas em suas mercadorias, melhoras sua
 segmentação, planejar novos produtos, entre outras atividades.
 Com o fácil acesso a coleta desses dados, as ferramentas capazes de extrair o
-sentimento dessas mensagens tornam-se fundamentais.
+sentimento dessas mensagens tornam-se fundamentais para viabilizar esse
+procedimento na escala em que ocorrem.
 
 Apesar das dificuldades inerentes a classificação de mensagens de redes sociais
 técnicas de aprendizado de máquina, sobretudo \textit{Deep Learning}, e de Redes
@@ -169,7 +172,7 @@ anotados disponíveis para treinamento.
 Como o processo de anotação é manual esse passa a ser o gargalo da construção de
 classificadores de sentimento.
 
-Esse empecilho se destaca ainda mais quando consideramos aplicações que
+Esse empecilho se torna ainda mais notável quando consideramos aplicações que
 requerem a análise de múltiplas línguas ou que tenham foco em um tema
 específico, necessitando criação de bases de dados próprias para cada caso de
 uso.
@@ -207,8 +210,37 @@ Concluindo, há um amplo conjunto de estudo aplicando de processamento de
 linguagem natural em redes sociais.
 Apesar de menor, a ciência de redes também têm um grande reportório de pesquisa
 sobre esse meio de comunicação.
-Este trabalho visa preencher a lacuna de sistemas multimodais e sem necessidade
-de investimento em anotação de dados.
+Este trabalho visa preencher a lacuna de sistemas que não necessitam de
+investimento em anotação de dados e que abrangem a multimodalidade da
+informação.
 
 %\section{Contribuições}
 \section{Organização do Texto}
+
+Esse documento é organizado da seguinte maneira:
+
+\begin{itemize}
+    \item O capítulo~\ref{chapter:sentiment} apresenta o problema da análise
+        de sentimento aplicada em mídias sociais e seus desafios.
+        Esse capítulo contém uma breve revisão bibliográfica de classificadores
+        de análise de sentimento.
+    \item No capítulo~\ref{chapter:nlp} as técnicas de processamento de
+        linguagem natural são apresentadas.
+        O capítulo descreve tanto os métodos lineares tradicionalmente
+        aplicados a textos quanto os de \textit{Deep Learning}.
+        São caracterizadas também as diferentes formas de representação numérica
+        de palavras.
+    \item As ferramentas de ciência de redes são apresentadas no
+        capítulo~\ref{chapter:networks}.
+        Nesse capítulo são mostrados as diferentes técnicas aplicadas a
+        modelagem de usuários de mídias sociais.
+    \item O capítulo~\ref{chapter:method} descreve o método proposto para
+        desenvolvimento dos classificadores.
+        São apresentados as etapas de formação de bases de dados, de anotação
+        automática da mesma e de classificação.
+    \item Os resultados dos obtidos pelos experimentos propostos são mostrados
+        no capítulo~\ref{chapter:results}.
+    \item Por fim, o capítulo~\ref{chapter:conclusion} avalia os resultados
+        obtidos, apresenta as conclusões e enumera possíveis desdobramentos do
+        trabalho realizado.
+\end{itemize}
