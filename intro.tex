@@ -119,9 +119,9 @@ propriedades.
 De certa maneira, as interações entre usuários são o cerne das mídias sociais.
 Logo, técnicas que se dispõem a analisar esse tipo de informação também são de
 grande relevância.
-Nesse quesito, o campo das Redes Complexas é responsável por estudar os
-algoritmos e comportamentos observados em grafos que representam sistemas reais,
-como no caso das redes sociais.
+Nesse quesito, o campo das Redes Complexas, ou Ciência de Redes, é responsável
+por estudar os algoritmos e comportamentos observados em grafos que representam
+sistemas reais, como no caso das redes sociais.
 Assim como o aprendizado de máquina, essa esfera do conhecimento também
 apresenta um grande crescimento nos últimos anos, fornecendo um novo leque de
 tecnologias, de forma a descobrir-se aplicabilidades até então inexploradas.
@@ -175,12 +175,40 @@ específico, necessitando criação de bases de dados próprias para cada caso d
 uso.
 Esses fatos motivam a elaboração de métodos que sejam independentes de bases de
 treinamento.
-Assim tornando mais acessível o emprego de modelos complexos que melhor
-aproveitam a informação disponível.
 
 \section{Objetivo}
 
-Esse projeto visa elaborar um método
+Esse projeto visa desenvolver um método capaz de formar classificadores de
+análise de sentimento sem a necessidade de bases de dados de treinamento.
+Essas análises serão feitas sobre dados de mídia sociais e serão explorados
+atributos tanto textuais quando de redes de usuários.
+A principal meta desse trabalho é viabilizar o emprego de modelos complexos e
+que apresentam melhores desempenhos, sem o custo proveniente da anotação de
+dados.
+
+Para análise das mensagens será avaliado o impacto da utilização classificadores
+de \textit{Deep Learning} em comparação a métodos lineares tradicionalmente
+aplicados em NLP.
+Diferentes arquiteturas de redes de aprendizado profundo serão experimentadas,
+como redes convolucionais e redes recorrentes.
+Além disso, as estratégias de representação de palavras também serão variadas.
+O processo será feito de maneira semi-supervisionada com supervisão distante
+para anotação automática dos dados.
+
+Técnicas de Redes Complexas serão aplicadas para caracterização de autores das
+mensagens.
+Modelos como Node2Vec e redes convolucionais de difusão, ambos também baseado em
+aprendizado de máquina, serão comparados.
+Neste caso, além de avaliar os modelos entre si, será analisado se adicionar
+informação do usuários quando aplicada em conjunto com o classificador textual
+decorre em alguma alteração de performance do sistema.
+
+Concluindo, há um amplo conjunto de estudo aplicando de processamento de
+linguagem natural em redes sociais.
+Apesar de menor, a ciência de redes também têm um grande reportório de pesquisa
+sobre esse meio de comunicação.
+Este trabalho visa preencher a lacuna de sistemas multimodais e sem necessidade
+de investimento em anotação de dados.
 
 %\section{Contribuições}
 \section{Organização do Texto}
