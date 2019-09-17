@@ -5,8 +5,8 @@ Análise de Sentimento é o campo de estudos que analisa a opinião, sentimento,
 atitude e emoções de pessoas em relação a entidades.
 Essas entidades podem ser pessoas, eventos, produtos, tópicos, entre outros.
 Na literatura também se encontram os seguintes nomes relacionados a esse ramo:
-\textit{mineiração de opinião}, \textit{extração de opinião},
-\textit{mineiração de sentimento}, \textit{análise de subjetividade},
+\textit{mineração de opinião}, \textit{extração de opinião},
+\textit{mineração de sentimento}, \textit{análise de subjetividade},
 \textit{análise de emoção} e \textit{extração de críticas}~\cite{liu15}.
 Por ser aplicado na maioria das vezes a textos escritos, este campo é filiado
 ao processamento de linguagem natural, sendo uma de suas ramificações mais
@@ -15,25 +15,49 @@ ativas.
 Segundo \citet{cambria16}, a Análise de Sentimento é dividida entre duas
 principais tarefas, a extração de polaridade e a detecção de emoções.
 Enquanto a primeira foca em discernir conteúdo positivo de negativo, a segunda é
-responsavel por classificar em emoções como: felicidade, medo, raiva, tristeza,
+responsável por classificar em emoções como: felicidade, medo, raiva, tristeza,
 entre outros.
 
 A autora \citet{liu15}, por sua vez, ressalta que há diferentes níveis de
 granularidade que essas tarefas podem ser executadas, a escolha do nível a ser
 utilizado depende da finalidade pela qual se executa a classificação e será uma
-das principais caracteristas para definir o tipo de técnica empregada.
+das principais caraterísticas para definir o tipo de técnica empregada.
 Pode se realizar a Análise de Sentimento a nível de documento, no qual um
 documento, como uma avaliação de produto, são avaliados como um todo.
 Nesses casos se assume implicitamente que um documento expressa uma opinião
 sobre uma única entidade, como o produto em questão no exemplo citado, também
-fica implicita que o documento expressa um sentimento único sobre a entidade.
+fica implícita que o documento expressa um sentimento único sobre a entidade.
 Por serem textos mais extensos, logo com mais informação, a acertividade de
 modelos nesses casos em geral é mais alta, portanto, até técnicas mais simples
-como as baseadas em dicionario (todo: referenciar exemplo com lexicon) podem
-apresentar resultados suficientemente bons.
+como as baseadas em dicionario como será apresentado em (TODO: referenciar exemplo com lexicon
+(subcapitulo seguinte 2.1)) podem apresentar resultados suficientemente bons.
 Sendo assim, este foi o primeiro nível a ser explorado pela literatura.
+% mesmo botando a tecnica em outro capitulo preciso pipocar exemplos de
+% referencias
 
-O nível seguinte de granularidade é a classificação de sentenças, esse caso é
+Visto que as limitações decorrentes de se classificar documentos por inteiro
+reduzem o escopo de aplicações, pode-se recorrer ao nível seguinte de
+granularidade, a classificação de sentimento de sentenças.
+A principal diferença entre essa abordagem e a anterior é a quantidade de
+informação disponível dado que uma sentença é composta, geralmente, por poucas
+palavras.
+Por outro lado, a assunção de sentimento único no conteúdo de uma frase é mais
+coerente com a realidade do que se considerando o documento inteiro, sendo uma
+aproximação boa o suficiente para uma nova gama de casos de uso.
+Entretanto, \citet{liu15} ressalta que para o caso de sentenças é importante que
+a classificação de polaridade leve em consideração o sentimento neutro.
+Isso se torna relevante pois até mesmo dentro de documentos opinativos, como
+avaliações de produto, há sentenças puramente objetivas, que não expressarão
+polaridade sobre uma entidade.
+Devido a quantidade limitada de informação, classificadores baseados em
+dicionários e em técnicas de aprendizado de máquina por modelos lineares,
+como será introduzido em (TODO: secao), apresentam piores indicadores na
+execução da tarefa.
+Nesse cenário os modelos de \textit{Deep Learning} começaram a sobressair.
+
+% granularidade aspecto:
+% falar que no exemplo de review de produto serve pra diferenciar pontos
+% positivos de negativos
 
 % Levantamento das tarefas envolvidas em analise de sentimento
 %
@@ -41,5 +65,6 @@ O nível seguinte de granularidade é a classificação de sentenças, esse caso
 % - Many facets of Sentiment Analysis (A practical guide to sentiment analysis)
 % - sentiment analysis and opinion mining (liu)
 
+% juntar 2 e 3?
 % falar de tecnicas (nlp): knowledge-based (lexicon), lineares, n lineares...
 % falar de redes
