@@ -41,7 +41,7 @@ granularidade, a classificação de sentimento de sentenças.
 A principal diferença entre essa abordagem e a anterior é a quantidade de
 informação disponível dado que uma sentença é composta, geralmente, por poucas
 palavras.
-Por outro lado, a assunção de sentimento único no conteúdo de uma frase é mais
+Por outro lado, a premissa de sentimento único no conteúdo de uma frase é mais
 coerente com a realidade do que se considerando o documento inteiro, sendo uma
 aproximação boa o suficiente para uma nova gama de casos de uso.
 Entretanto, \citet{liu15} ressalta que para o caso de sentenças é importante que
@@ -53,11 +53,27 @@ Devido a quantidade limitada de informação, classificadores baseados em
 dicionários e em técnicas de aprendizado de máquina por modelos lineares,
 como será introduzido em (TODO: secao), apresentam piores indicadores na
 execução da tarefa.
-Nesse cenário os modelos de \textit{Deep Learning} começaram a sobressair.
+São nesses cenário que nos últimos anos os modelos de \textit{Deep Learning}
+começaram a sobressair.
 
-% granularidade aspecto:
-% falar que no exemplo de review de produto serve pra diferenciar pontos
-% positivos de negativos
+Por fim, apresenta-se a análise de sentimento de características.
+Uma entidade pode ser composta de diversos atributos.
+Ao falar sobre um filme pode se avaliar diferentes aspectos dele, como
+o roteiro, os atores, os personagens, etc.
+Uma crítica a esse determinado filme é composta de sentimentos distintos para
+cada um desses atributos, e o objetivo da análise de sentimento de
+características é identificar a polaridade de uma mensagem em relação aos
+atributos presentes.
+Para realizar essa análise são necessários elementos novos, como o reconhecimento
+da entidade citada e quais aspectos dela estão sendo avaliados.
+Também podem ser relevantes a identificação do autor e do momento do documento
+analisado.
+
+% falar de diferentes dificultades de NLP e citar trabalhos relacionados
+% pode ser um sub capitulo, talvez no capitulo 3
+
+% puxar o link com o anterior, falar que tweet se assemelha ao segundo nivel,
+% comecar exemplos...
 
 % Levantamento das tarefas envolvidas em analise de sentimento
 %
