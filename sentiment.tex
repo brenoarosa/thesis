@@ -19,21 +19,24 @@ responsável por classificar em emoções como: felicidade, medo, raiva, tristez
 entre outros.
 
 A autora \citet{liu15}, por sua vez, ressalta que há diferentes níveis de
-granularidade que essas tarefas podem ser executadas, a escolha do nível a ser
-utilizado depende da finalidade pela qual se executa a classificação e será uma
+granularidade que essas para execução desta tarefa, a escolha do nível a ser
+utilizado depende da finalidade pela qual se aplicará a classificação e será uma
 das principais caraterísticas para definir o tipo de técnica empregada.
-Pode se realizar a Análise de Sentimento a nível de documento, no qual um
-documento, como uma avaliação de produto, são avaliados como um todo.
+A Análise de Sentimento pode ser realizada a nível de documento, no qual um
+documento, como uma avaliação de produto, é avaliado como um todo.
 Nesses casos se assume implicitamente que um documento expressa uma opinião
 sobre uma única entidade, como o produto em questão no exemplo citado, também
 fica implícita que o documento expressa um sentimento único sobre a entidade.
 Por serem textos mais extensos, logo com mais informação, a acertividade de
 modelos nesses casos em geral é mais alta, portanto, até técnicas mais simples
 como as baseadas em dicionario como será apresentado em (TODO: referenciar exemplo com lexicon
+% TODO: link secao
 (subcapitulo seguinte 2.1)) podem apresentar resultados suficientemente bons.
-Sendo assim, este foi o primeiro nível a ser explorado pela literatura.
-% mesmo botando a tecnica em outro capitulo preciso pipocar exemplos de
-% referencias
+\citet{taboada11} exemplifica a extração de opinião de documentos a partir de
+técnicas de dicionário aplicadas em diferentes bases de dados de avaliações de
+produtos.
+Por sua vez, \citet{das07} cacula predição de valor de ações a partir de
+análise de sentimento das mensagens presentes em um fórum online de investidores.
 
 Visto que as limitações decorrentes de se classificar documentos por inteiro
 reduzem o escopo de aplicações, pode-se recorrer ao nível seguinte de
@@ -42,19 +45,22 @@ A principal diferença entre essa abordagem e a anterior é a quantidade de
 informação disponível dado que uma sentença é composta, geralmente, por poucas
 palavras.
 Por outro lado, a premissa de sentimento único no conteúdo de uma frase é mais
-coerente com a realidade do que se considerando o documento inteiro, sendo uma
-aproximação boa o suficiente para uma nova gama de casos de uso.
+coerente com a realidade comparando-se com a classificação documento como um
+todo, sendo uma aproximação boa o suficiente para uma nova gama de casos de uso.
 Entretanto, \citet{liu15} ressalta que para o caso de sentenças é importante que
 a classificação de polaridade leve em consideração o sentimento neutro.
 Isso se torna relevante pois até mesmo dentro de documentos opinativos, como
 avaliações de produto, há sentenças puramente objetivas, que não expressarão
 polaridade sobre uma entidade.
-Devido a quantidade limitada de informação, classificadores baseados em
-dicionários e em técnicas de aprendizado de máquina por modelos lineares,
-como será introduzido em (TODO: secao), apresentam piores indicadores na
-execução da tarefa.
-São nesses cenário que nos últimos anos os modelos de \textit{Deep Learning}
-começaram a sobressair.
+\citet{riloff05} apresentam o primeiro trabalho especificamente voltado para
+classificação de subjetividade de documentos.
+Devido a quantidade limitada de informação presentes em uma sentença,
+classificadores baseados em dicionários e em técnicas de aprendizado de máquina
+por modelos lineares, apresentam indicadores piores na execução da tarefa.
+São nesses cenário que nos últimos anos os modelos não lineares começaram a
+sobressair, como apresentam \citet{socher11} e \citet{socher13} que aplicam
+diferentes técnicas baseadas em \textit{Deep Learning} para classificação de
+sentenças.
 
 Por fim, apresenta-se a análise de sentimento de características.
 Uma entidade pode ser composta de diversos atributos.
@@ -68,18 +74,28 @@ Para realizar essa análise são necessários elementos novos, como o reconhecim
 da entidade citada e quais aspectos dela estão sendo avaliados.
 Também podem ser relevantes a identificação do autor e do momento do documento
 analisado.
-
-% falar de diferentes dificultades de NLP e citar trabalhos relacionados
-% pode ser um sub capitulo, talvez no capitulo 3
+\citet{nasukawa03} e \citet{snyder07} são exemplos de trabalhos focados em
+mineiração de opinião focada em aspectos.
 
 % puxar o link com o anterior, falar que tweet se assemelha ao segundo nivel,
-% comecar exemplos...
+% comecar exemplos de referencias de SA em twitter e outras redes
+A Análise de Sentimento aplicada e redes sociais
+% dificuldades redes sociais (vocuabulario, tamanho)
+% subcapitulo twitter? paragrafo twitter?
+
+% conectar com redes (grafos), aproveitar o gancho de redes sociais
+
+% Target-dependent Twitter Sentiment Classification
+% Bom pra pegar referencia de twitter e grafos
 
 % Levantamento das tarefas envolvidas em analise de sentimento
 %
 % - Opinions, Sentiment, and Emotion in Text
 % - Many facets of Sentiment Analysis (A practical guide to sentiment analysis)
 % - sentiment analysis and opinion mining (liu)
+
+% falar de diferentes dificultades de NLP e citar trabalhos relacionados
+% pode ser um sub capitulo, talvez no capitulo 3
 
 % juntar 2 e 3?
 % falar de tecnicas (nlp): knowledge-based (lexicon), lineares, n lineares...
