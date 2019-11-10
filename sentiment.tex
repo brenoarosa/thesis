@@ -91,16 +91,31 @@ Por se tratarem de redes globais, é frequente o emprego de palavras ou
 expressões de outras linguas em uma mesma mensagem.
 Esses fatores são obstacúlos aos classificadores de linguagem natural,
 dificultando a tarefa de extração de polaridade.
-A tabela (TODO) mostra exemplos de mensagens extraídas da rede.
-% TODO exemplos
+A Tabela~\ref{tab:sentiment_complexity} mostra exemplos de mensagens extraídas
+da rede que demonstram esse problema.
+
+% TODO alterar exemplos para nao ficar igual anterior
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{| l | p{10cm} |}
+        \hline
+        \textbf{Fator} & \textbf{\textit{Tweet}} \\ \hline
+        Ironia & Recomendo chegar para dar aula e descobrir que mudaram seu horário sem avisar. \\ \hline
+        Ambiguidade & Estou igualmente fascinada e enojada. \\ \hline
+        Multiplicidade de idiomas & Macarrão de arroz is the new miojo. \\ \hline
+        \end{tabular}
+        \caption{Dificuldades encontradas na classificação de sentimento.}
+        \label{tab:sentiment_complexity}
+    \end{center}
+\end{table}
 
 O Twitter é uma rede social baseada em interações por mensagens curtas.
 Suas principais características são a brevidade e instantaniedade das mensagens,
 também chamadas \textit{tweets}, que são limitadas atualmente em 280 caracteres
 mas famosas pelo seu limite anterior de 140 caracteres.
 Criada em 2016, a rede conta com 139 milhões de usuários ativos diarios segundo
-seu...(TODO)  e está entre as redes sociais com maior número de usuários do mundo.
-% https://s22.q4cdn.com/826641620/files/doc_financials/2019/q2/Q2-2019-Shareholder-Letter.pdf
+seu relatorio trimestral para investidores~\cite{twitterreport19} e está entre
+as redes sociais com maior número de usuários do mundo.
 
 O Twitter foi responsável pela criação e popularização das \textit{hashtags},
 mecânismo que funciona como marcação de palavra-chave ou tópico.
@@ -131,8 +146,38 @@ Apesar disso, técnicas de classificação de sentimento puramente textuais
 obtiveram uma crescente melhora de desempelho, principalmente com a aplicação de
 técnicas de \textit{Deep Learning}.
 
-TODO: referencias de twitter e NLP.
-% TODO
+Um dos primeiros e mais influentes trabalhaos sobre aplicação de aprendizado de
+máquina para análise de sentimento foi feito por \citet{pang02}, que comparou
+técnicas de classificação feitas a partir de dicionário com modelos de
+\textit{Naive Bayes}, Máxima Entropia e Máquinas de Vetor Suporte (SVM).
+Em seu estudo \citet{pang02} também compara a eficácia de diferentes métodos de
+representação do texto para o uso de modelos de aprendizado de máquina.
+
+% algumas referencias em Joint Segmentation and Classification Framework for Sentence Level Sentiment Classification
+
+A forma de se transformar o corpus textual em números foi objeto de muitos
+estudos.
+Como alternativa ao \textit{bag-of-words}, \citet{wang12} apresentaram um método
+de utilizar pesos obtidos a partir do treinamento de um modelo de
+\textit{Naive Bayes} como entrada de um classificador de SVM.
+Por sua vez, \citet{paltoglou10} estudaram variações de técnicas de Recuperação
+de Informação com a mesma finalidade.
+Outro eixo importante foram as representações densas, ou de baixa
+dimensionalidade.
+Os principais trabalhos relacionados a essas representações foram feitos por
+\citet{mikolov13}, conhecido como \textit{Word2Vec}, \citet{pennington14},
+denomidado \textit{GloVe} e mais recentemente \textit{ELMo} produzido por
+\citet{peters18} e \textit{BERT} de \citet{devlin18}.
+% TODO: linkar pra secao que explicam os termos e as tecnicas
+
+A disposição de representações densas foi a condição \textit{sine qua non} para
+viabilizar a aplicação de modelos de \textit{Deep Learning} em processamento de
+linguagem natural.
+Dentre essas aplicações ressalta-se \citet{kim14} com a utilização de redes
+neurais convolucionais para classificação de sentenças, por sua vez,
+\citet{zhou16} demonstraram o uso de redes LSTM, baseadas em redes recorrentes.
+Em outra abordagem, \citet{socher13} aplica um modelo recursivo para análise de
+sentimento.
 
 Entretanto, a mistura entre diferentes modalidades de comunicação: texto, imagem,
 video, etc gera uma dificuldade adicional para análise das mensagems.
@@ -147,20 +192,14 @@ análise de redes sociais.
 % rever intro pois isso ja foi falado
 
 % conectar com redes (grafos), aproveitar o gancho de redes sociais
-% valorizar grafo como ponto principal das redes sociais.
+% valorizar grafo como ponto principal das redes sociais. 
 
 % Target-dependent Twitter Sentiment Classification
 % Bom pra pegar referencia de twitter e grafos
 
-% Levantamento das tarefas envolvidas em analise de sentimento
-%
+% feature engineering livro capitulo 12 para pegar referncia nlp + grafo
+
+% Levantamento das tarefas envolvidas em analise de sentimento (pensando em nao escrever isso)
 % - Opinions, Sentiment, and Emotion in Text
 % - Many facets of Sentiment Analysis (A practical guide to sentiment analysis)
 % - sentiment analysis and opinion mining (liu)
-
-% falar de diferentes dificultades de NLP e citar trabalhos relacionados
-% pode ser um sub capitulo, talvez no capitulo 3
-
-% juntar 2 e 3?
-% falar de tecnicas (nlp): knowledge-based (lexicon), lineares, n lineares...
-% falar de redes
