@@ -153,6 +153,52 @@ técnicas de classificação feitas a partir de dicionário com modelos de
 Em seu estudo \citet{pang02} também compara a eficácia de diferentes métodos de
 representação do texto para o uso de modelos de aprendizado de máquina.
 
+Inspirado nos métodos de \citet{pang02}, \citet{go09} utilizou as mesmas
+técnicas para classificação de sentimento em Twitter.
+A grande diferença entre os trabalhos de \citet{pang02} e \citet{go09} é que
+enquanto no primeiro caso o problema de classificação de críticas a filmes
+a coleta de dados já fornece uma anotação, dado que as críticas eram
+acompanhadas de um sistema de avaliação (entre 1 e 5 estrelas), o posterior
+não contou com disponibilidade parecida e, por isso, aplicou um método de
+anotação automática.
+
+A maneira convencional de abordar bases de dados não anotadasa é realizar uma
+classificação manual dos dados.
+Por depender de iteração humana torna essa uma das etapas mais custosas do
+processo de criação de classificadores.
+Além disso, a alta dinamicidade dos temas e do vocabulario presente nas redes
+sociais faz com que o prazo em que a base de dados anotada seja relevante seja
+menor.
+Considerando também que um maior volume das bases de dados, em geral, permitem
+os modelos treinados a obter melhores resultados, a soma desses fatores torna
+ineficiente o processo de anotação manual.
+
+O processo utilizado por \citet{go09} foi criado por \citet{read05} e denominado
+supervisão distante.
+Este método consiste em utilizar alguma característica que tenha alta correlação
+com a predição desejada e utiliza-la para anotar a base de dados.
+No caso dos trabalhos citados foram selecionados conjuntos de \textit{emoticons}
+positivos e negativos que serviram para a anotação ruidosa.
+Desta forma a restrição para construção de bases de dados passa a ser a coleta
+de \textit{tweets} e recursos computacionais.
+Em \citet{go09} a base de treinamento, a qual foi anotada por supervisão
+distante, conteve 800 mil \textit{tweets}.
+Para fins de validação do modelo ainda foi necessário elaborar uma base de
+dados anotada manualmente, sendo esta de apenas 359 \textit{tweets}.
+
+Entre as desvantagens dessa prática estão o fato de o conjunto de
+\textit{emoticons} selecionados para anotação ruidosa precisar ser removidos dos
+dados de treinamento do modelo para não introduzir viés na classificação.
+A qualidade da supervisão distante também depende da seleção dos
+\textit{emoticons}.
+Por fim, não se pode descartar que
+% anotacao automatica: ressaltar o lado ruim: possivelmente eu tenho subclasses
+% de uma class (positivo ou negativo) que nao tem correlação com o objeto que
+% escolhi para fazer anotação ruidosa. Essas subclasses se perdem no treinamento
+% por supervisao distante. Exemplo: se ironia positiva nao tiver emoticons positivos
+% nunca classificaremos ironia como positivo
+% Entretanto anotacao automatica alavancou ...
+
 % algumas referencias em Joint Segmentation and Classification Framework for Sentence Level Sentiment Classification
 
 A forma de se transformar o corpus textual em números foi objeto de muitos
@@ -168,11 +214,12 @@ Os principais trabalhos relacionados a essas representações foram feitos por
 \citet{mikolov13}, conhecido como \textit{Word2Vec}, \citet{pennington14},
 denomidado \textit{GloVe} e mais recentemente \textit{ELMo} produzido por
 \citet{peters18} e \textit{BERT} de \citet{devlin18}.
-% TODO: linkar pra secao que explicam os termos e as tecnicas
 
-A disposição de representações densas foi a condição \textit{sine qua non} para
-viabilizar a aplicação de modelos de \textit{Deep Learning} em processamento de
-linguagem natural.
+A disposição de grandes bases de dados e as representações densas foram a
+condição \textit{sine qua non} para viabilizar a aplicação de modelos de
+\textit{Deep Learning} em análise de sentimento.
+% TODO: falar do sucesso de DL em outras areas (visao) e subareas de nlp (traducao)
+% citar deep learning nature
 Dentre essas aplicações ressalta-se \citet{kim14} com a utilização de redes
 neurais convolucionais para classificação de sentenças, por sua vez,
 \citet{zhou16} demonstraram o uso de redes LSTM, baseadas em redes recorrentes.
@@ -191,18 +238,19 @@ Dá-se assim a necessidade de abordagens multimodais para qualquer tipo de
 análise de redes sociais.
 % rever intro pois isso ja foi falado
 
-% conectar com redes (grafos), aproveitar o gancho de redes sociais
-% valorizar grafo como ponto principal das redes sociais.
-
 Como a interação entre usuários é uma das príncipais componentes das mídias esse
 se torna um objetivo natural para se estudar em complemento ao texto.
 Para explorar essa componente é possível aplicar ferramentas desenvolvidas pela
 área de pesquisa de Redes Complexas, também chamada de Ciência de Redes.
 Assim como o Aprendizado de Máquina, o ramo de estudo de Redes Complexas
 apresenta um grande crescimento nos últimos anos dado a variedade sistemas em
-que suas análises e modelos são aplicados com efetividade~\citet{albert02}.
+que suas análises e modelos são aplicados com efetividade~\cite{albert02}.
 
-Uma das~\citet{ratkiewicz11}
+Entre os exemplos dessas técnicas aplicadas a redes sociais então
+\citet{ratkiewicz11} que usa caracteristicas da rede formada por usuarios do
+Twitter que interagiram com \textit{tweets} sobre as campanhas eleitorais de
+2010 dos Estados Unidos para detectar a propagação orquestrada de conteudo.
+
 % referencias:
 % Like It or Not A Survey of Twitter Sentiment Analysis Methods (cap 3.4)
 % Graph-based Text Classification: Learn from Your Neighbors
