@@ -186,18 +186,21 @@ distante, conteve 800 mil \textit{tweets}.
 Para fins de validação do modelo ainda foi necessário elaborar uma base de
 dados anotada manualmente, sendo esta de apenas 359 \textit{tweets}.
 
+% TODO: colocar figura ou tabela demostrando anotacao automatica
+
 Entre as desvantagens dessa prática estão o fato de o conjunto de
 \textit{emoticons} selecionados para anotação ruidosa precisar ser removidos dos
 dados de treinamento do modelo para não introduzir viés na classificação.
 A qualidade da supervisão distante também depende da seleção dos
 \textit{emoticons}.
-Por fim, não se pode descartar que
-% anotacao automatica: ressaltar o lado ruim: possivelmente eu tenho subclasses
-% de uma class (positivo ou negativo) que nao tem correlação com o objeto que
-% escolhi para fazer anotação ruidosa. Essas subclasses se perdem no treinamento
-% por supervisao distante. Exemplo: se ironia positiva nao tiver emoticons positivos
-% nunca classificaremos ironia como positivo
-% Entretanto anotacao automatica alavancou ...
+Ademais, não se pode descartar que é possivel uma classe tenha subclasses que
+não sejam correlacionadas com a característica escolhida para executar a
+supervisão distante.
+Por exemplo, dentro do conjunto de \textit{tweets} positivos, a subclasse de
+\texti{tweets} irônicos positivos, pode não conter \textit{emoticons}, e assim
+não estar presente no conjunto de treinamento.
+Apesar dessas limitações, a anotação automática foi fundamental para alavancar
+a performance dos classificadores de sentimento de redes sociais.
 
 % algumas referencias em Joint Segmentation and Classification Framework for Sentence Level Sentiment Classification
 
@@ -218,8 +221,12 @@ denomidado \textit{GloVe} e mais recentemente \textit{ELMo} produzido por
 A disposição de grandes bases de dados e as representações densas foram a
 condição \textit{sine qua non} para viabilizar a aplicação de modelos de
 \textit{Deep Learning} em análise de sentimento.
-% TODO: falar do sucesso de DL em outras areas (visao) e subareas de nlp (traducao)
-% citar deep learning nature
+\textit{Deep Learning}, ou Aprendizado Profundo, foi responsável por romper
+barreiras de performance de aprendizado de máquina em diversas
+áreas~\cite{lecun15} como classificação de imagem~\cite{krizhevsky12},
+reconhecimento de fala~\cite{hinton12a}, detecção de doenças~\cite{esteva17},
+entre outros.
+% TODO: FIX link
 Dentre essas aplicações ressalta-se \citet{kim14} com a utilização de redes
 neurais convolucionais para classificação de sentenças, por sua vez,
 \citet{zhou16} demonstraram o uso de redes LSTM, baseadas em redes recorrentes.
