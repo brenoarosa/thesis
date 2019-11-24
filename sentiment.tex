@@ -197,7 +197,7 @@ Ademais, não se pode descartar que é possivel uma classe tenha subclasses que
 não sejam correlacionadas com a característica escolhida para executar a
 supervisão distante.
 Por exemplo, dentro do conjunto de \textit{tweets} positivos, a subclasse de
-\texti{tweets} irônicos positivos, pode não conter \textit{emoticons}, e assim
+\textit{tweets} irônicos positivos, pode não conter \textit{emoticons}, e assim
 não estar presente no conjunto de treinamento.
 Apesar dessas limitações, a anotação automática foi fundamental para alavancar
 a performance dos classificadores de sentimento de redes sociais.
@@ -224,14 +224,16 @@ condição \textit{sine qua non} para viabilizar a aplicação de modelos de
 \textit{Deep Learning}, ou Aprendizado Profundo, foi responsável por romper
 barreiras de performance de aprendizado de máquina em diversas
 áreas~\cite{lecun15} como classificação de imagem~\cite{krizhevsky12},
-reconhecimento de fala~\cite{hinton12a}, detecção de doenças~\cite{esteva17},
-entre outros.
-% TODO: FIX link
-Dentre essas aplicações ressalta-se \citet{kim14} com a utilização de redes
-neurais convolucionais para classificação de sentenças, por sua vez,
-\citet{zhou16} demonstraram o uso de redes LSTM, baseadas em redes recorrentes.
-Em outra abordagem, \citet{socher13} aplica um modelo recursivo para análise de
-sentimento.
+reconhecimento de fala~\cite{hinton12a}, detecção de doenças~\cite{esteva17}.
+O processamento de linguagem natural foi um dos campos mais impactados por essa
+linha de técnicas, seja na realização de traduções~\cite{vaswani17},
+na correção de erros gramaticais~\cite{ge18}, no reconhecimento de
+entidades~\cite{akbik18}, na criação de resumos~\cite{wu18}, entre outros.
+Dentre as aplicações de \textit{Deep Learning} em análise de sentimento
+temos \citet{kim14} com a utilização de redes neurais convolucionais para
+classificação de sentenças, \citet{zhou16}, por sua vez, demonstraram o uso de
+redes LSTM, baseadas em redes recorrentes, e, \citet{socher13} aplica um modelo
+recursivo.
 
 Entretanto, a mistura entre diferentes modalidades de comunicação: texto, imagem,
 video, etc gera uma dificuldade adicional para análise das mensagems.
