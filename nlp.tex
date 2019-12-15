@@ -133,11 +133,74 @@ inversamente proporcional a sua frequência nos documentos.
 
 % TODO: equação tf-idf
 
+\textit{Bag-of-words} e TF-IDF são métodos de representação muito presentes na
+literatura pela sua simplicidade de implementação e pelos beneficios
+anteriormente descritos, em especial em conjunto com modelos como a SVM (TODO
+link secao) que apresenta menos dificuldades de ser treinada em dados esparsos.
+Entretanto, um componente fundamental da linguagem é perdido nesse processo, o
+contexto em que se insere cada palavra.
+Pela representação agrupar todos os tokens em um único vetos a ordem das
+palavras no documento é perdida, o que em muitos casos pode corresponder na
+inviabilidade de uma classificação precisa do mesmo.
+
+% TODO: talvez mostrar exemplo em que a ordem faria diferença
+
+As técnicas de representações densas que serão apresentadas a seguir além de
+resolverem o obstáculo da dimensionalidade dos dados também viabilizam a
+classificação por modelos que levem em conta o contexto de cada palavra.
+
 \subsection{Word2Vec}
 
-% falar que bag-of-words nao considera contexto
+\textit{Word2Vec}~\cite{mikolov13} foi uma das primeiras técnicas de
+representação densa de palavras amplamente adota pela indústria e academia.
+Representações densas são aquelas em que cada palavra é transformada em um vetor
+de números reais de baixa dimensionalidade, típicamente dezenas ou poucas
+centenas de dimensões.
+\citet{mikolov13} mostraram que essa representação é capaz de capturar parte dos
+sentidos semânticos e sintáticos das palavras, aproximando as que são sinônimas
+ou exerçam a mesma função gramátical, atenuando assim o problema da disparidade
+de frequência das palavras.
 
-\subsection{Seq2Seq (BERT)}
+Esta técnica é um modelo constituido de uma rede neural de uma camada escondida.
+Para o treinamento do mesmo são feitas janelas de um número arbritrário de
+palavras que servirão como entrada do modelo.
+Dessas janelas há duas variações: o \textit{continuous bag-of-words} em que
+o modelo é treinado para prever a palavra central da janela de entrada a partir
+das outras palavras da janela, ou o \textit{skipgram} que a partir da palavra
+central da treina-se para prever o seu contexto.
+As entradas e saídas do modelo são representadas pela codificação
+\textit{one-hot} dos termos.
+A quantidade de neurônios escolhido para a camada escondida da rede resultará na
+dimensionalidade da representação.
+A representação das palavras serão os pesos da camada de entrada do modelo
+treinado.
+
+% TODO diagramas
+
+Apesar do \textit{Word2Vec} ser um modelo que precisa ser treinando, esse
+treinamento é não-supervisionado dado que tanto as entradas quanto saídas do
+modelo são obtidas diretamento dos documentos.
+Desta forma, foi possível aplicar o algoritmo a grandes bases de dados
+mineiradas da internet.
+Esse alto volume de dados de treinamento foi essencial para que bons resultados
+fossem alcançados.
+
+Por ser a primeira representação densa de sucesso, o \textit{Word2Vec} foi
+essencial para a aplicação de classificadores também baseados em redes neurais,
+comos os de \textit{Deep Learning} que obtiveram grande êxito em diversas
+tarefas de processamento de linguagem natural.
+Outras técnicas semelhantes e também amplamente adotadas na indústria foram
+desenvolvidas neste mesmo periodo de tempo como o GloVe~\cite{pennington14} e
+o FastText~\cite{bojanowski17}.
+
+\subsection{Seq2Seq (BERT)} \label{sec:seq2seq}
+% TODO titulo
+
+O sucesso do \textit{Word2Vec}, baseado em redes neurais \textit{feed forward}
+inspirou a experimentação de outros tipos de redes neurais, dentre as quais as
+redes neurais recorrentes e suas variações obtiveram bons resultados na
+representação de palavras.
+Nesta seção serão descritos alguns destes algoritmos.
 
 \section{Classificadores}
 \subsection{Baseados em Dicionário} \label{sec:dictionary}
