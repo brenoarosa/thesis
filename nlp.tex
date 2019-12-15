@@ -13,10 +13,10 @@ As seções a seguir descrevem cada uma destas fases.
 A primeira etapa aplicada para elaboração de modelos de NLP é o
 pré-processamento.
 Esta fase consiste na limpeza e preparação dos dados, visando melhorar a
-performance do classificador seja retirando ruidos dos textos, reduzindo o
+performance do classificador seja retirando ruídos dos textos, reduzindo o
 tamanho do vocabulário ou formatando o texto de maneira a facilitar a modelagem.
 O volume do vocabulário considerado é costuma ser limitado seja pelos recursos
-computacionais quanto pelo requisito mínimo de estatistica das palavras na base
+computacionais quanto pelo requisito mínimo de estatística das palavras na base
 de dados.
 Portanto, técnicas de pré-processamento que reduzam o tamanho total do
 vocabulário tem um importante papel na garantia de bom funcionamento dos
@@ -41,21 +41,21 @@ palavra "montanha" que possuí radical "mont", o mesmo obtido pela palavra
 "monte".
 Por outro lado, o processos de lematização tem finalidade parecida, porém
 transforma a palavra em sua forma base, forma como elas aparecem no dicionario,
-podendo então difenciar palavras com o mesmo radical, como "banco" e "bancários".
+podendo então diferenciar palavras com o mesmo radical, como "banco" e "bancários".
 Ambas as técnicas visam tornar as etapas posteriores menos sensíveis a flexões
-gramáticais, além de colaborar na redução do vocabulario.
+gramaticais, além de colaborar na redução do vocabulário.
 
 Uma das principais etapas do pré-processamento é a remoção das
 \textit{stopwords}, conjunto de palavras que informação pouco discriminante
 para uma dada aplicação~\cite{lo05}, geralmente são compostas pelas palavras
-mais comuns da lingua, principalmente artigos e preposições.
-O objetivo da remoção das \textit{stopwords} é diminuir ruidos dos dados
+mais comuns da língua, principalmente artigos e preposições.
+O objetivo da remoção das \textit{stopwords} é diminuir ruídos dos dados
 textuais, assim simplificando a etapa de modelagem.
 \citet{saif14} fizeram um estudo comparando diversos métodos de seleção de
 \textit{stopwords} e o impacto das mesmas na classificação de sentimento de
 \textit{tweets}.
 A identificação de classe gramatical, em inglês \textit{part of speech}, além de
-ser típicamente utilizada como entrada de modelos de NLP, também pode ser útil
+ser tipicamente utilizada como entrada de modelos de NLP, também pode ser útil
 para selecionar \textit{stopwords}.
 
 \section{Representações}
@@ -69,7 +69,7 @@ divididas em representações esparsas e representações densas.
 As representações esparsas são as mais simples de serem aplicadas dado que, em
 geral, não dependem do treinamento de nenhum modelo.
 Entretanto, as representações esparsas resultam em vetores ou matrizes de
-dimensão na ordem de, pelo menos, o tamanho do vocabulario escolhido, como os
+dimensão na ordem de, pelo menos, o tamanho do vocabulário escolhido, como os
 vocabulários costumam ser muito extensos (centenas de milhares de palavras em
 alguns casos) o tamanho e a esparsidade da representação obtida podem dificultar
 o treinamento dos classificadores.
@@ -134,7 +134,7 @@ inversamente proporcional a sua frequência nos documentos.
 % TODO: equação tf-idf
 
 \textit{Bag-of-words} e TF-IDF são métodos de representação muito presentes na
-literatura pela sua simplicidade de implementação e pelos beneficios
+literatura pela sua simplicidade de implementação e pelos benefícios
 anteriormente descritos, em especial em conjunto com modelos como a SVM (TODO
 link secao) que apresenta menos dificuldades de ser treinada em dados esparsos.
 Entretanto, um componente fundamental da linguagem é perdido nesse processo, o
@@ -154,15 +154,15 @@ classificação por modelos que levem em conta o contexto de cada palavra.
 \textit{Word2Vec}~\cite{mikolov13} foi uma das primeiras técnicas de
 representação densa de palavras amplamente adota pela indústria e academia.
 Representações densas são aquelas em que cada palavra é transformada em um vetor
-de números reais de baixa dimensionalidade, típicamente dezenas ou poucas
+de números reais de baixa dimensionalidade, tipicamente dezenas ou poucas
 centenas de dimensões.
 \citet{mikolov13} mostraram que essa representação é capaz de capturar parte dos
 sentidos semânticos e sintáticos das palavras, aproximando as que são sinônimas
-ou exerçam a mesma função gramátical, atenuando assim o problema da disparidade
+ou exerçam a mesma função gramatical, atenuando assim o problema da disparidade
 de frequência das palavras.
 
-Esta técnica é um modelo constituido de uma rede neural de uma camada escondida.
-Para o treinamento do mesmo são feitas janelas de um número arbritrário de
+Esta técnica é um modelo constituído de uma rede neural de uma camada escondida.
+Para o treinamento do mesmo são feitas janelas de um número arbitrário de
 palavras que servirão como entrada do modelo.
 Dessas janelas há duas variações: o \textit{continuous bag-of-words} em que
 o modelo é treinado para prever a palavra central da janela de entrada a partir
@@ -179,7 +179,7 @@ treinado.
 
 Apesar do \textit{Word2Vec} ser um modelo que precisa ser treinando, esse
 treinamento é não-supervisionado dado que tanto as entradas quanto saídas do
-modelo são obtidas diretamento dos documentos.
+modelo são obtidas diretamente dos documentos.
 Desta forma, foi possível aplicar o algoritmo a grandes bases de dados
 mineiradas da internet.
 Esse alto volume de dados de treinamento foi essencial para que bons resultados
@@ -187,10 +187,10 @@ fossem alcançados.
 
 Por ser a primeira representação densa de sucesso, o \textit{Word2Vec} foi
 essencial para a aplicação de classificadores também baseados em redes neurais,
-comos os de \textit{Deep Learning} que obtiveram grande êxito em diversas
+como os de \textit{Deep Learning} que obtiveram grande êxito em diversas
 tarefas de processamento de linguagem natural.
 Outras técnicas semelhantes e também amplamente adotadas na indústria foram
-desenvolvidas neste mesmo periodo de tempo como o GloVe~\cite{pennington14} e
+desenvolvidas neste mesmo período de tempo como o GloVe~\cite{pennington14} e
 o FastText~\cite{bojanowski17}.
 
 \subsection{Seq2Seq (BERT)} \label{sec:seq2seq}
@@ -211,4 +211,3 @@ Nesta seção serão descritos alguns destes algoritmos.
 % inspiração: http://dataskeptic.com/blog/episodes/2019/natural-language-processing
 
 % falar de diferentes dificultades de NLP e citar trabalhos relacionados no cap 3
-% falar de tecnicas (nlp): knowledge-based (lexicon), lineares, n lineares...
