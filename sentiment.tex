@@ -27,7 +27,7 @@ documento, como uma avaliação de produto, é avaliado como um todo.
 Nesses casos se assume implicitamente que um documento expressa uma opinião
 sobre uma única entidade, como o produto em questão no exemplo citado, também
 fica implícita que o documento expressa um sentimento único sobre a entidade.
-Por serem textos mais extensos, logo com mais informação, a acertividade de
+Por serem textos mais extensos, logo com mais informação, a assertividade de
 modelos nesses casos em geral é mais alta, portanto, até técnicas mais simples
 como as baseadas em dicionario como será apresentado na seção~\ref{sec:dictionary}
 podem apresentar resultados suficientemente bons.
@@ -74,7 +74,7 @@ da entidade citada e quais aspectos dela estão sendo avaliados.
 Também podem ser relevantes a identificação do autor e do momento do documento
 analisado.
 \citet{nasukawa03} e \citet{snyder07} são exemplos de trabalhos focados em
-mineiração de opinião focada em aspectos.
+mineração de opinião focada em aspectos.
 
 % puxar o link com o anterior, falar que tweet se assemelha ao segundo nivel,
 % comecar exemplos de referencias de SA em twitter e outras redes
@@ -85,10 +85,10 @@ peculiaridades quando comparadas a meios convencionais.
 Por se tratar de um ambiente informal e de comunicação rápida, é comum encontrar
 erros gramaticais e abreviações.
 Similarmente os \textit{emoticons} também tem ampla adesão por serem métodos
-práticos de exprimir sentimentos em poucos caractéres.
+práticos de exprimir sentimentos em poucos caracteres.
 Por se tratarem de redes globais, é frequente o emprego de palavras ou
-expressões de outras linguas em uma mesma mensagem.
-Esses fatores são obstacúlos aos classificadores de linguagem natural,
+expressões de outras línguas em uma mesma mensagem.
+Esses fatores são obstáculos aos classificadores de linguagem natural,
 dificultando a tarefa de extração de polaridade.
 A Tabela~\ref{tab:sentiment_complexity} mostra exemplos de mensagens extraídas
 da rede que demonstram esse problema.
@@ -109,18 +109,18 @@ da rede que demonstram esse problema.
 \end{table}
 
 O Twitter é uma rede social baseada em interações por mensagens curtas.
-Suas principais características são a brevidade e instantaniedade das mensagens,
+Suas principais características são a brevidade e instantaneidade das mensagens,
 também chamadas \textit{tweets}, que são limitadas atualmente em 280 caracteres
 mas famosas pelo seu limite anterior de 140 caracteres.
-Criada em 2006, a rede conta com 139 milhões de usuários ativos diarios segundo
-seu relatorio trimestral para investidores~\cite{twitterreport19} e está entre
+Criada em 2006, a rede conta com 139 milhões de usuários ativos diários segundo
+seu relatório trimestral para investidores~\cite{twitterreport19} e está entre
 as redes sociais com maior número de usuários do mundo.
 
 O Twitter foi responsável pela criação e popularização das \textit{hashtags},
-mecânismo que funciona como marcação de palavra-chave ou tópico.
+mecanismo que funciona como marcação de palavra-chave ou tópico.
 Seu funcionamento se dá pela utilização do simbolo da tralha (\#) e pela ausência
 de espaço e pontuação nos casos que são formados por mais que uma palavra.
-As \textit{hashtags} functionam como um agregador de \textit{tweets} e o site
+As \textit{hashtags} funcionam como um agregador de \textit{tweets} e o site
 ainda apresenta uma lista das mais populares no momento.
 O sucesso dessa funcionalidade fez com que a mesma fosse posteriormente aderida
 por outras mídias sociais como o Facebook e Instagram se tornando um
@@ -128,24 +128,24 @@ atributo marcante mensagens de redes sociais.
 
 % faltou metadados
 Além das \textit{hashtags}, as mensagens no Twitter também possibilitam a
-inserção de mídias como imagens, vídeos e audios.
+inserção de mídias como imagens, vídeos e áudios.
 Outro atributo comum em mídias sociais são as redes formadas pela conexão de
 usuários.
 Essas redes podem ser formadas por relações de amizade, seguidores e outras
 interações entre essas pessoas ou entidades.
-O recompartilhamento de mensagem, que se dá quando um usuário divulga em seu
+O re-compartilhamento de mensagem, que se dá quando um usuário divulga em seu
 perfil uma mensagem criada por outra pessoa é outro componente capaz de gerar
-grafos de usuários, no Twitter o recompartilhamento também é chamado de
+grafos de usuários, no Twitter o re-compartilhamento também é chamado de
 \textit{retweet}.
 
 Como citados anteriormente, textos que circulam as mídias sociais contém
 desafios adicionais em comparação a documentos tradicionalmente estudados pela
 área de NLP, como artigos jornalísticos e avaliações de produto.
 Apesar disso, técnicas de classificação de sentimento puramente textuais
-obtiveram uma crescente melhora de desempelho, principalmente com a aplicação de
+obtiveram uma crescente melhora de desempenho, principalmente com a aplicação de
 técnicas de \textit{Deep Learning}.
 
-Um dos primeiros e mais influentes trabalhaos sobre aplicação de aprendizado de
+Um dos primeiros e mais influentes trabalhos sobre aplicação de aprendizado de
 máquina para análise de sentimento foi feito por \citet{pang02}, que comparou
 técnicas de classificação feitas a partir de dicionário com modelos de
 \textit{Naive Bayes}, Máxima Entropia e Máquinas de Vetor Suporte (SVM).
@@ -161,11 +161,11 @@ acompanhadas de um sistema de avaliação (entre 1 e 5 estrelas), o posterior
 não contou com disponibilidade parecida e, por isso, aplicou um método de
 anotação automática.
 
-A maneira convencional de abordar bases de dados não anotadasa é realizar uma
+A maneira convencional de abordar bases de dados não anotadas é realizar uma
 classificação manual dos dados.
 Por depender de iteração humana torna essa uma das etapas mais custosas do
 processo de criação de classificadores.
-Além disso, a alta dinamicidade dos temas e do vocabulario presente nas redes
+Além disso, a alta dinamicidade dos temas e do vocabulário presente nas redes
 sociais faz com que o prazo em que a base de dados anotada seja relevante seja
 menor.
 Considerando também que um maior volume das bases de dados, em geral, permitem
@@ -175,7 +175,7 @@ ineficiente o processo de anotação manual.
 O processo utilizado por \citet{go09} foi criado por \citet{read05} e denominado
 supervisão distante.
 Este método consiste em utilizar alguma característica que tenha alta correlação
-com a predição desejada e utiliza-la para anotar a base de dados.
+com a predição desejada e utilizá-la para anotar a base de dados.
 No caso dos trabalhos citados foram selecionados conjuntos de \textit{emoticons}
 positivos e negativos que serviram para a anotação ruidosa.
 Desta forma a restrição para construção de bases de dados passa a ser a coleta
@@ -192,7 +192,7 @@ Entre as desvantagens dessa prática estão o fato de o conjunto de
 dados de treinamento do modelo para não introduzir viés na classificação.
 A qualidade da supervisão distante também depende da seleção dos
 \textit{emoticons}.
-Ademais, não se pode descartar que é possivel uma classe tenha subclasses que
+Ademais, não se pode descartar que é possível uma classe tenha subclasses que
 não sejam correlacionadas com a característica escolhida para executar a
 supervisão distante.
 Por exemplo, dentro do conjunto de \textit{tweets} positivos, a subclasse de
@@ -214,7 +214,7 @@ Outro eixo importante foram as representações densas, ou de baixa
 dimensionalidade.
 Os principais trabalhos relacionados a essas representações foram feitos por
 \citet{mikolov13}, conhecido como \textit{Word2Vec}, \citet{pennington14},
-denomidado \textit{GloVe} e mais recentemente \textit{ELMo} produzido por
+denominado \textit{GloVe} e mais recentemente \textit{ELMo} produzido por
 \citet{peters18} e \textit{BERT} de \citet{devlin18}.
 
 A disposição de grandes bases de dados e as representações densas foram a
@@ -235,18 +235,18 @@ redes LSTM, baseadas em redes recorrentes, e, \citet{socher13} aplica um modelo
 recursivo.
 
 Entretanto, a mistura entre diferentes modalidades de comunicação: texto, imagem,
-video, etc gera uma dificuldade adicional para análise das mensagems.
+video, etc gera uma dificuldade adicional para análise das mensagens.
 O texto presente em um \textit{tweet} que possuí uma imagem pode fazer
 interlocução com a mesma.
 Uma mensagem enviada por um usuário pode ter sentido oposto a mesma mensagem
-quando comunicada por alguem que pertença a um grupo opositor.
-Nesses casos a análise do conteúdo textual por sí só é incapaz de captar a
+quando comunicada por alguém que pertença a um grupo opositor.
+Nesses casos a análise do conteúdo textual por si só é incapaz de captar a
 essência da mensagem.
 Dá-se assim a necessidade de abordagens multimodais para qualquer tipo de
 análise de redes sociais.
 % rever intro pois isso ja foi falado
 
-Como a interação entre usuários é uma das príncipais componentes das mídias esse
+Como a interação entre usuários é uma das principais componentes das mídias esse
 se torna um objetivo natural para se estudar em complemento ao texto.
 Para explorar essa componente é possível aplicar ferramentas desenvolvidas pela
 área de pesquisa de Redes Complexas, também chamada de Ciência de Redes.
@@ -254,14 +254,14 @@ Assim como o Aprendizado de Máquina, o ramo de estudo de Redes Complexas
 apresenta um grande crescimento nos últimos anos dado a variedade sistemas em
 que suas análises e modelos são aplicados com efetividade~\cite{albert02}.
 Entre os exemplos de sucesso estão a identificação de doenças~\cite{barabasi11},
-predição de propagação de epidemias~\cite{hufnagel04}, estudo de robustes de
+predição de propagação de epidemias~\cite{hufnagel04}, estudo de robustez de
 redes de roteadores~\cite{albert00} e identificação de operadores de lavagem de
 dinheiro~\cite{colladon17}.
 
 % pegar referencia em embeddings em grafos (Graph convolutional networks: a comprehensive review)
 % referencia com analise de sentimento, talvez na enmlp? la tem varios trabalhos de GCNN
 No caso da aplicação dessas técnicas em redes sociais podemos citar
-\citet{ratkiewicz11} que usa caracteristicas da rede formada por usuarios do
+\citet{ratkiewicz11} que usa características da rede formada por usuários do
 Twitter que interagiram com \textit{tweets} sobre as campanhas eleitorais de
 2010 dos Estados Unidos para detectar a propagação orquestrada de conteúdo.
 \citet{varol18} utilizou características como densidade da rede, coeficiente de

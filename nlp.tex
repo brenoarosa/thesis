@@ -28,6 +28,8 @@ e posteriormente, em palavras.
 Esse processo chamado \textit{tokenização} precisa ser robustos a abreviações,
 números e características do idioma ao qual será aplicado, como contração de
 palavras.
+Se tratando de redes sociais, também é relevante tratar os links, as
+\textit{hashtags} e as menções a usuários.
 
 Algoritmos de correção ortográfica~\cite{damerau64}\cite{navarro01} podem ser
 eficientes para aprimorar a qualidade dos textos, principalmente se tratando de
@@ -43,21 +45,78 @@ podendo então difenciar palavras com o mesmo radical, como "banco" e "bancário
 Ambas as técnicas visam tornar as etapas posteriores menos sensíveis a flexões
 gramáticais, além de colaborar na redução do vocabulario.
 
-Uma das principais etapas
-% stopwords
-
-% falar de coisas como Part of speech (pode ser usado como feature)? talvez falar em classificadores
-% pode citar que é uma forma de remover stopwords
+Uma das principais etapas do pré-processamento é a remoção das
+\textit{stopwords}, conjunto de palavras que informação pouco discriminante
+para uma dada aplicação~\cite{lo05}, geralmente são compostas pelas palavras
+mais comuns da lingua, principalmente artigos e preposições.
+O objetivo da remoção das \textit{stopwords} é diminuir ruidos dos dados
+textuais, assim simplificando a etapa de modelagem.
+\citet{saif14} fizeram um estudo comparando diversos métodos de seleção de
+\textit{stopwords} e o impacto das mesmas na classificação de sentimento de
+\textit{tweets}.
+A identificação de classe gramatical, em inglês \textit{part of speech}, além de
+ser típicamente utilizada como entrada de modelos de NLP, também pode ser útil
+para selecionar \textit{stopwords}.
 
 \section{Representações}
 
-\subsection{One-Hot}
+Uma vez que os tratamentos iniciais dos textos são feitos chega-se a etapa de
+preparar esses dados para serem processados pelo modelo.
+Para isso, os documentos são transformados de sequências de palavras em vetores
+ou matrizes.
+Há diversas técnicas desenvolvidas com essa finalidade, estas podem ser
+divididas em representações esparsas e representações densas.
+As representações esparsas são as mais simples de serem aplicadas dado que, em
+geral, não dependem do treinamento de nenhum modelo.
+Entretanto, as representações esparsas resultam em vetores ou matrizes de
+dimensão na ordem de, pelo menos, o tamanho do vocabulario escolhido, como os
+vocabulários costumam ser muito extensos (centenas de milhares de palavras em
+alguns casos) o tamanho e a esparsidade da representação obtida podem dificultar
+o treinamento dos classificadores.
+Para contornar essa dificuldade foram criados algoritmos de representações
+densas.
+Por transformarem os documentos em vetores ou matrizes de baixa dimensão estes
+algoritmos foram os responsáveis pela viabilidade de utilização de técnicas de
+\textit{Deep Learning} aplicadas ao processamento de linguagem natural.
+Nessa seção descreveremos algumas das principais técnicas de representação de
+texto.
+
+\subsection{Codificação One-Hot}
+
+A codificação \textit{One-Hot} representa cada palavra de maneira maximamente
+esparsa.
+Para tal, é definido um espaço vetorial em que cada palavra do vocabulário
+utilizado é equivalente a uma dimensão do espaço.
+Portanto, um documento pode ser transcrito dessa forma em uma sequência de
+vetores, ou matriz, em que cada palavra é um vetor com valor unitário na
+dimensão da própria palavra e zero nas outras, como mostra a figura TODO.
+
+% TODO: figura mostrando exemplo
+
+Frequentemente encontramos nas línguas palavras compostas ou expressões.
+Essas informações são perdidas na codificação \textit{One-Hot}.
+Uma forma de se atenuar esse problema são com os chamados \textit{n-gramas}.
+A ideia do \textit{n-grama} é formar tokens de 2, 3, ou \textit{n} palavras e
+utiliza este conjunto de palavras como dimensão do espaço.
+Entretanto, o aumento no número de palavras por token também gera um aumento
+significativo do número de dimensões, dificultando o treinamento do
+classificador.
+
 \subsection{Bag-of-Words}
+
+A codificação \textit{Bag-of-Words} é uma alternativa a representação de
+mensagens como matrizes compostas de vetores \textit{One-Hot} de suas palavras.
+Esta é feita pela soma destes mesmos vetores~\cite{manning10}.
+Portanto, a representação final é dada por um único vetor, de tamanho
+correspondente ao do vocabulário utilizado.
+Esta técnica também tem a vantagem de transformar documentos de % mensagens de tamanho variado
+% juntar tf-idf no bag-of-words?
+
 \subsection{Word2Vec}
 \subsection{Seq2Seq (BERT)}
+
 \section{Classificadores}
-\subsection{Baseados em Dicionário}
-\label{sec:dictionary}
+\subsection{Baseados em Dicionário} \label{sec:dictionary}
 \subsection{Lineares}
 \subsection{Não Lineares}
 \subsection{Deep Learning}
