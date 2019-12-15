@@ -109,10 +109,34 @@ mensagens como matrizes compostas de vetores \textit{One-Hot} de suas palavras.
 Esta é feita pela soma destes mesmos vetores~\cite{manning10}.
 Portanto, a representação final é dada por um único vetor, de tamanho
 correspondente ao do vocabulário utilizado.
-Esta técnica também tem a vantagem de transformar documentos de % mensagens de tamanho variado
-% juntar tf-idf no bag-of-words?
+Esta técnica também tem a vantagem de transformar documentos de tamanho variados
+em vetores de mesmas dimensões, fator que precisa ser contornado em codificações
+baseadas em palavras.
+
+% TODO: figura bag-of-words
+
+Entretanto, visto que a distribuição de palavras em um corpus, em geral, segue a
+lei de Zipf~\cite{powers98}, ou seja, sua frequência segue uma distribuição em
+lei de potência.
+Neste caso mesmo retirando \textit{stopwords}, as palavras mais comuns do
+vocabulário ainda dominarão os documentos, e este comportamento pode ser
+prejudicial para o treinamento dos modelos que serão menos expostos a palavras
+incomuns.
+
+% TODO: exemplo zipf grafico ou equacao
+
+Para atenuar esse problema pode-se aplicar o \textit{term frequence-inverse
+document frequence} (TF-IDF)~\cite{salton88}.
+Neste caso, a representação segue a mesma estrutura proposta pela codificação
+\textit{bag-of-words}, entretanto, cada palavra é ponderada por um multiplicador
+inversamente proporcional a sua frequência nos documentos.
+
+% TODO: equação tf-idf
 
 \subsection{Word2Vec}
+
+% falar que bag-of-words nao considera contexto
+
 \subsection{Seq2Seq (BERT)}
 
 \section{Classificadores}
