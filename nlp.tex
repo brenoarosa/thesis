@@ -193,6 +193,8 @@ Outras técnicas semelhantes e também amplamente adotadas na indústria foram
 desenvolvidas neste mesmo período de tempo como o GloVe~\cite{pennington14} e
 o FastText~\cite{bojanowski17}.
 
+% TODO abrir matematica do W2V
+
 \subsection{Representações por Redes Recorrentes}
 
 O sucesso do \textit{Word2Vec}, baseado em redes neurais \textit{feed forward}
@@ -201,9 +203,41 @@ redes neurais recorrentes e suas variações obtiveram bons resultados na
 representação de palavras.
 Nesta seção serão descritos alguns destes algoritmos.
 
-% algum antes? historia?
-% elmo
-% bert
+A estrutura chamada \textit{Enconder-Decoder} desenvolvida por \citet{cho14} se
+tornou a base das principais representações por redes recorrentes.
+Esta estrutura consiste em uma rede neural recorrente divida em duas etapas: a
+codificação, na qual uma sequência de tamanho variável é representada em um
+vetor; e a decodificação em que este mesmo vetor é utilizado para obter uma
+outra sequência de tamanho variável.
+O \textit{Encoder-Decoder} é um modelo de aprendizado de sequências de tamanho
+variável a partir de outra sequência de tamanho váriavel como entrada, em que
+os tamanhos não necessariamente são os mesmos, reflexo do problema inicial em
+que o mesmo foi desenvolvido para atacar, a tradução de textos.
+
+% TODO: diagrama (ver cho14)
+
+Essa estrutura toda é treinada conjuntamente epode ser utilizada para gerar
+sequências de saída a partir de entradas ou avaliar um par de entrada e saída a
+partir da probabilidade $p_{\mathbf{\theta}}(\mathbf{y} \mid \mathbf{x})$
+aprendida pelo treinamento, no qual $\mathbf{x}$ e $\mathbf{y}$ representam
+respectivamente as sequências de entrada e saída e $\mathbf{\theta}$ o conjunto
+de pesos do modelo treinado.
+
+A etapa de codificação desse modelo pode ser vista como um resumo da sequência
+de entrada em um vetor de tamanho fixo, assim sendo, o mesmo pode ser utilizado
+para representações de documentos, ou palavras caso aplicada sequência de
+tamanho unitário.
+\citet{cho14} demostram brevemente em seu trabalho que a codificação é capaz de
+capturar significados semânticos e sintático das palavras.
+
+\subsubsection{Transformers}
+
+comecar falando de atencao
+% citar traducao google (attention) e linkar com transformers
+
+% transformers - 2017 - Attention is all you need (boa explicacao dos conceitos)
+% elmo - 2018 - Deep contextualized word representations
+% bert - 2018 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 
 \section{Classificadores}
 \subsection{Baseados em Dicionário} \label{sec:dictionary}
