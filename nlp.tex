@@ -230,13 +230,37 @@ tamanho unitário.
 \citet{cho14} demostram brevemente em seu trabalho que a codificação é capaz de
 capturar significados semânticos e sintático das palavras.
 
-\subsubsection{Transformers}
+\subsubsection{ELMo}
+% Deep contextualized word representations
 
-comecar falando de atencao
-% citar traducao google (attention) e linkar com transformers
+ELMo~\cite{peters18}, sigla para \textit{Embeddings from Language Models}, em
+português Representações para Modelos Linguísticos, se diferencia do modelo de
+\citet{cho14} por levar em consideração o contexto de uma dada palavra para
+obter sua representação, inspirado por \citet{peters17} e \citet{mccann17}.
+Isto é, uma palavra que possua multiplos sentidos terá representações diferentes
+dependendo da frase em que está inserida.
+O modelo é composto de uma rede LSTM~\cite{hochreiter97} bi-direcional
+multi-camada, treinada de maneira não supervisionada a partir do objetivo de
+prever a palavra seguinte.
 
-% transformers - 2017 - Attention is all you need (boa explicacao dos conceitos)
-% elmo - 2018 - Deep contextualized word representations
+Estudos anteriores mostram que em modelos de redes recorrentes multi-camadas,
+a melhor camada escolhida para representação das palavras depende da finalidade
+em que se deseja aplica-la
+~\cite{hashimoto16}~\cite{sogaard16}~\cite{belinkov17}~\cite{melamud16}, e que
+em geral, camadas inferiores codificam melhor informação sintética e camadas
+superiores a informação semântica.
+A proposta de ELMo é para cada tarefa treinar uma combinação linear das
+representações obtida por cada camada da rede.
+
+% TODO: diagrama (ver http://jalammar.github.io/illustrated-bert/)
+
+\citet{peters18} mostram que ELMo foi capaz de obter resultados melhores que o
+estado da arte em diversas tarefas do processamento de linguagem natural.
+Além de capturar informação sintética e semântica, ELMo se mostrou capaz de
+desambiguar o contexto de palavras, problema até então não resolvido pelos
+principais algoritmos de representação.
+
+\subsubsection{BERT}
 % bert - 2018 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 
 \section{Classificadores}
@@ -246,5 +270,16 @@ comecar falando de atencao
 \subsection{Deep Learning}
 % diferença principal de deep p tradicional é: contexto
 % inspiração: http://dataskeptic.com/blog/episodes/2019/natural-language-processing
+
+% os modelos de representacao lstm tb sao de classificacao, o que fazer?
+
+% explicar classificacao nlp beaseada em LSTM
+\subsubsection{Transformers}
+% transformers - 2017 - Attention is all you need (boa explicacao dos conceitos)
+O mecanismo de atenção é uma das principais ferramenta no contexto de redes
+neurais recorrentes aplicadas a processamento de linguagem natural.
+Desenvolvido por \citet{bahdanau14} para aprimorar a tarefa de tradução
+automática, a atenção ataca uma das principais fraquezas dos algoritmos baseados
+em redes recorrentes, o "esquecimento" .
 
 % falar de diferentes dificultades de NLP e citar trabalhos relacionados no cap 3
