@@ -260,8 +260,65 @@ Além de capturar informação sintética e semântica, ELMo se mostrou capaz de
 desambiguar o contexto de palavras, problema até então não resolvido pelos
 principais algoritmos de representação.
 
-\subsubsection{BERT}
+\subsection{BERT}
 % bert - 2018 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+
+Outra técnica de representação
+
+\subsubsection{Transformers}
+% transformers - 2017 - Attention is all you need (boa explicacao dos conceitos)
+
+Um dos principais problemas de redes neurais recorrentes é o "esquecimento".
+O esquecimento é observado quando ao tentar prever uma palavra no final de uma
+longa sequência se perde influência das primeiras palavras da mesma por causa da
+sucessivas multiplicações dos pesos entre ambas.
+Apesar do algotimo LSTM~\cite{hochreiter97}, \textit{Long-Short Term Memory},
+que visa atenuar esse efeito criando um peso adicional, chamado de portão, que
+controla o quanto os pesos de contexo são atualizados entre cada iteração de
+palavras de uma sequência, o esquecimento continua sendo um fator limitante.
+
+O mecanismo de atenção desenvolvido por \citet{bahdanau14} também tem como
+objetivo diminuir o efeito do esquecimento.
+Este consiste em um conjunto de pesos adicionais que multiplicados pelos pesos
+de estados das iterações anteriores formam os pesos de estado da iteração
+corrente, como também descrito em mais detalhes por \citet{luong15}.
+A atenção se tornou uma das principais adições feitas a redes recorrentes
+aplicadas a processamento de linguagem natural.
+
+Inspirado nesse mecanismo, \citet{vaswani17} propuseram a arquitetura
+Transformer para tradução de textos.
+Essa arquitetura consiste em um sistema de \textit{Encoder-Decoder} desta vez
+composto por redes neurais \textit{feed forward} multi camadas em que a
+dependência temporal entre as palavras de um documento é atacada apenas pelo
+sistema de \textit{self-attention}, ou, atenção própria.
+
+Enquanto o mecanismo de atenção é composto se dá por um único conjunto de pesos,
+a \textit{self-attention} é dividido em 3: os pesos de busca, de resposta e de
+valor.
+Cada palavra do vocabulário terá um de cada vetor associado a mesma que será
+treinado em conjunto com o resto da arquitetura.
+Para cada palavra do documento será feito um produto interno do seu vetor de
+busca e os vetores de resposta das outras palavras da sentença, resultando em um
+valor único de atenção entre cada par possível de palavras de uma sentença.
+Após calcular esse valor será realizado uma operação de Softmax para que a norma
+do vetor de atenção seja unitária.
+Posteriormente se multiplica o vetor resultante pelo vetor de valor da palavra
+de resposta, essa operação tem a finalidade de diminuir a importância de
+palavras sem potencial discriminatório, como as \textit{stopwords}.
+Assim são calculadas as entradas da rede \textit{feed forward}.
+
+% TODO: figura exemplificando processo http://jalammar.github.io/illustrated-transformer/
+
+A etapa de codificação do Transformer é composta por uma cascata de unidades
+formadas por uma camada de \textit{self-attention} seguida de uma camada de
+rede \textit{feed forward}.
+Diferentemente das redes recorrentes, o Transformer requer um tamanho fixo de
+entrada, sendo um parâmetro a ser definido a depender da base de treinamento
+escolhida.
+Apesar das redes \textit{feed forward} não possuirem um conceito de sequência
+assim como as redes recorrentes, essa arquitetura provou ser eficiente em
+tarefas de processamento de linguagem natural ao mesmo tempo que possuem
+treinamento significamente menos custosos que a mesma~\cite{vaswani17}.
 
 \section{Classificadores}
 \subsection{Baseados em Dicionário} \label{sec:dictionary}
@@ -273,13 +330,5 @@ principais algoritmos de representação.
 
 % os modelos de representacao lstm tb sao de classificacao, o que fazer?
 
-% explicar classificacao nlp beaseada em LSTM
-\subsubsection{Transformers}
-% transformers - 2017 - Attention is all you need (boa explicacao dos conceitos)
-O mecanismo de atenção é uma das principais ferramenta no contexto de redes
-neurais recorrentes aplicadas a processamento de linguagem natural.
-Desenvolvido por \citet{bahdanau14} para aprimorar a tarefa de tradução
-automática, a atenção ataca uma das principais fraquezas dos algoritmos baseados
-em redes recorrentes, o "esquecimento" .
 
 % falar de diferentes dificultades de NLP e citar trabalhos relacionados no cap 3
