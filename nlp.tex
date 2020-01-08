@@ -263,7 +263,10 @@ principais algoritmos de representação.
 \subsection{BERT}
 % bert - 2018 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 
-Outra técnica de representação
+Outra técnica de representação bastante utilizada atualmente para representação
+de palavras é a BERT~\cite{devlin18}, \textit{Bidirectional Transformers}, mas
+antes de explica-la será apresentada abaixo a arquitetura Transformers em que a
+mesma se baseia.
 
 \subsubsection{Transformers}
 % transformers - 2017 - Attention is all you need (boa explicacao dos conceitos)
@@ -309,6 +312,9 @@ Assim são calculadas as entradas da rede \textit{feed forward}.
 
 % TODO: figura exemplificando processo http://jalammar.github.io/illustrated-transformer/
 
+% TODO: figura com o resultado http://jalammar.github.io/images/t/transformer_self-attention_visualization.png
+% pode ser print do tensor2tensor
+
 A etapa de codificação do Transformer é composta por uma cascata de unidades
 formadas por uma camada de \textit{self-attention} seguida de uma camada de
 rede \textit{feed forward}.
@@ -320,6 +326,35 @@ assim como as redes recorrentes, essa arquitetura provou ser eficiente em
 tarefas de processamento de linguagem natural ao mesmo tempo que possuem
 treinamento significamente menos custosos que a mesma~\cite{vaswani17}.
 
+\subsubsection{Arquitetura BERT}
+
+O sucesso do Transformer em traduções inspirou sua aplicação em outras tarefas.
+\citet{radford18} propuseram utilizar apenas a camada de decodificação do
+Transformer junto com uma adaptação da sequência de entrada para adequar a
+tarefa a ser realizada.
+O modelo é pré-treinado com uma quantidade massiva de dados na predição da
+palavra seguinte e posteriormente é feito um ajuste fino com uma base de dados
+da tarefa desejada.
+Esta nova arquitetura foi capaz propagar os ganhos de performance do Transformer
+para toda gama de tarefas de NLP.
+
+Entretanto, tanto o Transformer original quanto o de \citet{radford18} são
+modelos unidirecionais, prevendo a palavra, ou sentença à direita a partir do
+contexto à esquerda.
+\citet{devlin18} defendem que por serem unidirecionais os modelos restringem a
+capacidade dos mesmos, principalmente em tarefas que utilizam a sentença
+inteira, sendo a análise de sentimento um exemplo.
+Proporam então um modelo bidirecional praticamente idêntico ao Transformer de
+\citet{radford18} sendo sua única modificação ter o mecanismo de atenção
+considerando o contexto bidirecionalmente.
+
+Assim como o ELMo, o BERT pode ser usado diretamente como classificador além de
+representar palavras.
+\citet{devlin18} mostram as diferenças entre as camadas do modelo quando
+utilizados como representação, assim como nas arquiteturas apresentadas
+anteriormente as diferentes camadas possuem aprendizado de características
+distintas da lingua.
+
 \section{Classificadores}
 \subsection{Baseados em Dicionário} \label{sec:dictionary}
 \subsection{Lineares}
@@ -329,6 +364,7 @@ treinamento significamente menos custosos que a mesma~\cite{vaswani17}.
 % inspiração: http://dataskeptic.com/blog/episodes/2019/natural-language-processing
 
 % os modelos de representacao lstm tb sao de classificacao, o que fazer?
+% https://ruder.io/nlp-imagenet/
 
 
 % falar de diferentes dificultades de NLP e citar trabalhos relacionados no cap 3
