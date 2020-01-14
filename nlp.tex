@@ -356,7 +356,30 @@ anteriormente as diferentes camadas possuem aprendizado de características
 distintas da lingua.
 
 \section{Classificadores}
+
+Nessa seção serão abordadas as diferentes estratégias para classificação de
+sentimento.
+As etapas descritas anteriormente lidam com a preparação dos documentos para
+realização da classificação, apesar da complexidade dos métodos apresentados os
+classificadores podem ser tão simples quanto contadores de palavras positivas e
+negativas.
+Podemos dividir-los em algoritmos baseados em dicionário e algoritmos de
+aprendizado de máquina, suas caracteristicas serão descritas abaixo.
+
 \subsection{Baseados em Dicionário} \label{sec:dictionary}
+
+Uma das técnicas mais simples para classificação de sentimento é feita a partir
+da elaboração de um dicionário composto por palavras que tenham conotação
+positiva ou negativa.
+Entre as maneiras de se montar um dicionario de sentimento é a partir de um
+conjunto inicial de palavrase um dicionário de sinonimos e antonimos tal qual o
+WordNet~\cite{miller90}.
+Um exemplo é selecionar as palavras "bom" e "ruim" e montando uma base de
+palavras recursivamente a partir dos seus sinonimos e antonimos.
+Esse método é aplicado por \citet{hu04}.
+% Liu 2012 sentiment analysis
+% Mining and Summarizing Customer Reviews tem boas referencias no 2.2
+
 \subsection{Lineares}
 \subsection{Não Lineares}
 \subsection{Deep Learning}
