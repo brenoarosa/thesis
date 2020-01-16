@@ -364,19 +364,37 @@ realização da classificação, apesar da complexidade dos métodos apresentado
 classificadores podem ser tão simples quanto contadores de palavras positivas e
 negativas.
 Podemos dividir-los em algoritmos baseados em dicionário e algoritmos de
-aprendizado de máquina, suas caracteristicas serão descritas abaixo.
+aprendizado de máquina~\cite{taboada11}, suas caracteristicas serão descritas
+abaixo.
 
 \subsection{Baseados em Dicionário} \label{sec:dictionary}
 
 Uma das técnicas mais simples para classificação de sentimento é feita a partir
 da elaboração de um dicionário composto por palavras que tenham conotação
 positiva ou negativa.
-Entre as maneiras de se montar um dicionario de sentimento é a partir de um
-conjunto inicial de palavrase um dicionário de sinonimos e antonimos tal qual o
-WordNet~\cite{miller90}.
-Um exemplo é selecionar as palavras "bom" e "ruim" e montando uma base de
+A formação de um dicionário de sentimento pode ser feita de forma
+manual~\cite{stone66}~\cite{tong01} ou de forma automática.
+Dentre as maneiras automaticas temos a aplicado por \citet{hu04} que é feito a
+partir de um conjunto inicial de palavra anotadas e de um dicionário de
+sinonimos e antonimos tal qual o WordNet~\cite{miller90}.
+Um exemplo é selecionar as palavras semente ``bom'' e ``ruim'' e montar uma base de
 palavras recursivamente a partir dos seus sinonimos e antonimos.
-Esse método é aplicado por \citet{hu04}.
+Formas similares de identificação de palavras com sentimento baseados em
+dicionários e palavras semente foram desenvolvidas por \citet{blair08},
+\citet{rao09}, \citet{hassan10}, entre outros.
+
+Existindo um dicionário, a classificação de polaridade de um documento é dada
+com a partir de alguma função dos sentimentos das palavras que o compõem.
+É comum a inclusão algumas características sintáticas como identificação de
+adjetivos intensificadores e identificação de negação para ponderar a pontuação
+de sentimento de uma palavra ou expressão~\cite{taboada11}.
+A função de classificação pode ser tão simples quanto uma média do sentimento
+das palavras ou, por exemplo, um calculo de proximidade entre o conjunto de
+palavras do documento e as palavras ``excelente'' e ``ruim'', representando as
+classes positivas e negativas, como proprõe \citet{turney02}.
+
+% pang and lee 2008 4.5.1
+% Lexicon-Based Methods for Sentiment Analysis
 % Liu 2012 sentiment analysis
 % Mining and Summarizing Customer Reviews tem boas referencias no 2.2
 
