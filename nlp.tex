@@ -398,8 +398,110 @@ classes positivas e negativas, como proprõe \citet{turney02}.
 % Liu 2012 sentiment analysis
 % Mining and Summarizing Customer Reviews tem boas referencias no 2.2
 
-\subsection{Lineares}
-\subsection{Não Lineares}
+\subsection{Modelos Lineares}
+% TODO: acertar o titulo
+
+Naturalmente, as primeiras aplicações de aprendizado de máquina em análise de
+sentimento fizeram uso de modelos simples, como os modelos lineares.
+\citet{pang02} fizeram um dos primeiros estudos comparativos entre estes
+métodos.
+A seguir, serão descritos os dois principais modelos lineares utilizados em
+processamento de linguagem natural: Naïve Bayes e Máquina de Vetor de Suporte.
+
+\subsubsection{Naïve Bayes}
+
+O classificador de Naïve Bayes se baseia no teorema de Bayes \ref{eq:bayes} e
+na premissa de independência entre as dimensões da representação dos dados.
+Quando representamos um documento textual com, por exemplo, \textit{bag-of-words}
+a premissa de independência significaria assumir que existe independência entre
+as palavras do documento.
+Apesar de não existir independência entre palavras na linguagem, este modelo foi
+aplicado amplamente a tarefas de processamento de texto devido a sua performance
+e simplicidade.
+
+\begin{equation} \label{eq:bayes}
+    P(A\mid B) = \frac{P(A) P(B \mid A)}{P(B)}
+\end{equation}
+
+\citet{schutze08} descreveram a formulação matemática desse modelo, como será
+demostrado.
+Será denominado $\mathbf{X}$ o corpus de treinamento e $\mathbf{x}$ um documento
+desse corpus.
+As classes que os documentos pertencem, como positivo e negativo, é chamada de
+$c_k$, no qual $\mathbf{c}$ é o conjunto de classes.
+Portanto, substituindo as variáveis da equação~\ref{eq:bayes} temos que a
+probabilidade de um documento pertencer a uma determinada classe é dada por:
+
+\begin{equation}
+    p(c_k \mid \mathbf{x}) = \frac{p(c_k) \ p(\mathbf{x} \mid c_k)}{p(\mathbf{x})}
+\end{equation}
+
+Como se assume independência entre as variáveis temos que:
+
+\begin{equation}
+    p(x_i \mid x_{i+1}, \dots ,x_{n}, c_k ) = p(x_i \mid c_k)
+\end{equation}
+
+Logo, pode-se substituir $p(\mathbf{x} \mid c_k)$ pelo produtório de
+$p(x_i \mid c_k)$:
+
+\begin{equation}
+    p(c_k \mid \mathbf{x}) = \frac{p(c_k) \prod_{i=1}^n p(x_i \mid c_k)}{p(\mathbf{x})}
+\end{equation}
+
+A probabilidade $p(\mathbf{x})$ será constante, logo não influenciará o
+treinamento, portanto temos que a relação entre a probabilidade de um documento
+pertencer a classe é dada por:
+
+\begin{equation}
+    p(c_k \mid \mathbf{x}) \propto p(c_k) \prod_{i=1}^n p(x_i \mid c_k)
+\end{equation}
+
+Sendo assim, a tarefa da classificação que é encontrar a classe de maior
+probabilidade.
+
+\begin{equation}
+    \hat{y} = \operatorname{max} p(c_k \mid \mathbf{x}) = \underset{k \in \{1, \dots, K\}}{\operatorname{max}} \ p(c_k) \displaystyle\prod_{i=1}^n p(x_i \mid c_k)
+\end{equation}
+
+A dependência entre a predição e o conjunto de treino então é dada por $p(c_k)$
+e $p(\mathbf{x} \mid c_k)$, esses valores são obtidos por máxima verossimilhança.
+O parâmetro $p(c_k)$ é dado pela proporção de vezes que a classe aparece no
+conjunto de treino.
+Tendo o conjunto de treino o tamanho $m$ de documentos:
+
+\begin{equation}
+    \hat{p}(c_k) = \frac{\sum_{i=1}^m [y_i = c_k]}{m}
+\end{equation}
+
+Por sua vez, $p(x_r \mid c_k)$ é estimado pela proporção entre uma determinada
+característica $x_r$ com o total de de características do subconjunto de dados
+$\mathbf{X_{c_k}}$ pertencentes a classe $c_k$:
+
+\begin{equation}
+    \hat{p}(x_r \mid c_k) = \frac{\sum_{j=i}^{m'} \sum_{i=1}^n [x_{ji} = x_r]}{|\mathbf{X_{c_k}}|}
+\end{equation}
+
+O Naïve Bayes pode ser aplicado tanto a vetores inteiros da representação
+\textit{bag-of-words} de frequência de palavras em um documento quanto pelo seu
+equivalente binário que assinala presença ou não de uma determinada palavra.
+Ao considerar a frequência de palavras aplicamos o modelo multinomial enquanto
+ao utilizar a representação de forma binária temos o modelo de Bernoulli.
+O modelo de Bernoulli é mais eficiente para documentos e vocabularios pequenos
+enquanto o multimodal se sobressaí no caso oposto~\cite{schutze08}.
+
+Apesar da premissa de indepedência não ser verdadeira para lingua, e não ser um
+bom estimador~\cite{schutze08}, Naïve Bayes se mostra eficiente na
+classificação, em especial quando existe um conjunto de características de
+semelhante importância.
+Sua principal vantagem se dá pelo baixo custo computacional de treinamento visto
+que seus parâmetros são estimados apenas por contagens na base de dados.
+
+\subsubsection{Máquina de Vetor de Suporte}
+
+\subsection{Modelos Não-Lineares}
+% TODO: acertar o titulo
+
 \subsection{Deep Learning}
 % diferença principal de deep p tradicional é: contexto
 % inspiração: http://dataskeptic.com/blog/episodes/2019/natural-language-processing
