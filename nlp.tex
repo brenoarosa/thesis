@@ -499,15 +499,67 @@ que seus parâmetros são estimados apenas por contagens na base de dados.
 
 \subsubsection{Máquina de Vetor de Suporte}
 
-\subsection{Modelos Não-Lineares}
-% TODO: acertar o titulo
+A Máquina de Vetor de Suporte, também chamada de SVM, é um algoritmo que busca
+encontrar um vetor que melhor separe duas classes.
+A diferença entre esse algoritmo e outros classificadores como a regressão
+linear é que o SVM tem objetivo de obter o vetor que maximize a distância entre
+as margens das classes, enquanto a regressão linear, em geral, minimiza uma
+função custo baseada na distância entre o centro de massa das classes.
 
-\subsection{Deep Learning}
+Entretanto, por se basear na margem das classes, o SVM não é capaz de separar
+classes que tenham sobreposição.
+Como forma de contornar esse problema foi criada uma variável de relaxamento de
+forma a controlar o quanto de sobreposição é permitido entre as classes como
+explicam \citet{cortes95}.
+Ainda assim, até então a Máquina de Vetor de Suporte fica limitada a problemas
+lineares.
+Apenas com o desenvolvimento do chamado \textit{kernel trick} que o SVM pode ser
+aplicável à problemas não-lineares e ganhou alta adoção.
+O \textit{kernel trick} consiste em realizar uma transformação na representação
+dos dados de forma que os mesmos sejam linearmente separáveis após a
+transformação.
+Mapeamentos radiais e polinomiais são dois dos exemplos de \textit{kernel}
+amplamente utilizados.
+
+Uma das principais propriedades do SVM é que seu treinamento independe da
+dimensionalidade das características dos dados visto que seu aprendizado é feito
+com base nas margens entre as classes.
+Portanto, uma vez que os dados sejam separados por uma margem, mesmo que tenham
+alta dimensionalidade, o vetor de suporte de classificação pode ser encontrado.
+A aplicação de SVM para classificadores de texto foi proposta por
+\citet{joachims98} visto que dados textuais representados por
+\textit{bag-of-words} possuem 3 propriedades das quais se adequam a
+classificação por SVM:
+\begin {enumerate*} [label=\itshape\alph*\upshape)]
+    \item possuem alta dimensionalidade
+    \item são esparsos
+    \item tem poucas dimensões irrelevantes.
+\end {enumerate*}
+Apesar de \citet{joachims98} demostrar a efetividade do SVM para classificação
+de texto utilizando \textit{kernels} não lineares, bons resultados são obtidos
+mesmo sem a aplicação de \textit{kernel} como mostra \citet{pang02}.
+
+\subsection{Modelos Não-Lineares}
+
+Classificadores lineares a partir de representação por \textit{bag-of-words} ou
+TF-DF dos textos foram o estado da arte em tarefas de processamento natural
+durante os anos.
+Entretanto, como visto anteriormente, ao aplicar técnicas como
+\textit{bag-of-words} abre-se mão do contexto em que cada palavra aparece no
+documento, este fator limita a performance da classificação.
+Sem conseguir capturar o contexto essas técnicas se distanciam de como nós
+interpretamos a língua.
+Para diminuir essa lacuna, possibilitados pelo desenvolvimento de técnicas de
+representações densas, passou a ser utilizados classificadores não-lineares que
+visam adicionar alguma forma de contexto no processo.
+
+\subsubsection{Deep Learning}
 % diferença principal de deep p tradicional é: contexto
 % inspiração: http://dataskeptic.com/blog/episodes/2019/natural-language-processing
 
 % os modelos de representacao lstm tb sao de classificacao, o que fazer?
 % https://ruder.io/nlp-imagenet/
 
+\subsection{Supervisão Distante}
 
 % falar de diferentes dificultades de NLP e citar trabalhos relacionados no cap 3
