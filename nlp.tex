@@ -195,7 +195,7 @@ o FastText~\cite{bojanowski17}.
 
 % TODO abrir matematica do W2V
 
-\subsection{Representações por Redes Recorrentes}
+\subsection{Representações por Redes Neurais Recorrentes}
 
 O sucesso do \textit{Word2Vec}, baseado em redes neurais \textit{feed forward}
 inspirou a experimentação de outros tipos de redes neurais, dentre as quais as
@@ -554,8 +554,51 @@ representações densas, passou a ser utilizados classificadores não-lineares q
 visam adicionar alguma forma de contexto no processo.
 
 \subsubsection{Deep Learning}
+
+Dentre os modelos não-lineares os que mais se destacam em processamento de
+lingugagem natural são os de \textit{Deep Learning}, baseada em redes neurais.
+Uma das principais características das redes neurais é que estas são algoritmos
+capazes de aproximar qualquer função~\cite{hornik89}.
+Com o desenvolvimento do método de treinamento por auto diferenciação, chamado
+de \textit{backpropagation}, nos anos 80~\cite{werbos82} as redes neurais
+foram amplamente adotadas.
+Entretanto, dois principais fatores inviabilizaram o treinamento de redes
+neurais de larga escala por muitos anos: o custo computacional do
+\textit{backpropagation} e o efeito do \textit{vanishing gradient}~
+\cite{hochreiter98}.
+O \textit{vanishing gradient} é decorrente do efeito multiplicativo do
+gradiente desde a camada de neurônios da saída até a camada de entrada.
+O mesmo resulta em um treinamento menor da camada a medida que a mesma está
+mais distantes da saída, estabelecendo assim uma dificuldade exponencial no
+treinamento com relação ao número de camadas.
+
+Com o desenvolvimento tecnológico e a elaboração de uma técnica de treinamento
+camada-a-camada foi possível se sobrepor a esta barreira.
+Este treinamento, proposto por \citet{hinton06}, em que cada camada de neurônio
+é treinada individualmente e os valores obtidos por esse treinamento são
+utilizados como inicialização do treinamento da rede completa.
+Após esse trabalho começaram a testar redes neurais com um número cada vez
+maior de camadas.
+Denominou-se \textit{Deep Learning} a esse conjunto de modelos de redes neurais
+profundas.
+
+O salto de performance obtido pela aplicação de redes neurais
+profundas~\cite{lecun15} em diversas áreas de conhecimento fez deste conjunto de
+técnicas um objeto de estudo de muito interesse por pesquisadores e indústria.
+Parte de seu sucesso se atribuí ao fato de que cada adicional na rede neural
+permite que a mesma obtenha uma representação mais complexa dos dados.
+Considerando o processamento de linguagem, diferentes tipos de redes neurais
+foram testados para tentar capturar a complexidade desta informação,
+com diferentes abordagens para adicionar o contexto em que cada palavra se
+insere no processo de modelagem.
+As seções abaixo descrevem os principais tipos de redes neurais aplicados a NLP.
+
 % diferença principal de deep p tradicional é: contexto
 % inspiração: http://dataskeptic.com/blog/episodes/2019/natural-language-processing
+
+\subsubsection{Redes Neurais Convolucionais}
+
+\subsubsection{Redes Neurais Recorrentes}
 
 % os modelos de representacao lstm tb sao de classificacao, o que fazer?
 % https://ruder.io/nlp-imagenet/
