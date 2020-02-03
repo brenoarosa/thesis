@@ -598,6 +598,31 @@ As seções abaixo descrevem os principais tipos de redes neurais aplicados a NL
 
 \subsubsection{Redes Neurais Convolucionais}
 
+As redes convolucionais foram desenvolvidas prioritariamente para resolver
+problemas como a classificação de imagens e reconhecimento de fala.
+Um fator comum que essas tarefas compartilham é a possível translação da
+informação.
+Na classificação de imagens, por exemplo, um determinado objeto pode estar em
+diferentes posições ou ocupar tamanhos distintos em diferentes imagem.
+Apesar de ser possivel aplicar redes neurais MLP ao problema, esta precisaria
+aprender os mesmos padrões de neurônios em diferentes posições~\cite{lecun95}.
+Além disso, neste tipo de problema existe uma característica da localidade da
+informação, por exemplo, para reconhecimento de fala de uma palavra no final de
+uma frase, a palavra imediatamente anterior é, em geral, mais importante que a
+primeira palavra da mesma.
+Ao se utilizar redes neurais MLP completamente conectadas entre camadas se
+despreza essa propriedade, incorrendo em um maior custo computacional sem que
+necessáriamente se reflita em performance, ou pior, aumentando a chance de o
+treinamento resultar em \textit{overfitting}.
+
+A forma da rede convolucional atacar este problema da correlação espacial da
+informação é utilizando filtros espaciais.
+Cada camada da rede convolucional é formada por um conjunto de filtros que são
+compostos por neurônios.
+A rede é treinada deslocando cada filtro por toda dimensão 
+
+% sao como redes neurais MLP com pesos compartilhados (lecun15 p. 7)
+
 \subsubsection{Redes Neurais Recorrentes}
 
 % os modelos de representacao lstm tb sao de classificacao, o que fazer?
