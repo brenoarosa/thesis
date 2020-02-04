@@ -619,9 +619,30 @@ A forma da rede convolucional atacar este problema da correlação espacial da
 informação é utilizando filtros espaciais.
 Cada camada da rede convolucional é formada por um conjunto de filtros que são
 compostos por neurônios.
-A rede é treinada deslocando cada filtro por toda dimensão 
+A iteração de treinamento da rede consiste no deslocamento de cada filtro por
+toda dimensão da camada anterior.
+Desta maneira os padrões locais são capturados por um mesmo filtro
+idependentemente de onde os padrões apareçam nos dados de entrada.
+O deslocamento dos filtros durante o treinamento funciona como um
+compartilhamento de pesos, reduzindo a quantidade de parâmetros livres da rede,
+e assim sua probabilidade de \textit{overfitting}.
 
-% sao como redes neurais MLP com pesos compartilhados (lecun15 p. 7)
+A interpretação de redes convolucionais aplicadas a processamento de texto não é
+muito diferente de sua utilização com imagens.
+Enquanto os filtros convolucionais exploram os padrões locais com filtros 2D de
+poucos pixels em imagens, com o caso textual os filtros são unidimensionais e
+percorrem a sequência de vetores de palavras com uma janela, capturando assim
+parte do contexto em que cada palavra se insere.
+Esse modelo já hávia sido aplicado a documentos representados com
+\textit{bag-of-words} como demostrado por \citet{kalchbrenner14} e
+\citet{yih14} mas apenas quando utilizado em conjunto com a representação
+Word2Vec como apresentou \citet{kim14} que esse algoritmo ganhou tração nas
+tarefas de classificação de texto.
+A disponibilidade de modelos Word2Vec pré-treinadas, somado a representação
+densa que resulta em menor quantidade de parâmetros e menor probabilidade de
+\textit{overfitting} torna essa combinação acessível para treinamento mesmo em
+casos de grandes bases de dados, não obstante com performance superior como
+mostra \citet{kim14}.
 
 \subsubsection{Redes Neurais Recorrentes}
 
