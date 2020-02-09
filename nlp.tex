@@ -196,6 +196,7 @@ o FastText~\cite{bojanowski17}.
 % TODO abrir matematica do W2V
 
 \subsection{Representações por Redes Neurais Recorrentes}
+\label{representation:rnn}
 
 O sucesso do \textit{Word2Vec}, baseado em redes neurais \textit{feed forward}
 inspirou a experimentação de outros tipos de redes neurais, dentre as quais as
@@ -646,9 +647,34 @@ mostra \citet{kim14}.
 
 \subsubsection{Redes Neurais Recorrentes}
 
-% os modelos de representacao lstm tb sao de classificacao, o que fazer?
-% https://ruder.io/nlp-imagenet/
+Outra forma de encapsular o contexto presente na linguagem é utilizando redes
+neurais recorrentes.
+As Redes Neurais Recorrentes são, em geral, treinadas com o algorítmo
+\textit{Backpropagation Through Time}~\cite{williams95} (BPTT) em que a rede
+recorrente se comporta como uma rede neural \textit{feedforward} na qual cada
+camada representa um passo temporal nos dados de entrada, no caso de texto
+podendo ser cada passo uma palavra.
+Portanto, ao aplicar esse algoritmo sobre o texto, o contexto sequêncial do
+documento será capturado pela própria arquitetura da rede.
+
+As variações de redes neurais recorrentes como apresentado em
+\ref{representation:rnn} em grande parte também realizam classifição.
+Um exemplo desta aplicação é mostrada por \citet{tai15} classificando sentimento
+por uma rede LSTM.
+Posteriormente, técnicas de classificação que misturam diferentes tipos de redes
+foram testadas com êxito como mostram \citet{zhou16} em que a arquitetura é
+constituida de uma camada de rede recorrente seguida por uma camada de rede
+convolucional.
+
+Apesar dos bons resultados obtidos nesses trabalhos, o treinamento por BPTT é
+computacionalmente mais custoso que o \textit{backpropagation} de redes
+\textit{feedforward} ou convolucionais, dado que o mesmo apresenta menos
+oportunidade de paralelismo do treinamento.
+Assim, esse algoritmo acaba sendo menos utilizado do que as redes
+convolucionais, ou até mesmo os Transformers para classificação de documentos.
 
 \subsection{Supervisão Distante}
 
-% falar de diferentes dificultades de NLP e citar trabalhos relacionados no cap 3
+A boa performance dos algoritmos de Deep Learning depende da disponibilidade de
+grandes bases de dados de treinamento.
+
