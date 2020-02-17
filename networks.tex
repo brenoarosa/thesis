@@ -31,4 +31,50 @@ da a provinda da rede.
 
 % grande referencia em graph embeddings
 % A Comprehensive Survey of Graph Embedding: Problems, Techniques and Applications
-% outra opcao: Graph convolutional networks: a comprehensive review
+% Graph Embedding Techniques, Applications, and Performance: A Survey
+
+\section{Modelos Baseados em Fatoração Matricial}
+
+A primeira modalidade de técnicas de representação de nós a ser desenvolvida foi
+a por fatoração matricial.
+Essa consiste em utilizar o resultado da fatoração de uma das matrizes
+características da rede como representação dos nós, dentro os exemplos de
+matrizes dos grafos temos: a matriz de adjacência, a matriz Laplaciana, a matriz
+de centralidade de Katz, entre outras~\cite{goyal18}.
+Nos casos que a matriz é positiva e semi-definida, como a matriz Laplaciana, é
+possível aplicar a decomposição em autovalores, nos outros casos, em geral, são
+utilizados métodos iterativos visando minimizar uma função custo.
+
+\subsubsection{Locally Linear Embedding (LLE)}
+
+\citet{roweis00} desenvolveram esse algoritmo que tem como premissa que um nó é
+uma combinação linear de seus vizinhos.
+Portanto tendo a matriz de adjacencia $W_{ij}$ e o vetor de representação de um
+nó como $Y_i$, definimos o mesmo como:
+
+\begin{equation}
+    Y_i \approx \sum_j{W_{ij}Y_j}
+\end{equation}
+
+A função custo a ser minimizada para atingir é a que minimiza o erro de
+representação do somatório de todos os nós, sendo assim a função custo $\phi(Y)$
+é dada por:
+
+\begin{equation}
+    \phi(Y) = \sum_i{|Y_i - \sum_j{W_{ij}Y_j}|^2}
+\end{equation}
+
+Sendo necessário respeitar a restrição $\frac{1}{N}Y^TY = 1$ para XXXX.
+Esta técnica obtém uma representação de nós que preserva as distância de
+primeira ordem da rede, ou seja, vizinhos diretos no grafo original vão obter
+representações próximas.
+
+\subsubsection{Laplacian Eigenmaps}
+
+A técnica de YYYY desenvolvida por \citet{belkin02}
+
+\subsubsection{HOPE}
+
+\section{Modelos Baseados em Passeios Aleatórios}
+
+% \section{Modelos de Deep Learning}
