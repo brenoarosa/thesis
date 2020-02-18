@@ -69,12 +69,52 @@ Esta técnica obtém uma representação de nós que preserva as distância de
 primeira ordem da rede, ou seja, vizinhos diretos no grafo original vão obter
 representações próximas.
 
-\subsubsection{Laplacian Eigenmaps}
+\subsubsection{Automapas Laplacianos}
 
-A técnica de YYYY desenvolvida por \citet{belkin02}
+Esta técnica desenvolvida por \citet{belkin02} também tem como objetivo obter
+representações próximas entre vizinhos, desta vez inspirada na equação de fluxo
+de calor, usando a matriz laplaciana do grafo.
+Sua função custo é dada pela equação~\ref{eq:laplacian_eigenmaps} na qual $L$ é
+a laplaciana do grafo.
+
+\begin{equation} \label{eq:laplacian_eigenmaps}
+\begin{aligned}
+    \phi(Y) &= \frac{1}{2} \sum_{ij}{|Y_i - Y_j|^2 W_{ij}} \\
+            &= tr(Y^TLY)
+\end{aligned}
+\end{equation}
 
 \subsubsection{HOPE}
 
+Os algoritmos apresentados anteriormente são efetivos para manter a distância
+entre vizinhos de um grafo não-direcionado.
+Entretanto, grafos direcionados reais que em grande parte das vezes tem sua
+distribuição de grau seguindo uma lei de potência, como é o caso dos grafos
+formados em redes sociais, as propriedades de um par de nós não são simétricas.
+Para obter representações que respeitem essa assimetria \citet{ou16}
+desenvolveram o algoritmo \textit{High-Order Proximity preserved Embedding}
+(HOPE).
+A chave deste algoritmo é utilizar métricas de proximidade de ordem superior em
+sua função custo, preservando assim as propriedades da assimetria.
+Qualquer medida de proximidade pode ser aplicada neste algoritmo, \citet{ou16}
+em seu estudo testaram medidas como a proximidade de Katz e Pagerank
+personalisado, mostrando que em varios casos essas medidas possuem aproximações
+que diminuem o custo computacional da otimização.
+
+HOPE representa cada vértice em 2 vetores, um de entrada e um de saída, o qual
+denominaremos respectivamente $Y^s$ e $Y^t$.
+A função custo é dada pela equação~\ref{eq:hope} na qual $S$ representa a matriz
+de proximidade entre os nós dada por qualquer uma das medidas escolhidas.
+
+\begin{equation} \label{eq:hope}
+    \phi = \vert\vert S - Y^s {Y^t}^{T} \vert\vert^2_F
+\end{equation}
+
 \section{Modelos Baseados em Passeios Aleatórios}
 
+\subsubsection{DeepWalk}
+
+\subsubsection{node2vec}
+
 % \section{Modelos de Deep Learning}
+\subsubsection{GCN}
