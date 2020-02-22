@@ -5,7 +5,7 @@ Grafos são estruturas de dados que codificam relações, e estão presentes em 
 grande variedade de cenários.
 Estes são compostos por nós que representam elementos, quaisquer que sejam, e
 arestas que são as relações entre os elementos na rede.
-Se tratando de redes sociais grafos são especialmente importantes dado que
+Se tratando de redes sociais, grafos são especialmente importantes dado que
 a relação entre os usuários é a principal componente desses serviços.
 Ao longo das ultimas décadas o estudo de modelos aplicados aos grafos, foi se
 tornando cada vez mais relevante.
@@ -13,7 +13,7 @@ Esses modelos visam capturar diversas características possíveis das redes como
 evolução do grafo no tempo, a propagação de epidemias dentro da rede,
 recomendação de arestas, a predição de classes de um dado nó ou aresta, entre outros.
 
-Neste capitulo serão estudados modelos de representações de nós.
+Neste capitulo serão estudados ténicas de representações de vértices.
 Assim como no caso de documentos textuais, estes modelos, em geral, visam
 codificar a informação de um nó em um vetor de baixa dimensionalidade,
 capturando tanto seus atributos individuais quanto os decorrentes da estrutura
@@ -225,5 +225,36 @@ Apesar da maior complexidade, o algoritmo apresenta aumento linear do custo
 computacional com relação ao número de nós da rede, possibilitando sua aplicação
 em redes de grande volume.
 
-% \section{Modelos de Deep Learning}
-\subsubsection{GCN}
+\section{Redes Convolucionais de Grafos}
+
+Adaptações de modelos de \textit{Deep Learning} também passaram a ser utilizados
+para representação de nós, como os modelos por \textit{autoencodes}~\cite{wang16}
+e~\cite{cao16}.
+A rede convolucional de grafos~\cite{kipf16} (GCN) é um dos principais algoritmos
+deste grupo, no qual se desenvolveu uma adaptação do operador de convolução para
+aplicar em grafos.
+
+\begin{equation} \label{eq:gcn_layer}
+    H^{(l+1)} = \sigma (\tilde{D}^{-\frac{1}{2}} \tilde{A} \tilde{D}^{-\frac{1}{2}} H^l W^l)
+\end{equation}
+
+A equação~\ref{eq:gcn_layer} define a camada de convolução usada nesse
+algoritmo.
+A matriz $\tilde{A} = A + I$ é a matriz de adjacência somada a matriz
+identidade, correspondente a um grafo com um laço \footnote{aresta conectando um
+vértice nele mesmo} adicionado a cada vértice, A matriz diagonal $\tilde{D}$ é
+composta por $\tilde{D}_{ii} = \sum_{j}\tilde{A}_{ij}$, $H^l$ representa a saída
+da camada $l$ e $W^l$ os pesos treináveis da mesma, por fim, temos a função de
+ativação escolhida $\sigma$.
+Os autores mostram em seu trabalho a relação desta camada com a aproximação de
+primeira ordem da convolução espectral do grafo.
+
+Apesar do GCN não ser especificamente voltado para obtenção de representações,
+trabalhos posteriores realizaram adaptações no algoritmo com essa finalidade.
+Outra dificuldade é que assim como os modelos de fatoração matricial, só é
+possível aplica-lo em grafos fixos, ao precisar adicionar novos vértices
+precisa-se retreinar o modelo.
+Dentre os algoritmos que se propõe a atacar esses problemas, destacamos o
+GraphSAGE~\cite{hamilton17}, que minimiza a representação de um vértice a partir
+de uma função de agregação de seus vizinhos, desta forma a técnica não depende
+da matriz de adjacência completa para seu treinamento.
