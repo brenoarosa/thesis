@@ -164,5 +164,47 @@ computacional de treinamento também podem ser adotadas no Deepwalk, como
 
 \subsubsection{node2vec}
 
+O node2vec~\cite{grover16} também é um algoritmo inspirado no Word2Vec.
+Seu processo de otimização é idêntico ao apresentado pelo Deepwalk, também
+aplicado sobre sequências de passeios aleatórios de tamanho fixo.
+As diferenças entre ambos está na estratégia de passeio aleatório, que além de
+capturar a vizinhança de um dado vértice visa também capturar a posição do mesmo
+na estrutura ao seu redor.
+Enquanto a vizinha de um nó compõe uma parte de sua informação, o posicionamento
+do mesmo em sua comunidade também é relevante.
+Dentro de uma rede, um nó central de uma comunidade pode apresentar
+características mais semelhantes ao ponto central de outra comunidade
+do que a algum vértice vizinho com poucas conexões.
+
+A proposta desenvolvida por \citet{grover16} consiste em um Passeio Aleatório
+enviesado que parametrizam quão relevante são cada um desses dois comportamentos.
+Ao se escolher parâmetros que priorizem a vizinhança do vértica, a amostragem do
+Passeio Aleatório enviesado passa a se assemelhar a uma busca em profundidade,
+por outro lado, focando-se na estrutura formada pelas conexões do nó obtemos uma
+amostragem semelhante a busca em largura.
+
+No Passeio Aleatório não enviesado, a probabilidade de transição $\pi_{uv}$ do
+nó $u$ para o nó $v$ é dada por $\pi_{uv} = \frac{w_{uv}}{\sum{w_u}}$, no qual
+$w_{uv}$ é o peso da aresta entre $u$ e $v$ e $\sum{w_u}$ é o somatório dos das
+arestas de $u$.
+Para atingir seu objetivo, node2vec multiplica a probabilidade de transição
+original do Passeio Aleatório por um fator $\alpha(u, v)$ parametrizado pelos
+parametros $p$ e $q$, como mostra a equação~\ref{eq:node2vec_alpha}, na qual
+$d_{uv}$ representa a distância mínima entre o par de vértices.
+
+\begin{equation} \label{eq:node2vec_alpha}
+    \alpha(u, v) =
+    \begin{cases}
+        \frac{1}{p} ,& \text{se } d_{uv} = 0\\
+        1           ,& \text{se } d_{uv} = 1\\
+        \frac{1}{q} ,& \text{se } d_{uv} = 2
+    \end{cases}
+\end{equation}
+
+Esses fatores..
+% pegar da pagina 4
+
+% falar que é consistente melhor que o anterior
+
 % \section{Modelos de Deep Learning}
 \subsubsection{GCN}
