@@ -112,7 +112,55 @@ de proximidade entre os nós dada por qualquer uma das medidas escolhidas.
 
 \section{Modelos Baseados em Passeios Aleatórios}
 
-\subsubsection{DeepWalk}
+Outra estratégia amplamente adotada são as baseadas em Passeios Aleatórios.
+O Passeio Aleatório é um processo estocástico que consiste em se selecionar um
+vértice inicial no grafo e completar uma sequência de passos aleatórios.
+Sua aplicação para obtenção de representações considera a sequência de nós de
+múltiplas realizações do Passeio Aleatório como uma função de proximidade entre
+os nós.
+Por ser iterativo e não necessitar o calculo de nenhuma matriz completa do
+grafo, esse método apresenta vantagem em custo operacional para redes grandes.
+Além disso, a iteratividade do método também permite que novos elementos sejam
+adicionados ao grafo sem requerer um treinamento completo do modelo,
+característica essencial para seleção de algoritmos em diversas aplicações.
+A seguir serão apresentados os principais modelos deste grupo.
+
+\subsubsection{Deepwalk}
+
+Deepwalk~\cite{perozzi14} se inspira em modelos de representações de palavras
+utilizando como entrada sequências de iterações de Passeios Aleatórios truncadas
+em poucos passos.
+Os autores observaram que assim como a distribuição de ocorrência de palavras de
+uma lingua segue uma lei de potência, mesmo comportamento de boa parte das redes
+formadas no mundo real, como a de conexão entre pessoas.
+Desta forma, adaptaram algoritmos previamente aplicados para predição de
+palavras para obter as representações dos vértices.
+
+O modelo proposto é muito similar a variação \textit{skipgram} do
+Word2Vec~\ref{sec:w2v}, os passeios aleatórios truncados formam sequências de
+tamanho $2k + 1$, o treinamento do algoritmo é feito de maneira a maximizar a
+probabilidade de predição do contexto a partir do vértice na posição central do
+passeio.
+A formula~\ref{eq:deepwalk} formaliza o problema citado dado que $v_i$ é o
+vértice central de um dado passeio e $\Phi$ é o mapeamento de um vetor em sua
+representação, que queremos encontrar.
+
+\begin{equation} \label{eq:deepwalk}
+    \operatorname{max} P(\{v_{i-k},..., v_{i-1},v_{i+1},v_{i+k}\}|\Phi(v_i))
+\end{equation}
+
+O processo é feito de forma iterativa em que cada realização do Passeio
+Aleatório compões uma entrada da algoritmo.
+A otimização é dada por gradiende decentente da função custo $\phi$ que maximiza
+a probabilidade~\ref{eq:deepwalk}, esta é apresentada na
+equação~\ref{eq:deepwalk_cost}.
+Outras adaptações propostas posteriormente ao Word2Vec para diminuir o custo
+computacional de treinamento também podem ser adotadas no Deepwalk, como
+\textit{softmax} hierarquico e \textit{negative sampling}.
+
+\begin{equation} \label{eq:deepwalk_cost}
+    \phi = -\log P(\{v_{i-k},..., v_{i-1},v_{i+1},v_{i+k}\}|\Phi(v_i))
+\end{equation}
 
 \subsubsection{node2vec}
 
