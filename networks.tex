@@ -146,7 +146,7 @@ vértice central de um dado passeio e $\Phi$ é o mapeamento de um vetor em sua
 representação, que queremos encontrar.
 
 \begin{equation} \label{eq:deepwalk}
-    \operatorname{max} P(\{v_{i-k},..., v_{i-1},v_{i+1},v_{i+k}\}|\Phi(v_i))
+    \operatorname{max} P(\{v_{i-k},...,v_{i-1},v_{i+1},...,v_{i+k}\}|\Phi(v_i))
 \end{equation}
 
 O processo é feito de forma iterativa em que cada realização do Passeio
@@ -159,7 +159,7 @@ computacional de treinamento também podem ser adotadas no Deepwalk, como
 \textit{softmax} hierarquico e \textit{negative sampling}.
 
 \begin{equation} \label{eq:deepwalk_cost}
-    \phi = -\log P(\{v_{i-k},..., v_{i-1},v_{i+1},v_{i+k}\}|\Phi(v_i))
+    \phi = -\log P(\{v_{i-k},...,v_{i-1},v_{i+1},...,v_{i+k}\}|\Phi(v_i))
 \end{equation}
 
 \subsubsection{node2vec}
@@ -167,11 +167,11 @@ computacional de treinamento também podem ser adotadas no Deepwalk, como
 O node2vec~\cite{grover16} também é um algoritmo inspirado no Word2Vec.
 Seu processo de otimização é idêntico ao apresentado pelo Deepwalk, também
 aplicado sobre sequências de passeios aleatórios de tamanho fixo.
-As diferenças entre ambos está na estratégia de passeio aleatório, que além de
+A diferença entre ambos está na estratégia de passeio aleatório, que além de
 capturar a vizinhança de um dado vértice visa também capturar a posição do mesmo
 na estrutura ao seu redor.
-Enquanto a vizinha de um nó compõe uma parte de sua informação, o posicionamento
-do mesmo em sua comunidade também é relevante.
+Enquanto a vizinhança de um nó compõe uma parte de sua informação, o
+posicionamento do mesmo em sua comunidade também é relevante.
 Dentro de uma rede, um nó central de uma comunidade pode apresentar
 características mais semelhantes ao ponto central de outra comunidade
 do que a algum vértice vizinho com poucas conexões.
@@ -186,25 +186,44 @@ amostragem semelhante a busca em largura.
 No Passeio Aleatório não enviesado, a probabilidade de transição $\pi_{uv}$ do
 nó $u$ para o nó $v$ é dada por $\pi_{uv} = \frac{w_{uv}}{\sum{w_u}}$, no qual
 $w_{uv}$ é o peso da aresta entre $u$ e $v$ e $\sum{w_u}$ é o somatório dos das
-arestas de $u$.
+arestas de $u$, neste caso operando como regularizador da probabilidade.
 Para atingir seu objetivo, node2vec multiplica a probabilidade de transição
-original do Passeio Aleatório por um fator $\alpha(u, v)$ parametrizado pelos
+original do Passeio Aleatório por um fator $\alpha(s, v)$ parametrizado pelos
 parametros $p$ e $q$, como mostra a equação~\ref{eq:node2vec_alpha}, na qual
-$d_{uv}$ representa a distância mínima entre o par de vértices.
+$s$ representa o vértice em que o Passeio Aleatório amostrou no passo anterior e
+$d_{sv}$ representa a distância mínima entre o par de vértices $s$ e $v$.
+Esses parâmetros controlam quão rápido o Passeio Aleatório explora a rede.
 
 \begin{equation} \label{eq:node2vec_alpha}
-    \alpha(u, v) =
+    \alpha(s, v) =
     \begin{cases}
-        \frac{1}{p} ,& \text{se } d_{uv} = 0\\
-        1           ,& \text{se } d_{uv} = 1\\
-        \frac{1}{q} ,& \text{se } d_{uv} = 2
+        \frac{1}{p} ,& \text{se } d_{sv} = 0\\
+        1           ,& \text{se } d_{sv} = 1\\
+        \frac{1}{q} ,& \text{se } d_{sv} = 2
     \end{cases}
 \end{equation}
 
-Esses fatores..
-% pegar da pagina 4
+O parâmetro $p$ é chamado de parâmetro de retorno, a escolha de valores altos
+para esse fator faz com que o Passeio Aleatório evite reamostrar vértices
+recem amostrados, enquando valores baixos forçam o algoritmo a manter a
+amostragem localizada em uma distância pequena de seu ponto de partida.
+Por sua vez, o parâmetro $q$ regula a probabilidade de se amostrar nós distantes
+do vértice de partida.
+Valores baixos de $q$ resultam em uma amostragem semelhante a busca em
+profundidade enquanto valores altos levam a um padrão de busca em largura.
+Resumidamente, a probabilidade de transição do passeio aleatório proposto por
+node2vec é dada pela equação~\ref{eq:node2vec_pi}.
 
-% falar que é consistente melhor que o anterior
+\begin{equation} \label{eq:node2vec_pi}
+    \pi(s, u, v) = \frac{w_{uv} \alpha(s,v)}{\sum_{x} w_{ux} \alpha(s,x)}
+\end{equation}
+
+Os autores mostram que a adoção dessa estratégia de amostragem resultou em
+ganhos significativos de performance do algoritmo para tarefas de classificação
+de vértices.
+Apesar da maior complexidade, o algoritmo apresenta aumento linear do custo
+computacional com relação ao número de nós da rede, possibilitando sua aplicação
+em redes de grande volume.
 
 % \section{Modelos de Deep Learning}
 \subsubsection{GCN}
