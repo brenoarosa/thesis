@@ -185,7 +185,38 @@ distante, conteve 800 mil \textit{tweets}.
 Para fins de validação do modelo ainda foi necessário elaborar uma base de
 dados anotada manualmente, sendo esta de apenas 359 \textit{tweets}.
 
-% TODO: colocar figura ou tabela demostrando anotacao automatica
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{| c c |}
+        \hline
+        \textbf{Emoticons Positivo} & \textbf{Emoticons Negativos} \\ \hline
+        :)&:( \\
+        :-)&:-(\\
+        : )&: (\\
+        :D& \\
+        =)& \\ \hline
+        \end{tabular}
+        \caption{Emoticons selecionados por \citet{go09} para supervisão
+        distante de \textit{tweets}.}
+        \label{tab:supervision_emoticons}
+    \end{center}
+\end{table}
+
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{| p{10cm} | c |}
+        \hline
+        \textbf{\textit{Tweet}} & \textbf{Classe} \\ \hline
+        Adoro aquelas amizades que alinham em tudo mesmo em cima da hora :) & Positivo \\ \hline
+        Fico mais triste ainda porque tenho android :( & Negativo\\ \hline
+        To com um mal estar tão grande no corpo desde ontem :-( zero forças & Negativo\\ \hline
+        Muito feliz com minha nova tattoo :D & Positivo \\ \hline
+        \end{tabular}
+        \caption{Exemplos de \textit{tweets} anotados por supervisão distante
+        com emoticons selecionados da Tabela~\ref{tab:supervision_emoticons}.}
+        \label{tab:supervision_tweets}
+    \end{center}
+\end{table}
 
 Entre as desvantagens dessa prática estão o fato de o conjunto de
 \textit{emoticons} selecionados para anotação ruidosa precisar ser removidos dos
