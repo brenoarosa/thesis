@@ -99,9 +99,20 @@ Para tal, é definido um espaço vetorial em que cada palavra do vocabulário
 utilizado é equivalente a uma dimensão do espaço.
 Portanto, um documento pode ser transcrito dessa forma em uma sequência de
 vetores, ou matriz, em que cada palavra é um vetor com valor unitário na
-dimensão da própria palavra e zero nas outras, como mostra a figura TODO.
+dimensão da própria palavra e zero nas outras, como mostra a
+Figura~\ref{fig:onehot}.
 
-% TODO: figura mostrando exemplo
+\begin{figure}[h]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.30]{images/onehot.png}
+    \caption{Vetores \textit{One-Hot} de palavras de um dicionário.
+             A dimensionalidade do vetor é igual ao tamanho do dicionário.}
+    \label{fig:onehot}
+    \end{center}
+}
+\end{center}
+\end{figure}
 
 Frequentemente encontramos nas línguas palavras compostas ou expressões.
 Essas informações são perdidas na codificação \textit{One-Hot}.
@@ -123,7 +134,19 @@ Esta técnica também tem a vantagem de transformar documentos de tamanho variad
 em vetores de mesmas dimensões, fator que precisa ser contornado em codificações
 baseadas em palavras.
 
-% TODO: figura bag-of-words
+\begin{figure}[h]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.30]{images/bag_of_words.png}
+    \caption{Processo de representação por \textit{Bag-of-Words} da frase
+             ``Preparando minha mochila para viagem.''.
+             A palavra ``para'' é removida durante o pré-processamento por
+             ser uma \textit{stopword}.}
+    \label{fig:bag_of_words}
+    \end{center}
+}
+\end{center}
+\end{figure}
 
 Entretanto, visto que a distribuição de palavras em um corpus, em geral, segue a
 lei de Zipf~\cite{powers98}, ou seja, sua frequência segue uma distribuição em
@@ -145,8 +168,9 @@ inversamente proporcional a sua frequência nos documentos.
 
 \textit{Bag-of-words} e TF-IDF são métodos de representação muito presentes na
 literatura pela sua simplicidade de implementação e pelos benefícios
-anteriormente descritos, em especial em conjunto com modelos como a SVM (TODO
-link secao) que apresenta menos dificuldades de ser treinada em dados esparsos.
+anteriormente descritos, em especial em conjunto com modelos como a
+SVM~\ref{sec:svm} que apresenta menos dificuldades de ser treinada em dados
+esparsos.
 Entretanto, um componente fundamental da linguagem é perdido nesse processo, o
 contexto em que se insere cada palavra.
 Pela representação agrupar todos os tokens em um único vetos a ordem das
@@ -509,6 +533,7 @@ Sua principal vantagem se dá pelo baixo custo computacional de treinamento vist
 que seus parâmetros são estimados apenas por contagens na base de dados.
 
 \subsubsection{Máquina de Vetor de Suporte}
+\label{sec:svm}
 
 A Máquina de Vetor de Suporte, também chamada de SVM, é um algoritmo que busca
 encontrar um vetor que melhor separe duas classes.
