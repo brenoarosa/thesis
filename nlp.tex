@@ -202,6 +202,7 @@ Dessas janelas há duas variações: o \textit{continuous bag-of-words} em que
 o modelo é treinado para prever a palavra central da janela de entrada a partir
 das outras palavras da janela, ou o \textit{skipgram} que a partir da palavra
 central da treina-se para prever o seu contexto.
+A Figura~\ref{fig:w2v} ilustra a diferença entre os treinamentos.
 As entradas e saídas do modelo são representadas pela codificação
 \textit{one-hot} dos termos.
 A quantidade de neurônios escolhido para a camada escondida da rede resultará na
@@ -209,7 +210,18 @@ dimensionalidade da representação.
 A representação das palavras serão os pesos da camada de entrada do modelo
 treinado.
 
-% TODO diagramas
+\begin{figure}%
+    \centering
+    \subfloat[Continuos Bag-of-Word]{{\includegraphics[scale=0.25]{images/word2vec_cbow.png}}}%
+    \qquad
+    \subfloat[Skipgram]{{\includegraphics[scale=0.25]{images/word2vec_skip.png}}}%
+    \caption{Esquemas de treinamento do Word2Vec. A matriz $X_t$ representa a
+             palavra da janela na posição $t$ e $\hat{Y}_t$ a predição do modelo
+             para a mesma, $W$, por sua vez, o conjunto de pesos treináveis.
+             A representação resultante de uma palavra é dada pelo seu referente
+             vetor na matriz de pesos de entrada $W_x$.}%
+    \label{fig:w2v}%
+\end{figure}
 
 Apesar do \textit{Word2Vec} ser um modelo que precisa ser treinando, esse
 treinamento é não-supervisionado dado que tanto as entradas quanto saídas do
