@@ -261,7 +261,19 @@ variável a partir de outra sequência de tamanho variável como entrada, em que
 os tamanhos não necessariamente são os mesmos, reflexo do problema inicial em
 que o mesmo foi desenvolvido para atacar, a tradução de textos.
 
-% TODO: diagrama (ver cho14)
+\begin{figure}
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.30]{images/encoder_decoder.png}
+    \caption{Arquitetura Encoder-Decoder, constituída por duas camadas de redes
+             recorrentes, a de codificação, e a de decodificação, ligadas por um
+             conjunto de pesos $C$ que captura todo o contexto provindo da
+             camada de codificação.}
+    \label{fig:encoder_decoder}
+    \end{center}
+}
+\end{center}
+\end{figure}
 
 Essa estrutura toda é treinada conjuntamente e pode ser utilizada para gerar
 sequências de saída a partir de entradas ou avaliar um par de entrada e saída a
