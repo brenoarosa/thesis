@@ -458,7 +458,6 @@ classes positivas e negativas, como propõe \citet{turney02}.
 % Mining and Summarizing Customer Reviews tem boas referencias no 2.2
 
 \subsection{Modelos Lineares}
-% TODO: acertar o titulo
 
 Naturalmente, as primeiras aplicações de aprendizado de máquina em análise de
 sentimento fizeram uso de modelos simples, como os modelos lineares.
@@ -565,6 +564,18 @@ A diferença entre esse algoritmo e outros classificadores como a regressão
 linear é que o SVM tem objetivo de obter o vetor que maximize a distância entre
 as margens das classes, enquanto a regressão linear, em geral, minimiza uma
 função custo baseada na distância entre o centro de massa das classes.
+
+\begin{figure}
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.6]{images/svm.png}
+    \caption{SVM classificando duas classes linearmente separáveis.}
+    \small Imagem com direitos cedidos para uso não comercial, retirada de~\cite{vanderplas15}
+    \label{fig:svm}
+    \end{center}
+}
+\end{center}
+\end{figure}
 
 Entretanto, por se basear na margem das classes, o SVM não é capaz de separar
 classes que tenham sobreposição.
