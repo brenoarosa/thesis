@@ -3,12 +3,13 @@
 
 Análise de Sentimento é o campo de estudos que analisa a opinião, sentimento,
 atitude e emoções de pessoas em relação a entidades.
-Essas entidades podem ser pessoas, eventos, produtos, tópicos, entre outros.
+Essas entidades podem ser outras pessoas, eventos, produtos, tópicos, entre
+outros.
 Na literatura também se encontram os seguintes nomes relacionados a esse ramo:
 \textit{mineração de opinião}, \textit{extração de opinião},
 \textit{mineração de sentimento}, \textit{análise de subjetividade},
 \textit{análise de emoção} e \textit{extração de críticas}~\cite{liu15}.
-Por ser aplicado na maioria das vezes a textos escritos, este campo é filiado
+Por ser aplicado majoritariamente a textos escritos, este campo é filiado
 ao processamento de linguagem natural, sendo uma de suas ramificações mais
 ativas.
 
@@ -19,32 +20,32 @@ responsável por classificar em emoções como: felicidade, medo, raiva, tristez
 entre outros.
 
 A autora \citet{liu15}, por sua vez, ressalta que há diferentes níveis de
-granularidade que essas para execução desta tarefa, a escolha do nível a ser
-utilizado depende da finalidade pela qual se aplicará a classificação e será uma
-das principais caraterísticas para definir o tipo de técnica empregada.
+granularidade de  execução desta tarefa, a escolha do nível a ser utilizado
+depende da finalidade pela qual se aplicará a classificação e será uma das
+principais caraterísticas para definir o tipo de técnica empregada.
 A Análise de Sentimento pode ser realizada a nível de documento, no qual um
-documento, como uma avaliação de produto, é avaliado como um todo.
+documento, como uma avaliação de produto, é analisado como um todo.
 Nesses casos se assume implicitamente que um documento expressa uma opinião
 sobre uma única entidade, como o produto em questão no exemplo citado, também
 fica implícita que o documento expressa um sentimento único sobre a entidade.
 Por serem textos mais extensos, logo com mais informação, a assertividade de
-modelos nesses casos em geral é mais alta, portanto, até técnicas mais simples
-como as baseadas em dicionario como será apresentado na seção~\ref{sec:dictionary}
-podem apresentar resultados suficientemente bons.
+modelos nesses casos geralmente é mais alta, portanto, até técnicas mais simples
+como as baseadas em dicionário, como serão apresentadas na
+seção~\ref{sec:dictionary}, podem obter resultados suficientemente bons.
 \citet{taboada11} exemplifica a extração de opinião de documentos a partir de
 técnicas de dicionário aplicadas em diferentes bases de dados de avaliações de
 produtos.
-Por sua vez, \citet{das07} cacula predição de valor de ações a partir de
-análise de sentimento das mensagens presentes em um fórum online de investidores.
+Por sua vez, \citet{das07} realiza predições de valores de ações a partir de
+análise de sentimento das mensagens de um fórum online de investidores.
 
 Visto que as limitações decorrentes de se classificar documentos por inteiro
-reduzem o escopo de aplicações, pode-se recorrer ao nível seguinte de
+reduzem o escopo de aplicações possíveis, pode-se recorrer ao nível seguinte de
 granularidade, a classificação de sentimento de sentenças.
 A principal diferença entre essa abordagem e a anterior é a quantidade de
 informação disponível dado que uma sentença é composta, geralmente, por poucas
 palavras.
 Por outro lado, a premissa de sentimento único no conteúdo de uma frase é mais
-coerente com a realidade comparando-se com a classificação documento como um
+coerente com a realidade quando comparada com a classificação documento como um
 todo, sendo uma aproximação boa o suficiente para uma nova gama de casos de uso.
 Entretanto, \citet{liu15} ressalta que para o caso de sentenças é importante que
 a classificação de polaridade leve em consideração o sentimento neutro.
@@ -54,8 +55,9 @@ polaridade sobre uma entidade.
 \citet{riloff05} apresentam o primeiro trabalho especificamente voltado para
 classificação de subjetividade de documentos.
 Devido a quantidade limitada de informação presentes em uma sentença,
-classificadores baseados em dicionários e em técnicas de aprendizado de máquina
-por modelos lineares, apresentam indicadores piores na execução da tarefa.
+classificadores baseados tanto em dicionários e quanto em técnicas de
+aprendizado de máquina por modelos lineares, apresentam indicadores piores na
+execução dessa tarefa.
 São nesses cenário que nos últimos anos os modelos não lineares começaram a
 sobressair, como apresentam \citet{socher11} e \citet{socher13} que aplicam
 diferentes técnicas baseadas em \textit{Deep Learning} para classificação de
@@ -63,14 +65,14 @@ sentenças.
 
 Por fim, apresenta-se a análise de sentimento de características.
 Uma entidade pode ser composta de diversos atributos.
-Ao falar sobre um filme pode se avaliar diferentes aspectos dele, como
-o roteiro, os atores, os personagens, etc.
+Ao falar sobre um filme pode se avaliar aspectos dele, como o roteiro, os
+atores, os personagens, etc.
 Uma crítica a esse determinado filme é composta de sentimentos distintos para
 cada um desses atributos, e o objetivo da análise de sentimento de
-características é identificar a polaridade de uma mensagem em relação aos
-atributos presentes.
+características é identificar a polaridade de uma mensagem em relação a cada um
+dos atributos presentes.
 Para realizar essa análise são necessários elementos novos, como o reconhecimento
-da entidade citada e quais aspectos dela estão sendo avaliados.
+de entidade e dos aspectos dos quais ela é composta.
 Também podem ser relevantes a identificação do autor e do momento do documento
 analisado.
 \citet{nasukawa03} e \citet{snyder07} são exemplos de trabalhos focados em
@@ -80,8 +82,8 @@ mineração de opinião focada em aspectos.
 % comecar exemplos de referencias de SA em twitter e outras redes
 A Análise de Sentimento aplicada a redes sociais, em especial ao Twitter, se
 assemelha a classificação de sentimento de sentenças.
-Entretanto o perfil de mensagem que circulam as mídias sociais apresentam
-peculiaridades quando comparadas a meios convencionais.
+Entretanto, o perfil de mensagem que circulam as mídias sociais apresentam
+peculiaridades quando comparadas a meios convencionais de comunicação escrita.
 Por se tratar de um ambiente informal e de comunicação rápida, é comum encontrar
 erros gramaticais e abreviações.
 Similarmente os \textit{emoticons} também tem ampla adesão por serem métodos
@@ -91,7 +93,7 @@ expressões de outras línguas em uma mesma mensagem.
 Esses fatores são obstáculos aos classificadores de linguagem natural,
 dificultando a tarefa de extração de polaridade.
 A Tabela~\ref{tab:sentiment_complexity} mostra exemplos de mensagens extraídas
-da rede que demonstram esse problema.
+da rede que demonstram esses problemas.
 
 % TODO alterar exemplos para nao ficar igual anterior
 \begin{table}[h]
@@ -103,7 +105,8 @@ da rede que demonstram esse problema.
         Ambiguidade & Estou igualmente fascinada e enojada. \\ \hline
         Multiplicidade de idiomas & Macarrão de arroz is the new miojo. \\ \hline
         \end{tabular}
-        \caption{Dificuldades encontradas na classificação de sentimento.}
+        \caption{Dificuldades encontradas na classificação de sentimento de
+                 \textit{tweets}.}
         \label{tab:sentiment_complexity}
     \end{center}
 \end{table}
@@ -112,8 +115,9 @@ O Twitter é uma rede social baseada em interações por mensagens curtas.
 Suas principais características são a brevidade e instantaneidade das mensagens,
 também chamadas \textit{tweets}, que são limitadas atualmente em 280 caracteres
 mas famosas pelo seu limite anterior de 140 caracteres.
-Criada em 2006, a rede conta com 139 milhões de usuários ativos diários segundo
-seu relatório trimestral para investidores~\cite{twitterreport19} e está entre
+Criada em 2006, a rede conta com 139 milhões de usuários ativos
+diários~\footnote{dados do relatório trimestral para
+investidores~\cite{twitterreport19}} e está entre
 as redes sociais com maior número de usuários do mundo.
 
 O Twitter foi responsável pela criação e popularização das \textit{hashtags},
@@ -124,7 +128,7 @@ As \textit{hashtags} funcionam como um agregador de \textit{tweets} e o site
 ainda apresenta uma lista das mais populares no momento.
 O sucesso dessa funcionalidade fez com que a mesma fosse posteriormente aderida
 por outras mídias sociais como o Facebook e Instagram se tornando um
-atributo marcante mensagens de redes sociais.
+atributo marcante das mensagens de redes sociais.
 
 % faltou metadados
 Além das \textit{hashtags}, as mensagens no Twitter também possibilitam a
@@ -163,11 +167,11 @@ anotação automática.
 
 A maneira convencional de abordar bases de dados não anotadas é realizar uma
 classificação manual dos dados.
-Por depender de iteração humana torna essa uma das etapas mais custosas do
-processo de criação de classificadores.
+Por depender de iteração humana essa se torna a etapa mais custosa do processo
+de criação de classificadores.
 Além disso, a alta dinamicidade dos temas e do vocabulário presente nas redes
-sociais faz com que o prazo em que a base de dados anotada seja relevante seja
-menor.
+sociais faz com que se reduza o prazo em que a base de dados anotada é
+relevante.
 Considerando também que um maior volume das bases de dados, em geral, permitem
 os modelos treinados a obter melhores resultados, a soma desses fatores torna
 ineficiente o processo de anotação manual.
@@ -206,24 +210,24 @@ dados anotada manualmente, sendo esta de apenas 359 \textit{tweets}.
     \begin{center}
         \begin{tabular}{| p{10cm} | c |}
         \hline
-        \textbf{\textit{Tweet}} & \textbf{Classe} \\ \hline
+        \textbf{\textit{Tweet}} & \textbf{Sentimento} \\ \hline
         Adoro aquelas amizades que alinham em tudo mesmo em cima da hora :) & Positivo \\ \hline
         Fico mais triste ainda porque tenho android :( & Negativo\\ \hline
         To com um mal estar tão grande no corpo desde ontem :-( zero forças & Negativo\\ \hline
         Muito feliz com minha nova tattoo :D & Positivo \\ \hline
         \end{tabular}
         \caption{Exemplos de \textit{tweets} anotados por supervisão distante
-        com emoticons selecionados da Tabela~\ref{tab:supervision_emoticons}.}
+        com emoticons selecionados por \citet{go09}.}
         \label{tab:supervision_tweets}
     \end{center}
 \end{table}
 
 Entre as desvantagens dessa prática estão o fato de o conjunto de
-\textit{emoticons} selecionados para anotação ruidosa precisar ser removidos dos
-dados de treinamento do modelo para não introduzir viés na classificação.
+\textit{emoticons} selecionados para anotação ruidosa precisarem ser removidos
+dos dados de treinamento do modelo para não introduzir viés na classificação.
 A qualidade da supervisão distante também depende da seleção dos
 \textit{emoticons}.
-Ademais, não se pode descartar que é possível uma classe tenha subclasses que
+Ademais, não se pode descartar que é possível uma classe contenha subclasses que
 não sejam correlacionadas com a característica escolhida para executar a
 supervisão distante.
 Por exemplo, dentro do conjunto de \textit{tweets} positivos, a subclasse de
@@ -251,19 +255,19 @@ denominado \textit{GloVe} e mais recentemente \textit{ELMo} produzido por
 A disposição de grandes bases de dados e as representações densas foram a
 condição \textit{sine qua non} para viabilizar a aplicação de modelos de
 \textit{Deep Learning} em análise de sentimento.
-\textit{Deep Learning}, ou Aprendizado Profundo, foi responsável por romper
-barreiras de performance de aprendizado de máquina em diversas
-áreas~\cite{lecun15} como classificação de imagem~\cite{krizhevsky12},
-reconhecimento de fala~\cite{hinton12a}, detecção de doenças~\cite{esteva17}.
-O processamento de linguagem natural foi um dos campos mais impactados por essa
-linha de técnicas, seja na realização de traduções~\cite{vaswani17},
+O Aprendizado Profundo, foi responsável por romper barreiras de performance
+de aprendizado de máquina em diversas áreas~\cite{lecun15} como classificação
+de imagem~\cite{krizhevsky12}, reconhecimento de fala~\cite{hinton12a}, detecção
+de doenças~\cite{esteva17}.
+O processamento de linguagem natural foi um dos campos mais impactados por esse
+conjunto de técnicas, seja na realização de traduções~\cite{vaswani17},
 na correção de erros gramaticais~\cite{ge18}, no reconhecimento de
 entidades~\cite{akbik18}, na criação de resumos~\cite{wu18}, entre outros.
 Dentre as aplicações de \textit{Deep Learning} em análise de sentimento
 temos \citet{kim14} com a utilização de redes neurais convolucionais para
 classificação de sentenças, \citet{zhou16}, por sua vez, demonstraram o uso de
-redes LSTM, baseadas em redes recorrentes, e, \citet{socher13} aplica um modelo
-recursivo.
+redes LSTM, baseadas em redes recorrentes, e, \citet{socher13} que aplicam um
+modelo recursivo.
 
 Entretanto, a mistura entre diferentes modalidades de comunicação: texto, imagem,
 video, etc gera uma dificuldade adicional para análise das mensagens.
@@ -275,8 +279,8 @@ Nesses casos a análise do conteúdo textual por si só é incapaz de captar a
 essência da mensagem.
 Dá-se assim a necessidade de abordagens multimodais para qualquer tipo de
 análise de redes sociais.
-% rever intro pois isso ja foi falado
 
+% parecido com intro mas acho ok
 Como a interação entre usuários é uma das principais componentes das mídias esse
 se torna um objetivo natural para se estudar em complemento ao texto.
 Para explorar essa componente é possível aplicar ferramentas desenvolvidas pela
@@ -289,23 +293,22 @@ predição de propagação de epidemias~\cite{hufnagel04}, estudo de robustez de
 redes de roteadores~\cite{albert00} e identificação de operadores de lavagem de
 dinheiro~\cite{colladon17}.
 
-% pegar referencia em embeddings em grafos (Graph convolutional networks: a comprehensive review)
 % referencia com analise de sentimento, talvez na enmlp? la tem varios trabalhos de GCNN
 No caso da aplicação dessas técnicas em redes sociais podemos citar
-\citet{ratkiewicz11} que usa características da rede formada por usuários do
+\citet{ratkiewicz11} que utilizam características da rede formada por usuários do
 Twitter que interagiram com \textit{tweets} sobre as campanhas eleitorais de
 2010 dos Estados Unidos para detectar a propagação orquestrada de conteúdo.
-\citet{varol18} utilizou características como densidade da rede, coeficiente de
-clusterização, entre outros atributos não relacionados aos grafos para detecção
-de contas de usuário robôs.
-\citet{backstrom11} aplicou passeios aleatórios com pesos definidos por
+\citet{varol18} utilizaram propiedades como densidade da rede, coeficiente de
+clusterização, em conjunto com outros atributos não relacionados aos grafos para
+detecção de contas de usuário robôs.
+\citet{backstrom11} aplicaram passeios aleatórios com pesos definidos por
 atributos da rede de amizades para sugerir conexão entre dois usuários de uma
 rede social.
 Por sua vez, \citet{qiu18} desenvolveram uma técnica de representação de nós
 baseada em redes neurais convolucionais para prever a influência de usuários em
 redes sociais.
-Os exemplos citados reforçam que ferramentas de Ciência de Redes conseguem
-acessar informação codificada pela rede de usuários de mídias sociais e que essa
+Os exemplos citados reforçam que ferramentas de Ciência de Redes são capazes de
+acessar informações codificadas pela rede de usuários de mídias sociais e que essa
 informação é útil para diversas aplicações.
 
 % fazer paragrafo concluindo capitulo?
