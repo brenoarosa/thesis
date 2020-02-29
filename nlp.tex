@@ -2,8 +2,8 @@
 \label{chapter:nlp}
 
 Neste capitulo serão apresentadas as técnicas de Processamento de Linguagem
-Natural que compõe um classificador, como o de análise de sentimento.
-De modo geral, esse processo é composto de 3 etapas, como demostrado no
+Natural que compõe um classificador textual, como o de análise de sentimento.
+Esse processo comumente composto de 3 etapas, como demostrado no
 diagrama~\ref{fig:nlp_diagram}.
 As seções a seguir descrevem cada uma destas fases.
 
@@ -11,7 +11,7 @@ As seções a seguir descrevem cada uma destas fases.
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.35]{images/nlp_diagram.png}
-    \caption{Etapas de algoritmos de Processamento de Linguagem Natural.}
+    \caption{Etapas de classificadores de Processamento de Linguagem Natural.}
     \label{fig:nlp_diagram}
     \end{center}
 }
@@ -23,9 +23,10 @@ As seções a seguir descrevem cada uma destas fases.
 A primeira etapa aplicada para elaboração de modelos de NLP é o
 pré-processamento.
 Esta fase consiste na limpeza e preparação dos dados, visando melhorar a
-performance do classificador seja retirando ruídos dos textos, reduzindo o
+performance do classificador, seja retirando ruídos dos textos, reduzindo o
 tamanho do vocabulário ou formatando o texto de maneira a facilitar a modelagem.
-O volume do vocabulário considerado é costuma ser limitado seja pelos recursos
+
+O volume do vocabulário adotado costuma ser limitado tanto pelos recursos
 computacionais quanto pelo requisito mínimo de estatística das palavras na base
 de dados.
 Portanto, técnicas de pré-processamento que reduzam o tamanho total do
@@ -36,22 +37,23 @@ Como a maior parte dos modelos de NLP trabalham a nível de palavra é necessár
 separar separar o documento em frases, com algoritmos como o Punkt~\cite{kiss06},
 e posteriormente, em palavras.
 Esse processo chamado \textit{tokenização} precisa ser robustos a abreviações,
-números e características do idioma ao qual será aplicado, como contração de
-palavras.
+números e outras características específicas do idioma ao qual será aplicado,
+como a contração de palavras em português.
 Se tratando de redes sociais, também é relevante tratar os links, as
 \textit{hashtags} e as menções a usuários.
 
 Algoritmos de correção ortográfica~\cite{damerau64}\cite{navarro01} podem ser
 eficientes para aprimorar a qualidade dos textos, principalmente se tratando de
-meios de comunicação dinâmicos como as redes sociais.
+mensagens provindas meios de comunicação como as redes sociais.
 
 Técnicas de stemização consistem na extração do o radical das palavras,
 como o obtido pelo algoritmo de Porter~\cite{porter80}, um exemplo é dado com a
-palavra "montanha" que possuí radical "mont", o mesmo obtido pela palavra
-"monte".
+palavra ``montanha'' que possuí radical ``mont'', o mesmo obtido pela palavra
+``monte''.
 Por outro lado, o processos de lematização tem finalidade parecida, porém
 transforma a palavra em sua forma base, forma como elas aparecem no dicionario,
-podendo então diferenciar palavras com o mesmo radical, como "banco" e "bancários".
+podendo então diferenciar palavras com o mesmo radical, como ``banco'' e
+``bancários''.
 Ambas as técnicas visam tornar as etapas posteriores menos sensíveis a flexões
 gramaticais, além de colaborar na redução do vocabulário.
 
@@ -64,7 +66,7 @@ textuais, assim simplificando a etapa de modelagem.
 \citet{saif14} fizeram um estudo comparando diversos métodos de seleção de
 \textit{stopwords} e o impacto das mesmas na classificação de sentimento de
 \textit{tweets}.
-A identificação de classe gramatical, em inglês \textit{part of speech}, além de
+A identificação de classe gramatical, em inglês \textit{part-of-speech}, além de
 ser tipicamente utilizada como entrada de modelos de NLP, também pode ser útil
 para selecionar \textit{stopwords}.
 
@@ -148,10 +150,10 @@ baseadas em palavras.
 \end{center}
 \end{figure}
 
-Entretanto, visto que a distribuição de palavras em um corpus, em geral, segue a
-lei de Zipf~\cite{powers98}, ou seja, sua frequência segue uma distribuição em
-lei de potência.
-Neste caso mesmo retirando \textit{stopwords}, as palavras mais comuns do
+Entretanto, a distribuição de palavras em um corpus, em geral, segue a lei de
+Zipf~\cite{powers98}, ou seja, sua frequência segue uma distribuição em lei de
+potência.
+Sendo assim, mesmo retirando \textit{stopwords}, as palavras mais comuns do
 vocabulário ainda dominarão os documentos, e este comportamento pode ser
 prejudicial para o treinamento dos modelos que serão menos expostos a palavras
 incomuns.
@@ -169,11 +171,11 @@ inversamente proporcional a sua frequência nos documentos.
 \textit{Bag-of-words} e TF-IDF são métodos de representação muito presentes na
 literatura pela sua simplicidade de implementação e pelos benefícios
 anteriormente descritos, em especial em conjunto com modelos como a
-SVM~\ref{sec:svm} que apresenta menos dificuldades de ser treinada em dados
+SVM (Seção~\ref{sec:svm}) que apresenta menos dificuldades de ser treinada em dados
 esparsos.
 Entretanto, um componente fundamental da linguagem é perdido nesse processo, o
-contexto em que se insere cada palavra.
-Pela representação agrupar todos os tokens em um único vetos a ordem das
+contexto em que cada palavra se insere.
+Pela representação agrupar todos os tokens em um único vetor a ordem das
 palavras no documento é perdida, o que em muitos casos pode corresponder na
 inviabilidade de uma classificação precisa do mesmo.
 
@@ -202,7 +204,7 @@ Dessas janelas há duas variações: o \textit{continuous bag-of-words} em que
 o modelo é treinado para prever a palavra central da janela de entrada a partir
 das outras palavras da janela, ou o \textit{skipgram} que a partir da palavra
 central da treina-se para prever o seu contexto.
-A Figura~\ref{fig:w2v} ilustra a diferença entre os treinamentos.
+A Figura~\ref{fig:w2v} ilustra a diferença entre esses métodos.
 As entradas e saídas do modelo são representadas pela codificação
 \textit{one-hot} dos termos.
 A quantidade de neurônios escolhido para a camada escondida da rede resultará na
@@ -212,12 +214,13 @@ treinado.
 
 \begin{figure}%
     \centering
-    \subfloat[Continuos Bag-of-Word]{{\includegraphics[scale=0.25]{images/word2vec_cbow.png}}}%
+    \subfloat[Continuos Bag-of-Word]{{\includegraphics[scale=0.24]{images/word2vec_cbow.png}}}%
     \qquad
     \subfloat[Skipgram]{{\includegraphics[scale=0.25]{images/word2vec_skip.png}}}%
-    \caption{Esquemas de treinamento do Word2Vec. A matriz $X_t$ representa a
-             palavra da janela na posição $t$ e $\hat{Y}_t$ a predição do modelo
-             para a mesma, $W$, por sua vez, o conjunto de pesos treináveis.
+    \caption{Esquemas de treinamento do Word2Vec. Exemplo composto por janela de
+             contexto de 3 palavras. A matriz $X_t$ representa a palavra da
+             janela na posição $t$ e $\hat{Y}_t$ a predição do modelo para a
+             mesma, $W$, por sua vez, o conjunto de pesos treináveis.
              A representação resultante de uma palavra é dada pelo seu referente
              vetor na matriz de pesos de entrada $W_x$.}%
     \label{fig:w2v}%
@@ -225,37 +228,37 @@ treinado.
 
 Apesar do \textit{Word2Vec} ser um modelo que precisa ser treinando, esse
 treinamento é não-supervisionado dado que tanto as entradas quanto saídas do
-modelo são obtidas diretamente dos documentos.
+modelo são obtidas diretamente dos documentos, sem anotações de classes.
 Desta forma, foi possível aplicar o algoritmo a grandes bases de dados
 mineiradas da internet.
 Esse alto volume de dados de treinamento foi essencial para que bons resultados
-fossem alcançados.
+demostrados por \citet{mikolov13} fossem alcançados.
 
 Por ser a primeira representação densa de sucesso, o \textit{Word2Vec} foi
 essencial para a aplicação de classificadores também baseados em redes neurais,
 como os de \textit{Deep Learning} que obtiveram grande êxito em diversas
 tarefas de processamento de linguagem natural.
-Outras técnicas semelhantes e também amplamente adotadas na indústria foram
-desenvolvidas neste mesmo período de tempo como o GloVe~\cite{pennington14} e
-o FastText~\cite{bojanowski17}.
+Outras técnicas de representação densas semelhantes e também amplamente adotadas
+na indústria foram desenvolvidas neste mesmo período de tempo como o
+GloVe~\cite{pennington14} e o FastText~\cite{bojanowski17}.
 
 % TODO abrir matematica do W2V
 
 \subsection{Representações por Redes Neurais Recorrentes}
 \label{representation:rnn}
 
-O sucesso do \textit{Word2Vec}, baseado em redes neurais \textit{feed forward}
-inspirou a experimentação de outros tipos de redes neurais, dentre as quais as
+O sucesso do \textit{Word2Vec}, baseado em redes neurais \textit{feed forward},
+inspirou a experimentação de outros tipos de redes neurais dentre as quais as
 redes neurais recorrentes e suas variações obtiveram bons resultados na
 representação de palavras.
-Nesta seção serão descritos alguns destes algoritmos.
+Nesta seção serão descritas as variações deste algoritmos.
 
 A estrutura chamada \textit{Enconder-Decoder} desenvolvida por \citet{cho14} se
 tornou a base das principais representações por redes recorrentes.
 Esta estrutura consiste em uma rede neural recorrente divida em duas etapas: a
 codificação, na qual uma sequência de tamanho variável é representada em um
-vetor; e a decodificação em que este mesmo vetor é utilizado para obter uma
-outra sequência de tamanho variável.
+vetor de contexto; e a decodificação em que este mesmo vetor é utilizado para
+obter uma outra sequência de tamanho variável.
 O \textit{Encoder-Decoder} é um modelo de aprendizado de sequências de tamanho
 variável a partir de outra sequência de tamanho variável como entrada, em que
 os tamanhos não necessariamente são os mesmos, reflexo do problema inicial em
@@ -284,8 +287,8 @@ de pesos do modelo treinado.
 
 A etapa de codificação desse modelo pode ser vista como um resumo da sequência
 de entrada em um vetor de tamanho fixo, assim sendo, o mesmo pode ser utilizado
-para representações de documentos, ou palavras caso aplicada sequência de
-tamanho unitário.
+para representações de documentos ou frases, ou até mesmo palavras caso aplicada
+sequência de tamanho unitário.
 \citet{cho14} demostram brevemente em seu trabalho que a codificação é capaz de
 capturar significados semânticos e sintático das palavras.
 
@@ -293,14 +296,21 @@ capturar significados semânticos e sintático das palavras.
 % Deep contextualized word representations
 
 ELMo~\cite{peters18}, sigla para \textit{Embeddings from Language Models}, em
-português Representações para Modelos Linguísticos, se diferencia do modelo de
-\citet{cho14} por levar em consideração o contexto de uma dada palavra para
-obter sua representação, inspirado por \citet{peters17} e \citet{mccann17}.
+português Representações para Modelos Linguísticos, é um modelo capaz de obter
+representação de palavras, e se diferencia de modelos de representação de
+palavras como o Word2Vec por levar em consideração o contexto da palavra para
+obter sua representação, tanto durante o treinamento quando durante a
+inferência.
 Isto é, uma palavra que possua múltiplos sentidos terá representações diferentes
 dependendo da frase em que está inserida.
-O modelo é composto de uma rede LSTM~\cite{hochreiter97} bi-direcional
+A ideia de utilizar o contexto da palavra para selecionar sua representação
+durante a inferência foi inspirado pelos trabalhos de \citet{peters17} e
+\citet{mccann17}.
+O modelo é composto de uma rede LSTM~\cite{hochreiter97} bi-direcional e
 multicamada, treinada de maneira não supervisionada a partir do objetivo de
 prever a palavra seguinte.
+
+% TODO: diagrama ELMo para esclarecer 1 paragrafo (ver http://jalammar.github.io/illustrated-bert/)
 
 Estudos anteriores mostram que em modelos de redes recorrentes multicamadas,
 a melhor camada escolhida para representação das palavras depende da finalidade
@@ -311,10 +321,9 @@ superiores a informação semântica.
 A proposta de ELMo é para cada tarefa treinar uma combinação linear das
 representações obtida por cada camada da rede.
 
-% TODO: diagrama (ver http://jalammar.github.io/illustrated-bert/)
-
-\citet{peters18} mostram que ELMo foi capaz de obter resultados melhores que o
-estado da arte em diversas tarefas do processamento de linguagem natural.
+\citet{peters18} ressaltam que ELMo foi capaz de obter resultados significamente
+melhores que as técnicas de estado da arte até então em diversas tarefas do
+processamento de linguagem natural.
 Além de capturar informação sintética e semântica, ELMo se mostrou capaz de
 desambiguar o contexto de palavras, problema até então não resolvido pelos
 principais algoritmos de representação.
@@ -330,10 +339,11 @@ mesma se baseia.
 \subsubsection{Transformers}
 % transformers - 2017 - Attention is all you need (boa explicacao dos conceitos)
 
-Um dos principais problemas de redes neurais recorrentes é o "esquecimento".
-O esquecimento é observado quando ao tentar prever uma palavra no final de uma
-longa sequência se perde influência das primeiras palavras da mesma por causa da
-sucessivas multiplicações dos pesos entre ambas.
+Um dos principais problemas de redes neurais recorrentes é o ``esquecimento''.
+O esquecimento é observado quando se perde influência das primeiras palavras de
+uma longa sequênciao ao tentar prever a palavra no final da mesma, decorrente
+sucessivas funções de ativação dos neurônios entre as palavras do começo e do
+final do documento.
 Apesar do algoritmo LSTM~\cite{hochreiter97}, \textit{Long-Short Term Memory},
 que visa atenuar esse efeito criando um peso adicional, chamado de portão, que
 controla o quanto os pesos de contexto são atualizados entre cada iteração de
@@ -347,15 +357,17 @@ corrente, como também descrito em mais detalhes por \citet{luong15}.
 A atenção se tornou uma das principais adições feitas a redes recorrentes
 aplicadas a processamento de linguagem natural.
 
+% TODO: figura mostrando atencao (luong15 tem figura)
+
 Inspirado nesse mecanismo, \citet{vaswani17} propuseram a arquitetura
 Transformer para tradução de textos.
-Essa arquitetura consiste em um sistema de \textit{Encoder-Decoder} desta vez
+Essa arquitetura consiste em um sistema de \textit{Encoder-Decoder}, desta vez
 composto por redes neurais \textit{feed forward} multi camadas em que a
 dependência temporal entre as palavras de um documento é atacada apenas pelo
 sistema de \textit{self-attention}, ou, atenção própria.
 
-Enquanto o mecanismo de atenção é composto se dá por um único conjunto de pesos,
-a \textit{self-attention} é dividido em 3: os pesos de busca, de resposta e de
+Enquanto o mecanismo de atenção se dá por um único conjunto de pesos, a
+\textit{self-attention} é dividida em 3: os pesos de busca, de resposta e de
 valor.
 Cada palavra do vocabulário terá um de cada vetor associado a mesma que será
 treinado em conjunto com o resto da arquitetura.
@@ -367,7 +379,7 @@ do vetor de atenção seja unitária.
 Posteriormente se multiplica o vetor resultante pelo vetor de valor da palavra
 de resposta, essa operação tem a finalidade de diminuir a importância de
 palavras sem potencial discriminatório, como as \textit{stopwords}.
-Assim são calculadas as entradas da rede \textit{feed forward}.
+Assim são calculadas as entradas da camada \textit{feed forward} do algoritmo.
 
 % TODO: figura exemplificando processo http://jalammar.github.io/illustrated-transformer/
 
