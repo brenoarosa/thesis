@@ -296,7 +296,7 @@ ELMo~\cite{peters18}, sigla para \textit{Embeddings from Language Models}, em
 português Representações para Modelos Linguísticos, se diferencia do modelo de
 \citet{cho14} por levar em consideração o contexto de uma dada palavra para
 obter sua representação, inspirado por \citet{peters17} e \citet{mccann17}.
-Isto é, uma palavra que possua multiplos sentidos terá representações diferentes
+Isto é, uma palavra que possua múltiplos sentidos terá representações diferentes
 dependendo da frase em que está inserida.
 O modelo é composto de uma rede LSTM~\cite{hochreiter97} bi-direcional
 multicamada, treinada de maneira não supervisionada a partir do objetivo de
@@ -422,7 +422,7 @@ As etapas descritas anteriormente lidam com a preparação dos documentos para
 realização da classificação, apesar da complexidade dos métodos apresentados os
 classificadores podem ser tão simples quanto contadores de palavras positivas e
 negativas.
-Podemos dividir-los em algoritmos baseados em dicionário e algoritmos de
+Podemos dividi-los em algoritmos baseados em dicionário e algoritmos de
 aprendizado de máquina~\cite{taboada11}, suas características serão descritas
 abaixo.
 
@@ -719,21 +719,21 @@ mostra \citet{kim14}.
 
 Outra forma de encapsular o contexto presente na linguagem é utilizando redes
 neurais recorrentes.
-As Redes Neurais Recorrentes são, em geral, treinadas com o algorítmo
+As Redes Neurais Recorrentes são, em geral, treinadas com o algoritmo
 \textit{Backpropagation Through Time}~\cite{williams95} (BPTT) em que a rede
 recorrente se comporta como uma rede neural \textit{feedforward} na qual cada
 camada representa um passo temporal nos dados de entrada, no caso de texto
 podendo ser cada passo uma palavra.
-Portanto, ao aplicar esse algoritmo sobre o texto, o contexto sequêncial do
+Portanto, ao aplicar esse algoritmo sobre o texto, o contexto sequencial do
 documento será capturado pela própria arquitetura da rede.
 
 As variações de redes neurais recorrentes como apresentado em
-\ref{representation:rnn} em grande parte também realizam classifição.
+\ref{representation:rnn} em grande parte também realizam classificação.
 Um exemplo desta aplicação é mostrada por \citet{tai15} classificando sentimento
 por uma rede LSTM.
 Posteriormente, técnicas de classificação que misturam diferentes tipos de redes
 foram testadas com êxito como mostram \citet{zhou16} em que a arquitetura é
-constituida de uma camada de rede recorrente seguida por uma camada de rede
+constituída de uma camada de rede recorrente seguida por uma camada de rede
 convolucional.
 
 Apesar dos bons resultados obtidos nesses trabalhos, o treinamento por BPTT é

@@ -13,12 +13,12 @@ Esses modelos visam capturar diversas características possíveis das redes como
 evolução do grafo no tempo, a propagação de epidemias dentro da rede,
 recomendação de arestas, a predição de classes de um dado nó ou aresta, entre outros.
 
-Neste capitulo serão estudados ténicas de representações de vértices.
+Neste capitulo serão estudados tônicas de representações de vértices.
 Assim como no caso de documentos textuais, estes modelos, em geral, visam
 codificar a informação de um nó em um vetor de baixa dimensionalidade,
 capturando tanto seus atributos individuais quanto os decorrentes da estrutura
 de conexões do mesmo.
-Este objetivo se adequa ao presente trabalho pois permite que seja treinado um
+Este objetivo se adéqua ao presente trabalho pois permite que seja treinado um
 classificador único que utilize tanto a informação capturada pela linguagem quanto
 da a provinda da rede.
 
@@ -49,7 +49,7 @@ utilizados métodos iterativos visando minimizar uma função custo.
 
 \citet{roweis00} desenvolveram esse algoritmo que tem como premissa que um nó é
 uma combinação linear de seus vizinhos.
-Portanto tendo a matriz de adjacencia $W_{ij}$ e o vetor de representação de um
+Portanto tendo a matriz de adjacência $W_{ij}$ e o vetor de representação de um
 nó como $Y_i$, definimos o mesmo como:
 
 \begin{equation}
@@ -64,7 +64,8 @@ representação do somatório de todos os nós, sendo assim a função custo $\p
     \phi(Y) = \sum_i{|Y_i - \sum_j{W_{ij}Y_j}|^2}
 \end{equation}
 
-Sendo necessário respeitar a restrição $\frac{1}{N}Y^TY = 1$ para XXXX.
+Sendo necessário respeitar a restrição $\frac{1}{N}Y^TY = 1$ para remover as
+soluções degeneradas.
 Esta técnica obtém uma representação de nós que preserva as distância de
 primeira ordem da rede, ou seja, vizinhos diretos no grafo original vão obter
 representações próximas.
@@ -98,7 +99,7 @@ A chave deste algoritmo é utilizar métricas de proximidade de ordem superior e
 sua função custo, preservando assim as propriedades da assimetria.
 Qualquer medida de proximidade pode ser aplicada neste algoritmo, \citet{ou16}
 em seu estudo testaram medidas como a proximidade de Katz e Pagerank
-personalisado, mostrando que em varios casos essas medidas possuem aproximações
+personalizado, mostrando que em vários casos essas medidas possuem aproximações
 que diminuem o custo computacional da otimização.
 
 HOPE representa cada vértice em 2 vetores, um de entrada e um de saída, o qual
@@ -131,7 +132,7 @@ Deepwalk~\cite{perozzi14} se inspira em modelos de representações de palavras
 utilizando como entrada sequências de iterações de Passeios Aleatórios truncadas
 em poucos passos.
 Os autores observaram que assim como a distribuição de ocorrência de palavras de
-uma lingua segue uma lei de potência, mesmo comportamento de boa parte das redes
+uma língua segue uma lei de potência, mesmo comportamento de boa parte das redes
 formadas no mundo real, como a de conexão entre pessoas.
 Desta forma, adaptaram algoritmos previamente aplicados para predição de
 palavras para obter as representações dos vértices.
@@ -151,12 +152,12 @@ representação, que queremos encontrar.
 
 O processo é feito de forma iterativa em que cada realização do Passeio
 Aleatório compões uma entrada da algoritmo.
-A otimização é dada por gradiende decentente da função custo $\phi$ que maximiza
+A otimização é dada por gradiente descendente da função custo $\phi$ que maximiza
 a probabilidade~\ref{eq:deepwalk}, esta é apresentada na
 equação~\ref{eq:deepwalk_cost}.
 Outras adaptações propostas posteriormente ao Word2Vec para diminuir o custo
 computacional de treinamento também podem ser adotadas no Deepwalk, como
-\textit{softmax} hierarquico e \textit{negative sampling}.
+\textit{softmax} hierárquico e \textit{negative sampling}.
 
 \begin{equation} \label{eq:deepwalk_cost}
     \phi = -\log P(\{v_{i-k},...,v_{i-1},v_{i+1},...,v_{i+k}\}|\Phi(v_i))
@@ -178,7 +179,7 @@ do que a algum vértice vizinho com poucas conexões.
 
 A proposta desenvolvida por \citet{grover16} consiste em um Passeio Aleatório
 enviesado que parametrizam quão relevante são cada um desses dois comportamentos.
-Ao se escolher parâmetros que priorizem a vizinhança do vértica, a amostragem do
+Ao se escolher parâmetros que priorizem a vizinhança do vértice, a amostragem do
 Passeio Aleatório enviesado passa a se assemelhar a uma busca em profundidade,
 por outro lado, focando-se na estrutura formada pelas conexões do nó obtemos uma
 amostragem semelhante a busca em largura.
@@ -189,7 +190,7 @@ $w_{uv}$ é o peso da aresta entre $u$ e $v$ e $\sum{w_u}$ é o somatório dos d
 arestas de $u$, neste caso operando como regularizador da probabilidade.
 Para atingir seu objetivo, node2vec multiplica a probabilidade de transição
 original do Passeio Aleatório por um fator $\alpha(s, v)$ parametrizado pelos
-parametros $p$ e $q$, como mostra a equação~\ref{eq:node2vec_alpha}, na qual
+parâmetros $p$ e $q$, como mostra a equação~\ref{eq:node2vec_alpha}, na qual
 $s$ representa o vértice em que o Passeio Aleatório amostrou no passo anterior e
 $d_{sv}$ representa a distância mínima entre o par de vértices $s$ e $v$.
 Esses parâmetros controlam quão rápido o Passeio Aleatório explora a rede.
@@ -204,8 +205,8 @@ Esses parâmetros controlam quão rápido o Passeio Aleatório explora a rede.
 \end{equation}
 
 O parâmetro $p$ é chamado de parâmetro de retorno, a escolha de valores altos
-para esse fator faz com que o Passeio Aleatório evite reamostrar vértices
-recem amostrados, enquando valores baixos forçam o algoritmo a manter a
+para esse fator faz com que o Passeio Aleatório evite re-amostrar vértices
+recém amostrados, enquanto valores baixos forçam o algoritmo a manter a
 amostragem localizada em uma distância pequena de seu ponto de partida.
 Por sua vez, o parâmetro $q$ regula a probabilidade de se amostrar nós distantes
 do vértice de partida.
@@ -252,7 +253,7 @@ primeira ordem da convolução espectral do grafo.
 Apesar do GCN não ser especificamente voltado para obtenção de representações,
 trabalhos posteriores realizaram adaptações no algoritmo com essa finalidade.
 Outra dificuldade é que assim como os modelos de fatoração matricial, só é
-possível aplica-lo em grafos fixos, ao precisar adicionar novos vértices
+possível aplicá-lo em grafos fixos, ao precisar adicionar novos vértices
 precisa-se retreinar o modelo.
 Dentre os algoritmos que se propõe a atacar esses problemas, destacamos o
 GraphSAGE~\cite{hamilton17}, que minimiza a representação de um vértice a partir

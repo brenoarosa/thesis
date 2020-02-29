@@ -74,7 +74,8 @@ critério de inteligência, como proposto no teste de Turing~\cite{turing50}.
 
 O NLP é uma ampla área de pesquisa, abrangendo diferentes estágios da língua,
 desde os níveis de abstração mais baixos, como o estudo da fonologia e da
-sintaxe, quanto os maiores, que lidam com a semântica de determinado conteúdo.
+sintaxe, quanto os níveis de abstração superior, que lidam com a semântica de
+determinado conteúdo.
 Neste ramo, busca-se desenvolver métodos capazes de auxiliar e/ou automatizar
 tarefas como: o reconhecimento de fala, a análise sintática de frases, a
 extração de entidades, a segmentação por tópicos, entre outros.
@@ -95,8 +96,8 @@ uso de abreviações.
 Por seu caráter informal, observa-se uma alta taxa de erros gramaticais e
 uma grande utilização de \textit{emoticons}~\footnote{Sequência de caractéres ou
 pequena imagem que transmite um estado emotivo}.
-Além disso, o fato de serem meios de comunicação globais também ressalta a presença
-de estrangeirismos~\footnote{Uso de palavras ou expressões estrangeiras}.
+Somado a isso, o fato de serem meios de comunicação globais também ressalta a
+presença de estrangeirismos~\footnote{Uso de palavras ou expressões estrangeiras}.
 Ademais a dinamicidade das redes sociais faz com que a evolução de sentido das
 palavras seja acelerada.
 Esses elementos trazem a necessidade de adaptação ou desenvolvimento de novas
@@ -112,7 +113,7 @@ Exemplos desses dados são o número de amizades de um usuários da rede, e o
 número de re-compartilhamentos de uma mensagem.
 Logo, apesar da capacidade das ferramentas de NLP, existe um conjunto de
 informações que essas técnicas desconsideram, abrindo espaço para que as
-abordagens sejam multimodais, ou seja, que tratem de diversas destas
+abordagens sejam multimodais, ou seja, que explorem diversas destas
 propriedades.
 
 De certa maneira, as interações entre usuários são o cerne das mídias sociais.
@@ -125,16 +126,18 @@ Assim como o aprendizado de máquina, essa esfera do conhecimento também
 apresenta um grande crescimento nos últimos anos, fornecendo um novo leque de
 tecnologias, de forma a descobrir-se aplicabilidades até então inexploradas.
 Dentre suas aplicações, que possuem importância para o estudos das mídias
-sociais, podemos ressaltar, por exemplo, a detecção de comunidades, identificação de
-principais influenciadores, modelagem de propagação de informação.
+sociais, podemos ressaltar, por exemplo, a detecção de comunidades, a
+identificação de principais influenciadores, e a modelagem de propagação de
+informação.
 
-Finalmente, estes métodos são meios poderosos de análises de redes sociais,
+Finalmente, estes métodos são poderasas ferramentas de análises de redes sociais,
 principalmente quando aplicados em complemento à informação textual.
-A inclusão desses dois últimos elementos na análise se faz necessária porque uma
-mesma mensagem pode ter conotações diferentes quando escrita por usuários de
-comunidades com ideias distintas.
-Por isso, um estudo que também considere esses diferentes tipos de elementos se
-faz importante.
+A complementariedade entre esses métodos permite, por exemplo, distinguir
+conotações de uma mesma mensagem quando escritas por usuários de comunidades de
+ideias opostas.
+Por causa desses casos complexos, nos quais a análise de um elemento único da
+mensagem não é suficiente para sua classificação é que estudos que se adequam a
+multimodalidade das redes sociais se fazem necessários.
 
 \section{Motivação}
 
@@ -148,7 +151,7 @@ coletadas.
 
 A busca por informação de qualidade sobre um serviço ou produto sempre foi
 importante para consumidores.
-Quando não havia as tecnologias que usamos hoje essas pesquisas eram feitas
+Quando não havia as tecnologias usadas atualmente essas pesquisas eram feitas
 majoritariamente no boca-a-boca ou a partir de revistas especializadas.
 Com a criação da internet e das redes sociais estas passaram também a exercer
 essa função, com o beneficio de se encontrar opiniões de forma espontânea e em
@@ -182,27 +185,29 @@ treinamento.
 Esse projeto visa desenvolver um método capaz de formar classificadores de
 análise de sentimento sem a necessidade de bases de dados de treinamento.
 Essas análises serão feitas sobre dados de mídia sociais e serão explorados
-atributos tanto textuais quando de redes de usuários.
-A principal meta desse trabalho é viabilizar o emprego de modelos complexos e
-que apresentam melhores desempenhos, sem o custo proveniente da anotação de
-dados.
+atributos tanto textuais quanto das redes de usuários.
+A principal meta desse trabalho é viabilizar o emprego de modelos complexos,
+que se beneficiam do grande volume de dados, sem o custo proveniente da anotação
+de bases de treinamento.
 
 Para análise das mensagens será avaliado o impacto da utilização classificadores
 de \textit{Deep Learning} em comparação a métodos lineares tradicionalmente
 aplicados em NLP.
-Diferentes arquiteturas de redes de aprendizado profundo serão experimentadas,
-como redes convolucionais e redes recorrentes.
-Além disso, as estratégias de representação de palavras também serão variadas.
+Diferentes estratégias de representação de palavras e arquiteturas de
+classificadores redes de aprendizado profundo serão testados de acordo com o
+estado da arte em processamento de texto.
 O processo será feito de maneira semi-supervisionada com supervisão distante
-para anotação automática dos dados.
+para anotação automática dos dados de treinamento.
 
 Técnicas de Redes Complexas serão aplicadas para caracterização de autores das
 mensagens.
-Modelos como Node2Vec e redes convolucionais de difusão, ambos também baseados em
-aprendizado de máquina, serão comparados.
-Neste caso, além de avaliar os modelos entre si, será analisado se adicionar
-informação do usuários quando aplicada em conjunto com o classificador textual
-decorre em alguma alteração de performance do sistema.
+Serão comparados modelos de representação de nós em grafos, támbem baseados em
+aprendizado de máquina e de treinamento não supervisionado, cujo custo
+computacional permitam operar em volumes de dados compatíveis com os de redes
+sociais.
+Neste caso, além de avaliar os modelos entre si, será analisado a informação
+adicional provinda do usuários quando aplicada em conjunto com o classificador
+textual decorre em algum benefício de performance do sistema.
 
 Concluindo, há um amplo conjunto de estudo aplicando de processamento de
 linguagem natural em redes sociais.
@@ -210,7 +215,7 @@ Apesar de menor, a ciência de redes também têm um grande reportório de pesqu
 sobre esse meio de comunicação.
 Este trabalho visa preencher a lacuna de sistemas que não necessitam de
 investimento em anotação de dados e que abrangem a multimodalidade da
-informação.
+informação característica desse tipo de dado.
 
 %\section{Contribuições}
 \section{Organização do Texto}
@@ -221,17 +226,18 @@ Esse documento é organizado da seguinte maneira:
     \item O Capítulo~\ref{chapter:sentiment} apresenta o problema da análise
         de sentimento aplicada em mídias sociais e seus desafios.
         Esse Capítulo contém uma breve revisão bibliográfica de classificadores
-        de análise de sentimento.
+        de análise de sentimento e de técnicas de redes aplicadas a essa tarefa.
     \item No Capítulo~\ref{chapter:nlp} as técnicas de processamento de
         linguagem natural são apresentadas.
-        O Capítulo descreve tanto os métodos lineares tradicionalmente
-        aplicados a textos quanto os de \textit{Deep Learning}.
-        São caracterizadas também as diferentes formas de representação numérica
-        de palavras.
+        São caracterizadas as diferentes formas de representação numérica das
+        mensagens, e sobre quais premissas se baseiam.
+        Também são descritos os classificadores, tanto os métodos lineares
+        tradicionalmente aplicados a textos quanto os de \textit{Deep Learning}.
     \item As ferramentas de ciência de redes são apresentadas no
         Capítulo~\ref{chapter:networks}.
-        Nesse Capítulo são mostrados as diferentes técnicas aplicadas a
-        modelagem de usuários de mídias sociais.
+        Nesse Capítulo são mostrados as diferentes técnicas de representação de
+        vértices de uma rede, que serão aplicadas na modelagem de usuários de
+        mídias sociais.
     \item O Capítulo~\ref{chapter:method} descreve o método proposto para
         desenvolvimento dos classificadores.
         São apresentados as etapas de formação de bases de dados, de anotação
