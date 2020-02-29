@@ -4,17 +4,18 @@
 Grafos são estruturas de dados que codificam relações, e estão presentes em uma
 grande variedade de cenários.
 Estes são compostos por nós que representam elementos, quaisquer que sejam, e
-arestas que são as relações entre os elementos na rede.
+arestas que são as relações entre os elementos.
 Se tratando de redes sociais, grafos são especialmente importantes dado que
 a relação entre os usuários é a principal componente desses serviços.
 Ao longo das ultimas décadas o estudo de modelos aplicados aos grafos, foi se
 tornando cada vez mais relevante.
-Esses modelos visam capturar diversas características possíveis das redes como a
-evolução do grafo no tempo, a propagação de epidemias dentro da rede,
-recomendação de arestas, a predição de classes de um dado nó ou aresta, entre outros.
+Esses modelos visam capturar diversas características possíveis das redes como
+os modelos de evolução dos grafos no tempo, a propagação de epidemias dentro da
+rede, recomendação de arestas, a predição de classes de um dado nó ou aresta,
+entre outros.
 
-Neste capitulo serão estudados tônicas de representações de vértices.
-Assim como no caso de documentos textuais, estes modelos, em geral, visam
+Neste capitulo serão estudados técnicas de representações de vértices.
+Assim como no caso de documentos textuais, estes modelos geralmente visam
 codificar a informação de um nó em um vetor de baixa dimensionalidade,
 capturando tanto seus atributos individuais quanto os decorrentes da estrutura
 de conexões do mesmo.
@@ -43,12 +44,13 @@ matrizes dos grafos temos: a matriz de adjacência, a matriz Laplaciana, a matri
 de centralidade de Katz, entre outras~\cite{goyal18}.
 Nos casos que a matriz é positiva e semi-definida, como a matriz Laplaciana, é
 possível aplicar a decomposição em autovalores, nos outros casos, em geral, são
-utilizados métodos iterativos visando minimizar uma função custo.
+utilizados métodos iterativos visando minimizar uma função custo relacionada a
+qualidade da representação.
 
 \subsubsection{Locally Linear Embedding (LLE)}
 
-\citet{roweis00} desenvolveram esse algoritmo que tem como premissa que um nó é
-uma combinação linear de seus vizinhos.
+\citet{roweis00} desenvolveram esse algoritmo que tem considera a premissa de que
+um nó é uma combinação linear de seus vizinhos.
 Portanto tendo a matriz de adjacência $W_{ij}$ e o vetor de representação de um
 nó como $Y_i$, definimos o mesmo como:
 
@@ -56,8 +58,8 @@ nó como $Y_i$, definimos o mesmo como:
     Y_i \approx \sum_j{W_{ij}Y_j}
 \end{equation}
 
-A função custo a ser minimizada para atingir é a que minimiza o erro de
-representação do somatório de todos os nós, sendo assim a função custo $\phi(Y)$
+A função custo a ser minimizada portanto é a que minimiza o erro de representação
+do somatório de todos os nós, sendo assim a função custo $\phi(Y)$
 é dada por:
 
 \begin{equation}
@@ -89,23 +91,26 @@ a laplaciana do grafo.
 
 Os algoritmos apresentados anteriormente são efetivos para manter a distância
 entre vizinhos de um grafo não-direcionado.
-Entretanto, grafos direcionados reais que em grande parte das vezes tem sua
+Entretanto, grafos direcionados reais que, em grande parte das vezes, tem sua
 distribuição de grau seguindo uma lei de potência, como é o caso dos grafos
-formados em redes sociais, as propriedades de um par de nós não são simétricas.
+formados em redes sociais, não apresentam propriedades simétricas entre pares de
+vértices.
 Para obter representações que respeitem essa assimetria \citet{ou16}
 desenvolveram o algoritmo \textit{High-Order Proximity preserved Embedding}
 (HOPE).
 A chave deste algoritmo é utilizar métricas de proximidade de ordem superior em
 sua função custo, preservando assim as propriedades da assimetria.
 Qualquer medida de proximidade pode ser aplicada neste algoritmo, \citet{ou16}
-em seu estudo testaram medidas como a proximidade de Katz e Pagerank
-personalizado, mostrando que em vários casos essas medidas possuem aproximações
-que diminuem o custo computacional da otimização.
+testaram medidas como a proximidade de Katz e Pagerank personalizado, mostrando
+que em vários casos essas medidas possuem aproximações que diminuem o custo
+computacional do algoritmo.
 
 HOPE representa cada vértice em 2 vetores, um de entrada e um de saída, o qual
 denominaremos respectivamente $Y^s$ e $Y^t$.
 A função custo é dada pela equação~\ref{eq:hope} na qual $S$ representa a matriz
 de proximidade entre os nós dada por qualquer uma das medidas escolhidas.
+O termino da otimização resulta no par de vetores, de entrada e saída, que
+representam cada um dos nós da rede.
 
 \begin{equation} \label{eq:hope}
     \phi = \vert\vert S - Y^s {Y^t}^{T} \vert\vert^2_F
@@ -118,7 +123,7 @@ O Passeio Aleatório é um processo estocástico que consiste em se selecionar u
 vértice inicial no grafo e completar uma sequência de passos aleatórios.
 Sua aplicação para obtenção de representações considera a sequência de nós de
 múltiplas realizações do Passeio Aleatório como uma função de proximidade entre
-os nós.
+os vértices.
 Por ser iterativo e não necessitar o calculo de nenhuma matriz completa do
 grafo, esse método apresenta vantagem em custo operacional para redes grandes.
 Além disso, a iteratividade do método também permite que novos elementos sejam
@@ -151,7 +156,7 @@ representação, que queremos encontrar.
 \end{equation}
 
 O processo é feito de forma iterativa em que cada realização do Passeio
-Aleatório compões uma entrada da algoritmo.
+Aleatório compõe uma entrada da algoritmo.
 A otimização é dada por gradiente descendente da função custo $\phi$ que maximiza
 a probabilidade~\ref{eq:deepwalk}, esta é apresentada na
 equação~\ref{eq:deepwalk_cost}.
@@ -175,7 +180,7 @@ Enquanto a vizinhança de um nó compõe uma parte de sua informação, o
 posicionamento do mesmo em sua comunidade também é relevante.
 Dentro de uma rede, um nó central de uma comunidade pode apresentar
 características mais semelhantes ao ponto central de outra comunidade
-do que a algum vértice vizinho com poucas conexões.
+do que a algum vértice vizinho a ele com poucas conexões.
 
 A proposta desenvolvida por \citet{grover16} consiste em um Passeio Aleatório
 enviesado que parametrizam quão relevante são cada um desses dois comportamentos.
@@ -186,13 +191,14 @@ amostragem semelhante a busca em largura.
 
 No Passeio Aleatório não enviesado, a probabilidade de transição $\pi_{uv}$ do
 nó $u$ para o nó $v$ é dada por $\pi_{uv} = \frac{w_{uv}}{\sum{w_u}}$, no qual
-$w_{uv}$ é o peso da aresta entre $u$ e $v$ e $\sum{w_u}$ é o somatório dos das
-arestas de $u$, neste caso operando como regularizador da probabilidade.
+$w_{uv}$ é o peso da aresta entre $u$ e $v$ e $\sum{w_u}$ é o somatório dos
+pesos das arestas de $u$, neste caso operando como regularizador da probabilidade.
 Para atingir seu objetivo, node2vec multiplica a probabilidade de transição
 original do Passeio Aleatório por um fator $\alpha(s, v)$ parametrizado pelos
 parâmetros $p$ e $q$, como mostra a equação~\ref{eq:node2vec_alpha}, na qual
-$s$ representa o vértice em que o Passeio Aleatório amostrou no passo anterior e
-$d_{sv}$ representa a distância mínima entre o par de vértices $s$ e $v$.
+$s$ representa o vértice em que o Passeio Aleatório amostrou no passo anterior
+ao passo de posição $u$ e $d_{sv}$ representa a distância mínima entre o par
+de vértices $s$ e $v$.
 Esses parâmetros controlam quão rápido o Passeio Aleatório explora a rede.
 
 \begin{equation} \label{eq:node2vec_alpha}
@@ -222,7 +228,7 @@ node2vec é dada pela equação~\ref{eq:node2vec_pi}.
 Os autores mostram que a adoção dessa estratégia de amostragem resultou em
 ganhos significativos de performance do algoritmo para tarefas de classificação
 de vértices.
-Apesar da maior complexidade, o algoritmo apresenta aumento linear do custo
+Apesar da maior complexidade, o algoritmo mantém o aumento linear do custo
 computacional com relação ao número de nós da rede, possibilitando sua aplicação
 em redes de grande volume.
 
@@ -243,10 +249,10 @@ A equação~\ref{eq:gcn_layer} define a camada de convolução usada nesse
 algoritmo.
 A matriz $\tilde{A} = A + I$ é a matriz de adjacência somada a matriz
 identidade, correspondente a um grafo com um laço \footnote{aresta conectando um
-vértice nele mesmo} adicionado a cada vértice, A matriz diagonal $\tilde{D}$ é
-composta por $\tilde{D}_{ii} = \sum_{j}\tilde{A}_{ij}$, $H^l$ representa a saída
-da camada $l$ e $W^l$ os pesos treináveis da mesma, por fim, temos a função de
-ativação escolhida $\sigma$.
+vértice nele mesmo} adicionado a cada vértice, a matriz diagonal $\tilde{D}$ é
+composta pela diagonal $\tilde{D}_{ii} = \sum_{j}\tilde{A}_{ij}$, $H^l$
+representa a saída da camada $l$ e $W^l$ os pesos treináveis da mesma, por fim,
+temos a função de ativação escolhida $\sigma$.
 Os autores mostram em seu trabalho a relação desta camada com a aproximação de
 primeira ordem da convolução espectral do grafo.
 

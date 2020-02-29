@@ -445,7 +445,7 @@ da elaboração de um dicionário composto por palavras que tenham conotação
 positiva ou negativa.
 A formação de um dicionário de sentimento pode ser feita de forma
 manual~\cite{stone66}~\cite{tong01} ou de forma automática.
-Dentre as maneiras automáticas temos a aplicado por \citet{hu04} que é feito a
+Dentre as maneiras automáticas temos a aplicada por \citet{hu04} que é feita a
 partir de um conjunto inicial de palavra anotadas e de um dicionário de
 sinônimos e antônimos tal qual o WordNet~\cite{miller90}.
 Um exemplo é selecionar as palavras semente ``bom'' e ``ruim'' e montar uma base de
@@ -480,11 +480,12 @@ processamento de linguagem natural: Naïve Bayes e Máquina de Vetor de Suporte.
 
 \subsubsection{Naïve Bayes}
 
-O classificador de Naïve Bayes se baseia no teorema de Bayes \ref{eq:bayes} e
-na premissa de independência entre as dimensões da representação dos dados.
+O classificador de Naïve Bayes se baseia no teorema de Bayes
+(Equação~\ref{eq:bayes}) e na premissa de independência entre as dimensões da
+representação dos dados.
 Quando representamos um documento textual com, por exemplo, \textit{bag-of-words}
-a premissa de independência significaria assumir que existe independência entre
-as palavras do documento.
+a premissa de independência significa assumir que existe independência entre as
+palavras do documento.
 Apesar de não existir independência entre palavras na linguagem, este modelo foi
 aplicado amplamente a tarefas de processamento de texto devido a sua performance
 e simplicidade.
@@ -535,7 +536,8 @@ probabilidade.
 \end{equation}
 
 A dependência entre a predição e o conjunto de treino então é dada por $p(c_k)$
-e $p(\mathbf{x} \mid c_k)$, esses valores são obtidos por máxima verossimilhança.
+e $p(\mathbf{x} \mid c_k)$, esses valores são obtidos por estimadores de máxima
+verossimilhança.
 O parâmetro $p(c_k)$ é dado pela proporção de vezes que a classe aparece no
 conjunto de treino.
 Tendo o conjunto de treino o tamanho $m$ de documentos:
@@ -561,9 +563,9 @@ O modelo de Bernoulli é mais eficiente para documentos e vocabulários pequenos
 enquanto o multimodal se sobressaí no caso oposto~\cite{schutze08}.
 
 Apesar da premissa de independência não ser verdadeira para língua, e não ser um
-bom estimador~\cite{schutze08}, Naïve Bayes se mostra eficiente na
-classificação, em especial quando existe um conjunto de características de
-semelhante importância.
+bom estimador de probabilidade das classes~\cite{schutze08}, Naïve Bayes se
+mostra eficiente na classificação, em especial quando existe um conjunto de
+características de semelhante importância.
 Sua principal vantagem se dá pelo baixo custo computacional de treinamento visto
 que seus parâmetros são estimados apenas por contagens na base de dados.
 
@@ -575,7 +577,7 @@ encontrar um vetor que melhor separe duas classes.
 A diferença entre esse algoritmo e outros classificadores como a regressão
 linear é que o SVM tem objetivo de obter o vetor que maximize a distância entre
 as margens das classes, enquanto a regressão linear, em geral, minimiza uma
-função custo baseada na distância entre o centro de massa das classes.
+função custo baseada na distância entre os dados e o centro de massa das classes.
 
 \begin{figure}
 \begin{center} {
@@ -597,7 +599,7 @@ explicam \citet{cortes95}.
 Ainda assim, até então a Máquina de Vetor de Suporte fica limitada a problemas
 lineares.
 Apenas com o desenvolvimento do chamado \textit{kernel trick} que o SVM pode ser
-aplicável à problemas não-lineares e ganhou alta adoção.
+aplicável à problemas não-lineares e ganhando assim alta adoção.
 O \textit{kernel trick} consiste em realizar uma transformação na representação
 dos dados de forma que os mesmos sejam linearmente separáveis após a
 transformação.
@@ -620,7 +622,7 @@ classificação por SVM:
 \end {enumerate*}
 Apesar de \citet{joachims98} demostrar a efetividade do SVM para classificação
 de texto utilizando \textit{kernels} não lineares, bons resultados são obtidos
-mesmo sem a aplicação de \textit{kernel} como mostra \citet{pang02}.
+mesmo sem a aplicação de \textit{kernel} como mostram \citet{pang02}.
 
 \subsection{Modelos Não-Lineares}
 
@@ -633,8 +635,8 @@ documento, este fator limita a performance da classificação.
 Sem conseguir capturar o contexto essas técnicas se distanciam de como nós
 interpretamos a língua.
 Para diminuir essa lacuna, possibilitados pelo desenvolvimento de técnicas de
-representações densas, passou a ser utilizados classificadores não-lineares que
-visam adicionar alguma forma de contexto no processo.
+representações densas, passaram a ser utilizados classificadores não-lineares que
+visam adicionar alguma forma de contexto ao processo.
 
 \subsubsection{Deep Learning}
 
@@ -698,13 +700,13 @@ despreza essa propriedade, incorrendo em um maior custo computacional sem que
 necessariamente se reflita em performance, ou pior, aumentando a chance de o
 treinamento resultar em \textit{overfitting}.
 
-A forma da rede convolucional atacar este problema da correlação espacial da
+A forma da rede convolucional atacar o problema da correlação espacial da
 informação é utilizando filtros espaciais.
 Cada camada da rede convolucional é formada por um conjunto de filtros que são
 compostos por neurônios.
 A iteração de treinamento da rede consiste no deslocamento de cada filtro por
 toda dimensão da camada anterior.
-Desta maneira os padrões locais são capturados por um mesmo filtro
+Desta maneira, os padrões locais são capturados por um mesmo filtro
 independentemente de onde os padrões apareçam nos dados de entrada.
 O deslocamento dos filtros durante o treinamento funciona como um
 compartilhamento de pesos, reduzindo a quantidade de parâmetros livres da rede,
@@ -735,7 +737,7 @@ As Redes Neurais Recorrentes são, em geral, treinadas com o algoritmo
 \textit{Backpropagation Through Time}~\cite{williams95} (BPTT) em que a rede
 recorrente se comporta como uma rede neural \textit{feedforward} na qual cada
 camada representa um passo temporal nos dados de entrada, no caso de texto
-podendo ser cada passo uma palavra.
+podendo cada passo ser uma palavra.
 Portanto, ao aplicar esse algoritmo sobre o texto, o contexto sequencial do
 documento será capturado pela própria arquitetura da rede.
 
