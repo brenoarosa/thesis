@@ -381,14 +381,10 @@ de resposta, essa operação tem a finalidade de diminuir a importância de
 palavras sem potencial discriminatório, como as \textit{stopwords}.
 Assim são calculadas as entradas da camada \textit{feed forward} do algoritmo.
 
-% TODO: figura exemplificando processo http://jalammar.github.io/illustrated-transformer/
-
-% TODO: figura com o resultado http://jalammar.github.io/images/t/transformer_self-attention_visualization.png
-% pode ser print do tensor2tensor
-
 A etapa de codificação do Transformer é composta por uma cascata de unidades
 formadas por uma camada de \textit{self-attention} seguida de uma camada de
 rede \textit{feed forward}.
+A Figura~\ref{fig:transformer_layer} ilustra uma camada da arquitetura descrita.
 Diferentemente das redes recorrentes, o Transformer requer um tamanho fixo de
 entrada, sendo um parâmetro a ser definido a depender da base de treinamento
 escolhida.
@@ -396,6 +392,22 @@ Apesar das redes \textit{feed forward} não possuírem um conceito de sequência
 assim como as redes recorrentes, essa arquitetura provou ser eficiente em
 tarefas de processamento de linguagem natural ao mesmo tempo que possuem
 treinamento significativamente menos custosos que a mesma~\cite{vaswani17}.
+
+\begin{figure}
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.8]{images/transformer_layer.png}
+    \caption{Diagrama da camada $\ell$ do Transformer com K cabeças de
+             \textit{self-attention} para uma palavra de índice $i$ dada a
+             sentença $S$.
+             As matrizes $Q^{k,\ell}$, $K^{k,\ell}$ e $V^{k,\ell}$ representam
+             respectivamente os pesos de atenção de busca, resposta e valor.}
+    \small Figura retirada de~\cite{joshi20}.
+    \label{fig:transformer_layer}
+    \end{center}
+}
+\end{center}
+\end{figure}
 
 \subsubsection{Arquitetura BERT}
 
@@ -584,7 +596,8 @@ função custo baseada na distância entre os dados e o centro de massa das clas
     \begin{center}
     \includegraphics[scale=0.6]{images/svm.png}
     \caption{SVM classificando duas classes linearmente separáveis.}
-    \small Imagem com direitos cedidos para uso não comercial, retirada de~\cite{vanderplas15}
+    %\small Imagem com direitos cedidos para uso não comercial, retirada de~\cite{vanderplas15}
+    \small Figura retirada de~\cite{vanderplas15}.
     \label{fig:svm}
     \end{center}
 }
