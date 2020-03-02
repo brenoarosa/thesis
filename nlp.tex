@@ -2,10 +2,10 @@
 \label{chapter:nlp}
 
 Neste capitulo serão apresentadas as técnicas de Processamento de Linguagem
-Natural que compõe um classificador textual, como o de análise de sentimento.
-Esse processo comumente composto de 3 etapas, como demostrado no
+Natural que compõem um classificador textual, como a de análise de sentimento.
+Esse processo é comumente formado por 3 fases, como demostrado no
 diagrama~\ref{fig:nlp_diagram}.
-As seções a seguir descrevem cada uma destas fases.
+As seções a seguir descrevem cada uma destas delas.
 
 \begin{figure}[h]
 \begin{center} {
@@ -20,23 +20,23 @@ As seções a seguir descrevem cada uma destas fases.
 
 \section{Pré-Processamentos}
 
-A primeira etapa aplicada para elaboração de modelos de NLP é o
+A primeira etapa aplicada para a elaboração de modelos de NLP é o
 pré-processamento.
-Esta fase consiste na limpeza e preparação dos dados, visando melhorar a
+Essa fase consiste na limpeza e preparação dos dados, visando a melhorar a
 performance do classificador, seja retirando ruídos dos textos, reduzindo o
-tamanho do vocabulário ou formatando o texto de maneira a facilitar a modelagem.
+tamanho do vocabulário ou formatando o documento de maneira a facilitar a modelagem.
 
 O volume do vocabulário adotado costuma ser limitado tanto pelos recursos
-computacionais quanto pelo requisito mínimo de estatística das palavras na base
+computacionais, quanto pelo requisito mínimo de estatística das palavras na base
 de dados.
 Portanto, técnicas de pré-processamento que reduzam o tamanho total do
-vocabulário tem um importante papel na garantia de bom funcionamento dos
+vocabulário têm um importante papel na garantia de um bom funcionamento dos
 classificadores.
 
-Como a maior parte dos modelos de NLP trabalham a nível de palavra é necessário
-separar separar o documento em frases, com algoritmos como o Punkt~\cite{kiss06},
-e posteriormente, em palavras.
-Esse processo chamado \textit{tokenização} precisa ser robustos a abreviações,
+Como a maior parte dos modelos de NLP trabalham a nível de palavra, é necessário
+separar o documento em frases, com algoritmos como o Punkt~\cite{kiss06}, e,
+posteriormente, em palavras.
+Esse processo, chamado \textit{tokenização}, precisa ser robustos a abreviações,
 números e outras características específicas do idioma ao qual será aplicado,
 como a contração de palavras em português.
 Se tratando de redes sociais, também é relevante tratar os links, as
@@ -44,23 +44,24 @@ Se tratando de redes sociais, também é relevante tratar os links, as
 
 Algoritmos de correção ortográfica~\cite{damerau64}\cite{navarro01} podem ser
 eficientes para aprimorar a qualidade dos textos, principalmente se tratando de
-mensagens provindas meios de comunicação como as redes sociais.
+mensagens provindas de meios de comunicação como as redes sociais.
 
-Técnicas de stemização consistem na extração do o radical das palavras,
-como o obtido pelo algoritmo de Porter~\cite{porter80}, um exemplo é dado com a
-palavra ``montanha'' que possuí radical ``mont'', o mesmo obtido pela palavra
-``monte''.
+Técnicas de stemização consistem na extração do radical das palavras, como o
+obtido pelo algoritmo de Porter~\cite{porter80}.
+Um exemplo é dado com a palavra ``montanha'', que possuí radical ``mont'', o
+mesmo obtido pela palavra ``monte''.
 Por outro lado, o processos de lematização tem finalidade parecida, porém
-transforma a palavra em sua forma base, forma como elas aparecem no dicionario,
-podendo então diferenciar palavras com o mesmo radical, como ``banco'' e
-``bancários''.
-Ambas as técnicas visam tornar as etapas posteriores menos sensíveis a flexões
+transforma a palavra em sua forma base, isto é, forma como ela aparece no
+dicionario, podendo então diferenciar palavras com o mesmo radical, como
+``banco'' e ``bancários''.
+Ambas as técnicas visam a tornar as etapas posteriores menos sensíveis a flexões
 gramaticais, além de colaborar na redução do vocabulário.
 
 Uma das principais etapas do pré-processamento é a remoção das
-\textit{stopwords}, conjunto de palavras que informação pouco discriminante
-para uma dada aplicação~\cite{lo05}, geralmente são compostas pelas palavras
-mais comuns da língua, principalmente artigos e preposições.
+\textit{stopwords}, conjunto de palavras que contêm informação pouco discriminante
+para uma dada aplicação~\cite{lo05}.
+Geralmente, elas são compostas pelas palavras mais comuns da língua,
+principalmente artigos e preposições.
 O objetivo da remoção das \textit{stopwords} é diminuir ruídos dos dados
 textuais, assim simplificando a etapa de modelagem.
 \citet{saif14} fizeram um estudo comparando diversos métodos de seleção de
@@ -72,25 +73,25 @@ para selecionar \textit{stopwords}.
 
 \section{Representações}
 
-Uma vez que os tratamentos iniciais dos textos são feitos chega-se a etapa de
-preparar esses dados para serem processados pelo modelo.
+Uma vez que os tratamentos iniciais dos textos são feitos, chega-se à etapa de
+preparação desses dados para serem processados pelo modelo.
 Para isso, os documentos são transformados de sequências de palavras em vetores
 ou matrizes.
-Há diversas técnicas desenvolvidas com essa finalidade, estas podem ser
-divididas em representações esparsas e representações densas.
+Há diversas técnicas desenvolvidas com essa finalidade, que podem ser divididas
+em representações esparsas e densas.
 As representações esparsas são as mais simples de serem aplicadas dado que, em
 geral, não dependem do treinamento de nenhum modelo.
-Entretanto, as representações esparsas resultam em vetores ou matrizes de
-dimensão na ordem de, pelo menos, o tamanho do vocabulário escolhido, como os
-vocabulários costumam ser muito extensos (centenas de milhares de palavras em
-alguns casos) o tamanho e a esparsidade da representação obtida podem dificultar
+Entretanto, elas resultam em vetores ou matrizes de dimensão na ordem de, pelo
+menos, o tamanho do vocabulário escolhido.
+Como os vocabulários costumam ser muito extensos (centenas de milhares de palavras em
+alguns casos), o tamanho e a esparsidade da representação obtida podem dificultar
 o treinamento dos classificadores.
 Para contornar essa dificuldade foram criados algoritmos de representações
 densas.
-Por transformarem os documentos em vetores ou matrizes de baixa dimensão estes
+Por transformarem os documentos em vetores ou matrizes de baixa dimensão, estes
 algoritmos foram os responsáveis pela viabilidade de utilização de técnicas de
 \textit{Deep Learning} aplicadas ao processamento de linguagem natural.
-Nessa seção descreveremos algumas das principais técnicas de representação de
+Nessa seção, descreveremos algumas das principais técnicas de representação de
 texto.
 
 \subsection{Codificação One-Hot}
@@ -119,21 +120,22 @@ Figura~\ref{fig:onehot}.
 Frequentemente encontramos nas línguas palavras compostas ou expressões.
 Essas informações são perdidas na codificação \textit{One-Hot}.
 Uma forma de se atenuar esse problema são com os chamados \textit{n-gramas}.
-A ideia do \textit{n-grama} é formar tokens de 2, 3, ou \textit{n} palavras e
-utiliza este conjunto de palavras como dimensão do espaço.
+A ideia do \textit{n-grama} é formar tokens de 2, 3, ou \textit{n} palavras,
+resultando em uma dimensionalidade equivalente à quantidade de
+\textit{n-gramas} do corpus formador do dicionário.
 Entretanto, o aumento no número de palavras por token também gera um aumento
 significativo do número de dimensões, dificultando o treinamento do
 classificador.
 
 \subsection{Bag-of-Words}
 
-A codificação \textit{Bag-of-Words} é uma alternativa a representação de
+A codificação \textit{Bag-of-Words} é uma alternativa à representação de
 mensagens como matrizes compostas de vetores \textit{One-Hot} de suas palavras.
-Esta é feita pela soma destes mesmos vetores~\cite{manning10}.
+Esta é feita pela soma desses mesmos vetores~\cite{manning10}.
 Portanto, a representação final é dada por um único vetor, de tamanho
 correspondente ao do vocabulário utilizado.
 Esta técnica também tem a vantagem de transformar documentos de tamanho variados
-em vetores de mesmas dimensões, fator que precisa ser contornado em codificações
+em vetores de dimensões fixas, fator que precisa ser contornado em codificações
 baseadas em palavras.
 
 \begin{figure}[h]
@@ -154,41 +156,42 @@ Entretanto, a distribuição de palavras em um corpus, em geral, segue a lei de
 Zipf~\cite{powers98}, ou seja, sua frequência segue uma distribuição em lei de
 potência.
 Sendo assim, mesmo retirando \textit{stopwords}, as palavras mais comuns do
-vocabulário ainda dominarão os documentos, e este comportamento pode ser
+vocabulário ainda dominarão os documentos e esse comportamento pode ser
 prejudicial para o treinamento dos modelos que serão menos expostos a palavras
 incomuns.
 
 % TODO: exemplo zipf grafico ou equacao
 
-Para atenuar esse problema pode-se aplicar o \textit{term frequence-inverse
+Para atenuar tal problema, pode-se aplicar o \textit{term frequence-inverse
 document frequence} (TF-IDF)~\cite{salton88}.
-Neste caso, a representação segue a mesma estrutura proposta pela codificação
-\textit{bag-of-words}, entretanto, cada palavra é ponderada por um multiplicador
-inversamente proporcional a sua frequência nos documentos.
+Nesse caso, a representação segue a mesma estrutura proposta pela codificação
+\textit{bag-of-words}.
+Entretanto, cada palavra é ponderada por um multiplicador inversamente
+proporcional a sua frequência nos documentos.
 
 % TODO: equação tf-idf
 
 \textit{Bag-of-words} e TF-IDF são métodos de representação muito presentes na
 literatura pela sua simplicidade de implementação e pelos benefícios
 anteriormente descritos, em especial em conjunto com modelos como a
-SVM (Seção~\ref{sec:svm}) que apresenta menos dificuldades de ser treinada em dados
-esparsos.
-Entretanto, um componente fundamental da linguagem é perdido nesse processo, o
+SVM (Seção~\ref{sec:svm}), que apresenta menos dificuldades de ser treinada em
+dados esparsos.
+No entanto, um componente fundamental da linguagem é perdido durante processo: o
 contexto em que cada palavra se insere.
-Pela representação agrupar todos os tokens em um único vetor a ordem das
-palavras no documento é perdida, o que em muitos casos pode corresponder na
+Pela representação agrupar todos os tokens em um único vetor, a ordem das
+palavras no documento é perdida, o que em muitos casos pode corresponder à
 inviabilidade de uma classificação precisa do mesmo.
 
 % TODO: talvez mostrar exemplo em que a ordem faria diferença
 
-As técnicas de representações densas que serão apresentadas a seguir além de
-resolverem o obstáculo da dimensionalidade dos dados também viabilizam a
+As técnicas de representações densas que serão apresentadas a seguir, além de
+resolverem o obstáculo da dimensionalidade dos dados, também viabilizam a
 classificação por modelos que levem em conta o contexto de cada palavra.
 
 \subsection{Word2Vec} \label{sec:w2v}
 
 \textit{Word2Vec}~\cite{mikolov13} foi uma das primeiras técnicas de
-representação densa de palavras amplamente adota pela indústria e academia.
+representação densa de palavras amplamente adota pela indústria e pela academia.
 Representações densas são aquelas em que cada palavra é transformada em um vetor
 de números reais de baixa dimensionalidade, tipicamente dezenas ou poucas
 centenas de dimensões.
@@ -198,19 +201,18 @@ ou exerçam a mesma função gramatical, atenuando assim o problema da disparida
 de frequência das palavras.
 
 Esta técnica é um modelo constituído de uma rede neural de uma camada escondida.
-Para o treinamento do mesmo são feitas janelas de um número arbitrário de
+Para o treinamento do mesmo, são feitas janelas de um número arbitrário de
 palavras que servirão como entrada do modelo.
-Dessas janelas há duas variações: o \textit{continuous bag-of-words} em que
+Dessas janelas, há duas variações: o \textit{continuous bag-of-words}, em que
 o modelo é treinado para prever a palavra central da janela de entrada a partir
-das outras palavras da janela, ou o \textit{skipgram} que a partir da palavra
-central da treina-se para prever o seu contexto.
+das outras palavras da janela, e o \textit{skipgram}, que a partir da palavra
+central é treinado para prever o seu contexto.
 A Figura~\ref{fig:w2v} ilustra a diferença entre esses métodos.
 As entradas e saídas do modelo são representadas pela codificação
 \textit{one-hot} dos termos.
-A quantidade de neurônios escolhido para a camada escondida da rede resultará na
-dimensionalidade da representação.
-A representação das palavras serão os pesos da camada de entrada do modelo
-treinado.
+A quantidade de neurônios escolhida para a camada escondida da rede resultará na
+dimensionalidade da representação das palavras.
+Estas, por sua vez, serão os pesos da camada de entrada do modelo treinado.
 
 \begin{figure}%
     \centering
@@ -220,26 +222,26 @@ treinado.
     \caption{Esquemas de treinamento do Word2Vec. Exemplo composto por janela de
              contexto de 3 palavras. A matriz $X_t$ representa a palavra da
              janela na posição $t$ e $\hat{Y}_t$ a predição do modelo para a
-             mesma, $W$, por sua vez, o conjunto de pesos treináveis.
+             mesma. $W$, por sua vez, representa o conjunto de pesos treináveis.
              A representação resultante de uma palavra é dada pelo seu referente
              vetor na matriz de pesos de entrada $W_x$.}%
     \label{fig:w2v}%
 \end{figure}
 
-Apesar do \textit{Word2Vec} ser um modelo que precisa ser treinando, esse
-treinamento é não-supervisionado dado que tanto as entradas quanto saídas do
+Apesar de o \textit{Word2Vec} ser um modelo que precisa ser treinando, esse
+treinamento é não-supervisionado, dado que tanto as entradas quanto as saídas do
 modelo são obtidas diretamente dos documentos, sem anotações de classes.
 Desta forma, foi possível aplicar o algoritmo a grandes bases de dados
 mineiradas da internet.
-Esse alto volume de dados de treinamento foi essencial para que bons resultados
+Esse tamanho volume de dados de treinamento foi essencial para que bons resultados
 demostrados por \citet{mikolov13} fossem alcançados.
 
 Por ser a primeira representação densa de sucesso, o \textit{Word2Vec} foi
 essencial para a aplicação de classificadores também baseados em redes neurais,
-como os de \textit{Deep Learning} que obtiveram grande êxito em diversas
+como os de \textit{Deep Learning}, que obtiveram grande êxito em diversas
 tarefas de processamento de linguagem natural.
 Outras técnicas de representação densas semelhantes e também amplamente adotadas
-na indústria foram desenvolvidas neste mesmo período de tempo como o
+na indústria foram desenvolvidas neste mesmo período de tempo, como o
 GloVe~\cite{pennington14} e o FastText~\cite{bojanowski17}.
 
 % TODO abrir matematica do W2V
@@ -248,29 +250,30 @@ GloVe~\cite{pennington14} e o FastText~\cite{bojanowski17}.
 \label{representation:rnn}
 
 O sucesso do \textit{Word2Vec}, baseado em redes neurais \textit{feed forward},
-inspirou a experimentação de outros tipos de redes neurais dentre as quais as
-redes neurais recorrentes e suas variações obtiveram bons resultados na
-representação de palavras.
-Nesta seção serão descritas as variações deste algoritmos.
+inspirou a experimentação de outros tipos de redes neurais.
+Dentre elas, redes neurais recorrentes e suas variações obtiveram bons resultados
+na representação de palavras.
+Nesta seção, serão descritas as variações deste algoritmos.
 
-A estrutura chamada \textit{Enconder-Decoder} desenvolvida por \citet{cho14} se
-tornou a base das principais representações por redes recorrentes.
-Esta estrutura consiste em uma rede neural recorrente divida em duas etapas: a
-codificação, na qual uma sequência de tamanho variável é representada em um
-vetor de contexto; e a decodificação em que este mesmo vetor é utilizado para
+A estrutura chamada \textit{Enconder-Decoder}, desenvolvida por \citet{cho14},
+se tornou a base das principais representações por redes recorrentes.
+Ela consiste em uma rede neural recorrente divida em duas etapas: a codificação,
+na qual uma sequência de tamanho variável é representada em um
+vetor de contexto; e a decodificação, em que esse mesmo vetor é utilizado para
 obter uma outra sequência de tamanho variável.
 O \textit{Encoder-Decoder} é um modelo de aprendizado de sequências de tamanho
-variável a partir de outra sequência de tamanho variável como entrada, em que
-os tamanhos não necessariamente são os mesmos, reflexo do problema inicial em
-que o mesmo foi desenvolvido para atacar, a tradução de textos.
+variável a partir de outra sequência de tamanho variável como entrada, não
+necesariamente com os mesmos tamanhos.
+Isso é reflexo do problema inicial que o mesmo foi desenvolvido para atacar: a
+tradução de textos.
 
 \begin{figure}
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.30]{images/encoder_decoder.png}
     \caption{Arquitetura Encoder-Decoder, constituída por duas camadas de redes
-             recorrentes, a de codificação, e a de decodificação, ligadas por um
-             conjunto de pesos $C$ que captura todo o contexto provindo da
+             recorrentes: a de codificação e a de decodificação, ligadas por um
+             conjunto de pesos $C$, que captura todo o contexto provindo da
              camada de codificação.}
     \label{fig:encoder_decoder}
     \end{center}
@@ -278,19 +281,19 @@ que o mesmo foi desenvolvido para atacar, a tradução de textos.
 \end{center}
 \end{figure}
 
-Essa estrutura toda é treinada conjuntamente e pode ser utilizada para gerar
-sequências de saída a partir de entradas ou avaliar um par de entrada e saída a
-partir da probabilidade $p_{\mathbf{\theta}}(\mathbf{y} \mid \mathbf{x})$
-aprendida pelo treinamento, no qual $\mathbf{x}$ e $\mathbf{y}$ representam
-respectivamente as sequências de entrada e saída e $\mathbf{\theta}$ o conjunto
-de pesos do modelo treinado.
+Toda essa estrutura é treinada conjuntamente e pode ser utilizada para gerar
+sequências de saída a partir de entradas, ou para avaliar um par de entrada e
+saída a partir da probabilidade $p_{\mathbf{\theta}}(\mathbf{y} \mid \mathbf{x})$.
+Esta última sendo aprendida pelo treinamento, no qual $\mathbf{x}$ e $\mathbf{y}$
+representam respectivamente as sequências de entrada e saída e $\mathbf{\theta}$
+o conjunto de pesos do modelo treinado.
 
 A etapa de codificação desse modelo pode ser vista como um resumo da sequência
-de entrada em um vetor de tamanho fixo, assim sendo, o mesmo pode ser utilizado
-para representações de documentos ou frases, ou até mesmo palavras caso aplicada
-sequência de tamanho unitário.
+de entrada em um vetor de tamanho fixo.
+Assim sendo, o mesmo pode ser utilizado para representações de documentos ou
+frases, ou até mesmo de palavras, caso aplicada uma sequência de tamanho unitário.
 \citet{cho14} demostram brevemente em seu trabalho que a codificação é capaz de
-capturar significados semânticos e sintático das palavras.
+capturar significados semânticos e sintáticos das palavras, assim como o Word2Vec.
 
 \subsubsection{ELMo}
 % Deep contextualized word representations
@@ -299,15 +302,15 @@ ELMo~\cite{peters18}, sigla para \textit{Embeddings from Language Models}, em
 português Representações para Modelos Linguísticos, é um modelo capaz de obter
 representação de palavras, e se diferencia de modelos de representação de
 palavras como o Word2Vec por levar em consideração o contexto da palavra para
-obter sua representação, tanto durante o treinamento quando durante a
+obter sua representação, tanto durante o treinamento, quanto durante a
 inferência.
 Isto é, uma palavra que possua múltiplos sentidos terá representações diferentes
 dependendo da frase em que está inserida.
 A ideia de utilizar o contexto da palavra para selecionar sua representação
 durante a inferência foi inspirado pelos trabalhos de \citet{peters17} e
 \citet{mccann17}.
-O modelo é composto de uma rede LSTM~\cite{hochreiter97} bi-direcional e
-multicamada, treinada de maneira não supervisionada a partir do objetivo de
+O modelo é composto de uma rede LSTM~\cite{hochreiter97} bi-direcional e com
+múltiplas camada, treinada de maneira não supervisionada a partir do objetivo de
 prever a palavra seguinte.
 
 % TODO: diagrama ELMo para esclarecer 1 paragrafo (ver http://jalammar.github.io/illustrated-bert/)
@@ -315,16 +318,16 @@ prever a palavra seguinte.
 Estudos anteriores mostram que em modelos de redes recorrentes multicamadas,
 a melhor camada escolhida para representação das palavras depende da finalidade
 em que se deseja aplicá-la
-~\cite{hashimoto16}~\cite{sogaard16}~\cite{belinkov17}~\cite{melamud16}, e que
-em geral, camadas inferiores codificam melhor informação sintética e camadas
+~\cite{hashimoto16}~\cite{sogaard16}~\cite{belinkov17}~\cite{melamud16} e que,
+em geral, camadas inferiores codificam melhor a informação sintática e camadas
 superiores a informação semântica.
-A proposta de ELMo é para cada tarefa treinar uma combinação linear das
-representações obtida por cada camada da rede.
+A proposta de ELMo é, para cada tarefa, treinar uma combinação linear das
+representações obtidas por cada camada da rede.
 
 \citet{peters18} ressaltam que ELMo foi capaz de obter resultados significamente
-melhores que as técnicas de estado da arte até então em diversas tarefas do
-processamento de linguagem natural.
-Além de capturar informação sintética e semântica, ELMo se mostrou capaz de
+melhores que as técnicas do estado da arte até então, considerando diversas tarefas
+do processamento de linguagem natural.
+Além de capturar informação sintática e semântica, ELMo se mostrou capaz de
 desambiguar o contexto de palavras, problema até então não resolvido pelos
 principais algoritmos de representação.
 
@@ -332,27 +335,27 @@ principais algoritmos de representação.
 % bert - 2018 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 
 Outra técnica de representação bastante utilizada atualmente para representação
-de palavras é a BERT~\cite{devlin18}, \textit{Bidirectional Transformers}, mas
-antes de explicá-la será apresentada abaixo a arquitetura Transformers em que a
-mesma se baseia.
+de palavras é a BERT~\cite{devlin18}, \textit{Bidirectional Transformers}.
+No entanto, antes de explicá-la, será apresentada abaixo a arquitetura
+Transformers, em que a mesma se baseia.
 
 \subsubsection{Transformers}
 % transformers - 2017 - Attention is all you need (boa explicacao dos conceitos)
 
 Um dos principais problemas de redes neurais recorrentes é o ``esquecimento''.
 O esquecimento é observado quando se perde influência das primeiras palavras de
-uma longa sequênciao ao tentar prever a palavra no final da mesma, decorrente
-sucessivas funções de ativação dos neurônios entre as palavras do começo e do
-final do documento.
-Apesar do algoritmo LSTM~\cite{hochreiter97}, \textit{Long-Short Term Memory},
-que visa atenuar esse efeito criando um peso adicional, chamado de portão, que
+uma longa sequência ao se tentar prever a palavra no final da mesma.
+Essa situaçao decorrente das sucessivas funções de ativação dos neurônios entre
+as palavras do começo e do final do documento.
+Mesmo com o algoritmo LSTM~\cite{hochreiter97}, \textit{Long-Short Term Memory},
+que visa a atenuar esse efeito criando um peso adicional, chamado de portão (que
 controla o quanto os pesos de contexto são atualizados entre cada iteração de
-palavras de uma sequência, o esquecimento continua sendo um fator limitante.
+palavras de uma sequência), o esquecimento continua sendo um fator limitante.
 
 O mecanismo de atenção desenvolvido por \citet{bahdanau14} também tem como
 objetivo diminuir o efeito do esquecimento.
-Este consiste em um conjunto de pesos adicionais que multiplicados pelos pesos
-de estados das iterações anteriores formam os pesos de estado da iteração
+Este consiste em um conjunto de pesos adicionais que, multiplicados pelos pesos
+de estados das iterações anteriores, formam os pesos de estado da iteração
 corrente, como também descrito em mais detalhes por \citet{luong15}.
 A atenção se tornou uma das principais adições feitas a redes recorrentes
 aplicadas a processamento de linguagem natural.
@@ -362,23 +365,23 @@ aplicadas a processamento de linguagem natural.
 Inspirado nesse mecanismo, \citet{vaswani17} propuseram a arquitetura
 Transformer para tradução de textos.
 Essa arquitetura consiste em um sistema de \textit{Encoder-Decoder}, desta vez
-composto por redes neurais \textit{feed forward} multi camadas em que a
-dependência temporal entre as palavras de um documento é atacada apenas pelo
-sistema de \textit{self-attention}, ou, atenção própria.
+composto por redes neurais \textit{feed forward} multi camadas.
+Nelas a dependência temporal entre as palavras de um documento é atacada apenas
+pelo sistema de \textit{self-attention}, ou de atenção própria.
 
 Enquanto o mecanismo de atenção se dá por um único conjunto de pesos, a
 \textit{self-attention} é dividida em 3: os pesos de busca, de resposta e de
 valor.
-Cada palavra do vocabulário terá um de cada vetor associado a mesma que será
-treinado em conjunto com o resto da arquitetura.
-Para cada palavra do documento será feito um produto interno do seu vetor de
+Cada palavra do vocabulário terá um de cada vetor citado acima associado a ela.
+Para cada palavra do documento, será feito um produto interno do seu vetor de
 busca e os vetores de resposta das outras palavras da sentença, resultando em um
 valor único de atenção entre cada par possível de palavras de uma sentença.
-Após calcular esse valor será realizado uma operação de Softmax para que a norma
+Após calcular esse valor, será realizada uma operação de Softmax para que a norma
 do vetor de atenção seja unitária.
-Posteriormente se multiplica o vetor resultante pelo vetor de valor da palavra
-de resposta, essa operação tem a finalidade de diminuir a importância de
-palavras sem potencial discriminatório, como as \textit{stopwords}.
+Posteriormente, se multiplica o vetor resultante pelo vetor de valor da palavra
+de resposta.
+Essa operação tem a finalidade de diminuir a importância de palavras sem
+potencial discriminatório, como as \textit{stopwords}.
 Assim são calculadas as entradas da camada \textit{feed forward} do algoritmo.
 
 A etapa de codificação do Transformer é composta por uma cascata de unidades
@@ -386,19 +389,19 @@ formadas por uma camada de \textit{self-attention} seguida de uma camada de
 rede \textit{feed forward}.
 A Figura~\ref{fig:transformer_layer} ilustra uma camada da arquitetura descrita.
 Diferentemente das redes recorrentes, o Transformer requer um tamanho fixo de
-entrada, sendo um parâmetro a ser definido a depender da base de treinamento
+entrada, sendo um parâmetro a ser definido dependendo da base de treinamento
 escolhida.
-Apesar das redes \textit{feed forward} não possuírem um conceito de sequência
-assim como as redes recorrentes, essa arquitetura provou ser eficiente em
-tarefas de processamento de linguagem natural ao mesmo tempo que possuem
-treinamento significativamente menos custosos que a mesma~\cite{vaswani17}.
+Apesar de as redes \textit{feed forward} não possuírem um conceito de sequência,
+como as redes recorrentes, essa arquitetura provou ser eficiente em tarefas de
+processamento de linguagem natural, ao passo que possui treinamento
+significativamente menos custoso que a redes recorrentes~\cite{vaswani17}.
 
 \begin{figure}
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.8]{images/transformer_layer.png}
     \caption{Diagrama da camada $\ell$ do Transformer com K cabeças de
-             \textit{self-attention} para uma palavra de índice $i$ dada a
+             \textit{self-attention} para uma palavra de índice $i$, dada a
              sentença $S$.
              As matrizes $Q^{k,\ell}$, $K^{k,\ell}$ e $V^{k,\ell}$ representam
              respectivamente os pesos de atenção de busca, resposta e valor.}
@@ -413,63 +416,63 @@ treinamento significativamente menos custosos que a mesma~\cite{vaswani17}.
 
 O sucesso do Transformer em traduções inspirou sua aplicação em outras tarefas.
 \citet{radford18} propuseram utilizar apenas a camada de decodificação do
-Transformer junto com uma adaptação da sequência de entrada para adequar a
+Transformer, junto com uma adaptação da sequência de entrada, para adequar a
 tarefa a ser realizada.
 O modelo é pré-treinado com uma quantidade massiva de dados na predição da
 palavra seguinte e posteriormente é feito um ajuste fino com uma base de dados
 da tarefa desejada.
-Esta nova arquitetura foi capaz propagar os ganhos de performance do Transformer
-para toda gama de tarefas de NLP.
+Essa nova arquitetura foi capaz de propagar os ganhos de performance do Transformer
+para toda a gama de tarefas de NLP.
 
 Entretanto, tanto o Transformer original quanto o de \citet{radford18} são
-modelos unidirecionais, prevendo a palavra, ou sentença à direita a partir do
+modelos unidirecionais, prevendo a palavra, ou sentença à direita, a partir do
 contexto à esquerda.
-\citet{devlin18} defendem que por serem unidirecionais os modelos restringem a
-capacidade dos mesmos, principalmente em tarefas que utilizam a sentença
+\citet{devlin18} defendem que, por serem unidirecionais, os modelos possuem
+capacidade limitada, principalmente em tarefas que utilizam a sentença
 inteira, sendo a análise de sentimento um exemplo.
-Proporam então um modelo bidirecional praticamente idêntico ao Transformer de
+Proporam, então, um modelo bidirecional praticamente idêntico ao Transformer de
 \citet{radford18} sendo sua única modificação ter o mecanismo de atenção
-considerando o contexto bidirecionalmente.
+considerando bidirecionalmente o contexto.
 
-Assim como o ELMo, o BERT pode ser usado diretamente como classificador além de
-representar palavras.
+Além de representar palavras, o BERT pode ser usado diretamente como
+classificador, assim como o ELMo.
 \citet{devlin18} mostram as diferenças entre as camadas do modelo quando
-utilizados como representação, assim como nas arquiteturas apresentadas
-anteriormente as diferentes camadas possuem aprendizado de características
-distintas da língua.
+utilizado como representação.
+Assim como nas arquiteturas apresentadas anteriormente, as diferentes camadas
+possuem aprendizado de características distintas da língua.
 
 \section{Classificadores}
 
 Nessa seção serão abordadas as diferentes estratégias para classificação de
 sentimento.
 As etapas descritas anteriormente lidam com a preparação dos documentos para
-realização da classificação, apesar da complexidade dos métodos apresentados os
-classificadores podem ser tão simples quanto contadores de palavras positivas e
-negativas.
+a realização da classificação.
+Mesmo com complexidade dos métodos apresentados, os classificadores podem ser
+tão simples quanto contadores de palavras positivas e negativas.
 Podemos dividi-los em algoritmos baseados em dicionário e algoritmos de
-aprendizado de máquina~\cite{taboada11}, suas características serão descritas
-abaixo.
+aprendizado de máquina~\cite{taboada11}, estando suas respectivas
+características descritas abaixo.
 
-\subsection{Baseados em Dicionário} \label{sec:dictionary}
+\subsection{Algoritmos Baseados em Dicionários} \label{sec:dictionary}
 
-Uma das técnicas mais simples para classificação de sentimento é feita a partir
+Uma das técnicas mais simples para a classificação de sentimento é feita a partir
 da elaboração de um dicionário composto por palavras que tenham conotação
 positiva ou negativa.
 A formação de um dicionário de sentimento pode ser feita de forma
 manual~\cite{stone66}~\cite{tong01} ou de forma automática.
-Dentre as maneiras automáticas temos a aplicada por \citet{hu04} que é feita a
-partir de um conjunto inicial de palavra anotadas e de um dicionário de
-sinônimos e antônimos tal qual o WordNet~\cite{miller90}.
+Dentre as maneiras automáticas, temos a aplicada por \citet{hu04}, que é feita a
+partir de um conjunto inicial de palavras anotadas e de um dicionário de
+sinônimos e antônimos, tal qual o WordNet~\cite{miller90}.
 Um exemplo é selecionar as palavras semente ``bom'' e ``ruim'' e montar uma base de
 palavras recursivamente a partir dos seus sinônimos e antônimos.
-Formas similares de identificação de palavras com sentimento baseados em
+Formas similares de identificação de palavras com sentimento baseada em
 dicionários e palavras semente foram desenvolvidas por \citet{blair08},
 \citet{rao09}, \citet{hassan10}, entre outros.
 
 Existindo um dicionário, a classificação de polaridade de um documento é dada
-com a partir de alguma função dos sentimentos das palavras que o compõem.
-É comum a inclusão algumas características sintáticas como identificação de
-adjetivos intensificadores e identificação de negação para ponderar a pontuação
+a partir de alguma função dos sentimentos das palavras que o compõem.
+É comum a inclusão de algumas características sintáticas como a identificação de
+adjetivos intensificadores e de identificação de negação, para ponderar a pontuação
 de sentimento de uma palavra ou expressão~\cite{taboada11}.
 A função de classificação pode ser tão simples quanto uma média do sentimento
 das palavras ou, por exemplo, um calculo de proximidade entre o conjunto de
@@ -481,11 +484,11 @@ classes positivas e negativas, como propõe \citet{turney02}.
 % Liu 2012 sentiment analysis
 % Mining and Summarizing Customer Reviews tem boas referencias no 2.2
 
-\subsection{Modelos Lineares}
+\subsection{Modelos de Aprendizado de Máquina Lineares}
 
 Naturalmente, as primeiras aplicações de aprendizado de máquina em análise de
-sentimento fizeram uso de modelos simples, como os modelos lineares.
-\citet{pang02} fizeram um dos primeiros estudos comparativos entre estes
+sentimento fizeram uso de modelos simples, como os lineares.
+\citet{pang02} fizeram um dos primeiros estudos comparativos entre esses
 métodos.
 A seguir, serão descritos os dois principais modelos lineares utilizados em
 processamento de linguagem natural: Naïve Bayes e Máquina de Vetor de Suporte.
@@ -495,11 +498,11 @@ processamento de linguagem natural: Naïve Bayes e Máquina de Vetor de Suporte.
 O classificador de Naïve Bayes se baseia no teorema de Bayes
 (Equação~\ref{eq:bayes}) e na premissa de independência entre as dimensões da
 representação dos dados.
-Quando representamos um documento textual com, por exemplo, \textit{bag-of-words}
+Quando representamos um documento textual com, por exemplo, \textit{bag-of-words},
 a premissa de independência significa assumir que existe independência entre as
 palavras do documento.
-Apesar de não existir independência entre palavras na linguagem, este modelo foi
-aplicado amplamente a tarefas de processamento de texto devido a sua performance
+Apesar de não existir independência entre palavras na linguagem, tal modelo foi
+amplamente aplicado a tarefas de processamento de texto, devido a sua performance
 e simplicidade.
 
 \begin{equation} \label{eq:bayes}
@@ -510,16 +513,16 @@ e simplicidade.
 demostrado.
 Será denominado $\mathbf{X}$ o corpus de treinamento e $\mathbf{x}$ um documento
 desse corpus.
-As classes que os documentos pertencem, como positivo e negativo, é chamada de
-$c_k$, no qual $\mathbf{c}$ é o conjunto de classes.
-Portanto, substituindo as variáveis da equação~\ref{eq:bayes} temos que a
+As classes a que os documentos pertencem, como positiva e negativa, são chamadas de
+$c_k$, na qual $\mathbf{c}$ é o conjunto de classes.
+Portanto, substituindo as variáveis da equação~\ref{eq:bayes} tem-se que a
 probabilidade de um documento pertencer a uma determinada classe é dada por:
 
 \begin{equation}
     p(c_k \mid \mathbf{x}) = \frac{p(c_k) \ p(\mathbf{x} \mid c_k)}{p(\mathbf{x})}
 \end{equation}
 
-Como se assume independência entre as variáveis temos que:
+Como se assume independência entre as variáveis, tem-se que:
 
 \begin{equation}
     p(x_i \mid x_{i+1}, \dots ,x_{n}, c_k ) = p(x_i \mid c_k)
@@ -533,33 +536,33 @@ $p(x_i \mid c_k)$:
 \end{equation}
 
 A probabilidade $p(\mathbf{x})$ será constante, logo não influenciará o
-treinamento, portanto temos que a relação entre a probabilidade de um documento
+treinamento.
+Assim tem-se que a relação entre a probabilidade de um documento
 pertencer a classe é dada por:
 
 \begin{equation}
     p(c_k \mid \mathbf{x}) \propto p(c_k) \prod_{i=1}^n p(x_i \mid c_k)
 \end{equation}
 
-Sendo assim, a tarefa da classificação que é encontrar a classe de maior
-probabilidade.
+Dessa forma, a tarefa da classificação, que é encontrar a classe de maior
+probabilidade, é representada por:
 
 \begin{equation}
     \hat{y} = \operatorname{max} p(c_k \mid \mathbf{x}) = \underset{k \in \{1, \dots, K\}}{\operatorname{max}} \ p(c_k) \displaystyle\prod_{i=1}^n p(x_i \mid c_k)
 \end{equation}
 
-A dependência entre a predição e o conjunto de treino então é dada por $p(c_k)$
-e $p(\mathbf{x} \mid c_k)$, esses valores são obtidos por estimadores de máxima
-verossimilhança.
-O parâmetro $p(c_k)$ é dado pela proporção de vezes que a classe aparece no
-conjunto de treino.
-Tendo o conjunto de treino o tamanho $m$ de documentos:
+A dependência entre a predição e o conjunto de treino, então, é dada por $p(c_k)$
+e $p(\mathbf{x} \mid c_k)$.
+Esses valores são obtidos por estimadores de máxima verossimilhança.
+O parâmetro $p(c_k)$ é dado pela proporção de vezes em que a classe aparece no
+conjunto de treino, tendo o conjunto de treino o tamanho $m$ de documentos:
 
 \begin{equation}
     \hat{p}(c_k) = \frac{\sum_{i=1}^m [y_i = c_k]}{m}
 \end{equation}
 
 Por sua vez, $p(x_r \mid c_k)$ é estimado pela proporção entre uma determinada
-característica $x_r$ com o total de de características do subconjunto de dados
+característica $x_r$ e o total de características do subconjunto de dados
 $\mathbf{X_{c_k}}$ pertencentes a classe $c_k$:
 
 \begin{equation}
@@ -567,18 +570,18 @@ $\mathbf{X_{c_k}}$ pertencentes a classe $c_k$:
 \end{equation}
 
 O Naïve Bayes pode ser aplicado tanto a vetores inteiros da representação
-\textit{bag-of-words} de frequência de palavras em um documento quanto pelo seu
-equivalente binário que assinala presença ou não de uma determinada palavra.
-Ao considerar a frequência de palavras aplicamos o modelo multinomial enquanto
+\textit{bag-of-words} de frequência de palavras em um documento, quanto pelo seu
+equivalente binário que assinala ou não a presença de uma determinada palavra.
+Ao considerar a frequência de palavras, aplicamos o modelo multinomial, enquanto
 ao utilizar a representação de forma binária temos o modelo de Bernoulli.
-O modelo de Bernoulli é mais eficiente para documentos e vocabulários pequenos
-enquanto o multimodal se sobressaí no caso oposto~\cite{schutze08}.
+O modelo de Bernoulli é mais eficiente para documentos e vocabulários pequenos,
+ao passo que o multimodal se sobressaí no caso oposto~\cite{schutze08}.
 
-Apesar da premissa de independência não ser verdadeira para língua, e não ser um
-bom estimador de probabilidade das classes~\cite{schutze08}, Naïve Bayes se
+Apesar de a premissa de independência não ser verdadeira para a línguagem e não
+ser um bom estimador de probabilidade das classes~\cite{schutze08}, Naïve Bayes se
 mostra eficiente na classificação, em especial quando existe um conjunto de
 características de semelhante importância.
-Sua principal vantagem se dá pelo baixo custo computacional de treinamento visto
+Sua principal vantagem se dá pelo baixo custo computacional de treinamento, visto
 que seus parâmetros são estimados apenas por contagens na base de dados.
 
 \subsubsection{Máquina de Vetor de Suporte}
@@ -586,10 +589,11 @@ que seus parâmetros são estimados apenas por contagens na base de dados.
 
 A Máquina de Vetor de Suporte, também chamada de SVM, é um algoritmo que busca
 encontrar um vetor que melhor separe duas classes.
-A diferença entre esse algoritmo e outros classificadores como a regressão
-linear é que o SVM tem objetivo de obter o vetor que maximize a distância entre
-as margens das classes, enquanto a regressão linear, em geral, minimiza uma
-função custo baseada na distância entre os dados e o centro de massa das classes.
+A diferença entre esse algoritmo e outros classificadores, como a regressão
+linear, é que o SVM tem como objetivo obter o vetor que maximize a distância entre
+as margens das classes.
+A regressão linear, por sua vez, geralmente minimiza uma função custo baseada na
+distância entre os dados e o centro de massa das classes.
 
 \begin{figure}
 \begin{center} {
@@ -606,13 +610,13 @@ função custo baseada na distância entre os dados e o centro de massa das clas
 
 Entretanto, por se basear na margem das classes, o SVM não é capaz de separar
 classes que tenham sobreposição.
-Como forma de contornar esse problema foi criada uma variável de relaxamento de
-forma a controlar o quanto de sobreposição é permitido entre as classes como
+Como maneira de contornar esse problema, foi criada uma variável de relaxamento de
+que controla o quanto de sobreposição é permitido entre as classes, como
 explicam \citet{cortes95}.
 Ainda assim, até então a Máquina de Vetor de Suporte fica limitada a problemas
 lineares.
-Apenas com o desenvolvimento do chamado \textit{kernel trick} que o SVM pode ser
-aplicável à problemas não-lineares e ganhando assim alta adoção.
+Apenas com o desenvolvimento do chamado \textit{kernel trick} é que o SVM pôde ser
+aplicado à problemas não-lineares, ganhando assim alta adoção.
 O \textit{kernel trick} consiste em realizar uma transformação na representação
 dos dados de forma que os mesmos sejam linearmente separáveis após a
 transformação.
@@ -620,14 +624,14 @@ Mapeamentos radiais e polinomiais são dois dos exemplos de \textit{kernel}
 amplamente utilizados.
 
 Uma das principais propriedades do SVM é que seu treinamento independe da
-dimensionalidade das características dos dados visto que seu aprendizado é feito
+dimensionalidade das características dos dados, visto que seu aprendizado é feito
 com base nas margens entre as classes.
-Portanto, uma vez que os dados sejam separados por uma margem, mesmo que tenham
+Assim, uma vez que os dados sejam separados por uma margem, mesmo que tenham
 alta dimensionalidade, o vetor de suporte de classificação pode ser encontrado.
 A aplicação de SVM para classificadores de texto foi proposta por
-\citet{joachims98} visto que dados textuais representados por
-\textit{bag-of-words} possuem 3 propriedades das quais se adéquam a
-classificação por SVM:
+\citet{joachims98}, visto que dados textuais representados por
+\textit{bag-of-words} possuem 3 propriedades que se adequam à classificação por
+SVM:
 \begin {enumerate*} [label=\itshape\alph*\upshape)]
     \item possuem alta dimensionalidade
     \item são esparsos
@@ -635,27 +639,28 @@ classificação por SVM:
 \end {enumerate*}
 Apesar de \citet{joachims98} demostrar a efetividade do SVM para classificação
 de texto utilizando \textit{kernels} não lineares, bons resultados são obtidos
-mesmo sem a aplicação de \textit{kernel} como mostram \citet{pang02}.
+mesmo sem a aplicação de \textit{kernel}, como mostram \citet{pang02}.
 
-\subsection{Modelos Não-Lineares}
+\subsection{Modelos de Aprendizado de Máquina Não-Lineares}
 
 Classificadores lineares a partir de representação por \textit{bag-of-words} ou
 TF-DF dos textos foram o estado da arte em tarefas de processamento natural
-durante os anos.
+durante anos.
 Entretanto, como visto anteriormente, ao aplicar técnicas como
-\textit{bag-of-words} abre-se mão do contexto em que cada palavra aparece no
-documento, este fator limita a performance da classificação.
-Sem conseguir capturar o contexto essas técnicas se distanciam de como nós
-interpretamos a língua.
+\textit{bag-of-words}, abre-se mão do contexto em que cada palavra aparece no
+documento.
+Ta fator limita a performance da classificação.
+Sem conseguir capturar o contexto, essas técnicas se distanciam de como
+interpreta-se a língua.
 Para diminuir essa lacuna, possibilitados pelo desenvolvimento de técnicas de
-representações densas, passaram a ser utilizados classificadores não-lineares que
-visam adicionar alguma forma de contexto ao processo.
+representações densas, passou-se utilizar classificadores não-lineares que
+visam a adicionar alguma forma de contexto ao processo.
 
 \subsubsection{Deep Learning}
 
-Dentre os modelos não-lineares os que mais se destacam em processamento de
-linguagem natural são os de \textit{Deep Learning}, baseada em redes neurais.
-Uma das principais características das redes neurais é que estas são algoritmos
+Dentre os modelos não-lineares, os que mais se destacam em processamento de
+linguagem natural são os de \textit{Deep Learning}, baseados em redes neurais.
+Uma das principais características das redes neurais é serem algoritmos
 capazes de aproximar qualquer função~\cite{hornik89}.
 Com o desenvolvimento do método de treinamento por auto diferenciação, chamado
 de \textit{backpropagation}, nos anos 80~\cite{werbos82} as redes neurais
@@ -666,27 +671,27 @@ neurais de larga escala por muitos anos: o custo computacional do
 \cite{hochreiter98}.
 O \textit{vanishing gradient} é decorrente do efeito multiplicativo do
 gradiente desde a camada de neurônios da saída até a camada de entrada.
-O mesmo resulta em um treinamento menor da camada a medida que a mesma está
-mais distantes da saída, estabelecendo assim uma dificuldade exponencial no
-treinamento com relação ao número de camadas.
+O mesmo resulta em um treinamento menor da camada à medida em que ela está
+mais distante da saída, estabelecendo assim uma dificuldade exponencial no
+treinamento com relação ao número de camadas da rede.
 
 Com o desenvolvimento tecnológico e a elaboração de uma técnica de treinamento
-camada-a-camada foi possível se sobrepor a esta barreira.
-Este treinamento, proposto por \citet{hinton06}, em que cada camada de neurônio
+camada-a-camada, foi possível se sobrepor a esta barreira.
+Nesse método, proposto por \citet{hinton06}, cada camada de neurônio
 é treinada individualmente e os valores obtidos por esse treinamento são
 utilizados como inicialização do treinamento da rede completa.
-Após esse trabalho começaram a testar redes neurais com um número cada vez
+Após esse trabalho, começaram a testar redes neurais com um número cada vez
 maior de camadas.
-Denominou-se \textit{Deep Learning} a esse conjunto de modelos de redes neurais
+Denominou-se \textit{Deep Learning} o conjunto de modelos de redes neurais
 profundas.
 
 O salto de performance obtido pela aplicação de redes neurais
 profundas~\cite{lecun15} em diversas áreas de conhecimento fez deste conjunto de
-técnicas um objeto de estudo de muito interesse por pesquisadores e indústria.
+técnicas um objeto de estudo de muito interesse por pesquisadores e para indústria.
 Parte de seu sucesso se atribuí ao fato de que cada adicional na rede neural
 permite que a mesma obtenha uma representação mais complexa dos dados.
 Considerando o processamento de linguagem, diferentes tipos de redes neurais
-foram testados para tentar capturar a complexidade desta informação,
+foram testados para tentar capturar a complexidade dessa informação,
 com diferentes abordagens para adicionar o contexto em que cada palavra se
 insere no processo de modelagem.
 As seções abaixo descrevem os principais tipos de redes neurais aplicados a NLP.
@@ -697,78 +702,81 @@ As seções abaixo descrevem os principais tipos de redes neurais aplicados a NL
 \subsubsection{Redes Neurais Convolucionais}
 
 As redes convolucionais foram desenvolvidas prioritariamente para resolver
-problemas como a classificação de imagens e reconhecimento de fala.
+problemas como a classificação de imagens e o reconhecimento de fala.
 Um fator comum que essas tarefas compartilham é a possível translação da
 informação.
 Na classificação de imagens, por exemplo, um determinado objeto pode estar em
-diferentes posições ou ocupar tamanhos distintos em diferentes imagem.
+diferentes posições ou ocupar tamanhos distintos em diferentes imagens.
 Apesar de ser possível aplicar redes neurais MLP ao problema, esta precisaria
 aprender os mesmos padrões de neurônios em diferentes posições~\cite{lecun95}.
-Além disso, neste tipo de problema existe uma característica da localidade da
-informação, por exemplo, para reconhecimento de fala de uma palavra no final de
-uma frase, a palavra imediatamente anterior é, em geral, mais importante que a
-primeira palavra da mesma.
-Ao se utilizar redes neurais MLP completamente conectadas entre camadas se
-despreza essa propriedade, incorrendo em um maior custo computacional sem que
-necessariamente se reflita em performance, ou pior, aumentando a chance de o
+Além disso, nesse tipo de problema existe uma característica da localidade da
+informação.
+Por exemplo, para reconhecimento de fala de uma palavra no final de uma frase,
+a palavra imediatamente anterior é, em geral, mais importante que a primeira
+palavra da mesma.
+Ao se utilizar redes neurais MLP completamente conectadas entre camadas,
+despreza-se essa propriedade, incorrendo em um maior custo computacional sem que
+necessariamente se reflita em performance ou, pior, aumentando a chance de o
 treinamento resultar em \textit{overfitting}.
 
-A forma da rede convolucional atacar o problema da correlação espacial da
-informação é utilizando filtros espaciais.
-Cada camada da rede convolucional é formada por um conjunto de filtros que são
+A solução para a rede convolucional atacar o problema da correlação espacial da
+informação é utilizar filtros espaciais.
+Cada uma de suas camada é formada por um conjunto de filtros que são
 compostos por neurônios.
 A iteração de treinamento da rede consiste no deslocamento de cada filtro por
-toda dimensão da camada anterior.
+toda a dimensão da camada anterior.
 Desta maneira, os padrões locais são capturados por um mesmo filtro
-independentemente de onde os padrões apareçam nos dados de entrada.
+independente de onde os padrões apareçam nos dados de entrada.
 O deslocamento dos filtros durante o treinamento funciona como um
-compartilhamento de pesos, reduzindo a quantidade de parâmetros livres da rede,
-e assim sua probabilidade de \textit{overfitting}.
+compartilhamento de pesos, reduzindo a quantidade de parâmetros livres da rede
+e, logo, sua probabilidade de \textit{overfitting}.
 
 A interpretação de redes convolucionais aplicadas a processamento de texto não é
 muito diferente de sua utilização com imagens.
 Enquanto os filtros convolucionais exploram os padrões locais com filtros 2D de
-poucos pixels em imagens, com o caso textual os filtros são unidimensionais e
+poucos pixels em imagens, no caso textual os filtros são unidimensionais e
 percorrem a sequência de vetores de palavras com uma janela, capturando assim
 parte do contexto em que cada palavra se insere.
 Esse modelo já havia sido aplicado a documentos representados com
-\textit{bag-of-words} como demostrado por \citet{kalchbrenner14} e
-\citet{yih14} mas apenas quando utilizado em conjunto com a representação
-Word2Vec como apresentou \citet{kim14} que esse algoritmo ganhou tração nas
+\textit{bag-of-words}, como demostrado por \citet{kalchbrenner14} e
+\citet{yih14}.
+Entretanto, apenas quando utilizado em conjunto com a representação
+Word2Vec, como apresentou \citet{kim14}, esse algoritmo ganhou tração nas
 tarefas de classificação de texto.
-A disponibilidade de modelos Word2Vec pré-treinadas, somado a representação
+A disponibilidade de modelos Word2Vec pré-treinadas, somada à representação
 densa que resulta em menor quantidade de parâmetros e menor probabilidade de
-\textit{overfitting} torna essa combinação acessível para treinamento mesmo em
-casos de grandes bases de dados, não obstante com performance superior como
-mostra \citet{kim14}.
+\textit{overfitting}, torna essa combinação acessível para treinamento mesmo em
+casos de grandes bases de dados, dessa forma resultando em performance superior,
+como mostra \citet{kim14}.
 
 \subsubsection{Redes Neurais Recorrentes}
 
 Outra forma de encapsular o contexto presente na linguagem é utilizando redes
 neurais recorrentes.
-As Redes Neurais Recorrentes são, em geral, treinadas com o algoritmo
-\textit{Backpropagation Through Time}~\cite{williams95} (BPTT) em que a rede
-recorrente se comporta como uma rede neural \textit{feedforward} na qual cada
-camada representa um passo temporal nos dados de entrada, no caso de texto
-podendo cada passo ser uma palavra.
+Elas são, em geral, treinadas com o algoritmo
+\textit{Backpropagation Through Time}~\cite{williams95} (BPTT).
+Nesse algoritmo a rede recorrente se comporta como uma rede neural
+\textit{feedforward} na qual cada camada representa um passo temporal nos dados
+de entrada.
+No caso dos dados serem textuais cada passo pode ser uma palavra.
 Portanto, ao aplicar esse algoritmo sobre o texto, o contexto sequencial do
 documento será capturado pela própria arquitetura da rede.
 
-As variações de redes neurais recorrentes como apresentado em
-\ref{representation:rnn} em grande parte também realizam classificação.
-Um exemplo desta aplicação é mostrada por \citet{tai15} classificando sentimento
+As variações de redes neurais recorrentes, como apresentado em
+\ref{representation:rnn}, também realizam classificação em grande parte.
+Um exemplo desta aplicação é mostrado por \citet{tai15} classificando sentimento
 por uma rede LSTM.
 Posteriormente, técnicas de classificação que misturam diferentes tipos de redes
-foram testadas com êxito como mostram \citet{zhou16} em que a arquitetura é
+foram testadas com êxito, como mostram \citet{zhou16}, sendo a arquitetura
 constituída de uma camada de rede recorrente seguida por uma camada de rede
 convolucional.
 
-Apesar dos bons resultados obtidos nesses trabalhos, o treinamento por BPTT é
+Mesmo com os bons resultados obtidos nesses trabalhos, o treinamento por BPTT é
 computacionalmente mais custoso que o \textit{backpropagation} de redes
-\textit{feedforward} ou convolucionais, dado que o mesmo apresenta menos
+\textit{feedforward} ou convolucionais, dado que o BPTT apresenta menos
 oportunidade de paralelismo do treinamento.
 Assim, esse algoritmo acaba sendo menos utilizado do que as redes
-convolucionais, ou até mesmo os Transformers para classificação de documentos.
+convolucionais, ou até mesmo do que os Transformers, para a classificação de documentos.
 
 % JA EXPLICADO POR VOLTA DA PAGINA 9
 %\subsection{Supervisão Distante}

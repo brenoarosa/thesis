@@ -1,27 +1,27 @@
 \chapter{Modelos de Redes Complexas}
 \label{chapter:networks}
 
-Grafos são estruturas de dados que codificam relações, e estão presentes em uma
-grande variedade de cenários.
-Estes são compostos por nós que representam elementos, quaisquer que sejam, e
-arestas que são as relações entre os elementos.
-Se tratando de redes sociais, grafos são especialmente importantes dado que
+Grafos são estruturas de dados que codificam relações e que estão presentes em
+uma grande variedade de cenários.
+São compostos por nós que representam elementos, quaisquer que sejam, e arestas
+que são as relações entre os elementos.
+Tratando-se de redes sociais, grafos são especialmente importantes, dado que
 a relação entre os usuários é a principal componente desses serviços.
-Ao longo das ultimas décadas o estudo de modelos aplicados aos grafos, foi se
+Ao longo das ultimas décadas, o estudo de modelos aplicados aos grafos foi se
 tornando cada vez mais relevante.
-Esses modelos visam capturar diversas características possíveis das redes como
+Esses modelos visam a capturar diversas características possíveis das redes, como
 os modelos de evolução dos grafos no tempo, a propagação de epidemias dentro da
-rede, recomendação de arestas, a predição de classes de um dado nó ou aresta,
+rede, a recomendação de arestas, a predição de classes de um dado nó ou aresta,
 entre outros.
 
-Neste capitulo serão estudados técnicas de representações de vértices.
-Assim como no caso de documentos textuais, estes modelos geralmente visam
+Neste capitulo, serão estudadas técnicas de representações de vértices.
+Assim como no caso de documentos textuais, esses modelos geralmente visam a
 codificar a informação de um nó em um vetor de baixa dimensionalidade,
-capturando tanto seus atributos individuais quanto os decorrentes da estrutura
+capturando tanto seus atributos individuais, quanto os decorrentes da estrutura
 de conexões do mesmo.
-Este objetivo se adéqua ao presente trabalho pois permite que seja treinado um
+Tal objetivo se adequa ao presente trabalho pois permite que seja treinado um
 classificador único que utilize tanto a informação capturada pela linguagem quanto
-da a provinda da rede.
+da a provinda da rede de usuários.
 
 % FIGURA: com subfiguras representado cada uma das tarefas citadas
 % - classificacao de nós: grafos com nós em 2 cores
@@ -38,28 +38,29 @@ da a provinda da rede.
 
 A primeira modalidade de técnicas de representação de nós a ser desenvolvida foi
 a por fatoração matricial.
-Essa consiste em utilizar o resultado da fatoração de uma das matrizes
-características da rede como representação dos nós, dentro os exemplos de
-matrizes dos grafos temos: a matriz de adjacência, a matriz Laplaciana, a matriz
-de centralidade de Katz, entre outras~\cite{goyal18}.
+Ela consiste em utilizar o resultado da fatoração de uma das matrizes
+características da rede como representação dos nós.
+Dentre os exemplos de matrizes dos grafos temos: a matriz de adjacência, a
+matriz Laplaciana, a matriz de centralidade de Katz etc~\cite{goyal18}.
 Nos casos que a matriz é positiva e semi-definida, como a matriz Laplaciana, é
-possível aplicar a decomposição em autovalores, nos outros casos, em geral, são
-utilizados métodos iterativos visando minimizar uma função custo relacionada a
-qualidade da representação.
+possível aplicar a decomposição em autovalores.
+Nos outros casos, em geral, são utilizados métodos iterativos visando a
+minimizar uma função custo relacionada à qualidade da representação.
 
 \subsubsection{Locally Linear Embedding (LLE)}
 
-\citet{roweis00} desenvolveram esse algoritmo que tem considera a premissa de que
-um nó é uma combinação linear de seus vizinhos.
-Portanto tendo a matriz de adjacência $W_{ij}$ e o vetor de representação de um
+Um dos modelos de representação mais simples é o desenvolvido por \citet{roweis00}.
+Esse algoritmo considera a premissa de que um nó é uma combinação linear de
+seus vizinhos.
+Portanto, tendo a matriz de adjacência $W_{ij}$ e o vetor de representação de um
 nó como $Y_i$, definimos o mesmo como:
 
 \begin{equation}
     Y_i \approx \sum_j{W_{ij}Y_j}
 \end{equation}
 
-A função custo a ser minimizada portanto é a que minimiza o erro de representação
-do somatório de todos os nós, sendo assim a função custo $\phi(Y)$
+Assim, função custo a ser minimizada é a que minimiza o erro de representação
+do somatório de todos os nós, de forma que a função custo $\phi(Y)$
 é dada por:
 
 \begin{equation}
@@ -68,16 +69,18 @@ do somatório de todos os nós, sendo assim a função custo $\phi(Y)$
 
 Sendo necessário respeitar a restrição $\frac{1}{N}Y^TY = 1$ para remover as
 soluções degeneradas.
-Esta técnica obtém uma representação de nós que preserva as distância de
+Essa técnica obtém uma representação de nós que preserva as distância de
 primeira ordem da rede, ou seja, vizinhos diretos no grafo original vão obter
 representações próximas.
 
 \subsubsection{Automapas Laplacianos}
 
-Esta técnica desenvolvida por \citet{belkin02} também tem como objetivo obter
-representações próximas entre vizinhos, desta vez inspirada na equação de fluxo
-de calor, usando a matriz laplaciana do grafo.
-Sua função custo é dada pela equação~\ref{eq:laplacian_eigenmaps} na qual $L$ é
+Esta técnica, desenvolvida por \citet{belkin02}, também tem como objetivo obter
+representações próximas entre vizinhos.
+No entanto, desta vez é inspirada na equação de fluxo de calor, na qual a trasmissão de
+energia decai quadraticamente com a distância entre os corpos.
+Para isso, é utilizada a matriz laplaciana do grafo.
+Sua função custo é dada pela equação~\ref{eq:laplacian_eigenmaps}, na qual $L$ é
 a laplaciana do grafo.
 
 \begin{equation} \label{eq:laplacian_eigenmaps}
@@ -91,24 +94,24 @@ a laplaciana do grafo.
 
 Os algoritmos apresentados anteriormente são efetivos para manter a distância
 entre vizinhos de um grafo não-direcionado.
-Entretanto, grafos direcionados reais que, em grande parte das vezes, tem sua
-distribuição de grau seguindo uma lei de potência, como é o caso dos grafos
-formados em redes sociais, não apresentam propriedades simétricas entre pares de
-vértices.
-Para obter representações que respeitem essa assimetria \citet{ou16}
+Entretanto, grafos direcionados reais têm, em grande parte das vezes, sua
+distribuição de grau obedecendo a uma lei de potência, como é o caso dos grafos
+formados em redes sociais.
+Não apresentam, assim, propriedades simétricas entre pares de vértices.
+Para obter representações que respeitem essa assimetria \citet{ou16},
 desenvolveram o algoritmo \textit{High-Order Proximity preserved Embedding}
 (HOPE).
 A chave deste algoritmo é utilizar métricas de proximidade de ordem superior em
 sua função custo, preservando assim as propriedades da assimetria.
-Qualquer medida de proximidade pode ser aplicada neste algoritmo, \citet{ou16}
+Como qualquer medida de proximidade pode ser aplicada nesse algoritmo, \citet{ou16}
 testaram medidas como a proximidade de Katz e Pagerank personalizado, mostrando
 que em vários casos essas medidas possuem aproximações que diminuem o custo
 computacional do algoritmo.
 
-HOPE representa cada vértice em 2 vetores, um de entrada e um de saída, o qual
+HOPE representa cada vértice em 2 vetores, um de entrada e um de saída, que
 denominaremos respectivamente $Y^s$ e $Y^t$.
-A função custo é dada pela equação~\ref{eq:hope} na qual $S$ representa a matriz
-de proximidade entre os nós dada por qualquer uma das medidas escolhidas.
+A função custo é dada pela equação~\ref{eq:hope}, na qual $S$ representa a matriz
+de proximidade entre os nós, dada por qualquer uma das medidas escolhidas.
 O termino da otimização resulta no par de vetores, de entrada e saída, que
 representam cada um dos nós da rede.
 
@@ -118,13 +121,13 @@ representam cada um dos nós da rede.
 
 \section{Modelos Baseados em Passeios Aleatórios}
 
-Outra estratégia amplamente adotada são as baseadas em Passeios Aleatórios.
-O Passeio Aleatório é um processo estocástico que consiste em se selecionar um
+Outras estratégias amplamente adotada são as baseadas em Passeios Aleatórios.
+O Passeio Aleatório é um processo estocástico que consiste em selecionar um
 vértice inicial no grafo e completar uma sequência de passos aleatórios.
 Sua aplicação para obtenção de representações considera a sequência de nós de
 múltiplas realizações do Passeio Aleatório como uma função de proximidade entre
 os vértices.
-Por ser iterativo e não necessitar o calculo de nenhuma matriz completa do
+Por ser iterativo e não necessitar o cálculo de nenhuma matriz completa do
 grafo, esse método apresenta vantagem em custo operacional para redes grandes.
 Além disso, a iteratividade do método também permite que novos elementos sejam
 adicionados ao grafo sem requerer um treinamento completo do modelo,
@@ -133,32 +136,32 @@ A seguir serão apresentados os principais modelos deste grupo.
 
 \subsubsection{Deepwalk}
 
-Deepwalk~\cite{perozzi14} se inspira em modelos de representações de palavras
+Deepwalk~\cite{perozzi14} se inspira em modelos de representações de palavras,
 utilizando como entrada sequências de iterações de Passeios Aleatórios truncadas
 em poucos passos.
-Os autores observaram que assim como a distribuição de ocorrência de palavras de
-uma língua segue uma lei de potência, mesmo comportamento de boa parte das redes
-formadas no mundo real, como a de conexão entre pessoas.
-Desta forma, adaptaram algoritmos previamente aplicados para predição de
+Os autores observaram que, assim como a distribuição de ocorrência de palavras de
+uma língua segue uma lei de potência, o mesmo comportamento é observado em boa
+parte das redes formadas no mundo real, como a de conexão entre pessoas.
+Desta forma, eles adaptaram algoritmos previamente aplicados em predição de
 palavras para obter as representações dos vértices.
 
-O modelo proposto é muito similar a variação \textit{skipgram} do
-Word2Vec~\ref{sec:w2v}, os passeios aleatórios truncados formam sequências de
-tamanho $2k + 1$, o treinamento do algoritmo é feito de maneira a maximizar a
+O modelo proposto é muito similar à variação \textit{skipgram} do
+Word2Vec~\ref{sec:w2v}: os passeios aleatórios truncados formam sequências de
+tamanho $2k + 1$, e o treinamento do algoritmo é feito de maneira a maximizar a
 probabilidade de predição do contexto a partir do vértice na posição central do
 passeio.
-A formula~\ref{eq:deepwalk} formaliza o problema citado dado que $v_i$ é o
-vértice central de um dado passeio e $\Phi$ é o mapeamento de um vetor em sua
-representação, que queremos encontrar.
+A fórmula~\ref{eq:deepwalk} formaliza o problema citado.
+Dado que $v_i$ é o vértice central de um certo passeio e $\Phi$ é o mapeamento
+de um vetor em sua representação, que queremos encontrar, entao:
 
 \begin{equation} \label{eq:deepwalk}
     \operatorname{max} P(\{v_{i-k},...,v_{i-1},v_{i+1},...,v_{i+k}\}|\Phi(v_i))
 \end{equation}
 
-O processo é feito de forma iterativa em que cada realização do Passeio
-Aleatório compõe uma entrada da algoritmo.
+O processo é feito de forma iterativa por conta de cada realização do Passeio
+Aleatório compor uma entrada do algoritmo.
 A otimização é dada por gradiente descendente da função custo $\phi$ que maximiza
-a probabilidade~\ref{eq:deepwalk}, esta é apresentada na
+a probabilidade~\ref{eq:deepwalk}, que é apresentada na
 equação~\ref{eq:deepwalk_cost}.
 Outras adaptações propostas posteriormente ao Word2Vec para diminuir o custo
 computacional de treinamento também podem ser adotadas no Deepwalk, como
@@ -174,20 +177,20 @@ O node2vec~\cite{grover16} também é um algoritmo inspirado no Word2Vec.
 Seu processo de otimização é idêntico ao apresentado pelo Deepwalk, também
 aplicado sobre sequências de passeios aleatórios de tamanho fixo.
 A diferença entre ambos está na estratégia de passeio aleatório, que além de
-capturar a vizinhança de um dado vértice visa também capturar a posição do mesmo
-na estrutura ao seu redor.
+capturar a vizinhança de um dado vértice, visa também a capturar a função do
+mesmo na estrutura ao seu redor.
 Enquanto a vizinhança de um nó compõe uma parte de sua informação, o
 posicionamento do mesmo em sua comunidade também é relevante.
 Dentro de uma rede, um nó central de uma comunidade pode apresentar
 características mais semelhantes ao ponto central de outra comunidade
-do que a algum vértice vizinho a ele com poucas conexões.
+do que a algum vértice vizinho a ele que tenha poucas conexões.
 
 A proposta desenvolvida por \citet{grover16} consiste em um Passeio Aleatório
-enviesado que parametrizam quão relevante são cada um desses dois comportamentos.
+enviesado que parametriza quão relevante é cada um desses dois comportamentos.
 Ao se escolher parâmetros que priorizem a vizinhança do vértice, a amostragem do
-Passeio Aleatório enviesado passa a se assemelhar a uma busca em profundidade,
-por outro lado, focando-se na estrutura formada pelas conexões do nó obtemos uma
-amostragem semelhante a busca em largura.
+Passeio Aleatório enviesado passa a se assemelhar a uma busca em profundidade.
+Por outro lado, focando-se na estrutura formada pelas conexões do nó, obtemos uma
+amostragem semelhante à busca em largura.
 
 No Passeio Aleatório não enviesado, a probabilidade de transição $\pi_{uv}$ do
 nó $u$ para o nó $v$ é dada por $\pi_{uv} = \frac{w_{uv}}{\sum{w_u}}$, no qual
@@ -195,10 +198,10 @@ $w_{uv}$ é o peso da aresta entre $u$ e $v$ e $\sum{w_u}$ é o somatório dos
 pesos das arestas de $u$, neste caso operando como regularizador da probabilidade.
 Para atingir seu objetivo, node2vec multiplica a probabilidade de transição
 original do Passeio Aleatório por um fator $\alpha(s, v)$ parametrizado pelos
-parâmetros $p$ e $q$, como mostra a equação~\ref{eq:node2vec_alpha}, na qual
-$s$ representa o vértice em que o Passeio Aleatório amostrou no passo anterior
-ao passo de posição $u$ e $d_{sv}$ representa a distância mínima entre o par
-de vértices $s$ e $v$.
+parâmetros $p$ e $q$, como mostra a equação~\ref{eq:node2vec_alpha}.
+Nela, $s$ representa o vértice em que o Passeio Aleatório amostrou no passo
+anterior ao passo de posição $u$, enquanto $d_{sv}$ representa a distância
+mínima entre o par de vértices $s$ e $v$.
 Esses parâmetros controlam quão rápido o Passeio Aleatório explora a rede.
 
 \begin{equation} \label{eq:node2vec_alpha}
@@ -210,13 +213,14 @@ Esses parâmetros controlam quão rápido o Passeio Aleatório explora a rede.
     \end{cases}
 \end{equation}
 
-O parâmetro $p$ é chamado de parâmetro de retorno, a escolha de valores altos
-para esse fator faz com que o Passeio Aleatório evite re-amostrar vértices
-recém amostrados, enquanto valores baixos forçam o algoritmo a manter a
-amostragem localizada em uma distância pequena de seu ponto de partida.
+O parâmetro $p$ é chamado de parâmetro de retorno.
+A escolha de valores altos para esse fator faz com que o Passeio Aleatório evite
+re-amostrar vértices recém amostrados, enquanto valores baixos forçam o
+algoritmo a manter a amostragem localizada em uma distância pequena de seu ponto
+de partida.
 Por sua vez, o parâmetro $q$ regula a probabilidade de se amostrar nós distantes
 do vértice de partida.
-Valores baixos de $q$ resultam em uma amostragem semelhante a busca em
+Valores baixos de $q$ resultam em uma amostragem semelhante à busca em
 profundidade enquanto valores altos levam a um padrão de busca em largura.
 Resumidamente, a probabilidade de transição do passeio aleatório proposto por
 node2vec é dada pela equação~\ref{eq:node2vec_pi}.
@@ -234,12 +238,12 @@ em redes de grande volume.
 
 \section{Redes Convolucionais de Grafos}
 
-Adaptações de modelos de \textit{Deep Learning} também passaram a ser utilizados
+Adaptações de modelos de \textit{Deep Learning} também passaram a ser utilizadas
 para representação de nós, como os modelos por \textit{autoencodes}~\cite{wang16}
 e~\cite{cao16}.
 A rede convolucional de grafos~\cite{kipf16} (GCN) é um dos principais algoritmos
 deste grupo, no qual se desenvolveu uma adaptação do operador de convolução para
-aplicar em grafos.
+aplicação em grafos.
 
 \begin{equation} \label{eq:gcn_layer}
     H^{(l+1)} = \sigma (\tilde{D}^{-\frac{1}{2}} \tilde{A} \tilde{D}^{-\frac{1}{2}} H^l W^l)
@@ -247,21 +251,22 @@ aplicar em grafos.
 
 A equação~\ref{eq:gcn_layer} define a camada de convolução usada nesse
 algoritmo.
-A matriz $\tilde{A} = A + I$ é a matriz de adjacência somada a matriz
+A matriz $\tilde{A} = A + I$ é a matriz de adjacência somada à matriz
 identidade, correspondente a um grafo com um laço \footnote{aresta conectando um
-vértice a ele mesmo} adicionado a cada vértice, a matriz diagonal $\tilde{D}$ é
-composta pela diagonal $\tilde{D}_{ii} = \sum_{j}\tilde{A}_{ij}$, $H^l$
-representa a saída da camada $l$ e $W^l$ os pesos treináveis da mesma, por fim,
-temos a função de ativação escolhida $\sigma$.
+vértice a ele mesmo} adicionado a cada vértice.
+A matriz diagonal $\tilde{D}$ é composta pela diagonal
+$\tilde{D}_{ii} = \sum_{j}\tilde{A}_{ij}$, sendo que $H^l$ representa a saída da
+camada $l$ e $W^l$ representa os pesos treináveis da mesma.
+Por fim, temos a função de ativação escolhida $\sigma$.
 Os autores mostram em seu trabalho a relação desta camada com a aproximação de
 primeira ordem da convolução espectral do grafo.
 
 Apesar do GCN não ser especificamente voltado para obtenção de representações,
 trabalhos posteriores realizaram adaptações no algoritmo com essa finalidade.
-Outra dificuldade é que assim como os modelos de fatoração matricial, só é
-possível aplicá-lo em grafos fixos, ao precisar adicionar novos vértices
+Outra dificuldade é que, assim como os modelos de fatoração matricial, só é
+possível aplicar GCN em grafos fixos, pois ao precisar adicionar novos vértices,
 precisa-se retreinar o modelo.
-Dentre os algoritmos que se propõe a atacar esses problemas, destacamos o
+Dentre os algoritmos que se propõem a atacar esses problemas, destacamos o
 GraphSAGE~\cite{hamilton17}, que minimiza a representação de um vértice a partir
-de uma função de agregação de seus vizinhos, desta forma a técnica não depende
-da matriz de adjacência completa para seu treinamento.
+de uma função de agregação de seus vizinhos.
+Desta forma, a técnica não depende da matriz de adjacência completa para seu treinamento.
