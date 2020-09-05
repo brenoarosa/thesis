@@ -9,10 +9,11 @@ algoritmos.
 
 \section{Bases de Dados}
 
+% TODO: preencher os valores
 Serão utilizadas duas bases de dados nesse trabalho, uma de treinamento e uma de
 teste.
 Tendo objetivo de diminuir o custo de desenvolvimento do classificador será
-adotado o método de anotação distante descrito por \citet{go09} para formação da
+adotado o método de anotação distante descrito por~\citet{go09} para formação da
 base de dados de treinamento.
 Esta é formada por 10 milhões de tweets em português coletados entre 2018 e 2020.
 
@@ -27,10 +28,22 @@ textos para evitar a introdução de vies no classificador.
 Desta a base de treinamento é composta de YYYY tweets, sendo YYY positivos e ZZZ
 negativos.
 
-A base de testes foi anotada manualmente ... usando a ferramente XYZ
+A base de testes é composta por XYZ tweets anotados manualmente.
+Os tweets dessa base também foram amostrados entre 2018 e 2020 e não pertencem a
+base de treinamento.
+Dentre o conjunto total YYY mensagens são positivas e WWWW são negativas.
+A anotação foi feita utilizando a ferramenta
+Doccano~\footnote{https://github.com/doccano/doccano}.
 
 \section{Figuras de Mérito}
 
+A avaliação dos algoritmos aplicados nestas bases será feita utizando as figuras
+de mérito descritas nessa seção.
+
+Levando em consideração o desbalanceamento de classes das bases de dados não é
+adequado a aplicação da acurácia pois esta favoreceria a classe majoritariamente
+presente nas bases.
+Como alternativa será adotada a área sob a curva ROC...
 
 \section{Desenvolvimento}
 % usar graphSAGE como aggregador de embedding de texto do usuario? ler pagina 2
