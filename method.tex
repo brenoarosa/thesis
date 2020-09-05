@@ -14,11 +14,24 @@ teste.
 Tendo objetivo de diminuir o custo de desenvolvimento do classificador será
 adotado o método de anotação distante descrito por \citet{go09} para formação da
 base de dados de treinamento.
-Esta é formada por 10 milhões de tweets em português coletados entre XXXX e YYYY.
+Esta é formada por 10 milhões de tweets em português coletados entre 2018 e 2020.
 
 Sobre esses foram selecionados manualmente emoticons positivos e negativos
+dentre os mais frequentes. A Tabela XXXX mostra os emoticons escolhidos.
+Mensagens que possuírem um ou mais dos emoticons selecionados serão
+categorizados com a classe correspondente na base de treinamento.
+Para remover possíveis ambiguidades foram removidos da base os textos que
+possuiram mais do que uma categoria.
+Além disso, os emoticons utilizados na supervisão distante foram removidos dos
+textos para evitar a introdução de vies no classificador.
+Desta a base de treinamento é composta de YYYY tweets, sendo YYY positivos e ZZZ
+negativos.
+
+A base de testes foi anotada manualmente ... usando a ferramente XYZ
 
 \section{Figuras de Mérito}
+
+
 \section{Desenvolvimento}
 % usar graphSAGE como aggregador de embedding de texto do usuario? ler pagina 2
 % de hamilton17
