@@ -18,7 +18,8 @@ base de dados de treinamento.
 Esta é formada por 10 milhões de tweets em português coletados entre 2018 e 2020.
 
 Sobre esses foram selecionados manualmente emoticons positivos e negativos
-dentre os mais frequentes. A Tabela XXXX mostra os emoticons escolhidos.
+dentre os mais frequentes. A Tabela~\ref{tab:emoticons} mostra os emoticons
+escolhidos.
 Mensagens que possuírem um ou mais dos emoticons selecionados serão
 categorizados com a classe correspondente na base de treinamento.
 Para remover possíveis ambiguidades foram removidos da base os textos que
@@ -27,6 +28,20 @@ Além disso, os emoticons utilizados na supervisão distante foram removidos dos
 textos para evitar a introdução de vies no classificador.
 Desta a base de treinamento é composta de YYYY tweets, sendo YYY positivos e ZZZ
 negativos.
+
+% FIX
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{| l | c |}
+        \hline
+        \textbf{Classe} & \textbf{Emoticons} \\ \hline
+        Positiva & :) \\ \hline
+        Negativa & :) \\ \hline
+        \end{tabular}
+        \caption{Emoticons selecionados para aplicação de supervisão distante.}
+        \label{tab:emoticons}
+    \end{center}
+\end{table}
 
 A base de testes é composta por XYZ tweets anotados manualmente.
 Os tweets dessa base também foram amostrados entre 2018 e 2020 e não pertencem a
@@ -37,13 +52,31 @@ Doccano~\footnote{https://github.com/doccano/doccano}.
 
 \section{Figuras de Mérito}
 
-A avaliação dos algoritmos aplicados nestas bases será feita utizando as figuras
+A avaliação dos algoritmos aplicados nestas bases será feita utilizando as figuras
 de mérito descritas nessa seção.
 
 Levando em consideração o desbalanceamento de classes das bases de dados não é
 adequado a aplicação da acurácia pois esta favoreceria a classe majoritariamente
 presente nas bases.
-Como alternativa será adotada a área sob a curva ROC...
+Como alternativa será adotada a área sob a curva ROC (\textit{receiver operating
+characteristic}).
+A curva ROC apresenta a relação entre probabilidade de detecção e falso alarme
+para diferentes patamares de decisão de classificadores binários.
+A área sob a curva ROC é uma medida que agrupa esse conjunto de taxas em um
+número único, que representa o modelo em todos possíveis pontos de operação.
+
+Como o objetivo abordado não apresenta um ponto de operação pré-definido, esse
+também pode ser definido pela otimização de uma figura de mérito.
+Desta forma, A seleção do limiar do classificador treinado será feita a partir do
+índice SP~\cite{ciodaro12}.
+Este índice consiste na média geométrica entre os pontos de média geométrica e
+média aritmética entre a probabilidade de detecção da classe positiva $P_c$ e a
+probabilidade de não obtenção de falso alarme $P_{nc}$, como mostra a
+Equação~\ref{eq:sp}.
+
+\begin{equation} \label{eq:sp}
+    SP = \sqrt{\sqrt{P_c P_{nc}} \left(\frac{P_c + P_{nc}}{2}\right)}
+\end{equation}
 
 \section{Desenvolvimento}
 % usar graphSAGE como aggregador de embedding de texto do usuario? ler pagina 2
