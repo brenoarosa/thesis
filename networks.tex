@@ -5,14 +5,45 @@ Grafos são estruturas de dados que codificam relações e que estão presentes 
 uma grande variedade de cenários.
 São compostos por nós que representam elementos, quaisquer que sejam, e arestas
 que são as relações entre os elementos.
+Esses elementos podem ser de um único tipo, formando grafos homogênios, como por
+exemplo uma rede de amizades em que todos elementos são pessoas.
+Os grafos heterogênios são os que possuem vértices de mais de um tipo, neste
+caso, um exemplo é grafo de cinema no qual tem como vértices tanto filmes quanto
+atores.
+Em relação as arestas, quando estas representam uma ligação de sentido único são
+formados grafos direcionais.
+Um grafo de empréstimos financeiras entre um grupo de pessoas será um grafo
+direcional, enquanto a rede de pessoas que se abraçaram será não-direcionada.
+As arestas também podem ter pesos distintos.
+Também podemos categorizar o grafo como estático caso ele não sofra alterações,
+ou dinâmico, como os grafos que evoluem com o passar do tempo.
+
 Tratando-se de redes sociais, grafos são especialmente importantes, dado que
 a relação entre os usuários é a principal componente desses serviços.
-Ao longo das ultimas décadas, o estudo de modelos aplicados aos grafos foi se
-tornando cada vez mais relevante.
-Esses modelos visam a capturar diversas características possíveis das redes, como
-os modelos de evolução dos grafos no tempo, a propagação de epidemias dentro da
-rede, a recomendação de arestas, a predição de classes de um dado nó ou aresta,
-entre outros.
+Portanto, ao estudar as redes sociais é essencial entender essas relações.
+Há diversas maneiras de representar essas redes, sendo a mais comum formando um
+grafo homogêneo em que cada usuário é um vertice e as arestas codificando as
+interações entre os mesmos.
+
+Há quatro principais categorias de modelos de redes: categorização de nós, predição
+de arestas, categorização do grafo e detecção de comunidade.
+A categorização de nós é a tarefa que classifica cada nó em uma ou mais classes.
+Um exemplo comum na literatura é a classificação de artigos academicos em áreas
+de conhecimento~\cite{sen08}.
+A predição de arestas consiste em dado um par de vértices determinar a
+probabilidade de existir uma aresta entre eles. Uma aplicação dessa tarefa no
+contexto de redes sociais é a recomendação de conexão entre usuários.
+A detecção de comunidade consiste no agrupamento de nós de uma rede,
+identificando os conjuntos de nós que tem maior conexão entre si.
+Em alguns circunstancias o que se tem interesse é entender alguma propriedade
+formada pelo grafo inteiro.
+Nesses casos a categorização de grafos classifica a rede como um todo em uma ou
+mais classes.
+Este método pode ser usado, por exemplo, na classificação de função de
+proteínas a partir de sua estrutura molecular~\cite{shervashidze11}.
+Além dessas quatro categorias, a literatura de redes complexas apresenta outras
+variedades de modelos como o de propagação de epidemias em redes, modelagem de
+evolução de grafos dinâmicos, entre outros.
 
 Neste capitulo, serão estudadas técnicas de representações de vértices.
 Assim como no caso de documentos textuais, esses modelos geralmente visam a
@@ -33,6 +64,9 @@ da a provinda da rede de usuários.
 % grande referencia em graph embeddings
 % A Comprehensive Survey of Graph Embedding: Problems, Techniques and Applications
 % Graph Embedding Techniques, Applications, and Performance: A Survey
+
+% Representation Learning on Graphs: Methods and Applications
+% Deep Learning on Graphs: A Survey
 
 \section{Modelos Baseados em Fatoração Matricial}
 
