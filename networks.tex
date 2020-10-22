@@ -45,14 +45,15 @@ Além dessas quatro categorias, a literatura de redes complexas apresenta outras
 variedades de modelos como o de propagação de epidemias em redes, modelagem de
 evolução de grafos dinâmicos, entre outros.
 
-Neste capitulo, serão estudadas técnicas de representações de vértices.
+Devido ao foco desse trabalho na representação de usuários de redes sociais,
+serão estudadas nesse capítulo técnicas de representações de vértices.
 Assim como no caso de documentos textuais, esses modelos geralmente visam a
 codificar a informação de um nó em um vetor de baixa dimensionalidade,
 capturando tanto seus atributos individuais, quanto os decorrentes da estrutura
 de conexões do mesmo.
-Tal objetivo se adequa ao presente trabalho pois permite que seja treinado um
-classificador único que utilize tanto a informação capturada pela linguagem quanto
-da a provinda da rede de usuários.
+Desta forma, essa informação poderá ser combinada com a representação das
+mensagens e assim treinar um classificador que considere ambas as partes para
+realização da tarefa desejada.
 
 % FIGURA: com subfiguras representado cada uma das tarefas citadas
 % - classificacao de nós: grafos com nós em 2 cores
@@ -70,16 +71,22 @@ da a provinda da rede de usuários.
 
 \section{Modelos Baseados em Fatoração Matricial}
 
-A primeira modalidade de técnicas de representação de nós a ser desenvolvida foi
-a por fatoração matricial.
-Ela consiste em utilizar o resultado da fatoração de uma das matrizes
-características da rede como representação dos nós.
-Dentre os exemplos de matrizes dos grafos temos: a matriz de adjacência, a
-matriz Laplaciana, a matriz de centralidade de Katz etc~\cite{goyal18}.
-Nos casos que a matriz é positiva e semi-definida, como a matriz Laplaciana, é
-possível aplicar a decomposição em autovalores.
+Uma das forma mais comuns de descrever um grafo é por suas matrizes, sendo a
+principal delas a matriz de adjacência.
+A matriz de adjacência $A$ é uma matriz quadrada de dimensionalidade $n \times n$,
+sendo $n$ o número de vértices, na qual o elemento $a_{ij}$ tem valor $1$ caso o
+vértice $v_i$ seja conectado ao $v_j$ e $0$ caso contrario.
+Há outras matrizes extraídas dos grafos, como a matriz Laplaciana e a matriz de
+centralidade de Katz.
+
+Essas matrizes podem ser exploradas para extração de informação das redes.
+Os modelos de representação de vértices por fatoração matricial foram um dos
+primeiros métodos aplicados.
+Nos casos em que a matriz é positiva e semi-definida, como a matriz Laplaciana, é
+possível aplicar a decomposição em autovalores para obter uma representação.
 Nos outros casos, em geral, são utilizados métodos iterativos visando a
-minimizar uma função custo relacionada à qualidade da representação.
+minimizar uma função custo relacionada à qualidade da representação obtida~\cite{goyal18}.
+Serão explicados em seguida um conjunto de técnicas baseados na fatoração de matrizes.
 
 \subsubsection{Locally Linear Embedding (LLE)}
 
@@ -157,14 +164,18 @@ representam cada um dos nós da rede.
 
 Outras estratégias amplamente adotada são as baseadas em Passeios Aleatórios.
 O Passeio Aleatório é um processo estocástico que consiste em selecionar um
-vértice inicial no grafo e completar uma sequência de passos aleatórios.
-Sua aplicação para obtenção de representações considera a sequência de nós de
-múltiplas realizações do Passeio Aleatório como uma função de proximidade entre
-os vértices.
-Por ser iterativo e não necessitar o cálculo de nenhuma matriz completa do
-grafo, esse método apresenta vantagem em custo operacional para redes grandes.
+vértice inicial no grafo e completar uma sequência de passos aleatórios pelos
+seus vizinhos.
+Comos o resultado do Passeio Aleatório é uma sequência de vértices, podemos
+utiliza-lo como uma função de proximidade entre os nós.
+Com essa finalidade costuma-se realizar multiplos Passeios Aleatórios de tamanho
+fixo partindo de cada vértice da rede, formando um conjunto de realizações.
+
+Por ser um método iterativo e não necessitar o cálculo de nenhuma matriz completa
+do grafo, esse método apresenta vantagem em custo operacional para redes
+grandes, dado que essas matrizes tem custo quadrático em memória.
 Além disso, a iteratividade do método também permite que novos elementos sejam
-adicionados ao grafo sem requerer um treinamento completo do modelo,
+adicionados ao grafo sem requerer um re-treinamento completo do modelo,
 característica essencial para seleção de algoritmos em diversas aplicações.
 A seguir serão apresentados os principais modelos deste grupo.
 
@@ -272,19 +283,30 @@ em redes de grande volume.
 
 \section{Redes Convolucionais de Grafos}
 
-Adaptações de modelos de \textit{Deep Learning} também passaram a ser utilizadas
-para representação de nós, como os modelos por \textit{autoencodes}~\cite{wang16}
-e~\cite{cao16}.
-A rede convolucional de grafos~\cite{kipf16} (GCN) é um dos principais algoritmos
-deste grupo, no qual se desenvolveu uma adaptação do operador de convolução para
-aplicação em grafos.
+O sucesso de \textit{Deep Learning} em outras áreas de estudo, como em
+processamento de linguagem natural, também impactou o estudo de redes complexas.
+Ao longo da última decada observamos adaptações desses modelos para serem usados
+em grafos, como por exemplo os \textit{autoencodes}~\cite{wang16}\cite{cao16}
+e redes recorrentes~\cite{scarselli08}\cite{you18}.
+Dentre eles as variações de redes convolucionais aplicadas a grafos se tornaram
+o principais algoritmos deste grupo, superando em performance os algoritmos mais
+utlizados a época em varias tarefas.
+Assim como uma rede convolucional convencional, o treinamento dessas redes é
+supervisionado, feito por \textit{back-propagation} de uma função custo especifica
+da tarefa.
+
+Para tal, se faz necessária uma adaptação do operador de convolução para aplicação
+em grafos. Estas adaptações são dividios em dois tipos~\cite{zhang20}: convoluções
+espectrais~\cite{bruna13}\cite{defferrard16} e convoluções espaciais~\cite{kipf16}.
+A convolução espacial desenvolvida por \citet{kipf16}, chamada rede
+convolucional de grafos (GCN) se tornou uma das mais populares.
+A equação~\ref{eq:gcn_layer} define a camada de convolução usada nesse
+algoritmo.
 
 \begin{equation} \label{eq:gcn_layer}
     H^{(l+1)} = \sigma (\tilde{D}^{-\frac{1}{2}} \tilde{A} \tilde{D}^{-\frac{1}{2}} H^l W^l)
 \end{equation}
 
-A equação~\ref{eq:gcn_layer} define a camada de convolução usada nesse
-algoritmo.
 A matriz $\tilde{A} = A + I$ é a matriz de adjacência somada à matriz
 identidade, correspondente a um grafo com um laço \footnote{aresta conectando um
 vértice a ele mesmo} adicionado a cada vértice.
@@ -296,11 +318,20 @@ Os autores mostram em seu trabalho a relação desta camada com a aproximação 
 primeira ordem da convolução espectral do grafo.
 
 Apesar do GCN não ser especificamente voltado para obtenção de representações,
-trabalhos posteriores realizaram adaptações no algoritmo com essa finalidade.
-Outra dificuldade é que, assim como os modelos de fatoração matricial, só é
-possível aplicar GCN em grafos fixos, pois ao precisar adicionar novos vértices,
+os filtros convolucionais obtidos após o treinamento podem ser utilizados como
+uma.
+Uma dificuldade deste modelo é que, assim como os modelos de fatoração matricial,
+só é possível aplicar GCN em grafos fixos, pois ao precisar adicionar novos vértices,
 precisa-se retreinar o modelo.
-Dentre os algoritmos que se propõem a atacar esses problemas, destacamos o
-GraphSAGE~\cite{hamilton17}, que minimiza a representação de um vértice a partir
-de uma função de agregação de seus vizinhos.
-Desta forma, a técnica não depende da matriz de adjacência completa para seu treinamento.
+Dentre os algoritmos que se propõem a atacar esse problema, destacamos o
+GraphSAGE~\cite{hamilton17}, que obtém a representação de um vértice a partir
+de uma função de agregação de seus vizinhos, conseguindo por sua vez incorporar
+novos nós mesmo que estes não tenham participado do treinamento.
+
+Por se tratar de um método treinado supervisionado este vai contra o
+objetivo deste trabalho de reduzir a necessidade de anotação de dados.
+Porém, \citet{velickovic18} desenvolveram um método que visa permitir o
+treinamento não supervisionado mesmo para modelos originalmente supervisionados.
+Este tem como objetivo máximizar a informação mútua entre representações globais e
+locais do grafo, codificando assim informação referente tanto a rede inteira
+quanto a vizinhança de cada vértice.
