@@ -9,25 +9,33 @@ algoritmos.
 
 \section{Bases de Dados}
 
-% TODO: preencher os valores
 Serão utilizadas duas bases de dados nesse trabalho, uma de treinamento e uma de
 teste.
-Tendo objetivo de diminuir o custo de desenvolvimento do classificador será
-adotado o método de anotação distante descrito por~\citet{go09} para formação da
-base de dados de treinamento.
-Esta é formada por 10 milhões de tweets em português coletados entre 2018 e 2020.
+As bases serão formadas por tweets captados utilizando a
+API~\footnote{https://developer.twitter.com/en/docs/twitter-api} do Twitter,
+a qual fornece amostras de mensagens que contenham algumas palavras-chave
+de eventos de interesse.
 
-Sobre esses foram selecionados manualmente emoticons positivos e negativos
-dentre os mais frequentes. A Tabela~\ref{tab:emoticons} mostra os emoticons
-escolhidos.
-Mensagens que possuírem um ou mais dos emoticons selecionados serão
-categorizados com a classe correspondente na base de treinamento.
-Para remover possíveis ambiguidades foram removidos da base os textos que
-possuiram mais do que uma categoria.
+As mensagens de texto receberão alguns pré-processamentos antes de formarem as
+bases de dados.
+O primerio passo será aplicar a tokenização, quebrando a mensagem em sequência
+de palavras e removendo as pontuações.
+Posteriormente as palavras serão postas em forma minúscula.
+Por fim, menções a usuários e hiperlinks serão substituidos por tokens especiais.
+
+Tendo objetivo de diminuir o custo de desenvolvimento do classificador textual será
+adotado o método de anotação distante descrito por~\citet{go09} para formação da
+base de dados de treinamento, usando emoticons como característica de anotação.
+Serão selecionados manualmente emoticons positivos e negativos dentre os mais
+frequentes nos textos captados.
+As mensagens que possuírem um ou mais dos emoticons selecionados serão
+categorizadas com a classe correspondente na base de treinamento.
+Para remover possíveis ambiguidades, serão removidos da base os textos que
+possuirem mais do que uma categoria.
 Além disso, os emoticons utilizados na supervisão distante foram removidos dos
-textos para evitar a introdução de vies no classificador.
-Desta a base de treinamento é composta de YYYY tweets, sendo YYY positivos e ZZZ
-negativos.
+textos de treinamento para evitar a introdução de vies no classificador.
+A Tabela~\ref{tab:emoticons} mostra os emoticons escolhidos.
+%: TODO jogar essa tabela para resultados
 
 \begin{table}[h]
     \begin{center}
@@ -86,12 +94,18 @@ negativos.
     \end{center}
 \end{table}
 
-A base de testes é composta por XYZ tweets anotados manualmente.
-Os tweets dessa base também foram amostrados entre 2018 e 2020 e não pertencem a
-base de treinamento.
-Dentre o conjunto total YYY mensagens são positivas e WWWW são negativas.
-A anotação foi feita utilizando a ferramenta
-Doccano~\footnote{https://github.com/doccano/doccano}.
+A base de testes será composta de tweets anotados manualmente.
+Esta será utilizada para avaliar os modelos treinados com os metodos
+semi-supervisionados.
+Para esta finalidade, serão reservadas mensagens de um conjunto de usuários
+selecionados aleatóriamente para compor essa base.
+Esta separação é importante para evitar vies pois apesar de os métodos de
+representação de usuários serem não supervisionados, como será descrito na
+Seção~\ref{development}, essa representação será utilizada no treinamento do
+classificador.
+As mensagens destes usuários serão disponibilizadas para anotação utilizando a
+ferramenta Doccano~\footnote{https://github.com/doccano/doccano}.
+Por fim, as mensagens anotadas comporão a base de dados de teste.
 
 \section{Figuras de Mérito}
 
