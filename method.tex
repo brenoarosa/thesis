@@ -101,7 +101,7 @@ Para esta finalidade, serão reservadas mensagens de um conjunto de usuários
 selecionados aleatóriamente para compor essa base.
 Esta separação é importante para evitar vies pois apesar de os métodos de
 representação de usuários serem não supervisionados, como será descrito na
-Seção~\ref{development}, essa representação será utilizada no treinamento do
+Seção~\ref{sec:development}, essa representação será utilizada no treinamento do
 classificador.
 As mensagens destes usuários serão disponibilizadas para anotação utilizando a
 ferramenta Doccano~\footnote{https://github.com/doccano/doccano}.
@@ -136,8 +136,18 @@ Equação~\ref{eq:sp}.
 \end{equation}
 
 \section{Desenvolvimento}
-% usar graphSAGE como aggregador de embedding de texto do usuario? ler pagina 2
-% de hamilton17
+\label{sec:development}
+
+O objetivo deste trabalho é desenvolver classificadores de análise de sentimento
+de tweets sem a necessidade de anotações de dados e que explorem a multi-modalidade
+do problema.
+Desta forma, serão dívidos os experimentos em duas etapas.
+A primeira considerando apenas o texto das mensagens, serão avaliadas as técnicas
+descritas no Capítulo~\ref{chapter:nlp}.
+Posteriormente, serão utilizadas as representações das mensagens e as
+representações da rede de usuários conjuntamente.
+Desta forma analisaremos se a adição de informação do usuário infere em alguma
+vantagem de performance no classificador.
 
 % dizer como o grafo é representado: grafo homogenio de usuarios, arestas
 % direcionais de retweets com peso (que dependendo do modelo pode ser
