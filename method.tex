@@ -149,6 +149,27 @@ representações da rede de usuários conjuntamente.
 Desta forma analisaremos se a adição de informação do usuário infere em alguma
 vantagem de performance no classificador.
 
+\subsection{Classificadores de Processamento de Linguagem Natural}
+\label{sec:nlp-classifier}
+
+Seguindo os classificadores apresentados no Capítulo~\ref{chapter:nlp}, o
+primeiro algoritmo aplicado será o Naive Bayes.
+As mensagens serão representadas por Bag-of-Words e, por isso, será utilizado
+Naive Bayes com distribuição multinomial.
+Será utilizada a suavização de Laplace como regularizador do modelo.
+O valor do parâmetro de suavização será selecionado de maneira a maximizar a
+área sob a curva ROC (AUC).
+A validação cruzada por K-partições servirá para maximizar esse valor, sendo
+selecionadas 10 partições.
+
+Posteriormente será treinado o classificador de SVM, também com representação de
+Bag-of-Words.
+Dado o grande volume de dados e a complexidade computacional será utilizado a
+variação de SVM por método de gradiente como proposto por \citet{suykens99}.
+Neste caso, será utilizada regularização $L_2$, assim como no classificador de
+Naive Bayes, este parâmetro será selecionado por validação cruzada de
+K-partições de 10 partições, de maneira a maximizar a AUC.
+
 % dizer como o grafo é representado: grafo homogenio de usuarios, arestas
 % direcionais de retweets com peso (que dependendo do modelo pode ser
 % considerado ou nao)
