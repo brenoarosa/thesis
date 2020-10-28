@@ -169,6 +169,58 @@ variação de SVM por método de gradiente como proposto por \citet{suykens99}.
 Neste caso, será utilizada regularização $L_2$, assim como no classificador de
 Naive Bayes, este parâmetro será selecionado por validação cruzada de
 K-partições de 10 partições, de maneira a maximizar a AUC.
+Tanto o modelo de Naive Bayes quanto o SVM foram treinados utilizando as
+implementações disponibilizadas pela biblioteca Scikit-Learn~\cite{sklearn11}.
+
+Para os modelos CNN e LSTM usaremos como representação o Word2Vec.
+O treinamento do Word2Vec será feito a partir das mensagens amostradas do
+Twitter, as mesmas mensagens utilizadas para formar a base de dados de treinamento
+por supervisão distante, seguindo os mesmos pré-processamentos.
+O modelo treinado terá tamanho de janela 5 e dimensionalidade 100 do vetor de
+representação.
+O treinamento será feito utilizando a biblioteca Gensim~\cite{rehurek10}.
+
+O treinamento dos classificadores de \textit{Deep Learning} por CNN e LSTM serão
+treinados de formas similares.
+Ambos terão como entrada os textos representados por Word2Vec.
+Nestes classificadores, além das camadas convolucionais e LSTM, respectivamente,
+uma camada será adicionada com um único neurônio para realização da
+classificação.
+Os hiperparâmetros dos modelos serão obtidos por busca em \textit{grid}.
+Como estes métodos tem alto custo computacional, não será utilizada a validação
+de K-partições.
+Será selecionado aleatoriamente um conjunto de validação composto por 20\% dos
+dados de treinamento, sendo este usado para seleção dos hiperparâmetros.
+Para reduzir o efeito de \textit{overfitting} será aplicado o \textit{early
+stopping}.
+Uma vez selecionado o conjunto de hiperparâmetros, os modelos serão retreinados
+um conjunto de vezes para se estimar a média e desvio padrão de desempenho de cada
+técnica.
+
+Por fim, será avaliada a representação de palavras pela técnica ELMo.
+Como este modelo contêm um número elevado de parâmetros, será utilizado um
+conjunto de pesos pré-treinados~\footnote{https://allennlp.org/elmo}, os quais
+foram treinados em textos em português retirados da
+Wikipedia~\footnote{https://www.wikipedia.org}.
+O modelo gera vetores de representações de tamanho $1024$ e foi treinado com
+duas camadas.
+Será utilizada apenas a camada superior do modelo, dado que para tarefa de
+análise de sentimento se faz mais relevante a informação semântica das mensagens.
+Em conjunto com essa representação, será utilizado o modelo de CNN para
+classificação do texto.
+Este seguirá o mesmo método do anterior, otimizando hiperparâmetros por busca em 
+\textit{grid} e usando uma parte dos dados para validação.
+
+Em virtude do alto custo computacional do modelo BERT apresentado no
+Capítulo~\ref{chapter:nlp} não será possível o treinamento do mesmo para
+comparação, apesar dos bons resultados obtidos em seu artigo de referência.
+
+Dessa forma se concluirá a comparação de desempenho dos algoritmos clássicos
+de processamento de linguagem natural com as técnicas neurais desenvolvidas no
+decorrer da última década.
+Neste estágio foram analisadas apenas os dados textuais das mensagens, a seguir
+será apresentado o método que unificará a informação provinda dos textos com as
+informações obtidas do usuário.
 
 % dizer como o grafo é representado: grafo homogenio de usuarios, arestas
 % direcionais de retweets com peso (que dependendo do modelo pode ser
