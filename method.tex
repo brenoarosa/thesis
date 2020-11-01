@@ -176,14 +176,21 @@ Para os modelos CNN e LSTM usaremos como representação o Word2Vec.
 O treinamento do Word2Vec será feito a partir das mensagens amostradas do
 Twitter, as mesmas mensagens utilizadas para formar a base de dados de treinamento
 por supervisão distante, seguindo os mesmos pré-processamentos.
-O modelo treinado terá tamanho de janela 5 e dimensionalidade 100 do vetor de
-representação.
+O modelo será treinado com o método \textit{continous bag-of-words} com
+amostragem negativa de $5$ palavras, terá tamanho de janela de contexto $5$ e
+dimensionalidade $100$ do vetor de representação.
 O treinamento será feito utilizando a biblioteca Gensim~\cite{rehurek10}.
 
 O treinamento dos classificadores de \textit{Deep Learning} por CNN e LSTM serão
 treinados de formas similares.
 Ambos terão como entrada os textos representados por Word2Vec.
-Nestes classificadores, além das camadas convolucionais e LSTM, respectivamente,
+Como as redes convolucionais dependem de tamanhos fixos de entrada, as mensagens
+serão limitados a um tamanho máximo de \textit{tokens} definido pelo conjunto de
+dados de treino.
+As mensagens de tamanho menor que o tamanho máximo definido serão preenchidas
+com vetores nulos.
+
+Nesses classificadores, além das camadas convolucionais e LSTM, respectivamente,
 uma camada será adicionada com um único neurônio para realização da
 classificação.
 Os hiperparâmetros dos modelos serão obtidos por busca em \textit{grid}.
@@ -208,8 +215,9 @@ Será utilizada apenas a camada superior do modelo, dado que para tarefa de
 análise de sentimento se faz mais relevante a informação semântica das mensagens.
 Em conjunto com essa representação, será utilizado o modelo de CNN para
 classificação do texto.
-Este seguirá o mesmo método do anterior, otimizando hiperparâmetros por busca em 
-\textit{grid} e usando uma parte dos dados para validação.
+Este seguirá o mesmo método do anterior, limitando as mensagens em tamanho,
+preenchendo com vetores nulos e otimizando hiperparâmetros por busca em
+\textit{grid}.
 
 Em virtude do alto custo computacional do modelo BERT apresentado no
 Capítulo~\ref{chapter:nlp} não será possível o treinamento do mesmo para
@@ -222,6 +230,69 @@ Neste estágio foram analisadas apenas os dados textuais das mensagens, a seguir
 será apresentado o método que unificará a informação provinda dos textos com as
 informações obtidas do usuário.
 
-% dizer como o grafo é representado: grafo homogenio de usuarios, arestas
-% direcionais de retweets com peso (que dependendo do modelo pode ser
-% considerado ou nao)
+\subsection{Classificadores Multimodais}
+
+% TODO: mini introducao falando dos metodos conjuntos
+
+A primeira etapa para formação dos classificadores multimodais é o treinamento
+não-supervisionado das representações de usuário.
+Serão empregadas 3 das técnicas apresentadas no Capítulo~\ref{chapter:networks},
+uma de cada um dos tipos de modelos.
+O grafo formado será homogênio em que os usuários são codificados como vértices
+e os \textit{retweets}, operação de compartilhamento de uma mensagem de outro
+usuário, formam uma aresta direcional entre ambos.
+
+A rede obtida é formada por aproximadamente $5,5$ milhões de nós e $28$ milhões
+de arestas.
+Como elucidado no Capítulo~\ref{chapter:networks}, a maioria dos algoritmos de
+representação de vértices tem grandes requesitos de memória.
+Portanto, algumas restrições foram necessárias para viabilizar o treinamento dos
+modelos.
+Cada modelo tem sua limitação própria, mas será seguida a mesma estratégia para
+atacar esse problema.
+O grafo original será reduzido para o sub-grafo composto pelos nós da maior
+componete fortemente conexa, ou seja, o maior sub-grafo em que todos os nós
+tem arestas tanto de entrada quanto de saída.
+Este procedimento reduz o grafo a um total de $x$ vértices e $y$ arestas.
+Ainda assim, nos casos em que esta rede ainda seja grande demais para viabilizar
+o treinamento, serão selecionados aleatoriamente vértices, garantindo apenas que
+os vértices presentes na base de teste estejam incluidos na rede a ser treinada.
+Para facilitar a comparação, todas as técnicas usaram o mesmo tamanho de
+\textit{embedding}.
+
+O primeiro método para representação dos vértices avaliado será será o modelo de
+fatoração matricial \textit{Locally Linear Embedding}.
+Este utiliza a matriz de adjacência para criar representações que aproximem nós
+vizinhos.
+
+Em seguida, será aplicado o node2vec como representante dos algoritmos baseados
+em passeios aleatórios.
+Este será treinado com parâmetros fixos.
+Os valores de $p$ e $q$ serão $1$.
+Os passeios aleatórios terão $80$ passos e serão realizados $10$ inicializações
+aleatórias por cada nó.
+O treinamento usará janelas de contexto de tamanho $10$ e serão treinados por
+$3$ épocas.
+
+Por fim, será avaliado o método de redes convolucionais aplicadas a grafos.
+Como o modelo GCN é um modelo supervisionado, será aplicado a técnica Graph
+Infomax para treinamento não-supervisionado.
+Outra adaptação necessária é que enquanto os outros métodos dependem apenas da
+estrutura da rede, o GCN usa também características dos vértices para
+treinamento da representação.
+Se tratando de redes sociais há várias possibilidades de carácterística para ser
+exploradas como número de contatos, descrição do perfil, foto, entre outras.
+Entretando, essas abordagens não serão exploradas nesse trabalho, usaremos como
+característica o grau do nó na rede.
+
+Desta forma, haveremos treinado os classificadores textuais e as representações
+dos usuários, restando portanto a testar se a combinação dos mesmos dos mesmos
+infere em algum aumento de performance.
+Serão retirados os neurônios da última camada, a camada de classificação, dos
+modelos de CNN e LSTM já treinados.
+Serão concatenadas as camadas restantes dos modelos textuais com as
+representações de usuários e adicionada uma nova camada de classificação.
+O modelo será treinado novamente nos dados anotados por supervisão distante, com
+os pesos inicializados pelos modelos pré-treinados.
+
+% TODO: mini conclusao do capitulo
