@@ -13,8 +13,8 @@ Serão utilizadas duas bases de dados nesse trabalho, uma de treinamento e uma d
 teste.
 As bases serão formadas por tweets captados utilizando a
 API~\footnote{https://developer.twitter.com/en/docs/twitter-api} do Twitter,
-a qual fornece amostras de mensagens que contenham algumas palavras-chave
-de eventos de interesse.
+a qual fornece amostras de mensagens públicas, com a possibilidade de filtrar
+pelas que contenham palavras-chave de interesse.
 
 As mensagens de texto receberão alguns pré-processamentos antes de formarem as
 bases de dados.
@@ -32,67 +32,8 @@ As mensagens que possuírem um ou mais dos emoticons selecionados serão
 categorizadas com a classe correspondente na base de treinamento.
 Para remover possíveis ambiguidades, serão removidos da base os textos que
 possuirem mais do que uma categoria.
-Além disso, os emoticons utilizados na supervisão distante foram removidos dos
+Além disso, os emoticons utilizados na supervisão distante serão removidos dos
 textos de treinamento para evitar a introdução de vies no classificador.
-A Tabela~\ref{tab:emoticons} mostra os emoticons escolhidos.
-%: TODO jogar essa tabela para resultados
-
-\begin{table}[h]
-    \begin{center}
-        \begin{tabular}{| l | c |}
-        \hline
-        \textbf{Classe} & \textbf{Emoticons} \\ \hline
-        Positiva &
-            \includegraphics[height=1em]{images/emojis/2764}
-            \includegraphics[height=1em]{images/emojis/1F602}
-            %\includegraphics[height=1em]{images/emojis/1F5A4}
-            %\includegraphics[height=1em]{images/emojis/1F923}
-            \includegraphics[height=1em]{images/emojis/1F60D}
-            \includegraphics[height=1em]{images/emojis/2665}
-            %\includegraphics[height=1em]{images/emojis/1F970}
-            \includegraphics[height=1em]{images/emojis/1F605}
-            \includegraphics[height=1em]{images/emojis/1F601}
-            %\includegraphics[height=1em]{images/emojis/1F92D}
-            \includegraphics[height=1em]{images/emojis/1F618}
-            \includegraphics[height=1em]{images/emojis/1F609}
-            \includegraphics[height=1em]{images/emojis/1F496}
-            \includegraphics[height=1em]{images/emojis/1F495}
-            \includegraphics[height=1em]{images/emojis/1F606}
-            %\includegraphics[height=1em]{images/emojis/1F973}
-            \includegraphics[height=1em]{images/emojis/1F499}
-            \includegraphics[height=1em]{images/emojis/1F389}
-            \includegraphics[height=1em]{images/emojis/1F61D}
-            \includegraphics[height=1em]{images/emojis/1F49A}
-            \includegraphics[height=1em]{images/emojis/1F49C}
-            %\includegraphics[height=1em]{images/emojis/2763}
-            \includegraphics[height=1em]{images/emojis/1F60A}
-            \includegraphics[height=1em]{images/emojis/1F60B}
-            %\includegraphics[height=1em]{images/emojis/1F917}
-        \\ \hline
-        Negativa &
-            \includegraphics[height=1em]{images/emojis/1F62D}
-            \includegraphics[height=1em]{images/emojis/1F645}
-            %\includegraphics[height=1em]{images/emojis/1F926}
-            \includegraphics[height=1em]{images/emojis/1F621}
-            \includegraphics[height=1em]{images/emojis/1F614}
-            %\includegraphics[height=1em]{images/emojis/1F92C}
-            %\includegraphics[height=1em]{images/emojis/1F92E}
-            \includegraphics[height=1em]{images/emojis/1F629}
-            \includegraphics[height=1em]{images/emojis/1F622}
-            \includegraphics[height=1em]{images/emojis/1F620}
-            \includegraphics[height=1em]{images/emojis/1F612}
-            \includegraphics[height=1em]{images/emojis/1F624}
-            \includegraphics[height=1em]{images/emojis/1F494}
-            \includegraphics[height=1em]{images/emojis/1F62A}
-            \includegraphics[height=1em]{images/emojis/1F625}
-            \includegraphics[height=1em]{images/emojis/1F62B}
-            \includegraphics[height=1em]{images/emojis/1F630}
-        \\ \hline
-        \end{tabular}
-        \caption{Emoticons selecionados para aplicação de supervisão distante.}
-        \label{tab:emoticons}
-    \end{center}
-\end{table}
 
 A base de testes será composta de tweets anotados manualmente.
 Esta será utilizada para avaliar os modelos treinados com os metodos
@@ -242,6 +183,7 @@ O grafo formado será homogênio em que os usuários são codificados como vért
 e os \textit{retweets}, operação de compartilhamento de uma mensagem de outro
 usuário, formam uma aresta direcional entre ambos.
 
+% TODO: retirar parte que cabe no resultados
 A rede obtida é formada por aproximadamente $5,5$ milhões de nós e $28$ milhões
 de arestas.
 Como elucidado no Capítulo~\ref{chapter:networks}, a maioria dos algoritmos de

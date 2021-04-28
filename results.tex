@@ -1,2 +1,123 @@
 \chapter{Resultados e Discussões}
 \label{chapter:results}
+
+% BASE
+% termos e temas coletados
+% tabela de escolha de emoticons
+% volume da base taggeada automaticamente
+% relacao usuarios (retweets)
+% status dos grafos
+% volume da base de teste
+
+A etapa de coleta de dados captou aproximadamente 9,2 milhões de tweets únicos
+entre 2018 e 2019.
+Parte desses tweets foi coletada da amostragem do conjunto total de mensagens
+publicadas e outra parte da amostrada por dentre os tópicos: \textit{Libertadores,
+ENEM, Amazônia} e \textit{Rock in Rio}.
+Nessa base há aproximadamente 45 milhões de retweets, fornecendo a conexão entre
+pessoas que será utilizada para montar a rede de usuários.
+
+Para anotação automática foram identificados os emoticons mais frequentes da
+base de dados e classificados manualmente entre positivos e negativos,
+desconsiderando os neutros.
+A Tabela~\ref{tab:emoticons} mostra as classes dos emoticons selecionados.
+Com esse conjunto de emoticons 580 mil tweets foram anotados por supervisão
+distante, dentre os quais 130 mil marcados como negativos e 450 mil marcados como
+positivos.
+
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{| l | c |}
+        \hline
+        \textbf{Classe} & \textbf{Emoticons} \\ \hline
+        Positiva &
+            \includegraphics[height=1em]{images/emojis/2764}
+            \includegraphics[height=1em]{images/emojis/1F602}
+            %\includegraphics[height=1em]{images/emojis/1F5A4}
+            %\includegraphics[height=1em]{images/emojis/1F923}
+            \includegraphics[height=1em]{images/emojis/1F60D}
+            \includegraphics[height=1em]{images/emojis/2665}
+            %\includegraphics[height=1em]{images/emojis/1F970}
+            \includegraphics[height=1em]{images/emojis/1F605}
+            \includegraphics[height=1em]{images/emojis/1F601}
+            %\includegraphics[height=1em]{images/emojis/1F92D}
+            \includegraphics[height=1em]{images/emojis/1F618}
+            \includegraphics[height=1em]{images/emojis/1F609}
+            \includegraphics[height=1em]{images/emojis/1F496}
+            \includegraphics[height=1em]{images/emojis/1F495}
+            \includegraphics[height=1em]{images/emojis/1F606}
+            %\includegraphics[height=1em]{images/emojis/1F973}
+            \includegraphics[height=1em]{images/emojis/1F499}
+            \includegraphics[height=1em]{images/emojis/1F389}
+            \includegraphics[height=1em]{images/emojis/1F61D}
+            \includegraphics[height=1em]{images/emojis/1F49A}
+            \includegraphics[height=1em]{images/emojis/1F49C}
+            %\includegraphics[height=1em]{images/emojis/2763}
+            \includegraphics[height=1em]{images/emojis/1F60A}
+            \includegraphics[height=1em]{images/emojis/1F60B}
+            %\includegraphics[height=1em]{images/emojis/1F917}
+        \\ \hline
+        Negativa &
+            \includegraphics[height=1em]{images/emojis/1F62D}
+            \includegraphics[height=1em]{images/emojis/1F645}
+            %\includegraphics[height=1em]{images/emojis/1F926}
+            \includegraphics[height=1em]{images/emojis/1F621}
+            \includegraphics[height=1em]{images/emojis/1F614}
+            %\includegraphics[height=1em]{images/emojis/1F92C}
+            %\includegraphics[height=1em]{images/emojis/1F92E}
+            \includegraphics[height=1em]{images/emojis/1F629}
+            \includegraphics[height=1em]{images/emojis/1F622}
+            \includegraphics[height=1em]{images/emojis/1F620}
+            \includegraphics[height=1em]{images/emojis/1F612}
+            \includegraphics[height=1em]{images/emojis/1F624}
+            \includegraphics[height=1em]{images/emojis/1F494}
+            \includegraphics[height=1em]{images/emojis/1F62A}
+            \includegraphics[height=1em]{images/emojis/1F625}
+            \includegraphics[height=1em]{images/emojis/1F62B}
+            \includegraphics[height=1em]{images/emojis/1F630}
+        \\ \hline
+        \end{tabular}
+        \caption{Emoticons selecionados para aplicação de supervisão distante.}
+        \label{tab:emoticons}
+    \end{center}
+\end{table}
+
+A rede de usuários foi formada por retweets entre usuários.
+Os 45 milhões de retweets formam uma rede de 28 milhões de arestas únicas
+conectando 5,5 milhões de vértices, representando uma densidade de
+$9,4\mathrm{e}{-7}$.
+O coeficiente de clusterização global é de $9,6\mathrm{e}{-4}$, portanto,
+havendo um vizinho em comum o nó tem 1000 vezes mais chance de estar conectado a
+outro nó do que quando ambos não compartilham conexões.
+Aproximadamente 4,5\% dos nós pertencem a componente fortemente conexa, ou seja,
+sub-grafo direcional em que existe um caminho entre todos os vértices.
+Enquanto 97\% dos nós pertencem a componente fracamente conexa, que leva em
+consideração o sub-grafo não direcional.
+Observa-se que a rede inteira é formada praticamente por uma única componente
+gigante enquanto os outros 3\% dos usuários estão distribuídos em um grande
+volume de pequenas componentes.
+A figura~\ref{fig:graph_ccdf} mostra as distribuições de grau dos vértices.
+Analisa-se que tanto a distribuição de grau de entrada quanto a de saída tem
+caudas longas apesar da curva da distribuição de de grau de entrada ser
+significativamente mais extensa.
+Ressalta-se também que mais que 80\% dos nós tem grau de entrada 0, ou seja,
+são usuários que não receberam nenhum retweet.
+
+\begin{figure}[h]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.65]{images/graph_ccdf.png}
+    \caption{Gráfico da \textit{CCDF (complementary cumulative distribution function)}
+             dos graus de entrada e saída da rede.
+             O eixo horizontal representa o grau $k$ enquanto o eixo vertical
+             demonstra a probabilidade de um vertice ter grau pelo menos $k$.}
+    \label{fig:graph_ccdf}
+    \end{center}
+}
+\end{center}
+\end{figure}
+
+% todo: grafico de nos de distancia
+
+
+% CLASSIFICADOR
