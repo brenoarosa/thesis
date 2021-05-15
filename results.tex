@@ -102,13 +102,19 @@ caudas longas apesar da curva da distribuição de de grau de entrada ser
 significativamente mais extensa.
 Ressalta-se também que mais que 80\% dos nós tem grau de entrada 0, ou seja,
 são usuários que não receberam nenhum retweet.
+A figura~\ref{fig:graph_distance} mostra a distância entre os nós da rede, que
+tem média $8,8$.
+Conclui-se portanto que dentre os dados captados formou-se uma rede com número
+significativo de usuários e possuí características comumente observadas em redes
+como a formação de \textit{hubs}, pequena distância média e grande componente
+conexa.
 
 \begin{figure}[h]
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.65]{images/graph_ccdf.png}
     \caption{Gráfico da \textit{CCDF (complementary cumulative distribution function)}
-             dos graus de entrada e saída da rede.
+             dos graus de entrada e saída da rede de usuários.
              O eixo horizontal representa o grau $k$ enquanto o eixo vertical
              demonstra a probabilidade de um vertice ter grau pelo menos $k$.}
     \label{fig:graph_ccdf}
@@ -117,7 +123,19 @@ são usuários que não receberam nenhum retweet.
 \end{center}
 \end{figure}
 
-% todo: grafico de nos de distancia
+\begin{figure}[h]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.65]{images/graph_distance.png}
+    \caption{Distância entre pares de nós da rede de usuários.}
+    \label{fig:graph_distance}
+    \end{center}
+}
+\end{center}
+\end{figure}
 
-
-% CLASSIFICADOR
+Uma vez finalizada a etapa de coleta dos dados, o processo de anotação e a
+formação da rede de usuários, se prosseguiu para a etapa do classificador de
+sentimento puramente textual.
+Esses classificadores serão usados como base de comparação para avaliar a
+eficiência dos classificadores multi-modais.
