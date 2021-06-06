@@ -96,13 +96,13 @@ consideração o sub-grafo não direcional.
 Observa-se que a rede inteira é formada praticamente por uma única componente
 gigante enquanto os outros 3\% dos usuários estão distribuídos em um grande
 volume de pequenas componentes.
-A figura~\ref{fig:graph_ccdf} mostra as distribuições de grau dos vértices.
+A Figura~\ref{fig:graph_ccdf} mostra as distribuições de grau dos vértices.
 Analisa-se que tanto a distribuição de grau de entrada quanto a de saída tem
 caudas longas apesar da curva da distribuição de de grau de entrada ser
 significativamente mais extensa.
 Ressalta-se também que mais que 80\% dos nós tem grau de entrada 0, ou seja,
 são usuários que não receberam nenhum retweet.
-A figura~\ref{fig:graph_distance} mostra a distância entre os nós da rede, que
+A Figura~\ref{fig:graph_distance} mostra a distância entre os nós da rede, que
 tem média $8,8$.
 Conclui-se portanto que dentre os dados captados formou-se uma rede com número
 significativo de usuários e possuí características comumente observadas em redes
@@ -136,6 +136,54 @@ conexa.
 
 Uma vez finalizada a etapa de coleta dos dados, o processo de anotação e a
 formação da rede de usuários, se prosseguiu para a etapa do classificador de
-sentimento puramente textual.
+sentimento textuais.
 Esses classificadores serão usados como base de comparação para avaliar a
 eficiência dos classificadores multi-modais.
+
+Os primeiros classificadores textuais treinados foram os por Naive Bayes e SVM.
+Nesse caso, ambos usaram a representação Bag-of-Words.
+O vocabulário formado a partir da base coletada é formado por um 127 mil
+palavras.
+O treinamento do algoritmo de Naive Bayes multinomial foi feito utilizando
+validação cruzada por K-partições, no total de 10 partições, sob os dados de
+treinamento anotados com supervisão distante. O parâmetro de suavização foi
+escolhido por \textit{grid search}, de maneira a maximizar a área sob a curva ROC.
+A Figura~\ref{fig:nb_grid} mostra a resposta do modelo para os diferentes fatores
+de suavização testados.
+O hiperparâmetro selecionado foi o de valor $0,244$, que obteve AUC de $0,862 \pm 0,002$.
+Uma vez selecionado o melhor modelo na base de treino, o mesmo foi avaliado com
+os dados da base de teste, que foram anotados manualmente.
+A Figura~\ref{fig:nb_roc} apresenta a curva ROC dos dados de treino.
+Observa-se que o mesmo modelo ao ser aplicado aos dados de teste tem resultado
+de $0,801$ de área sob curva ROC.
+Vê-se que há uma diferença de performance entre as diferentes bases, que
+sobressaí a dispersão observada nas partições do treinamento.
+Este aspecto da supervisão distante será discutido no Capítulo~\ref{chapter:conclusion}.
+Concluindo a análise do modelo de Naive Bayes, a Figura~\ref{fig:nb_residuo}...
+
+\begin{figure}[h]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.65]{images/nb_grid.png}
+    \caption{Resposta do modelo de Naive Bayes a variação do parâmetro de suavização.
+             A linha cheia representa a média dos valores das 10 partições
+             enquanto a área em azul, limitada pela linha rachurada, representa um desvio padrão.
+             A linha vertical vermelha ressalta o paramêtro de maior média.}
+    \label{fig:nb_grid}
+    \end{center}
+}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[h]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.65]{images/nb_roc.png}
+    \caption{LOREM IPSUM}
+    \label{fig:nb_grid}
+    \end{center}
+}
+\end{center}
+\end{figure}
+% grafico residuo
