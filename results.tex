@@ -140,6 +140,8 @@ sentimento textuais.
 Esses classificadores serão usados como base de comparação para avaliar a
 eficiência dos classificadores multi-modais.
 
+\section{Classificadores textuais não Neurais}
+
 Os primeiros classificadores textuais treinados foram os por Naive Bayes e SVM.
 Nesse caso, ambos usaram a representação Bag-of-Words.
 O vocabulário formado a partir da base coletada é formado por um 127 mil
@@ -158,8 +160,13 @@ Observa-se que o mesmo modelo ao ser aplicado aos dados de teste tem resultado
 de $0,801$ de área sob curva ROC.
 Vê-se que há uma diferença de performance entre as diferentes bases, que
 sobressaí a dispersão observada nas partições do treinamento.
-Este aspecto da supervisão distante será discutido no Capítulo~\ref{chapter:conclusion}.
-Concluindo a análise do modelo de Naive Bayes, a Figura~\ref{fig:nb_residuo}...
+% Este aspecto da supervisão distante será discutido no Capítulo~\ref{chapter:conclusion}.
+% TODO: comentar mais pra frente, mas ainda nesse capitulo.
+Concluindo a análise do modelo de Naive Bayes, utilizou-se os dados de treino
+para encontrar o limiar de classificação que maximiza o índice SP.
+O limiar encontrado teve o valor de $0,88$ e a Figura~\ref{fig:nb_confusion}
+apresenta a matriz confusão correspondente a esse valor.
+% TODO: comentar alto falso positivo?
 
 \begin{figure}[h]
 \begin{center} {
@@ -175,15 +182,49 @@ Concluindo a análise do modelo de Naive Bayes, a Figura~\ref{fig:nb_residuo}...
 \end{center}
 \end{figure}
 
-
 \begin{figure}[h]
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.65]{images/nb_roc.png}
-    \caption{LOREM IPSUM}
-    \label{fig:nb_grid}
+    \caption{Curva ROC do modelo de Naive Bayes aplicado aos dados de teste.}
+    \label{fig:nb_roc}
     \end{center}
 }
 \end{center}
 \end{figure}
-% grafico residuo
+
+\begin{figure}[h]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.65]{images/nb_cm.png}
+    \caption{Matrix confusão do modelo de Naive Bayes.}
+    \label{fig:nb_confusion}
+    \end{center}
+}
+\end{center}
+\end{figure}
+
+Em seguida, testou-se o classificador por SVM, modelo que obteve melhor
+resultados nos testes feitos por \citet{go09}.
+O vocabulário utilizado para codificação one-hot foi o mesmo aplicado ao
+Naive Bayes.
+Também se aplicou validação cruzada...
+
+%O treinamento do algoritmo de Naive Bayes multinomial foi feito utilizando
+%validação cruzada por K-partições, no total de 10 partições, sob os dados de
+%treinamento anotados com supervisão distante. O parâmetro de suavização foi
+%escolhido por \textit{grid search}, de maneira a maximizar a área sob a curva ROC.
+%A Figura~\ref{fig:nb_grid} mostra a resposta do modelo para os diferentes fatores
+%de suavização testados.
+%O hiperparâmetro selecionado foi o de valor $0,244$, que obteve AUC de $0,862 \pm 0,002$.
+%Uma vez selecionado o melhor modelo na base de treino, o mesmo foi avaliado com
+%os dados da base de teste, que foram anotados manualmente.
+%A Figura~\ref{fig:nb_roc} apresenta a curva ROC dos dados de treino.
+%Observa-se que o mesmo modelo ao ser aplicado aos dados de teste tem resultado
+%de $0,801$ de área sob curva ROC.
+%Vê-se que há uma diferença de performance entre as diferentes bases, que
+%sobressaí a dispersão observada nas partições do treinamento.
+%Concluindo a análise do modelo de Naive Bayes, utilizou-se os dados de treino
+%para encontrar o limiar de classificação que maximiza o índice SP.
+%O limiar encontrado teve o valor de $0,88$ e a Figura~\ref{fig:nb_confusion}
+%apresenta a matriz confusão correspondente a esse valor.
