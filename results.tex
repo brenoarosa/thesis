@@ -208,23 +208,26 @@ Em seguida, testou-se o classificador por SVM, modelo que obteve melhor
 resultados nos testes feitos por \citet{go09}.
 O vocabulário utilizado para codificação one-hot foi o mesmo aplicado ao
 Naive Bayes.
-Também se aplicou validação cruzada...
+Também se aplicou validação cruzada com 10 partições para determinar o melhor
+parâmetro de regularização $L_2$.
+A Figura~\ref{fig:svm_grid} apresenta os valores de AUC obtidos nos dados de
+treino para o intervalo de parâmetro testado.
+Observamos que o valor máximo obtido de AUC nos dados de treino foi
+$0,904 \pm 0,001$, para o fator de regularização $7e^-05$.
+Porém, ao aplicar o modelo aos dados de teste, a performance do modelo cai
+consideravelmente, como vemos na Figura~\ref{fig:svm_roc}, com $0,647$ de área
+da curva ROC.
+O threashold de maior índice SP foi $0,776$, obtendo a matriz confusão
+apresentada na Figura~\ref{fig:svm_confusion}.
+Neste caso, observa-se que apesar do modelo SVM superar as métricas do modelo de
+Naive Bayes nos dados de treino, SVM generaliza significativamente menos quando
+aplicado ao banco de dados de teste.
+Apresentando assim uma grande discrepância entre a performance da base anotada
+por supervisão distante e a classificada manualmente.
 
-%O treinamento do algoritmo de Naive Bayes multinomial foi feito utilizando
-%validação cruzada por K-partições, no total de 10 partições, sob os dados de
-%treinamento anotados com supervisão distante. O parâmetro de suavização foi
-%escolhido por \textit{grid search}, de maneira a maximizar a área sob a curva ROC.
-%A Figura~\ref{fig:nb_grid} mostra a resposta do modelo para os diferentes fatores
-%de suavização testados.
-%O hiperparâmetro selecionado foi o de valor $0,244$, que obteve AUC de $0,862 \pm 0,002$.
-%Uma vez selecionado o melhor modelo na base de treino, o mesmo foi avaliado com
-%os dados da base de teste, que foram anotados manualmente.
-%A Figura~\ref{fig:nb_roc} apresenta a curva ROC dos dados de treino.
-%Observa-se que o mesmo modelo ao ser aplicado aos dados de teste tem resultado
-%de $0,801$ de área sob curva ROC.
-%Vê-se que há uma diferença de performance entre as diferentes bases, que
-%sobressaí a dispersão observada nas partições do treinamento.
-%Concluindo a análise do modelo de Naive Bayes, utilizou-se os dados de treino
-%para encontrar o limiar de classificação que maximiza o índice SP.
-%O limiar encontrado teve o valor de $0,88$ e a Figura~\ref{fig:nb_confusion}
-%apresenta a matriz confusão correspondente a esse valor.
+
+% emoticon sarcastico?
+
+\section{Classificadores textuais por Redes Neurais}
+
+lorem
