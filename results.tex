@@ -230,4 +230,42 @@ por supervisão distante e a classificada manualmente.
 
 \section{Classificadores textuais por Redes Neurais}
 
+Realizou-se o treino do \textit{Word2Vec} para representação do texto com os
+parâmetros apresentados na Seção~\ref{sec:nlp-classifier}.
+O treinamento foi executado até a convergência da função custo.
+
+Com o \textit{Word2Vec} treinado, foi realizado o treino dos classificadores de
+redes neurais convolucionais.
+Algumas das curvas de treinamento são demonstradas na
+Figura~\ref{fig:cnn_train}.
+Observamos que, normalmente, após a terceira época a função custo de treinamento
+apresenta uma estabilidade.
+Devido ao \textit{early stopping} cada treinamento acaba em épocas diferentes.
+Como aplicamos \textit{dropout} e regularização durante o treinamento temos que
+a entropia cruzada de treinamento é mais alta do que a de validação.
+Ressaltamos que os treinamentos convergiram para valores parecidos, não
+oscilando entre diferentes mínimos locais.
+
+\begin{figure}[h]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.65]{images/cnn_train.png}
+    \caption{Curvas de treinamento de classificadores por redes neurais
+        convolucionais.}
+    \label{fig:cnn_train}
+    \end{center}
+}
+\end{center}
+\end{figure}
+% curvas de treino
+% val loss < train loss pq train tem validacao
+% https://twitter.com/aureliengeron/status/1110839223878184960
+
+% resultados individuais? talvez so o numero e o stddev da AUC
+
+
+% TODO: metodologia fala de ELMO mas nao treinamos, usar pre treinado?
+
+
+% FIZ UM BACKUP DE MODELS E JOGUEI EM /mnt/models
 lorem
