@@ -134,16 +134,27 @@ com vetores nulos.
 Nesses classificadores, além das camadas convolucionais e LSTM, respectivamente,
 uma camada será adicionada com um único neurônio para realização da
 classificação.
-Os hiperparâmetros dos modelos serão obtidos por busca em \textit{grid}.
+Por serem modelos de alto custo computacional, não será realizada busca em
+\textit{grid}.
+Os hiperparâmetros selecionados foram baseados nos trabalhos apresentados no
+Capítulo~\ref{chapter:nlp} que exploram o uso dessas técnicas em processamento
+de texto.
+A rede convolucional será composta por três camadas convolucionais em paralelo,
+cada uma como 100 filtros convolucionais com tamanhos respectivamente de 3, 4 e
+5 tokens.
+O classificador de LSTM, por sua vez, conterá duas camadas bi-direcionais em
+série de 100 neurônios cada.
+Ambos os modelos utilizaram \textit{dropout} durante o treinamento com
+probabilidade de 50\% de desligamento do neuronio e regularização L2 de fator
+$10^-3$.
+Serão realizados $10$ treinamentos de cada modelos, dado que o treinamento de
+redes neurais é propenso a estagnar em mínimos locais.
 Como estes métodos tem alto custo computacional, não será utilizada a validação
 de K-partições.
 Será selecionado aleatoriamente um conjunto de validação composto por 20\% dos
 dados de treinamento, sendo este usado para seleção dos hiperparâmetros.
 Para reduzir o efeito de \textit{overfitting} será aplicado o \textit{early
 stopping}.
-Uma vez selecionado o conjunto de hiperparâmetros, os modelos serão retreinados
-um conjunto de vezes para se estimar a média e desvio padrão de desempenho de cada
-técnica.
 
 Por fim, será avaliada a representação de palavras pela técnica ELMo.
 Como este modelo contêm um número elevado de parâmetros, será utilizado um
