@@ -219,11 +219,50 @@ consideravelmente, como vemos na Figura~\ref{fig:svm_roc}, com $0,647$ de área
 da curva ROC.
 O threashold de maior índice SP foi $0,776$, obtendo a matriz confusão
 apresentada na Figura~\ref{fig:svm_confusion}.
-Neste caso, observa-se que apesar do modelo SVM superar as métricas do modelo de
+A matriz confusão mostra que o model consegue distinguir elementos da classe
+positiva, entretanto, ao ser aplicado em frases negativas o mesmo não conseguiu
+performance melhor que escolha aleatória.
+Observa-se também que apesar do modelo SVM superar as métricas do modelo de
 Naive Bayes nos dados de treino, SVM generaliza significativamente menos quando
 aplicado ao banco de dados de teste.
 Apresentando assim uma grande discrepância entre a performance da base anotada
 por supervisão distante e a classificada manualmente.
+
+\begin{figure}[h]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.65]{images/svm_grid.png}
+    \caption{Resposta do modelo de SVM a variação do parâmetro de regularização.
+             A linha cheia representa a média dos valores das 10 partições
+             enquanto a área em azul, limitada pela linha rachurada, representa um desvio padrão.
+             A linha vertical vermelha ressalta o paramêtro de maior média.}
+    \label{fig:svm_grid}
+    \end{center}
+}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.65]{images/svm_roc.png}
+    \caption{Curva ROC do modelo de SVM aplicado aos dados de teste.}
+    \label{fig:svm_roc}
+    \end{center}
+}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.65]{images/svm_cm.png}
+    \caption{Matrix confusão do modelo de SVM.}
+    \label{fig:svm_confusion}
+    \end{center}
+}
+\end{center}
+\end{figure}
 
 
 % emoticon sarcastico?
@@ -245,11 +284,20 @@ Como aplicamos \textit{dropout} e regularização durante o treinamento temos qu
 a entropia cruzada de treinamento é mais alta do que a de validação.
 Ressaltamos que os treinamentos convergiram para valores parecidos, não
 oscilando entre diferentes mínimos locais.
+A Figura~\ref{fig:lstm_train} apresenta uma amostra dos 10 treinamentos
+realizados da rede LSTM.
+Vemos que no caso da LSTM, foram precisos 30 a 50 épocas de treino para
+conversão do modelo.
+Observamos também que assim como as redes convolucionais, não houve grande
+variação entre os mínimos encontrados durante o treinamento das redes.
+
+% val loss < train loss pq train tem validacao
+% https://twitter.com/aureliengeron/status/1110839223878184960
 
 \begin{figure}[h]
 \begin{center} {
     \begin{center}
-    \includegraphics[scale=0.65]{images/cnn_train.png}
+    \includegraphics[scale=0.25]{images/cnn_train.png}
     \caption{Curvas de treinamento de classificadores por redes neurais
         convolucionais.}
     \label{fig:cnn_train}
@@ -257,9 +305,19 @@ oscilando entre diferentes mínimos locais.
 }
 \end{center}
 \end{figure}
-% curvas de treino
-% val loss < train loss pq train tem validacao
-% https://twitter.com/aureliengeron/status/1110839223878184960
+
+\begin{figure}[h]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.65]{images/lstm_train.png}
+    \caption{Curvas de treinamento de classificadores por redes neurais LSTM.}
+    \label{fig:lstm_train}
+    \end{center}
+}
+\end{center}
+\end{figure}
+
+\section{Classificadores Multimodais}
 
 % resultados individuais? talvez so o numero e o stddev da AUC
 
