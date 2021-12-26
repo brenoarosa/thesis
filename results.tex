@@ -309,7 +309,7 @@ variação entre os mínimos encontrados durante o treinamento das redes.
 \begin{figure}[h]
 \begin{center} {
     \begin{center}
-    \includegraphics[scale=0.65]{images/lstm_train.png}
+    \includegraphics[scale=0.25]{images/lstm_train.png}
     \caption{Curvas de treinamento de classificadores por redes neurais LSTM.}
     \label{fig:lstm_train}
     \end{center}
@@ -319,11 +319,31 @@ variação entre os mínimos encontrados durante o treinamento das redes.
 
 \section{Classificadores Multimodais}
 
+Seguimos para a incorporação da informação dos grafos de usuários nos modelos.
+Como descrito na seção \ref{sec:multimodal-classifier}, o grafo foi reduzido a
+sua componente principal para reduzir os requisitos de memória necessários para
+o treinamento dos modelos.
+O aprendizado foi realizado em duas etapas: aquisição de \textit{embeddings} a
+partir de modelagem não-supervisionada do grafo; posteriormente foi realizado o
+treinamento em conjunto com os modelos textuais treinados na anteriormente.
+
+As redes conjuntas compostas pelas camadas concatenadas da representação textual
+do \textit{tweet} com a representação do grafo do usuário, seguida de 2 camadas
+classificatórias de tamanhos repectivamente de $100$ e $32$ neurônios completamente
+conectados.
+Os pesos das representações do usuário e textuais continuaram a sofrer
+\textit{fine-tunning} durante a otimização do modelo.
+
+% node2vec, memoria, nao direcionado, nao peso, self loop, escolha dos parametros..
+% gcn: mesmo de cima + feature: log do grau + amostragem
+
+% TODO: comentar as limitacoes de cada modelo de embedding de grafo
+
+% grafico de treinamento
+
 % resultados individuais? talvez so o numero e o stddev da AUC
 
 
 % TODO: metodologia fala de ELMO mas nao treinamos, usar pre treinado?
 
-
 % FIZ UM BACKUP DE MODELS E JOGUEI EM /mnt/models
-lorem
