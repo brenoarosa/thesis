@@ -247,6 +247,21 @@ Serão retirados os neurônios da última camada, a camada de classificação, d
 modelos de CNN e LSTM já treinados.
 Serão concatenadas as camadas restantes dos modelos textuais com as
 representações de usuários e adicionada uma nova camada de classificação.
+A figura~\ref{fig:network_composition} demonstra a arquitetura final resultante
+da composição dos dois classificadores.
 O modelo será treinado novamente nos dados anotados por supervisão distante, com
 os pesos inicializados pelos modelos pré-treinados.
 Concluindo-se, portanto, o conjunto de experimentos realizados nesse trabalho.
+
+\begin{figure}[h]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.65]{images/network_composition.png}
+    \caption{Arquitetura composto pela combinação de classificadores de
+        informação textual e de usuário concatenados. Adicionou-se também uma
+        camada de neurônios que será treinado para combinar as representações.}
+    \label{fig:network_composition}
+    \end{center}
+}
+\end{center}
+\end{figure}
