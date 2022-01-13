@@ -334,6 +334,27 @@ conectados.
 Os pesos das representações do usuário e textuais continuaram a sofrer
 \textit{fine-tunning} durante a otimização do modelo.
 
+Começando pelo treinamento da representação por \textit{Locally Linear Embedding}.
+Pelo algoritmo depender da matriz de adjacência, que tem custo quadrático em
+memória, foi necessário limitar o número de usuários da rede.
+Foram selecionados aleatóriamente $10$ mil usuários dentro da sub-grafo de
+usuários da maior componente conectada para o treinamento do algoritmo.
+Foram feitas $10$ realizações do treinamento, cada uma com seu próprio conjunto
+de nós selecionados.
+O modelo foi treinado para extrair uma representação de dimensão $128$.
+Para melhor comparar os diferentes métodos esse número será mantido pelos outros
+métodos.
+Os usuários que não foram selecionados no sorteio do treinamento tiveram sua
+representação no vetor zero.
+
+Posteriormente foram treinados o algoritmo \textit{Node2Vec}.
+Mantiveram-se as $10$ realizações do treinamento e o tamanho do vetor de
+representação.
+Como este algoritmo não depende da matriz de adjacência, foram realizados os
+treinamentos considerando todos os usuários presentes na maior componente.
+Neste algoritmo consideramos o grafo como não-direcionado e retiramos as... +self-loop-
+
+
 % LLE -> n2v -> GCN
 
 % node2vec, memoria, nao direcionado, nao peso, self loop, escolha dos parametros..
