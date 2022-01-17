@@ -352,13 +352,30 @@ Mantiveram-se as $10$ realizações do treinamento e o tamanho do vetor de
 representação.
 Como este algoritmo não depende da matriz de adjacência, foram realizados os
 treinamentos considerando todos os usuários presentes na maior componente.
-Neste algoritmo consideramos o grafo como não-direcionado e retiramos as... +self-loop-
+Neste algoritmo consideramos o grafo como não-direcionado e removemos as arestas
+de um nó a si mesmo.
+Os parâmetros de treinamento do algoritmo foram baseados no proposto por
+\citet{grover16}.
+Os valores de parâmetro $p$ e $q$ de amostragem foram definidos em $1$.
+Os passeios aleatórios para definição dos contextos tiveram $80$ passos
+de interação e foram feitas $10$ realizações de passeio por vértice.
+Os pesos das arestas não foram considerados durante a realização dos passeios
+aleatórios.
+Utilizou-se janelas de contexto de tamanho $10$ e treinou-se a otimização dos
+pesos por $3$ épocas.
 
-
-% LLE -> n2v -> GCN
-
-% node2vec, memoria, nao direcionado, nao peso, self loop, escolha dos parametros..
-% gcn: mesmo de cima + feature: log do grau + amostragem
+Por fim, treinou-se a rede convolucional de grafos (GCN).
+Assim como no caso do \textit{Node2Vec} também se utilizou todo o subgrafo
+presente na principal componente.
+Assim como nos modelos anteriores continou-se com as $10$ inicializações e o
+tamanho da representação dos nós em $128$ dimensões.
+Pelo GCN depender de atributos do vértices para o treinamento da representação,
+utilizou-se um atributo obtido pelo próprio grafo, o log do graú do nó.
+Essa escolha se deu pois não necessita de extrações adicionais de dados.
+Outros atributos dos usuários poderiam ter sido incorporados caso houvesse a
+disponibilidade desses dados como: número de seguidores, localização,
+frequência de uso, etc.
+O modelo foi treinado até a finalização por \textit{early stopping}.
 
 % TODO: comentar as limitacoes de cada modelo de embedding de grafo
 
