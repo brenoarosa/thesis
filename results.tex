@@ -269,14 +269,15 @@ por supervisão distante e a classificada manualmente.
 
 \section{Classificadores textuais por Redes Neurais}
 
-Realizou-se o treino do \textit{Word2Vec} para representação do texto com os
-parâmetros apresentados na Seção~\ref{sec:nlp-classifier}.
+Proseguindo para os classificadores por redes neurais, começamos com o
+treinamento da representação de texto.
+Realizou-se o treino do \textit{Word2Vec} com os parâmetros
+apresentados na Seção~\ref{sec:nlp-classifier}.
 O treinamento foi executado até a convergência da função custo.
 
-Com o \textit{Word2Vec} treinado, foi realizado o treino dos classificadores de
+Obtido o modelo \textit{Word2Vec}, foi realizado o treino dos classificadores de
 redes neurais convolucionais.
-Algumas das curvas de treinamento são demonstradas na
-Figura~\ref{fig:cnn_train}.
+Algumas das curvas de treinamento são demonstradas na Figura~\ref{fig:cnn_train}.
 Observamos que, normalmente, após a terceira época a função custo de treinamento
 apresenta uma estabilidade.
 Devido ao \textit{early stopping} cada treinamento acaba em épocas diferentes.
@@ -284,10 +285,13 @@ Como aplicamos \textit{dropout} e regularização durante o treinamento temos qu
 a entropia cruzada de treinamento é mais alta do que a de validação.
 Ressaltamos que os treinamentos convergiram para valores parecidos, não
 oscilando entre diferentes mínimos locais.
+
+Seguimos com o treinamento do modelo de LSTM, mantendo a entrada com a
+representação \textit{Word2Vec}.
 A Figura~\ref{fig:lstm_train} apresenta uma amostra dos 10 treinamentos
 realizados da rede LSTM.
-Vemos que no caso da LSTM, foram precisos 30 a 50 épocas de treino para
-conversão do modelo.
+Vemos que com LSTM demorou-se mais para atingir convergência, sendo precisas
+30 a 50 épocas de treino até a estabilização da função custo.
 Observamos também que assim como as redes convolucionais, não houve grande
 variação entre os mínimos encontrados durante o treinamento das redes.
 
@@ -333,6 +337,8 @@ classificatórias de tamanhos repectivamente de $100$ e $32$ neurônios completa
 conectados.
 Os pesos das representações do usuário e textuais continuaram a sofrer
 \textit{fine-tunning} durante a otimização do modelo.
+Assim como nos classificadores textuais, a seleção do \textit{threshold} de
+classificação foi definida pelo ponto de maximização do índice SP.
 
 Começando pelo treinamento da representação por \textit{Locally Linear Embedding}.
 Pelo algoritmo depender da matriz de adjacência, que tem custo quadrático em
@@ -377,14 +383,9 @@ disponibilidade desses dados como: número de seguidores, localização,
 frequência de uso, etc.
 O modelo foi treinado até a finalização por \textit{early stopping}.
 
-% TODO: comentar as limitacoes de cada modelo de embedding de grafo
-
-% grafico de treinamento
-
 % resultados individuais? talvez so o numero e o stddev da AUC
 
-
-% TODO: metodologia fala de ELMO mas nao treinamos, usar pre treinado?
+% resultado total comparando tudo: classicos + texto + multimodais
 
 % TODO: comentar alta taxa de falso positivo do modelo e como isso pode ser consequencia do treinamento semi supervisionado
 % FIZ UM BACKUP DE MODELS E JOGUEI EM /mnt/models
