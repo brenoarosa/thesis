@@ -293,7 +293,21 @@ realizados da rede LSTM.
 Vemos que com LSTM demorou-se mais para atingir convergência, sendo precisas
 30 a 50 épocas de treino até a estabilização da função custo.
 Observamos também que assim como as redes convolucionais, não houve grande
-variação entre os mínimos encontrados durante o treinamento das redes.
+variação entre os mínimos encontrados pelas diferentes realizações de
+treinamento das redes.
+
+Finalmente, utilizaremos o ELMo como forma de representação em conjunto com o
+classificador de redes convolucionais.
+O alto custo computacional de treinamento desse modelo implicou em algumas
+limitações de sua execução.
+Obtive-se pesos pré-treinados, portanto, não pode se selecionar a
+dimensionalidade da representação.
+Neste caso, cada palavra será representada por um vetor de tamanho $1024$.
+Também não foi possível fazer múltiplas realizações do treinamento.
+A rede convolucional, responsável pela classificação, foi treinada com os mesmos
+hiper-parâmetros adotados em sua versão com entrada por \textit{Word2Vec}.
+A figura XXXX apresenta a curva de treinamento do modelo.
+% FIXME curva  treina ELMO
 
 % val loss < train loss pq train tem validacao
 % https://twitter.com/aureliengeron/status/1110839223878184960
