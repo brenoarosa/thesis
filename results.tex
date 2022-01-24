@@ -306,8 +306,7 @@ Neste caso, cada palavra será representada por um vetor de tamanho $1024$.
 Também não foi possível fazer múltiplas realizações do treinamento.
 A rede convolucional, responsável pela classificação, foi treinada com os mesmos
 hiper-parâmetros adotados em sua versão com entrada por \textit{Word2Vec}.
-A figura XXXX apresenta a curva de treinamento do modelo.
-% FIXME curva  treina ELMO
+A Figura~\ref{fig:elmo_train} apresenta a curva de treinamento do modelo.
 
 % val loss < train loss pq train tem validacao
 % https://twitter.com/aureliengeron/status/1110839223878184960
@@ -330,6 +329,17 @@ A figura XXXX apresenta a curva de treinamento do modelo.
     \includegraphics[scale=0.25]{images/lstm_train.png}
     \caption{Curvas de treinamento de classificadores por redes neurais LSTM.}
     \label{fig:lstm_train}
+    \end{center}
+}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.45]{images/elmo_cnn_train.png}
+    \caption{Curvas de treinamento do modelo com representação ELMo e classificador de CNN.}
+    \label{fig:elmo_train}
     \end{center}
 }
 \end{center}
