@@ -407,9 +407,20 @@ disponibilidade desses dados como: número de seguidores, localização,
 frequência de uso, etc.
 O modelo foi treinado até a finalização por \textit{early stopping}.
 
-% resultados individuais? talvez so o numero e o stddev da AUC
+Concluimos os experimentos com a Figura~\ref{fig:experiment_results}
+consolidando os resultados obtidos por todos experimentos.
 
-% resultado total comparando tudo: classicos + texto + multimodais
+\begin{figure}[h]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.35]{images/experiment_results.png}
+    \caption{Área sob a curva ROC obtida pelos modelos textuais e multimodais
+             aplicados aos dados de teste.}
+    \label{fig:experiment_results}
+    \end{center}
+}
+\end{center}
+\end{figure}
 
 % TODO: comentar alta taxa de falso positivo do modelo e como isso pode ser consequencia do treinamento semi supervisionado
 % FIZ UM BACKUP DE MODELS E JOGUEI EM /mnt/models
