@@ -407,15 +407,35 @@ disponibilidade desses dados como: número de seguidores, localização,
 frequência de uso, etc.
 O modelo foi treinado até a finalização por \textit{early stopping}.
 
+% TODO: matrix confusao dos modelos neurais? ou grafico de distribuicao das
+% predicoes
+
 Concluimos os experimentos com a Figura~\ref{fig:experiment_results}
 consolidando os resultados obtidos por todos experimentos.
+Há diversas análises há serem feitas a partir destes resultados.
+Primeiramente, observamos que ao contrario do que esperavamos, entre os modelos
+puramente textuais vemos que os baseados em redes neurais obtiveram resultados
+piores que as técnicas tradicionais SVM e Naive Bayes.
+%TODO: teorizar respostas
+
+Observa-se também que adicionar informações do usuário apresentou resultados
+variados.
+
+
+% diferente do esperado nlp
+% diferente do esperado mixed
+% faltou base de treino?
+% supervised sendo ruim pra modelos complexos?
+% problema so nos positivos, pode ser a selecao de emoticon
+% problema na representacao de palavras? w2v e elmo
 
 \begin{figure}[h]
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.35]{images/experiment_results.png}
-    \caption{Área sob a curva ROC obtida pelos modelos textuais e multimodais
-             aplicados aos dados de teste.}
+    \caption{Comparativo entre modelos textuais e multimodais apresentados nesse
+             trabalho. A figura apresenta a área sob a curva ROC dos modelos
+             avaliados quando aplicados aos dados de teste.}
     \label{fig:experiment_results}
     \end{center}
 }
