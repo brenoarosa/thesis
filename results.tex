@@ -413,21 +413,45 @@ O modelo foi treinado até a finalização por \textit{early stopping}.
 Concluimos os experimentos com a Figura~\ref{fig:experiment_results}
 consolidando os resultados obtidos por todos experimentos.
 Há diversas análises há serem feitas a partir destes resultados.
-Primeiramente, observamos que ao contrario do que esperavamos, entre os modelos
+Primeiramente, observamos que ao contrario do que esperavamos baseados nos
+trabalhos referenciados no Capítulo~\ref{chapter:nlp}, entre os modelos
 puramente textuais vemos que os baseados em redes neurais obtiveram resultados
 piores que as técnicas tradicionais SVM e Naive Bayes.
-%TODO: teorizar respostas
+Há diferentes hípoteses que podem ser responsáveis por essas diferença.
+A representação de palavras avaliadas nos classificadores neurais,
+\textit{Word2Vec} e \textit{ELMo}, podem não ter conseguido obter boas
+transformações necessárias para a discriminação entre as classes.
+Apesar do modelo \textit{Word2Vec} ter se provado eficiente na captação de
+contexto sintático e semântico, a grande maioria dos estudos analisados utilizam
+textos em formatos longos como artigos jornalistico.
+Há também a possiblidade de que a base de \textit{tweets} disponivel para o seu
+treinamento não tenha sido suficiente para o modelo adquirir estatística
+suficiente dos dados.
+A representação pelo modelo \textit{ELMo}, por sua vez, foi treinada com artigos
+da Wikipedia.
+A diferença de linguagem entre esse meio e as redes sociais pode ser um dos
+fatores responsáveis pela não reprodução dos bons resultados da técnica nesta
+base de dados.
+A vantagem das técnicas de classificacao menos complexas pode demonstrar ainda
+uma dificuldade no treinamento de dados provindos de textos curtos e informais
+ou a necessidade de volumes maiores de dados de treinamento do que os coletados
+para esse experimento.
 
 Observa-se também que adicionar informações do usuário apresentou resultados
 variados.
+
+Continuando a analise, A supervisao distante... pode ter problema no positivo.. vide matrix confusao...
 
 
 % diferente do esperado nlp
 % diferente do esperado mixed
 % faltou base de treino?
+% nao funciona bem em texto curto e informal
 % supervised sendo ruim pra modelos complexos?
 % problema so nos positivos, pode ser a selecao de emoticon
 % problema na representacao de palavras? w2v e elmo
+% retweet nao representando bem o usuario?
+% TODO: comentar alta taxa de falso positivo do modelo e como isso pode ser consequencia do treinamento semi supervisionado
 
 \begin{figure}[h]
 \begin{center} {
@@ -442,5 +466,4 @@ variados.
 \end{center}
 \end{figure}
 
-% TODO: comentar alta taxa de falso positivo do modelo e como isso pode ser consequencia do treinamento semi supervisionado
 % FIZ UM BACKUP DE MODELS E JOGUEI EM /mnt/models
