@@ -437,22 +437,6 @@ uma dificuldade no treinamento de dados provindos de textos curtos e informais
 ou a necessidade de volumes maiores de dados de treinamento do que os coletados
 para esse experimento.
 
-Observa-se também que adicionar informações do usuário apresentou resultados
-variados.
-
-Continuando a analise, A supervisao distante... pode ter problema no positivo.. vide matrix confusao...
-
-
-% diferente do esperado nlp
-% diferente do esperado mixed
-% faltou base de treino?
-% nao funciona bem em texto curto e informal
-% supervised sendo ruim pra modelos complexos?
-% problema so nos positivos, pode ser a selecao de emoticon
-% problema na representacao de palavras? w2v e elmo
-% retweet nao representando bem o usuario?
-% TODO: comentar alta taxa de falso positivo do modelo e como isso pode ser consequencia do treinamento semi supervisionado
-
 \begin{figure}[h]
 \begin{center} {
     \begin{center}
@@ -465,5 +449,59 @@ Continuando a analise, A supervisao distante... pode ter problema no positivo.. 
 }
 \end{center}
 \end{figure}
+
+Adicionalmente, observa-se que adicionar os classificadores que incorporaram
+informações do usuário apresentaram resultados váriados.
+Comparando os resultados a partir do modelo de CNN, vemos que os experimentos
+que incluiram os dados do grafo de usuários tiveram média de AUC
+acima do valor médio do classificador puramente textuais.
+Os modelos compostos demonstraram uma menor variação de resultados, com desvio
+padrão significamente menor do que o modelo puramente textual.
+Dentre as diferentes técnicas de representação do grafo houve pouca diferença
+entra a escolha.
+A representação por GCN apresentou maior média, entretanto, sua média ainda fica
+dentro da faixa de um desvio padrão comparado aos modelos com representações por
+LLE e \textit{Node2Vec}.
+
+Analisando os classificadores multimodais com base na rede LSTM observamos
+comportamento distinto do obtido com a rede convolucional.
+Neste caso, o modelo textual superou os modelos compostos.
+As representações de grafo por LLE e GCN obtiveram resultados semelhantes.
+Porém, a combinação de LSTM com \textit{Node2Vec} superou significativamente
+todas outras combinações de modelos multimodais.
+Ainda assim, a rede LSTM pura obteve média levemente maior apesar de estar na
+faixa de um desvio padrão de diferença do modelo composto com o
+\textit{Node2Vec}.
+
+O fato dos modelos multimodais não terem superado significativamente os modelos
+textuais pode ter diferentes interpretações.
+A escolha de caracterizar os usuários a partir de suas representações do grafo
+de retweets pode ser restritiva demais para capturar informações relevantes dos
+mesmos.
+Complementarmente, é possível que o usuário não contenha informação discriminante
+o suficiente para a tarefa de análise de sentimento a ponto de ter maiores
+benefícios no resultado.
+
+Por fim, observamos que a supervisão distante a partir de \textit{emoticons} foi
+capaz de extrair informação para o treinamento de classificadores visto que
+conseguimos modelos com AUC muito acima da faixa de escolha aleatória.
+Entretanto, as matrizes confusão apresentadas nesse capítulo demonstram uma
+grande diferença de eficiência entre as classes.
+Os modelos tiveram maiores dificuldades em discernir \textit{tweets} da classe
+positiva.
+Este fenômeno pode ser entendido como resultado da seleção de \textit{emoticons}
+positivos serem pouco representativos.
+Também pode-se considerar a possibilidade de textos sarcasticos contendo
+\textit{emoticons} positivos terem impactado na discriminação dessas mensagens.
+
+% diferente do esperado nlp
+% diferente do esperado mixed
+% faltou base de treino?
+% nao funciona bem em texto curto e informal
+% supervised sendo ruim pra modelos complexos?
+% problema so nos positivos, pode ser a selecao de emoticon
+% problema na representacao de palavras? w2v e elmo
+% retweet nao representando bem o usuario?
+% TODO: comentar alta taxa de falso positivo do modelo e como isso pode ser consequencia do treinamento semi supervisionado
 
 % FIZ UM BACKUP DE MODELS E JOGUEI EM /mnt/models
