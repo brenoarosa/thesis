@@ -18,15 +18,34 @@ sentimento e resultados promissores aplicados a outras categorias textuais.
 Entretanto, as publicações provindas de redes sociais são constituídas de vários
 elementos além dos textos, como dados do usuário, imagens, localização, horário,
 etc.
+Essa multimodalidade é um dos principais componentes que diferenciam as mídias
+sociais dentre os outros meios de comunicação.
 Este trabalho também estudou a aplicação técnicas de representação de grafos para
-capturar a informação da rede formada por usuários.
-Essa multimodalidade 
+capturar a informação da rede formada por usuários e seus impactos na análise de
+sentimento.
 
-% reforcar importancia do trabalho e sua utilidade pratica
-
-% ressaltar que consegue usar o volume e informacoes adicionais alem do texto
-
-% falar das tecnicas tentadas e resumo dos resultados
+Visando a facilidade de reprodução da classificação em qualquer base de dados
+adotamos a técnica de supervisão distante.
+Este método permite o uso de modelos supervisionados de classificação sem o
+custo necessário para anotar grandes bases de treinamento.
+Foram realizados experimentos com $9,2$ milhões de \textit{tweets} coletados
+entre 2018 e 2019.
+A partir dos experimentos observamos que apesar do sucesso de técnicas baseadas
+em redes neurais em outras modalidades de texto, estas técnicas não se mostraram
+tão capazes neste conjunto de dados.
+Os modelos lineares, que já são tradicionalmente aplicados a processamento de
+linguagem natural ao longo das últimas décadas, obtiveram resultados superiores aos
+modelos neurais.
+Foram analisados nesse estudo modelos de \textit{Naive Bayes}, SVM, redes
+neurais convolucionais e LSTM.
+Também observamos que a representação de usuários a partir do grafo de seus
+\textit{retweets} não foi capaz de superar o melhor modelo puramente textual.
+Foram avaliadas as representações por \textit{Locally Linear Embedding},
+\textit{Node2Vec} e rede convolucional de grafos.
+Analisamos portanto que apesar da importância de elementos não-textuais as
+informações extraídas pelas técnicas avaliadas de representação não
+supervisionadas de vértices não agregaram informações relevantes para a análise
+de sentimento.
 
 
 %%% secao: trabalhos futuros
