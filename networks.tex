@@ -5,9 +5,9 @@ Grafos são estruturas de dados que codificam relações e que estão presentes 
 uma grande variedade de cenários.
 São compostos por nós que representam elementos, quaisquer que sejam, e arestas
 que são as relações entre os elementos.
-Esses elementos podem ser de um único tipo, formando grafos homogênios, como por
+Esses elementos podem ser de um único tipo, formando grafos homogêneos, como por
 exemplo uma rede de amizades em que todos elementos são pessoas.
-Os grafos heterogênios são os que possuem vértices de mais de um tipo, neste
+Os grafos heterogêneos são os que possuem vértices de mais de um tipo, neste
 caso, um exemplo é grafo de cinema no qual tem como vértices tanto filmes quanto
 atores.
 Em relação as arestas, quando estas representam uma ligação de sentido único são
@@ -22,13 +22,13 @@ Tratando-se de redes sociais, grafos são especialmente importantes, dado que
 a relação entre os usuários é a principal componente desses serviços.
 Portanto, ao estudar as redes sociais é essencial entender essas relações.
 Há diversas maneiras de representar essas redes, sendo a mais comum formando um
-grafo homogêneo em que cada usuário é um vertice e as arestas codificando as
+grafo homogêneo em que cada usuário é um vértice e as arestas codificando as
 interações entre os mesmos.
 
 Há quatro principais categorias de modelos de redes: categorização de nós, predição
 de arestas, categorização do grafo e detecção de comunidade.
 A categorização de nós é a tarefa que classifica cada nó em uma ou mais classes.
-Um exemplo comum na literatura é a classificação de artigos academicos em áreas
+Um exemplo comum na literatura é a classificação de artigos acadêmicos em áreas
 de conhecimento~\cite{sen08}.
 A predição de arestas consiste em dado um par de vértices determinar a
 probabilidade de existir uma aresta entre eles. Uma aplicação dessa tarefa no
@@ -118,7 +118,7 @@ representações próximas.
 
 Esta técnica, desenvolvida por \citet{belkin02}, também tem como objetivo obter
 representações próximas entre vizinhos.
-No entanto, desta vez é inspirada na equação de fluxo de calor, na qual a trasmissão de
+No entanto, desta vez é inspirada na equação de fluxo de calor, na qual a transmissão de
 energia decai quadraticamente com a distância entre os corpos.
 Para isso, é utilizada a matriz laplaciana do grafo.
 Sua função custo é dada pela equação~\ref{eq:laplacian_eigenmaps}, na qual $L$ é
@@ -166,16 +166,16 @@ Outras estratégias amplamente adotada são as baseadas em Passeios Aleatórios.
 O Passeio Aleatório é um processo estocástico que consiste em selecionar um
 vértice inicial no grafo e completar uma sequência de passos aleatórios pelos
 seus vizinhos.
-Comos o resultado do Passeio Aleatório é uma sequência de vértices, podemos
-utiliza-lo como uma função de proximidade entre os nós.
-Com essa finalidade costuma-se realizar multiplos Passeios Aleatórios de tamanho
+Como o resultado do Passeio Aleatório é uma sequência de vértices, podemos
+utilizá-lo como uma função de proximidade entre os nós.
+Com essa finalidade costuma-se realizar múltiplos Passeios Aleatórios de tamanho
 fixo partindo de cada vértice da rede, formando um conjunto de realizações.
 
 Por ser um método iterativo e não necessitar o cálculo de nenhuma matriz completa
 do grafo, esse método apresenta vantagem em custo operacional para redes
 grandes, dado que essas matrizes tem custo quadrático em memória.
 Além disso, a iteratividade do método também permite que novos elementos sejam
-adicionados ao grafo sem requerer um re-treinamento completo do modelo,
+adicionados ao grafo sem requerer um retreinamento completo do modelo,
 característica essencial para seleção de algoritmos em diversas aplicações.
 A seguir serão apresentados os principais modelos deste grupo.
 
@@ -197,7 +197,7 @@ probabilidade de predição do contexto a partir do vértice na posição centra
 passeio.
 A fórmula~\ref{eq:deepwalk} formaliza o problema citado.
 Dado que $v_i$ é o vértice central de um certo passeio e $\Phi$ é o mapeamento
-de um vetor em sua representação, que queremos encontrar, entao:
+de um vetor em sua representação, que queremos encontrar, então:
 
 \begin{equation} \label{eq:deepwalk}
     \operatorname{max} P(\{v_{i-k},...,v_{i-1},v_{i+1},...,v_{i+k}\}|\Phi(v_i))
@@ -285,18 +285,18 @@ em redes de grande volume.
 
 O sucesso de \textit{Deep Learning} em outras áreas de estudo, como em
 processamento de linguagem natural, também impactou o estudo de redes complexas.
-Ao longo da última decada observamos adaptações desses modelos para serem usados
+Ao longo da última década observamos adaptações desses modelos para serem usados
 em grafos, como por exemplo os \textit{autoencodes}~\cite{wang16}\cite{cao16}
 e redes recorrentes~\cite{scarselli08}\cite{you18}.
 Dentre eles as variações de redes convolucionais aplicadas a grafos se tornaram
 o principais algoritmos deste grupo, superando em performance os algoritmos mais
-utlizados a época em varias tarefas.
+utilizados a época em varias tarefas.
 Assim como uma rede convolucional convencional, o treinamento dessas redes é
 supervisionado, feito por \textit{back-propagation} de uma função custo especifica
 da tarefa.
 
 Para tal, se faz necessária uma adaptação do operador de convolução para aplicação
-em grafos. Estas adaptações são dividios em dois tipos~\cite{zhang20}: convoluções
+em grafos. Estas adaptações são divididos em dois tipos~\cite{zhang20}: convoluções
 espectrais~\cite{bruna13}\cite{defferrard16} e convoluções espaciais~\cite{kipf16}.
 A convolução espacial desenvolvida por \citet{kipf16}, chamada rede
 convolucional de grafos (GCN) se tornou uma das mais populares.
@@ -333,6 +333,6 @@ objetivo deste trabalho de reduzir a necessidade de anotação de dados.
 Porém, \citet{velickovic18} desenvolveram um método, chamado Graph Infomax, que
 visa permitir o treinamento não supervisionado mesmo para modelos originalmente
 supervisionados.
-Este tem como objetivo máximizar a informação mútua entre representações globais e
+Este tem como objetivo maximizar a informação mútua entre representações globais e
 locais do grafo, codificando assim informação referente tanto a rede inteira
 quanto a vizinhança de cada vértice.
