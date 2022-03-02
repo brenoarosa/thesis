@@ -18,10 +18,10 @@ pelas que contenham palavras-chave de interesse.
 
 As mensagens de texto receberão alguns pré-processamentos antes de formarem as
 bases de dados.
-O primerio passo será aplicar a tokenização, quebrando a mensagem em sequência
+O primeiro passo será aplicar a tokenização, quebrando a mensagem em sequência
 de palavras e removendo as pontuações.
 Posteriormente as palavras serão postas em forma minúscula.
-Por fim, menções a usuários e hiperlinks serão substituidos por tokens especiais.
+Por fim, menções a usuários e hiperlinks serão substituídos por tokens especiais.
 
 Tendo objetivo de diminuir o custo de desenvolvimento do classificador textual será
 adotado o método de anotação distante descrito por~\citet{go09} para formação da
@@ -31,16 +31,16 @@ frequentes nos textos captados.
 As mensagens que possuírem um ou mais dos emoticons selecionados serão
 categorizadas com a classe correspondente na base de treinamento.
 Para remover possíveis ambiguidades, serão removidos da base os textos que
-possuirem mais do que uma categoria.
+possuírem mais do que uma categoria.
 Além disso, os emoticons utilizados na supervisão distante serão removidos dos
-textos de treinamento para evitar a introdução de vies no classificador.
+textos de treinamento para evitar a introdução de viés no classificador.
 
 A base de testes será composta de tweets anotados manualmente.
-Esta será utilizada para avaliar os modelos treinados com os metodos
+Esta será utilizada para avaliar os modelos treinados com os métodos
 semi-supervisionados.
 Para esta finalidade, serão reservadas mensagens de um conjunto de usuários
-selecionados aleatóriamente para compor essa base.
-Esta separação é importante para evitar vies pois apesar de os métodos de
+selecionados aleatoriamente para compor essa base.
+Esta separação é importante para evitar viés pois apesar de os métodos de
 representação de usuários serem não supervisionados, como será descrito na
 Seção~\ref{sec:development}, essa representação será utilizada no treinamento do
 classificador.
@@ -80,9 +80,9 @@ Equação~\ref{eq:sp}.
 \label{sec:development}
 
 O objetivo deste trabalho é desenvolver classificadores de análise de sentimento
-de tweets sem a necessidade de anotações de dados e que explorem a multi-modalidade
+de tweets sem a necessidade de anotações de dados e que explorem a multimodalidade
 do problema.
-Desta forma, serão dívidos os experimentos em duas etapas.
+Desta forma, serão divididos os experimentos em duas etapas.
 A primeira considerando apenas o texto das mensagens, serão avaliadas as técnicas
 descritas no Capítulo~\ref{chapter:nlp}.
 Posteriormente, serão utilizadas as representações das mensagens e as
@@ -94,9 +94,9 @@ vantagem de performance no classificador.
 \label{sec:nlp-classifier}
 
 Seguindo os classificadores apresentados no Capítulo~\ref{chapter:nlp}, o
-primeiro algoritmo aplicado será o Naive Bayes.
+primeiro algoritmo aplicado será o Naïve Bayes.
 As mensagens serão representadas por Bag-of-Words e, por isso, será utilizado
-Naive Bayes com distribuição multinomial.
+Naïve Bayes com distribuição multinomial.
 Será utilizada a suavização de Laplace como regularizador do modelo.
 O valor do parâmetro de suavização será selecionado de maneira a maximizar a
 área sob a curva ROC (AUC).
@@ -108,9 +108,9 @@ Bag-of-Words.
 Dado o grande volume de dados e a complexidade computacional será utilizado a
 variação de SVM por método de gradiente como proposto por \citet{suykens99}.
 Neste caso, será utilizada regularização $L_2$, assim como no classificador de
-Naive Bayes, este parâmetro será selecionado por validação cruzada de
+Naïve Bayes, este parâmetro será selecionado por validação cruzada de
 K-partições de 10 partições, de maneira a maximizar a AUC.
-Tanto o modelo de Naive Bayes quanto o SVM foram treinados utilizando as
+Tanto o modelo de Naïve Bayes quanto o SVM foram treinados utilizando as
 implementações disponibilizadas pela biblioteca Scikit-Learn~\cite{sklearn11}.
 
 Para os modelos CNN e LSTM usaremos como representação o Word2Vec.
@@ -142,10 +142,10 @@ de texto.
 A rede convolucional será composta por três camadas convolucionais em paralelo,
 cada uma como 100 filtros convolucionais com tamanhos respectivamente de 3, 4 e
 5 tokens.
-O classificador de LSTM, por sua vez, conterá duas camadas bi-direcionais em
+O classificador de LSTM, por sua vez, conterá duas camadas bidirecionais em
 série de 100 neurônios cada.
 Ambos os modelos utilizaram \textit{dropout} durante o treinamento com
-probabilidade de 50\% de desligamento do neuronio e regularização L2 de fator
+probabilidade de 50\% de desligamento do neurônio e regularização L2 de fator
 $10^-3$.
 Serão realizados $10$ treinamentos de cada modelos, dado que o treinamento de
 redes neurais é propenso a estagnar em mínimos locais.
@@ -160,7 +160,7 @@ Por fim, será avaliada a representação de palavras pela técnica ELMo.
 Como este modelo contêm um número elevado de parâmetros, será utilizado um
 conjunto de pesos pré-treinados~\footnote{https://allennlp.org/elmo}, os quais
 foram treinados em textos em português retirados da
-Wikipedia~\footnote{https://www.wikipedia.org}.
+Wikipédia~\footnote{https://www.wikipedia.org}.
 O modelo gera vetores de representações de tamanho $1024$ e foi treinado com
 duas camadas.
 Será utilizada apenas a camada superior do modelo, dado que para tarefa de
@@ -191,7 +191,7 @@ A primeira etapa para formação dos classificadores multimodais é o treinament
 não-supervisionado das representações de usuário.
 Serão empregadas 3 das técnicas apresentadas no Capítulo~\ref{chapter:networks},
 uma de cada um dos tipos de modelos.
-O grafo formado será homogênio em que os usuários são codificados como vértices
+O grafo formado será homogêneo em que os usuários são codificados como vértices
 e os \textit{retweets}, operação de compartilhamento de uma mensagem de outro
 usuário, formam uma aresta direcional entre ambos.
 
@@ -199,19 +199,19 @@ usuário, formam uma aresta direcional entre ambos.
 A rede obtida é formada por aproximadamente $5,5$ milhões de nós e $28$ milhões
 de arestas.
 Como elucidado no Capítulo~\ref{chapter:networks}, a maioria dos algoritmos de
-representação de vértices tem grandes requesitos de memória.
+representação de vértices tem grandes requisitos de memória.
 Portanto, algumas restrições foram necessárias para viabilizar o treinamento dos
 modelos.
 Cada modelo tem sua limitação própria, mas será seguida a mesma estratégia para
 atacar esse problema.
-O grafo original será reduzido para o sub-grafo composto pelos nós da maior
-componete fortemente conexa, ou seja, o maior sub-grafo em que todos os nós
+O grafo original será reduzido para o subgrafo composto pelos nós da maior
+componente fortemente conexa, ou seja, o maior subgrafo em que todos os nós
 apresentam caminhos entre si.
 % TODO: preencher valor
 Este procedimento reduz o grafo a um total de $x$ vértices e $y$ arestas.
 Ainda assim, nos casos em que esta rede ainda seja grande demais para viabilizar
 o treinamento, serão selecionados aleatoriamente vértices, garantindo apenas que
-os vértices presentes na base de teste estejam incluidos na rede a ser treinada.
+os vértices presentes na base de teste estejam incluídos na rede a ser treinada.
 Para facilitar a comparação, todas as técnicas usaram o mesmo tamanho de
 \textit{embedding}.
 
@@ -220,7 +220,7 @@ fatoração matricial \textit{Locally Linear Embedding}.
 Este utiliza a matriz de adjacência para criar representações que aproximem nós
 vizinhos.
 
-Em seguida, será aplicado o node2vec como representante dos algoritmos baseados
+Em seguida, será aplicado o \textit{Node2Vec} como representante dos algoritmos baseados
 em passeios aleatórios.
 Este será treinado com parâmetros fixos.
 Os valores de $p$ e $q$ serão $1$.
@@ -235,9 +235,9 @@ Infomax para treinamento não-supervisionado.
 Outra adaptação necessária é que enquanto os outros métodos dependem apenas da
 estrutura da rede, o GCN usa também características dos vértices para
 treinamento da representação.
-Se tratando de redes sociais há várias possibilidades de carácterística para ser
+Se tratando de redes sociais há várias possibilidades de característica para ser
 exploradas como número de contatos, descrição do perfil, foto, entre outras.
-Entretando, essas abordagens não serão exploradas nesse trabalho, usaremos como
+Entretanto, essas abordagens não serão exploradas nesse trabalho, usaremos como
 característica o grau do nó na rede.
 
 Desta forma, haveremos treinado os classificadores textuais e as representações
