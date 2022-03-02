@@ -90,9 +90,9 @@ O coeficiente de clusterização global é de $9,6\mathrm{e}{-4}$, portanto,
 havendo um vizinho em comum o nó tem 1000 vezes mais chance de estar conectado a
 outro nó do que quando ambos não compartilham conexões.
 Aproximadamente 4,5\% dos nós pertencem a componente fortemente conexa, ou seja,
-sub-grafo direcional em que existe um caminho entre todos os vértices.
+subgrafo direcional em que existe um caminho entre todos os vértices.
 Enquanto 97\% dos nós pertencem a componente fracamente conexa, que leva em
-consideração o sub-grafo não direcional.
+consideração o subgrafo não direcional.
 Observa-se que a rede inteira é formada praticamente por uma única componente
 gigante enquanto os outros 3\% dos usuários estão distribuídos em um grande
 volume de pequenas componentes.
@@ -101,7 +101,7 @@ Analisa-se que tanto a distribuição de grau de entrada quanto a de saída tem
 caudas longas apesar da curva da distribuição de de grau de entrada ser
 significativamente mais extensa.
 Ressalta-se também que mais que 80\% dos nós tem grau de entrada 0, ou seja,
-são usuários que não receberam nenhum retweet.
+são usuários que não receberam nenhum retweets.
 A Figura~\ref{fig:graph_distance} mostra a distância entre os nós da rede, que
 tem média $8,8$.
 Conclui-se portanto que dentre os dados captados formou-se uma rede com número
@@ -116,7 +116,7 @@ conexa.
     \caption{Gráfico da \textit{CCDF (complementary cumulative distribution function)}
              dos graus de entrada e saída da rede de usuários.
              O eixo horizontal representa o grau $k$ enquanto o eixo vertical
-             demonstra a probabilidade de um vertice ter grau pelo menos $k$.}
+             demonstra a probabilidade de um vértice ter grau pelo menos $k$.}
     \label{fig:graph_ccdf}
     \end{center}
 }
@@ -138,15 +138,15 @@ Uma vez finalizada a etapa de coleta dos dados, o processo de anotação e a
 formação da rede de usuários, se prosseguiu para a etapa do classificador de
 sentimento textuais.
 Esses classificadores serão usados como base de comparação para avaliar a
-eficiência dos classificadores multi-modais.
+eficiência dos classificadores multimodais.
 
 \section{Classificadores textuais não Neurais}
 
-Os primeiros classificadores textuais treinados foram os por Naive Bayes e SVM.
+Os primeiros classificadores textuais treinados foram os por Naïve Bayes e SVM.
 Nesse caso, ambos usaram a representação Bag-of-Words.
 O vocabulário formado a partir da base coletada é formado por um 127 mil
 palavras.
-O treinamento do algoritmo de Naive Bayes multinomial foi feito utilizando
+O treinamento do algoritmo de Naïve Bayes multinomial foi feito utilizando
 validação cruzada por K-partições, no total de 10 partições, sob os dados de
 treinamento anotados com supervisão distante. O parâmetro de suavização foi
 escolhido por \textit{grid search}, de maneira a maximizar a área sob a curva ROC.
@@ -162,7 +162,7 @@ Vê-se que há uma diferença de performance entre as diferentes bases, que
 sobressaí a dispersão observada nas partições do treinamento.
 % Este aspecto da supervisão distante será discutido no Capítulo~\ref{chapter:conclusion}.
 % TODO: comentar mais pra frente, mas ainda nesse capitulo.
-Concluindo a análise do modelo de Naive Bayes, utilizou-se os dados de treino
+Concluindo a análise do modelo de Naïve Bayes, utilizou-se os dados de treino
 para encontrar o limiar de classificação que maximiza o índice SP.
 O limiar encontrado teve o valor de $0,88$ e a Figura~\ref{fig:nb_confusion}
 apresenta a matriz confusão correspondente a esse valor.
@@ -172,10 +172,10 @@ apresenta a matriz confusão correspondente a esse valor.
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.65]{images/nb_grid.png}
-    \caption{Resposta do modelo de Naive Bayes a variação do parâmetro de suavização.
+    \caption{Resposta do modelo de Naïve Bayes a variação do parâmetro de suavização.
              A linha cheia representa a média dos valores das 10 partições
-             enquanto a área em azul, limitada pela linha rachurada, representa um desvio padrão.
-             A linha vertical vermelha ressalta o paramêtro de maior média.}
+             enquanto a área em azul, limitada pela linha hachurada, representa um desvio padrão.
+             A linha vertical vermelha ressalta o parâmetro de maior média.}
     \label{fig:nb_grid}
     \end{center}
 }
@@ -186,7 +186,7 @@ apresenta a matriz confusão correspondente a esse valor.
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.65]{images/nb_roc.png}
-    \caption{Curva ROC do modelo de Naive Bayes aplicado aos dados de teste.}
+    \caption{Curva ROC do modelo de Naïve Bayes aplicado aos dados de teste.}
     \label{fig:nb_roc}
     \end{center}
 }
@@ -197,7 +197,7 @@ apresenta a matriz confusão correspondente a esse valor.
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.65]{images/nb_cm.png}
-    \caption{Matrix confusão do modelo de Naive Bayes.}
+    \caption{Matriz confusão do modelo de Naïve Bayes.}
     \label{fig:nb_confusion}
     \end{center}
 }
@@ -207,7 +207,7 @@ apresenta a matriz confusão correspondente a esse valor.
 Em seguida, testou-se o classificador por SVM, modelo que obteve melhor
 resultados nos testes feitos por \citet{go09}.
 O vocabulário utilizado para codificação one-hot foi o mesmo aplicado ao
-Naive Bayes.
+Naïve Bayes.
 Também se aplicou validação cruzada com 10 partições para determinar o melhor
 parâmetro de regularização $L_2$.
 A Figura~\ref{fig:svm_grid} apresenta os valores de AUC obtidos nos dados de
@@ -217,13 +217,13 @@ $0,904 \pm 0,001$, para o fator de regularização $7e^-05$.
 Porém, ao aplicar o modelo aos dados de teste, a performance do modelo cai
 consideravelmente, como vemos na Figura~\ref{fig:svm_roc}, com $0,647$ de área
 da curva ROC.
-O threashold de maior índice SP foi $0,776$, obtendo a matriz confusão
+O limiar de maior índice SP foi $0,776$, obtendo a matriz confusão
 apresentada na Figura~\ref{fig:svm_confusion}.
-A matriz confusão mostra que o model consegue distinguir elementos da classe
+A matriz confusão mostra que o modelo consegue distinguir elementos da classe
 positiva, entretanto, ao ser aplicado em frases negativas o mesmo não conseguiu
 performance melhor que escolha aleatória.
 Observa-se também que apesar do modelo SVM superar as métricas do modelo de
-Naive Bayes nos dados de treino, SVM generaliza significativamente menos quando
+Naïve Bayes nos dados de treino, SVM generaliza significativamente menos quando
 aplicado ao banco de dados de teste.
 Apresentando assim uma grande discrepância entre a performance da base anotada
 por supervisão distante e a classificada manualmente.
@@ -234,8 +234,8 @@ por supervisão distante e a classificada manualmente.
     \includegraphics[scale=0.65]{images/svm_grid.png}
     \caption{Resposta do modelo de SVM a variação do parâmetro de regularização.
              A linha cheia representa a média dos valores das 10 partições
-             enquanto a área em azul, limitada pela linha rachurada, representa um desvio padrão.
-             A linha vertical vermelha ressalta o paramêtro de maior média.}
+             enquanto a área em azul, limitada pela linha hachurada, representa um desvio padrão.
+             A linha vertical vermelha ressalta o parâmetro de maior média.}
     \label{fig:svm_grid}
     \end{center}
 }
@@ -257,7 +257,7 @@ por supervisão distante e a classificada manualmente.
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.65]{images/svm_cm.png}
-    \caption{Matrix confusão do modelo de SVM.}
+    \caption{Matriz confusão do modelo de SVM.}
     \label{fig:svm_confusion}
     \end{center}
 }
@@ -269,7 +269,7 @@ por supervisão distante e a classificada manualmente.
 
 \section{Classificadores textuais por Redes Neurais}
 
-Proseguindo para os classificadores por redes neurais, começamos com o
+Prosseguindo para os classificadores por redes neurais, começamos com o
 treinamento da representação de texto.
 Realizou-se o treino do \textit{Word2Vec} com os parâmetros
 apresentados na Seção~\ref{sec:nlp-classifier}.
@@ -300,12 +300,12 @@ Finalmente, utilizaremos o ELMo como forma de representação em conjunto com o
 classificador de redes convolucionais.
 O alto custo computacional de treinamento desse modelo implicou em algumas
 limitações de sua execução.
-Obtive-se pesos pré-treinados, portanto, não pode se selecionar a
+Obteve-se pesos pré-treinados, portanto, não pode se selecionar a
 dimensionalidade da representação.
 Neste caso, cada palavra será representada por um vetor de tamanho $1024$.
 Também não foi possível fazer múltiplas realizações do treinamento.
 A rede convolucional, responsável pela classificação, foi treinada com os mesmos
-hiper-parâmetros adotados em sua versão com entrada por \textit{Word2Vec}.
+hiperparâmetros adotados em sua versão com entrada por \textit{Word2Vec}.
 A Figura~\ref{fig:elmo_train} apresenta a curva de treinamento do modelo.
 
 % val loss < train loss pq train tem validacao
@@ -357,17 +357,17 @@ treinamento em conjunto com os modelos textuais treinados na anteriormente.
 
 As redes conjuntas compostas pelas camadas concatenadas da representação textual
 do \textit{tweet} com a representação do grafo do usuário, seguida de 2 camadas
-classificatórias de tamanhos repectivamente de $100$ e $32$ neurônios completamente
+classificatórias de tamanhos respectivamente de $100$ e $32$ neurônios completamente
 conectados.
 Os pesos das representações do usuário e textuais continuaram a sofrer
 \textit{fine-tunning} durante a otimização do modelo.
-Assim como nos classificadores textuais, a seleção do \textit{threshold} de
+Assim como nos classificadores textuais, a seleção do limiar de
 classificação foi definida pelo ponto de maximização do índice SP.
 
 Começando pelo treinamento da representação por \textit{Locally Linear Embedding}.
 Pelo algoritmo depender da matriz de adjacência, que tem custo quadrático em
 memória, foi necessário limitar o número de usuários da rede.
-Foram selecionados aleatóriamente $10$ mil usuários dentro da sub-grafo de
+Foram selecionados aleatoriamente $10$ mil usuários dentro da subgrafo de
 usuários da maior componente conectada para o treinamento do algoritmo.
 Foram feitas $10$ realizações do treinamento, cada uma com seu próprio conjunto
 de nós selecionados.
@@ -397,10 +397,10 @@ pesos por $3$ épocas.
 Por fim, treinou-se a rede convolucional de grafos (GCN).
 Assim como no caso do \textit{Node2Vec} também se utilizou todo o subgrafo
 presente na principal componente.
-Assim como nos modelos anteriores continou-se com as $10$ inicializações e o
+Assim como nos modelos anteriores continuou-se com as $10$ inicializações e o
 tamanho da representação dos nós em $128$ dimensões.
 Pelo GCN depender de atributos do vértices para o treinamento da representação,
-utilizou-se um atributo obtido pelo próprio grafo, o log do graú do nó.
+utilizou-se um atributo obtido pelo próprio grafo, o log do grau do nó.
 Essa escolha se deu pois não necessita de extrações adicionais de dados.
 Outros atributos dos usuários poderiam ter sido incorporados caso houvesse a
 disponibilidade desses dados como: número de seguidores, localização,
@@ -410,21 +410,21 @@ O modelo foi treinado até a finalização por \textit{early stopping}.
 % TODO: matrix confusao dos modelos neurais? ou grafico de distribuicao das
 % predicoes
 
-Concluimos os experimentos com a Figura~\ref{fig:experiment_results}
+Concluímos os experimentos com a Figura~\ref{fig:experiment_results}
 consolidando os resultados obtidos por todos experimentos.
 Há diversas análises há serem feitas a partir destes resultados.
-Primeiramente, observamos que ao contrario do que esperavamos baseados nos
+Primeiramente, observamos que ao contrario do que esperávamos baseados nos
 trabalhos referenciados no Capítulo~\ref{chapter:nlp}, entre os modelos
 puramente textuais vemos que os baseados em redes neurais obtiveram resultados
-piores que as técnicas tradicionais SVM e Naive Bayes.
-Há diferentes hípoteses que podem ser responsáveis por essas diferença.
+piores que as técnicas tradicionais SVM e Naïve Bayes.
+Há diferentes hipóteses que podem ser responsáveis por essas diferença.
 A representação de palavras avaliadas nos classificadores neurais,
 \textit{Word2Vec} e \textit{ELMo}, podem não ter conseguido obter boas
 transformações necessárias para a discriminação entre as classes.
 Apesar do modelo \textit{Word2Vec} ter se provado eficiente na captação de
 contexto sintático e semântico, a grande maioria dos estudos analisados utilizam
 textos em formatos longos como artigos jornalistico.
-Há também a possiblidade de que a base de \textit{tweets} disponivel para o seu
+Há também a possibilidade de que a base de \textit{tweets} disponível para o seu
 treinamento não tenha sido suficiente para o modelo adquirir estatística
 suficiente dos dados.
 A representação pelo modelo \textit{ELMo}, por sua vez, foi treinada com artigos
@@ -432,7 +432,7 @@ da Wikipedia.
 A diferença de linguagem entre esse meio e as redes sociais pode ser um dos
 fatores responsáveis pela não reprodução dos bons resultados da técnica nesta
 base de dados.
-A vantagem das técnicas de classificacao menos complexas pode demonstrar ainda
+A vantagem das técnicas de classificação menos complexas pode demonstrar ainda
 uma dificuldade no treinamento de dados provindos de textos curtos e informais
 ou a necessidade de volumes maiores de dados de treinamento do que os coletados
 para esse experimento.
@@ -451,12 +451,12 @@ para esse experimento.
 \end{figure}
 
 Adicionalmente, observa-se que adicionar os classificadores que incorporaram
-informações do usuário apresentaram resultados váriados.
+informações do usuário apresentaram resultados variados.
 Comparando os resultados a partir do modelo de CNN, vemos que os experimentos
-que incluiram os dados do grafo de usuários tiveram média de AUC
+que incluíram os dados do grafo de usuários tiveram média de AUC
 acima do valor médio do classificador puramente textuais.
 Os modelos compostos demonstraram uma menor variação de resultados, com desvio
-padrão significamente menor do que o modelo puramente textual.
+padrão significativamente menor do que o modelo puramente textual.
 Dentre as diferentes técnicas de representação do grafo houve pouca diferença
 entra a escolha.
 A representação por GCN apresentou maior média, entretanto, sua média ainda fica
@@ -491,7 +491,7 @@ Os modelos tiveram maiores dificuldades em discernir \textit{tweets} da classe
 positiva.
 Este fenômeno pode ser entendido como resultado da seleção de \textit{emoticons}
 positivos serem pouco representativos.
-Também pode-se considerar a possibilidade de textos sarcasticos contendo
+Também pode-se considerar a possibilidade de textos sarcásticos contendo
 \textit{emoticons} positivos terem impactado na discriminação dessas mensagens.
 
 % diferente do esperado nlp
