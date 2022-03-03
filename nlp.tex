@@ -180,7 +180,7 @@ No entanto, um componente fundamental da linguagem é perdido durante processo: 
 contexto em que cada palavra se insere.
 Pela representação agrupar todos os tokens em um único vetor, a ordem das
 palavras no documento é perdida, o que em muitos casos pode corresponder à
-inviabilidade de uma classificação precisa do mesmo.
+inviabilidade de uma classificação precisa.
 
 % TODO: talvez mostrar exemplo em que a ordem faria diferença
 
@@ -200,7 +200,7 @@ sentidos semânticos e sintáticos das palavras, aproximando as que são sinôni
 ou exerçam a mesma função gramatical, atenuando assim o problema da disparidade
 de frequência das palavras.
 
-Esta técnica é um modelo constituído de uma rede neural de uma camada escondida.
+Esta técnica é baseada um modelo constituído de uma rede neural de uma camada escondida.
 Para o treinamento do mesmo, são feitas janelas de um número arbitrário de
 palavras que servirão como entrada do modelo.
 Dessas janelas, há duas variações: o \textit{continuous bag-of-words}, em que
@@ -214,7 +214,7 @@ A quantidade de neurônios escolhida para a camada escondida da rede resultará 
 dimensionalidade da representação das palavras.
 Estas, por sua vez, serão os pesos da camada de entrada do modelo treinado.
 
-\begin{figure}%
+\begin{figure}
     \centering
     \subfloat[Continuos Bag-of-Word]{{\includegraphics[scale=0.24]{images/word2vec_cbow.png}}}%
     \qquad
@@ -225,7 +225,7 @@ Estas, por sua vez, serão os pesos da camada de entrada do modelo treinado.
              mesma. $W$, por sua vez, representa o conjunto de pesos treináveis.
              A representação resultante de uma palavra é dada pelo seu referente
              vetor na matriz de pesos de entrada $W_x$.}%
-    \label{fig:w2v}%
+    \label{fig:w2v}
 \end{figure}
 
 Apesar de o \textit{Word2Vec} ser um modelo que precisa ser treinando, esse
@@ -266,8 +266,9 @@ variável a partir de outra sequência de tamanho variável como entrada, não
 necessariamente com os mesmos tamanhos.
 Isso é reflexo do problema inicial que o mesmo foi desenvolvido para atacar: a
 tradução de textos.
+A Figura \ref{fig:encoder_decoder} demonstra a arquitetura da mesma.
 
-\begin{figure}
+\begin{figure}[h]
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.30]{images/encoder_decoder.png}
@@ -756,7 +757,7 @@ neurais recorrentes.
 Elas são, em geral, treinadas com o algoritmo
 \textit{Backpropagation Through Time}~\cite{williams95} (BPTT).
 Nesse algoritmo a rede recorrente se comporta como uma rede neural
-\textit{feed-forward} na qual cada camada representa um passo temporal nos dados
+\textit{feed forward} na qual cada camada representa um passo temporal nos dados
 de entrada.
 No caso dos dados serem textuais cada passo pode ser uma palavra.
 Portanto, ao aplicar esse algoritmo sobre o texto, o contexto sequencial do
