@@ -85,8 +85,8 @@ positivos.
 A rede de usuários foi formada por retweets entre usuários.
 Os 45 milhões de retweets formam uma rede de 28 milhões de arestas únicas
 conectando 5,5 milhões de vértices, representando uma densidade de
-$9,4\mathrm{e}{-7}$.
-O coeficiente de clusterização global é de $9,6\mathrm{e}{-4}$, portanto,
+$9,4^{-7}$.
+O coeficiente de clusterização global é de $9,6^{-4}$, portanto,
 havendo um vizinho em comum o nó tem 1000 vezes mais chance de estar conectado a
 outro nó do que quando ambos não compartilham conexões.
 Aproximadamente 4,5\% dos nós pertencem a componente fortemente conexa, ou seja,
@@ -140,7 +140,7 @@ sentimento textuais.
 Esses classificadores serão usados como base de comparação para avaliar a
 eficiência dos classificadores multimodais.
 
-\section{Classificadores textuais não Neurais}
+\section{Classificadores Textuais Lineares}
 
 Os primeiros classificadores textuais treinados foram os por Naïve Bayes e SVM.
 Nesse caso, ambos usaram a representação Bag-of-Words.
@@ -152,23 +152,8 @@ treinamento anotados com supervisão distante. O parâmetro de suavização foi
 escolhido por \textit{grid search}, de maneira a maximizar a área sob a curva ROC.
 A Figura~\ref{fig:nb_grid} mostra a resposta do modelo para os diferentes fatores
 de suavização testados.
-O hiperparâmetro selecionado foi o de valor $0,244$, que obteve AUC de $0,862 \pm 0,002$.
-Uma vez selecionado o melhor modelo na base de treino, o mesmo foi avaliado com
-os dados da base de teste, que foram anotados manualmente.
-A Figura~\ref{fig:nb_roc} apresenta a curva ROC dos dados de treino.
-Observa-se que o mesmo modelo ao ser aplicado aos dados de teste tem resultado
-de $0,801$ de área sob curva ROC.
-Vê-se que há uma diferença de performance entre as diferentes bases, que
-sobressaí a dispersão observada nas partições do treinamento.
-% Este aspecto da supervisão distante será discutido no Capítulo~\ref{chapter:conclusion}.
-% TODO: comentar mais pra frente, mas ainda nesse capitulo.
-Concluindo a análise do modelo de Naïve Bayes, utilizou-se os dados de treino
-para encontrar o limiar de classificação que maximiza o índice SP.
-O limiar encontrado teve o valor de $0,88$ e a Figura~\ref{fig:nb_confusion}
-apresenta a matriz confusão correspondente a esse valor.
-% TODO: comentar alto falso positivo?
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.65]{images/nb_grid.png}
@@ -182,7 +167,14 @@ apresenta a matriz confusão correspondente a esse valor.
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+O hiperparâmetro selecionado foi o de valor $0,244$, que obteve AUC de $0,862 \pm 0,002$.
+Uma vez selecionado o melhor modelo na base de treino, o mesmo foi avaliado com
+os dados da base de teste, que foram anotados manualmente.
+A Figura~\ref{fig:nb_roc} apresenta a curva ROC dos dados de treino.
+Observa-se que o mesmo modelo ao ser aplicado aos dados de teste tem resultado
+de $0,801$ de área sob curva ROC.
+
+\begin{figure}[h!]
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.65]{images/nb_roc.png}
@@ -193,7 +185,17 @@ apresenta a matriz confusão correspondente a esse valor.
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+Vê-se que há uma diferença de performance entre as diferentes bases, que
+sobressaí a dispersão observada nas partições do treinamento.
+% Este aspecto da supervisão distante será discutido no Capítulo~\ref{chapter:conclusion}.
+% TODO: comentar mais pra frente, mas ainda nesse capitulo.
+Concluindo a análise do modelo de Naïve Bayes, utilizou-se os dados de treino
+para encontrar o limiar de classificação que maximiza o índice SP.
+O limiar encontrado teve o valor de $0,88$ e a Figura~\ref{fig:nb_confusion}
+apresenta a matriz confusão correspondente a esse valor.
+% TODO: comentar alto falso positivo?
+
+\begin{figure}[h!]
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.65]{images/nb_cm.png}
@@ -212,23 +214,8 @@ Também se aplicou validação cruzada com 10 partições para determinar o melh
 parâmetro de regularização $L_2$.
 A Figura~\ref{fig:svm_grid} apresenta os valores de AUC obtidos nos dados de
 treino para o intervalo de parâmetro testado.
-Observamos que o valor máximo obtido de AUC nos dados de treino foi
-$0,904 \pm 0,001$, para o fator de regularização $7e^-05$.
-Porém, ao aplicar o modelo aos dados de teste, a performance do modelo cai
-consideravelmente, como vemos na Figura~\ref{fig:svm_roc}, com $0,647$ de área
-da curva ROC.
-O limiar de maior índice SP foi $0,776$, obtendo a matriz confusão
-apresentada na Figura~\ref{fig:svm_confusion}.
-A matriz confusão mostra que o modelo consegue distinguir elementos da classe
-positiva, entretanto, ao ser aplicado em frases negativas o mesmo não conseguiu
-performance melhor que escolha aleatória.
-Observa-se também que apesar do modelo SVM superar as métricas do modelo de
-Naïve Bayes nos dados de treino, SVM generaliza significativamente menos quando
-aplicado ao banco de dados de teste.
-Apresentando assim uma grande discrepância entre a performance da base anotada
-por supervisão distante e a classificada manualmente.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.65]{images/svm_grid.png}
@@ -242,7 +229,13 @@ por supervisão distante e a classificada manualmente.
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+Observamos que o valor máximo obtido de AUC nos dados de treino foi
+$0,904 \pm 0,001$, para o fator de regularização $7e^-05$.
+Porém, ao aplicar o modelo aos dados de teste, a performance do modelo cai
+consideravelmente, como vemos na Figura~\ref{fig:svm_roc}, com $0,647$ de área
+da curva ROC.
+
+\begin{figure}[h!]
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.65]{images/svm_roc.png}
@@ -253,7 +246,18 @@ por supervisão distante e a classificada manualmente.
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+O limiar de maior índice SP foi $0,776$, obtendo a matriz confusão
+apresentada na Figura~\ref{fig:svm_confusion}.
+A matriz confusão mostra que o modelo consegue distinguir elementos da classe
+positiva, entretanto, ao ser aplicado em frases negativas o mesmo não conseguiu
+performance melhor que escolha aleatória.
+Observa-se também que apesar do modelo SVM superar as métricas do modelo de
+Naïve Bayes nos dados de treino, SVM generaliza significativamente menos quando
+aplicado ao banco de dados de teste.
+Apresentando assim uma grande discrepância entre a performance da base anotada
+por supervisão distante e a classificada manualmente.
+
+\begin{figure}[h!]
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.65]{images/svm_cm.png}
@@ -265,9 +269,7 @@ por supervisão distante e a classificada manualmente.
 \end{figure}
 
 
-% emoticon sarcastico?
-
-\section{Classificadores textuais por Redes Neurais}
+\section{Classificadores Textuais por Redes Neurais}
 
 Prosseguindo para os classificadores por redes neurais, começamos com o
 treinamento da representação de texto.
@@ -280,6 +282,19 @@ redes neurais convolucionais.
 Algumas das curvas de treinamento são demonstradas na Figura~\ref{fig:cnn_train}.
 Observamos que, normalmente, após a terceira época a função custo de treinamento
 apresenta uma estabilidade.
+
+\begin{figure}[h!]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.25]{images/cnn_train.png}
+    \caption{Curvas de treinamento de classificadores por redes neurais
+        convolucionais.}
+    \label{fig:cnn_train}
+    \end{center}
+}
+\end{center}
+\end{figure}
+
 Devido ao \textit{early stopping} cada treinamento acaba em épocas diferentes.
 Como aplicamos \textit{dropout} e regularização durante o treinamento temos que
 a entropia cruzada de treinamento é mais alta do que a de validação.
@@ -290,6 +305,18 @@ Seguimos com o treinamento do modelo de LSTM, mantendo a entrada com a
 representação \textit{Word2Vec}.
 A Figura~\ref{fig:lstm_train} apresenta uma amostra dos 10 treinamentos
 realizados da rede LSTM.
+
+\begin{figure}[h!]
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.25]{images/lstm_train.png}
+    \caption{Curvas de treinamento de classificadores por redes neurais LSTM.}
+    \label{fig:lstm_train}
+    \end{center}
+}
+\end{center}
+\end{figure}
+
 Vemos que com LSTM demorou-se mais para atingir convergência, sendo precisas
 30 a 50 épocas de treino até a estabilização da função custo.
 Observamos também que assim como as redes convolucionais, não houve grande
@@ -311,30 +338,7 @@ A Figura~\ref{fig:elmo_train} apresenta a curva de treinamento do modelo.
 % val loss < train loss pq train tem validacao
 % https://twitter.com/aureliengeron/status/1110839223878184960
 
-\begin{figure}[h]
-\begin{center} {
-    \begin{center}
-    \includegraphics[scale=0.25]{images/cnn_train.png}
-    \caption{Curvas de treinamento de classificadores por redes neurais
-        convolucionais.}
-    \label{fig:cnn_train}
-    \end{center}
-}
-\end{center}
-\end{figure}
-
-\begin{figure}[h]
-\begin{center} {
-    \begin{center}
-    \includegraphics[scale=0.25]{images/lstm_train.png}
-    \caption{Curvas de treinamento de classificadores por redes neurais LSTM.}
-    \label{fig:lstm_train}
-    \end{center}
-}
-\end{center}
-\end{figure}
-
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.45]{images/elmo_cnn_train.png}
@@ -353,7 +357,7 @@ sua componente principal para reduzir os requisitos de memória necessários par
 o treinamento dos modelos.
 O aprendizado foi realizado em duas etapas: aquisição de \textit{embeddings} a
 partir de modelagem não-supervisionada do grafo; posteriormente foi realizado o
-treinamento em conjunto com os modelos textuais treinados na anteriormente.
+treinamento em conjunto com os modelos textuais treinados anteriormente.
 
 As redes conjuntas compostas pelas camadas concatenadas da representação textual
 do \textit{tweet} com a representação do grafo do usuário, seguida de 2 camadas
@@ -416,7 +420,7 @@ Há diversas análises há serem feitas a partir destes resultados.
 Primeiramente, observamos que ao contrario do que esperávamos baseados nos
 trabalhos referenciados no Capítulo~\ref{chapter:nlp}, entre os modelos
 puramente textuais vemos que os baseados em redes neurais obtiveram resultados
-piores que as técnicas tradicionais SVM e Naïve Bayes.
+piores que as técnicas lineares tradicionais SVM e Naïve Bayes.
 Há diferentes hipóteses que podem ser responsáveis por essas diferença.
 A representação de palavras avaliadas nos classificadores neurais,
 \textit{Word2Vec} e \textit{ELMo}, podem não ter conseguido obter boas
@@ -450,11 +454,12 @@ para esse experimento.
 \end{center}
 \end{figure}
 
-Adicionalmente, observa-se que adicionar os classificadores que incorporaram
-informações do usuário apresentaram resultados variados.
+Adicionalmente, observa-se que acrescer as representações dos vértices de
+usuários resultou em performance variadas para os diferentes modelos, não
+havendo conclusão clara sobre sua eficiência.
 Comparando os resultados a partir do modelo de CNN, vemos que os experimentos
-que incluíram os dados do grafo de usuários tiveram média de AUC
-acima do valor médio do classificador puramente textuais.
+que incluíram os dados do grafo tiveram média de AUC acima do valor médio
+do classificador puramente textuais.
 Os modelos compostos demonstraram uma menor variação de resultados, com desvio
 padrão significativamente menor do que o modelo puramente textual.
 Dentre as diferentes técnicas de representação do grafo houve pouca diferença
@@ -484,7 +489,7 @@ benefícios no resultado.
 
 Por fim, observamos que a supervisão distante a partir de \textit{emoticons} foi
 capaz de extrair informação para o treinamento de classificadores visto que
-conseguimos modelos com AUC muito acima da faixa de escolha aleatória.
+conseguimos modelos com AUC acima da faixa de escolha aleatória.
 Entretanto, as matrizes confusão apresentadas nesse capítulo demonstram uma
 grande diferença de eficiência entre as classes.
 Os modelos tiveram maiores dificuldades em discernir \textit{tweets} da classe

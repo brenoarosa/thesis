@@ -448,7 +448,7 @@ Nessa seção serão abordadas as diferentes estratégias para classificação d
 sentimento.
 As etapas descritas anteriormente lidam com a preparação dos documentos para
 a realização da classificação.
-Mesmo com complexidade dos métodos apresentados, os classificadores podem ser
+Mesmo com a complexidade dos métodos apresentados, os classificadores podem ser
 tão simples quanto contadores de palavras positivas e negativas.
 Podemos dividi-los em algoritmos baseados em dicionário e algoritmos de
 aprendizado de máquina~\cite{taboada11}, estando suas respectivas
@@ -465,8 +465,8 @@ Dentre as maneiras automáticas, temos a aplicada por \citet{hu04}, que é feita
 partir de um conjunto inicial de palavras anotadas e de um dicionário de
 sinônimos e antônimos, tal qual o WordNet~\cite{miller90}.
 Um exemplo é selecionar as palavras semente ``bom'' e ``ruim'' e montar uma base de
-palavras recursivamente a partir dos seus sinônimos e antônimos.
-Formas similares de identificação de palavras com sentimento baseada em
+termos recursivamente a partir dos seus sinônimos e antônimos.
+Formas similares de identificação de vocábulos com sentimento baseada em
 dicionários e palavras semente foram desenvolvidas por \citet{blair08},
 \citet{rao09}, \citet{hassan10}, entre outros.
 
@@ -489,7 +489,7 @@ classes positivas e negativas, como propõe \citet{turney02}.
 
 Naturalmente, as primeiras aplicações de aprendizado de máquina em análise de
 sentimento fizeram uso de modelos simples, como os lineares.
-\citet{pang02} fizeram um dos primeiros estudos comparativos entre esses
+\citet{pang02} realizaram um dos primeiros estudos comparativos entre esses
 métodos.
 A seguir, serão descritos os dois principais modelos lineares utilizados em
 processamento de linguagem natural: Naïve Bayes e Máquina de Vetor de Suporte.
@@ -500,8 +500,8 @@ O classificador de Naïve Bayes se baseia no teorema de Bayes
 (Equação~\ref{eq:bayes}) e na premissa de independência entre as dimensões da
 representação dos dados.
 Quando representamos um documento textual com, por exemplo, \textit{bag-of-words},
-a premissa de independência significa assumir que existe independência entre as
-palavras do documento.
+a premissa de independência significa assumir que existe independência entre
+cada uma das palavras do documento.
 Apesar de não existir independência entre palavras na linguagem, tal modelo foi
 amplamente aplicado a tarefas de processamento de texto, devido a sua performance
 e simplicidade.
@@ -596,7 +596,7 @@ as margens das classes.
 A regressão linear, por sua vez, geralmente minimiza uma função custo baseada na
 distância entre os dados e o centro de massa das classes.
 
-\begin{figure}
+\begin{figure}[h]
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.6]{images/svm.png}
@@ -726,7 +726,7 @@ Cada uma de suas camada é formada por um conjunto de filtros que são
 compostos por neurônios.
 A iteração de treinamento da rede consiste no deslocamento de cada filtro por
 toda a dimensão da camada anterior.
-Desta maneira, os padrões locais são capturados por um mesmo filtro
+Desta maneira, os padrões espaciais são capturados por um mesmo filtro
 independente de onde os padrões apareçam nos dados de entrada.
 O deslocamento dos filtros durante o treinamento funciona como um
 compartilhamento de pesos, reduzindo a quantidade de parâmetros livres da rede
@@ -734,7 +734,7 @@ e, logo, sua probabilidade de \textit{overfitting}.
 
 A interpretação de redes convolucionais aplicadas a processamento de texto não é
 muito diferente de sua utilização com imagens.
-Enquanto os filtros convolucionais exploram os padrões locais com filtros 2D de
+Enquanto os filtros convolucionais exploram os padrões espaciais com filtros 2D de
 poucos pixeis em imagens, no caso textual os filtros são unidimensionais e
 percorrem a sequência de vetores de palavras com uma janela, capturando assim
 parte do contexto em que cada palavra se insere.

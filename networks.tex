@@ -76,8 +76,8 @@ principal delas a matriz de adjacência.
 A matriz de adjacência $A$ é uma matriz quadrada de dimensionalidade $n \times n$,
 sendo $n$ o número de vértices, na qual o elemento $a_{ij}$ tem valor $1$ caso o
 vértice $v_i$ seja conectado ao $v_j$ e $0$ caso contrario.
-Há outras matrizes extraídas dos grafos, como a matriz Laplaciana e a matriz de
-centralidade de Katz.
+Além da matriz de adjacência, há outras matrizes extraídas dos grafos, como
+a matriz Laplaciana e a matriz de centralidade de Katz.
 
 Essas matrizes podem ser exploradas para extração de informação das redes.
 Os modelos de representação de vértices por fatoração matricial foram um dos
@@ -173,7 +173,7 @@ fixo partindo de cada vértice da rede, formando um conjunto de realizações.
 
 Por ser um método iterativo e não necessitar o cálculo de nenhuma matriz completa
 do grafo, esse método apresenta vantagem em custo operacional para redes
-grandes, dado que essas matrizes tem custo quadrático em memória.
+grandes, dado que de computação dessas matrizes tem custo quadrático em memória.
 Além disso, a iteratividade do método também permite que novos elementos sejam
 adicionados ao grafo sem requerer um retreinamento completo do modelo,
 característica essencial para seleção de algoritmos em diversas aplicações.
@@ -195,7 +195,7 @@ Word2Vec~\ref{sec:w2v}: os passeios aleatórios truncados formam sequências de
 tamanho $2k + 1$, e o treinamento do algoritmo é feito de maneira a maximizar a
 probabilidade de predição do contexto a partir do vértice na posição central do
 passeio.
-A fórmula~\ref{eq:deepwalk} formaliza o problema citado.
+A fórmula~\ref{eq:deepwalk} demonstra a função citada.
 Dado que $v_i$ é o vértice central de um certo passeio e $\Phi$ é o mapeamento
 de um vetor em sua representação, que queremos encontrar, então:
 

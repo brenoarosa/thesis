@@ -11,7 +11,7 @@ algoritmos.
 
 Serão utilizadas duas bases de dados nesse trabalho, uma de treinamento e uma de
 teste.
-As bases serão formadas por tweets captados utilizando a
+As bases serão formadas por \textit{tweets} captados utilizando a
 API~\footnote{https://developer.twitter.com/en/docs/twitter-api} do Twitter,
 a qual fornece amostras de mensagens públicas, com a possibilidade de filtrar
 pelas que contenham palavras-chave de interesse.
@@ -88,7 +88,7 @@ descritas no Capítulo~\ref{chapter:nlp}.
 Posteriormente, serão utilizadas as representações das mensagens e as
 representações da rede de usuários conjuntamente.
 Desta forma analisaremos se a adição de informação do usuário infere em alguma
-vantagem de performance no classificador.
+vantagem de performance ao classificador.
 
 \subsection{Classificadores de Processamento de Linguagem Natural}
 \label{sec:nlp-classifier}
@@ -129,7 +129,7 @@ Como as redes convolucionais dependem de tamanhos fixos de entrada, as mensagens
 serão limitados a um tamanho máximo de \textit{tokens} definido pelo conjunto de
 dados de treino.
 As mensagens de tamanho menor que o tamanho máximo definido serão preenchidas
-com vetores nulos.
+com \textit{tokens} de espaçamento compostos de vetores nulos.
 
 Nesses classificadores, além das camadas convolucionais e LSTM, respectivamente,
 uma camada será adicionada com um único neurônio para realização da
@@ -146,7 +146,7 @@ O classificador de LSTM, por sua vez, conterá duas camadas bidirecionais em
 série de 100 neurônios cada.
 Ambos os modelos utilizaram \textit{dropout} durante o treinamento com
 probabilidade de 50\% de desligamento do neurônio e regularização L2 de fator
-$10^-3$.
+$10^{-3}$.
 Serão realizados $10$ treinamentos de cada modelos, dado que o treinamento de
 redes neurais é propenso a estagnar em mínimos locais.
 Como estes métodos tem alto custo computacional, não será utilizada a validação
@@ -195,7 +195,6 @@ O grafo formado será homogêneo em que os usuários são codificados como vért
 e os \textit{retweets}, operação de compartilhamento de uma mensagem de outro
 usuário, formam uma aresta direcional entre ambos.
 
-% TODO: retirar parte que cabe no resultados
 A rede obtida é formada por aproximadamente $5,5$ milhões de nós e $28$ milhões
 de arestas.
 Como elucidado no Capítulo~\ref{chapter:networks}, a maioria dos algoritmos de
@@ -207,8 +206,8 @@ atacar esse problema.
 O grafo original será reduzido para o subgrafo composto pelos nós da maior
 componente fortemente conexa, ou seja, o maior subgrafo em que todos os nós
 apresentam caminhos entre si.
-% TODO: preencher valor
-Este procedimento reduz o grafo a um total de $x$ vértices e $y$ arestas.
+Este procedimento reduz o grafo a um total de $240$ mil vértices e de $2$ milhões
+arestas.
 Ainda assim, nos casos em que esta rede ainda seja grande demais para viabilizar
 o treinamento, serão selecionados aleatoriamente vértices, garantindo apenas que
 os vértices presentes na base de teste estejam incluídos na rede a ser treinada.
@@ -237,8 +236,9 @@ estrutura da rede, o GCN usa também características dos vértices para
 treinamento da representação.
 Se tratando de redes sociais há várias possibilidades de característica para ser
 exploradas como número de contatos, descrição do perfil, foto, entre outras.
-Entretanto, essas abordagens não serão exploradas nesse trabalho, usaremos como
-característica o grau do nó na rede.
+Entretanto, essas abordagens não serão exploradas nesse trabalho pela
+indisponibilidade desses dados na base coletada. Usaremos como característica
+o grau do nó na rede.
 
 Desta forma, haveremos treinado os classificadores textuais e as representações
 dos usuários, restando portanto a testar se a combinação dos mesmos dos mesmos
