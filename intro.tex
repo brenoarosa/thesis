@@ -52,7 +52,7 @@ opinião das pessoas, seja em relação a um produto, a um evento ou até mesmo
 a temas políticos, como pôde-se observar em eleições pelo mundo nos últimos anos.
 
 Portanto, a análise de tais informações, presentes nas redes, é importante para
-as mais diversos aplicações.
+as mais diversas aplicações.
 Contudo, essa grande quantidade de usuários também se reflete no número de dados
 provindos das mídias sociais.
 Dentre as estatísticas de uso do ano de 2018 fornecidas pelas próprias redes
@@ -65,9 +65,9 @@ interagem pelo \textit{Twitter}.
 O massivo volume de dados inviabiliza que essas análises sejam feitas
 manualmente, tornando-se necessário o desenvolvimento de ferramentas capazes de
 automatizar esse processo.
-Entram aí as técnicas desenvolvidas pelo campo do Processamento de Linguagem
-Natural, do inglês \textit{Natural Language Processing} (NLP).
-\abbrev{NLP}{Natural Language Processing}
+Faz-se necessária a aplicação de técnicas desenvolvidas pelo campo do
+Processamento de Linguagem Natural, do inglês \textit{Natural Language Processing}
+(NLP)\abbrev{NLP}{Natural Language Processing}.
 Foi a partir do anos 50 que esse termo passou a aparecer como um ramo da
 Inteligência Artificial.
 Devido à sua complexidade, a linguagem natural acabou inclusive se tornando um
@@ -80,14 +80,13 @@ determinado conteúdo.
 Nesse ramo, busca-se desenvolver métodos capazes de auxiliar e/ou automatizar
 tarefas como o reconhecimento de fala, a análise sintática de frases, a
 extração de entidades, a segmentação por tópicos, entre outros.
-
 Esse conjunto de ferramentas é essencial para tratar o volume de textos
-gerado pelas redes sociais. Com o avanço de técnicas de \textit{Deep Learning},
-nos últimos anos pôde-se observar uma melhora significativa de desempenho, que
-permitiu a realização mesmo de tarefas de grande dificuldade, como a
-automatização de traduções e de aplicações de atendimento ao cliente por
-conversação.
+gerado pelas redes sociais.
 
+Com o avanço de técnicas de \textit{Deep Learning}, nos últimos anos pôde-se
+observar uma melhora significativa de desempenho, que permitiu a realização mesmo
+de tarefas de grande dificuldade, como a automatização de traduções e de aplicações
+de atendimento ao cliente por conversação.
 Entretanto, apesar do grande potencial dessas técnicas, as mídias sociais
 apresentam características que diferenciam seu conteúdo dos gêneros textuais que
 tradicionalmente se analisam em NLP, como artigos científicos e textos
@@ -118,7 +117,7 @@ informações que essas técnicas desconsideram, abrindo espaço para que as
 abordagens multimodais, ou seja, que explorem diversas destas propriedades,
 explorem esses elementos complementares.
 
-De certa maneira, as interações entre usuários são o cerne das mídias sociais.
+As interações entre usuários são o cerne das mídias sociais.
 Logo, técnicas que se dispõem a analisar esse tipo de informação também são de
 grande relevância.
 Nesse quesito, o campo das Redes Complexas, também chamado de Ciência de Redes,
@@ -126,7 +125,7 @@ Nesse quesito, o campo das Redes Complexas, também chamado de Ciência de Redes
 que representam sistemas reais, como no caso das redes sociais.
 Assim como o aprendizado de máquina, essa esfera do conhecimento também
 demonstra um grande crescimento nos últimos anos, fornecendo um novo leque de
-tecnologias, de forma a descobrir-se aplicabilidades até então inexploradas.
+tecnologias, de forma a descobrir aplicabilidades até então inexploradas.
 Dentre suas aplicações, que possuem importância para o estudos das mídias
 sociais, pode-se ressaltar, por exemplo, a detecção de comunidades, a
 identificação de principais influenciadores e a modelagem de propagação de
@@ -134,18 +133,18 @@ informação.
 
 Finalmente, esses métodos são poderosas ferramentas de análise das redes sociais,
 principalmente quando aplicados em complemento à informação textual.
-A complementariedade entre os métodos em questão permitem, por exemplo, distinguir
+A complementariedade entre os métodos em questão permite, por exemplo, distinguir
 conotações de uma mesma mensagem quando escritas por usuários de comunidades de
 ideias opostas.
 Por conta de casos complexos como esse, nos quais a análise de um único elemento
-da mensagem não é suficiente para sua classificação, é que se fazem necessários
+da mensagem não é suficiente para sua classificação, se fazem necessários
 estudos que contemplem a multimodalidade das redes sociais.
 
 \section{Motivação}
 
 Dados são considerados um dos bens mais valiosos da atualidade, de forma mesmo a
 serem chamados de ``o novo petróleo''.
-Isso porque, assim como o óleo, os dados são preciosos e precisam ser refinados
+Isso porque, assim como o petróleo, os dados são preciosos e precisam ser refinados
 para terem utilidade.
 Um dos aspectos dessa transformação pode ser observado na mudança cultural de
 organizações e empresas que passam a tomar decisões baseadas em dados e métricas
@@ -173,30 +172,30 @@ anotados disponíveis para treinamento.
 Como o processo de anotação é manual, esse passa a ser o gargalo da construção de
 classificadores de sentimento.
 
-Tal empecilho se torna ainda mais notável quando considera-se aplicações que
+Tal empecilho se torna ainda mais notável quando consideram-se aplicações que
 requerem a análise de diferentes línguas ou que tenham foco em um tema
 específico, necessitando criação de bases de dados próprias para cada caso de
 uso.
-Esses fatos motivam a elaboração de métodos que sejam independentes de bases de
+Estes fatos motivam a elaboração de métodos que sejam independentes de bases de
 treinamento.
 
 \section{Objetivo}
 
 Este projeto visa a desenvolver um método capaz de formar classificadores de
 análise de sentimento sem a necessidade anotação de bases de dados de treinamento.
-Essas análises serão feitas sobre dados de mídia sociais e tanto atributos
-textuais, quanto os das redes de usuários serão explorados.
+A análise será feita sobre dados de mídia sociais, explorando tanto a mensagem textual
+contída nas publicações, quanto informação obtida a partir das redes de usuários.
 A principal meta deste trabalho é viabilizar o emprego de modelos complexos,
 que se beneficiam de um grande volume de dados, sem o custo proveniente da anotação
 de bases.
 
 Para a análise das mensagens será avaliado o impacto da utilização de
-classificadores de \textit{Deep Learning} em comparação a métodos lineares
-tradicionalmente aplicados em NLP.
+classificadores baseados em modelos de \textit{Deep Learning} em comparação a
+métodos lineares tradicionalmente aplicados em NLP.
 Diferentes estratégias de representação de palavras e arquiteturas de
-classificadores de redes de aprendizado profundo serão testados de acordo com o
+classificadores de redes de aprendizado profundo serão testadas de acordo com o
 estado da arte em processamento de texto.
-O processo será feito de maneira semi-supervisionada com supervisão distante,
+O treinamo dos modelos será feito de maneira semi-supervisionada com supervisão distante,
 para anotação automática dos dados de treinamento.
 
 Técnicas de Redes Complexas serão aplicadas para a caracterização dos autores das
@@ -209,9 +208,8 @@ Nesse caso, além de avaliar os modelos entre si, será analisada a informação
 adicional provinda dos usuários quando aplicada em conjunto com o classificador
 textual.
 
-Por fim, há um amplo conjunto de estudo aplicando processamento de linguagem
-natural em redes sociais.
-Apesar de menor, a ciência de redes também tem um grande reportório de pesquisa
+Por fim, há um amplo conjunto de estudo aplicando NLP em redes sociais.
+Adicionalmente, a ciência de redes também tem um grande reportório de pesquisa
 sobre esse meio de comunicação.
 Assim, este trabalho visa a preencher a lacuna de sistemas que não necessitam de
 investimento em anotação de bases e que abrangem a multimodalidade da
@@ -225,8 +223,8 @@ Esse documento é organizado da seguinte maneira:
 \begin{itemize}
     \item O Capítulo~\ref{chapter:sentiment} apresenta o problema da análise
         de sentimento aplicada em mídias sociais e os seus desafios.
-        Esse Capítulo contém uma breve revisão bibliográfica de classificadores
-        de análise de sentimento e de técnicas de redes aplicadas a essa tarefa.
+        Esse capítulo contém uma breve revisão bibliográfica de classificadores
+        de análise de sentimento e de técnicas de redes aplicadas à essa tarefa.
     \item No Capítulo~\ref{chapter:nlp}, as técnicas de processamento de
         linguagem natural são apresentadas.
         São caracterizadas as diferentes formas de representação numérica das
