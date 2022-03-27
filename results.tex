@@ -85,8 +85,8 @@ positivos.
 A rede de usuários foi formada por retweets entre usuários.
 Os 45 milhões de retweets formam uma rede de 28 milhões de arestas únicas
 conectando 5,5 milhões de vértices, representando uma densidade de
-$9,4^{-7}$.
-O coeficiente de clusterização global é de $9,6^{-4}$, portanto,
+$9,4\times10^{-7}$.
+O coeficiente de clusterização global é de $9,6\times10^{-4}$, portanto,
 havendo um vizinho em comum o nó tem 1000 vezes mais chance de estar conectado a
 outro nó do que quando ambos não compartilham conexões.
 Aproximadamente 4,5\% dos nós pertencem a componente fortemente conexa, ou seja,
@@ -94,7 +94,7 @@ subgrafo direcional em que existe um caminho entre todos os vértices.
 Enquanto 97\% dos nós pertencem a componente fracamente conexa, que leva em
 consideração o subgrafo não direcional.
 Observa-se que a rede inteira é formada praticamente por uma única componente
-gigante enquanto os outros 3\% dos usuários estão distribuídos em um grande
+enquanto os outros 3\% dos usuários estão distribuídos em um grande
 volume de pequenas componentes.
 A Figura~\ref{fig:graph_ccdf} mostra as distribuições de grau dos vértices.
 Analisa-se que tanto a distribuição de grau de entrada quanto a de saída tem
@@ -102,8 +102,8 @@ caudas longas apesar da curva da distribuição de de grau de entrada ser
 significativamente mais extensa.
 Ressalta-se também que mais que 80\% dos nós tem grau de entrada 0, ou seja,
 são usuários que não receberam nenhum retweets.
-A Figura~\ref{fig:graph_distance} mostra a distância entre os nós da rede, que
-tem média $8,8$.
+A Figura~\ref{fig:graph_distance} mostra a distribuição de distância entre os
+nós da rede, que tem média $8,8$.
 Conclui-se portanto que dentre os dados captados formou-se uma rede com número
 significativo de usuários e possuí características comumente observadas em redes
 como a formação de \textit{hubs}, pequena distância média e grande componente
@@ -127,7 +127,7 @@ conexa.
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.65]{images/graph_distance.png}
-    \caption{Distância entre pares de nós da rede de usuários.}
+    \caption{Contagem de eventos da distância entre pares de nós da rede de usuários.}
     \label{fig:graph_distance}
     \end{center}
 }
@@ -230,7 +230,7 @@ treino para o intervalo de parâmetro testado.
 \end{figure}
 
 Observamos que o valor máximo obtido de AUC nos dados de treino foi
-$0,904 \pm 0,001$, para o fator de regularização $7e^-05$.
+$0,904 \pm 0,001$, para o fator de regularização $7\times10^{-5}$.
 Porém, ao aplicar o modelo aos dados de teste, a performance do modelo cai
 consideravelmente, como vemos na Figura~\ref{fig:svm_roc}, com $0,647$ de área
 da curva ROC.
@@ -352,7 +352,7 @@ A Figura~\ref{fig:elmo_train} apresenta a curva de treinamento do modelo.
 \section{Classificadores Multimodais}
 
 Seguimos para a incorporação da informação dos grafos de usuários nos modelos.
-Como descrito na seção \ref{sec:multimodal-classifier}, o grafo foi reduzido a
+Como descrito na Seção~\ref{sec:multimodal-classifier}, o grafo foi reduzido a
 sua componente principal para reduzir os requisitos de memória necessários para
 o treinamento dos modelos.
 O aprendizado foi realizado em duas etapas: aquisição de \textit{embeddings} a

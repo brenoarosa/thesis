@@ -121,7 +121,7 @@ representações próximas entre vizinhos.
 No entanto, desta vez é inspirada na equação de fluxo de calor, na qual a transmissão de
 energia decai quadraticamente com a distância entre os corpos.
 Para isso, é utilizada a matriz laplaciana do grafo.
-Sua função custo é dada pela equação~\ref{eq:laplacian_eigenmaps}, na qual $L$ é
+Sua função custo é dada pela Equação~\ref{eq:laplacian_eigenmaps}, na qual $L$ é
 a laplaciana do grafo.
 
 \begin{equation} \label{eq:laplacian_eigenmaps}
@@ -151,7 +151,7 @@ computacional do algoritmo.
 
 HOPE representa cada vértice em 2 vetores, um de entrada e um de saída, que
 denominaremos respectivamente $Y^s$ e $Y^t$.
-A função custo é dada pela equação~\ref{eq:hope}, na qual $S$ representa a matriz
+A função custo é dada pela Equação~\ref{eq:hope}, na qual $S$ representa a matriz
 de proximidade entre os nós, dada por qualquer uma das medidas escolhidas.
 O termino da otimização resulta no par de vetores, de entrada e saída, que
 representam cada um dos nós da rede.
@@ -195,7 +195,7 @@ Word2Vec~\ref{sec:w2v}: os passeios aleatórios truncados formam sequências de
 tamanho $2k + 1$, e o treinamento do algoritmo é feito de maneira a maximizar a
 probabilidade de predição do contexto a partir do vértice na posição central do
 passeio.
-A fórmula~\ref{eq:deepwalk} demonstra a função citada.
+A Equação~\ref{eq:deepwalk} demonstra a função citada.
 Dado que $v_i$ é o vértice central de um certo passeio e $\Phi$ é o mapeamento
 de um vetor em sua representação, que queremos encontrar, então:
 
@@ -206,8 +206,8 @@ de um vetor em sua representação, que queremos encontrar, então:
 O processo é feito de forma iterativa por conta de cada realização do Passeio
 Aleatório compor uma entrada do algoritmo.
 A otimização é dada por gradiente descendente da função custo $\phi$ que maximiza
-a probabilidade~\ref{eq:deepwalk}, que é apresentada na
-equação~\ref{eq:deepwalk_cost}.
+a probabilidade Equação~\ref{eq:deepwalk}, que é apresentada na
+Equação~\ref{eq:deepwalk_cost}.
 Outras adaptações propostas posteriormente ao Word2Vec para diminuir o custo
 computacional de treinamento também podem ser adotadas no Deepwalk, como
 \textit{softmax} hierárquico e \textit{negative sampling}.
@@ -216,9 +216,9 @@ computacional de treinamento também podem ser adotadas no Deepwalk, como
     \phi = -\log P(\{v_{i-k},...,v_{i-1},v_{i+1},...,v_{i+k}\}|\Phi(v_i))
 \end{equation}
 
-\subsubsection{node2vec}
+\subsubsection{Node2Vec}
 
-O node2vec~\cite{grover16} também é um algoritmo inspirado no Word2Vec.
+O Node2Vec~\cite{grover16} também é um algoritmo inspirado no Word2Vec.
 Seu processo de otimização é idêntico ao apresentado pelo Deepwalk, também
 aplicado sobre sequências de passeios aleatórios de tamanho fixo.
 A diferença entre ambos está na estratégia de passeio aleatório, que além de
@@ -241,9 +241,9 @@ No Passeio Aleatório não enviesado, a probabilidade de transição $\pi_{uv}$ 
 nó $u$ para o nó $v$ é dada por $\pi_{uv} = \frac{w_{uv}}{\sum{w_u}}$, no qual
 $w_{uv}$ é o peso da aresta entre $u$ e $v$ e $\sum{w_u}$ é o somatório dos
 pesos das arestas de $u$, neste caso operando como regularizador da probabilidade.
-Para atingir seu objetivo, node2vec multiplica a probabilidade de transição
+Para atingir seu objetivo, Node2Vec multiplica a probabilidade de transição
 original do Passeio Aleatório por um fator $\alpha(s, v)$ parametrizado pelos
-parâmetros $p$ e $q$, como mostra a equação~\ref{eq:node2vec_alpha}.
+parâmetros $p$ e $q$, como mostra a Equação~\ref{eq:node2vec_alpha}.
 Nela, $s$ representa o vértice em que o Passeio Aleatório amostrou no passo
 anterior ao passo de posição $u$, enquanto $d_{sv}$ representa a distância
 mínima entre o par de vértices $s$ e $v$.
@@ -268,7 +268,7 @@ do vértice de partida.
 Valores baixos de $q$ resultam em uma amostragem semelhante à busca em
 profundidade enquanto valores altos levam a um padrão de busca em largura.
 Resumidamente, a probabilidade de transição do passeio aleatório proposto por
-node2vec é dada pela equação~\ref{eq:node2vec_pi}.
+Node2Vec é dada pela Equação~\ref{eq:node2vec_pi}.
 
 \begin{equation} \label{eq:node2vec_pi}
     \pi(s, u, v) = \frac{w_{uv} \alpha(s,v)}{\sum_{x} w_{ux} \alpha(s,x)}
@@ -300,7 +300,7 @@ em grafos. Estas adaptações são divididos em dois tipos~\cite{zhang20}: convo
 espectrais~\cite{bruna13}\cite{defferrard16} e convoluções espaciais~\cite{kipf16}.
 A convolução espacial desenvolvida por \citet{kipf16}, chamada rede
 convolucional de grafos (GCN) se tornou uma das mais populares.
-A equação~\ref{eq:gcn_layer} define a camada de convolução usada nesse
+A Equação~\ref{eq:gcn_layer} define a camada de convolução usada nesse
 algoritmo.
 
 \begin{equation} \label{eq:gcn_layer}
