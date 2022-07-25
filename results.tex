@@ -12,7 +12,7 @@
 A etapa de coleta de dados captou aproximadamente 9,2 milhões de tweets únicos
 entre 2018 e 2019.
 Parte desses tweets foi coletada da amostragem do conjunto total de mensagens
-publicadas e outra parte da amostrada por dentre os tópicos: \textit{Libertadores,
+publicadas e outra parte da amostrada dentre os tópicos: \textit{Libertadores,
 ENEM, Amazônia} e \textit{Rock in Rio}.
 Nessa base há aproximadamente 45 milhões de retweets, fornecendo a conexão entre
 pessoas que será utilizada para montar a rede de usuários.
@@ -144,8 +144,7 @@ eficiência dos classificadores multimodais.
 
 Os primeiros classificadores textuais treinados foram os por Naïve Bayes e SVM.
 Nesse caso, ambos usaram a representação Bag-of-Words.
-O vocabulário formado a partir da base coletada é formado por um 127 mil
-palavras.
+O vocabulário formado a partir da base coletada é composto por 127 mil termos.
 O treinamento do algoritmo de Naïve Bayes multinomial foi feito utilizando
 validação cruzada por K-partições, no total de 10 partições, sob os dados de
 treinamento anotados com supervisão distante. O parâmetro de suavização foi
@@ -199,7 +198,7 @@ apresenta a matriz confusão correspondente a esse valor.
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.65]{images/nb_cm.png}
-    \caption{Matriz confusão do modelo de Naïve Bayes.}
+    \caption{Matriz confusão do modelo de Naïve Bayes operando no limiar de classificação que maximiza o índice SP.}
     \label{fig:nb_confusion}
     \end{center}
 }
@@ -261,7 +260,7 @@ por supervisão distante e a classificada manualmente.
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.65]{images/svm_cm.png}
-    \caption{Matriz confusão do modelo de SVM.}
+    \caption{Matriz confusão do modelo de SVM operando no limiar de classificação que maximiza o índice SP.}
     \label{fig:svm_confusion}
     \end{center}
 }
@@ -287,7 +286,7 @@ apresenta uma estabilidade.
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.25]{images/cnn_train.png}
-    \caption{Curvas de treinamento de classificadores por redes neurais
+    \caption{Amostras de curvas de treinamento de classificadores por redes neurais
         convolucionais.}
     \label{fig:cnn_train}
     \end{center}
@@ -310,7 +309,7 @@ realizados da rede LSTM.
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.25]{images/lstm_train.png}
-    \caption{Curvas de treinamento de classificadores por redes neurais LSTM.}
+    \caption{Amostras de curvas de treinamento de classificadores por redes neurais LSTM.}
     \label{fig:lstm_train}
     \end{center}
 }

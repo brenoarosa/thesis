@@ -233,7 +233,7 @@ treinamento é não-supervisionado, dado que tanto as entradas quanto as saídas
 modelo são obtidas diretamente dos documentos, sem anotações de classes.
 Desta forma, foi possível aplicar o algoritmo a grandes bases de dados
 mineiradas da internet.
-Esse tamanho volume de dados de treinamento foi essencial para que bons resultados
+Esse volume de dados de treinamento foi essencial para que bons resultados
 demostrados por \citet{mikolov13} fossem alcançados.
 
 Por ser a primeira representação densa de sucesso, o \textit{Word2Vec} foi
@@ -301,12 +301,11 @@ capturar significados semânticos e sintáticos das palavras, assim como o Word2
 
 ELMo~\cite{peters18}, sigla para \textit{Embeddings from Language Models}, em
 português Representações para Modelos Linguísticos, é um modelo capaz de obter
-representação de palavras, e se diferencia de modelos de representação de
-palavras como o Word2Vec por levar em consideração o contexto da palavra para
-obter sua representação, tanto durante o treinamento, quanto durante a
-inferência.
-Isto é, uma palavra que possua múltiplos sentidos terá representações diferentes
-dependendo da frase em que está inserida.
+representação de palavras, e se diferencia de modelos como o Word2Vec por levar
+em consideração o contexto da palavra para obter sua representação, tanto
+durante o treinamento, quanto durante a inferência.
+Isto é, um termo que possua múltiplos sentidos terá representações diferentes
+dependendo da frase em que está inserido.
 A ideia de utilizar o contexto da palavra para selecionar sua representação
 durante a inferência foi inspirado pelos trabalhos de \citet{peters17} e
 \citet{mccann17}.
