@@ -358,7 +358,7 @@ O aprendizado foi realizado em duas etapas: aquisição de \textit{embeddings} a
 partir de modelagem não-supervisionada do grafo; posteriormente foi realizado o
 treinamento em conjunto com os modelos textuais treinados anteriormente.
 
-As redes conjuntas compostas pelas camadas concatenadas da representação textual
+As redes conjuntas são compostas pelas camadas concatenadas da representação textual
 do \textit{tweet} com a representação do grafo do usuário, seguida de 2 camadas
 classificatórias de tamanhos respectivamente de $100$ e $32$ neurônios completamente
 conectados.
@@ -385,8 +385,7 @@ Mantiveram-se as $10$ realizações do treinamento e o tamanho do vetor de
 representação.
 Como este algoritmo não depende da matriz de adjacência, foram realizados os
 treinamentos considerando todos os usuários presentes na maior componente.
-Neste algoritmo consideramos o grafo como não-direcionado e removemos as arestas
-de um nó a si mesmo.
+Neste algoritmo consideramos o grafo como não-direcionado.
 Os parâmetros de treinamento do algoritmo foram baseados no proposto por
 \citet{grover16}.
 Os valores de parâmetro $p$ e $q$ de amostragem foram definidos em $1$.
@@ -446,7 +445,9 @@ para esse experimento.
     \includegraphics[scale=0.35]{images/experiment_results.png}
     \caption{Comparativo entre modelos textuais e multimodais apresentados nesse
              trabalho. A figura apresenta a área sob a curva ROC dos modelos
-             avaliados quando aplicados aos dados de teste.}
+             avaliados quando aplicados aos dados de teste. Os 5 modelos a esquerda
+             são os resultados dos classificadores puramente textuais enquanto os 6
+             modelos a direita são as combinações avaliadas dentre os modelos multimodais.}
     \label{fig:experiment_results}
     \end{center}
 }
