@@ -3,7 +3,7 @@
 
 Este capítulo descreve a elaboração de classificadores de sentimento de tweets
 usando técnicas de processamento de linguagem natural e ciência de redes.
-Serão detalhados as etapas de coleta de base de dados, as figuras de mérito
+Serão detalhadas as etapas de coleta de base de dados, as figuras de mérito
 utilizadas nas avaliações dos modelos e o processo de treinamento dos
 algoritmos.
 
@@ -27,11 +27,12 @@ Tendo objetivo de diminuir o custo de desenvolvimento do classificador textual s
 adotado o método de anotação distante descrito por~\citet{go09} para formação da
 base de dados de treinamento, usando emoticons como característica de anotação.
 Serão selecionados manualmente emoticons positivos e negativos dentre os mais
-frequentes nos textos captados.
+frequentes.
 As mensagens que possuírem um ou mais dos emoticons selecionados serão
 categorizadas com a classe correspondente na base de treinamento.
 Para remover possíveis ambiguidades, serão removidos da base os textos que
-possuírem mais do que uma categoria.
+possuírem mais do que uma categoria, ou seja, \textit{tweets} contendo emoticons
+positivos e negativos.
 Além disso, os emoticons utilizados na supervisão distante serão removidos dos
 textos de treinamento para evitar a introdução de viés no classificador.
 
@@ -40,13 +41,14 @@ Esta será utilizada para avaliar os modelos treinados com os métodos
 semi-supervisionados.
 Para esta finalidade, serão reservadas mensagens de um conjunto de usuários
 selecionados aleatoriamente para compor essa base.
-Esta separação é importante para evitar viés pois apesar de os métodos de
-representação de usuários serem não supervisionados, como será descrito na
-Seção~\ref{sec:development}, essa representação será utilizada no treinamento do
-classificador.
+Esta separação é importante para evitar viés na representação de grafos de pessoas.
 As mensagens destes usuários serão disponibilizadas para anotação utilizando a
 ferramenta Doccano~\footnote{https://github.com/doccano/doccano}.
-Por fim, as mensagens anotadas comporão a base de dados de teste.
+Cada \textit{tweet} será classificado entre positivo, negativo ou neutro.
+Neste trabalho, as mensagens neutras serão descartadas visto que a
+base de treino, formada por classificação distante, é composta apenas das
+classes positivas e negativas.
+Conluindo assim as mensagens que comporão a base de dados de teste.
 
 \section{Figuras de Mérito}
 
@@ -105,16 +107,16 @@ selecionadas 10 partições.
 
 Posteriormente será treinado o classificador de SVM, também com representação de
 Bag-of-Words.
-Dado o grande volume de dados e a complexidade computacional será utilizado a
+Dado o grande volume de dados e a complexidade computacional será utilizada a
 variação de SVM por método de gradiente como proposto por \citet{suykens99}.
 Neste caso, será utilizada regularização $L_2$, assim como no classificador de
 Naïve Bayes, este parâmetro será selecionado por validação cruzada de
 K-partições de 10 partições, de maneira a maximizar a AUC.
-Tanto o modelo de Naïve Bayes quanto o SVM foram treinados utilizando as
-implementações disponibilizadas pela biblioteca Scikit-Learn~\cite{sklearn11}.
+Tanto o modelo de Naïve Bayes quanto o SVM serão treinados utilizando a
+biblioteca Scikit-Learn~\cite{sklearn11}.
 
-Para os modelos CNN e LSTM usaremos como representação o Word2Vec.
-O treinamento do Word2Vec será feito a partir das mensagens amostradas do
+Para os modelos neurais CNN e LSTM usaremos como representação o Word2Vec.
+Desta forma, o treinamento do Word2Vec será feito a partir das mensagens amostradas do
 Twitter, as mesmas mensagens utilizadas para formar a base de dados de treinamento
 por supervisão distante, seguindo os mesmos pré-processamentos.
 O modelo será treinado com o método \textit{continous bag-of-words} com
@@ -123,13 +125,13 @@ dimensionalidade $100$ do vetor de representação.
 O treinamento será feito utilizando a biblioteca Gensim~\cite{rehurek10}.
 
 O treinamento dos classificadores de \textit{Deep Learning} por CNN e LSTM serão
-treinados de formas similares.
+similares.
 Ambos terão como entrada os textos representados por Word2Vec.
 Como as redes convolucionais dependem de tamanhos fixos de entrada, as mensagens
 serão limitados a um tamanho máximo de \textit{tokens} definido pelo conjunto de
 dados de treino.
-As mensagens de tamanho menor que o tamanho máximo definido serão preenchidas
-com \textit{tokens} de espaçamento compostos de vetores nulos.
+As mensagens de tamanho menor que o tamanho máximo serão preenchidas
+com \textit{tokens} de espaçamento, sendo estes vetores nulos.
 
 Nesses classificadores, além das camadas convolucionais e LSTM, respectivamente,
 uma camada será adicionada com um único neurônio para realização da
@@ -144,17 +146,17 @@ cada uma como 100 filtros convolucionais com tamanhos respectivamente de 3, 4 e
 5 tokens.
 O classificador de LSTM, por sua vez, conterá duas camadas bidirecionais em
 série de 100 neurônios cada.
-Ambos os modelos utilizaram \textit{dropout} durante o treinamento com
-probabilidade de 50\% de desligamento do neurônio e regularização L2 de fator
-$10^{-3}$.
+Ambos os modelos utilizaram \textit{dropout} com probabilidade de 50\% de
+desligamento do neurônio e regularização L2 de fator $10^{-3}$.
 Serão realizados $10$ treinamentos de cada modelos, dado que o treinamento de
 redes neurais é propenso a estagnar em mínimos locais.
 Como estes métodos tem alto custo computacional, não será utilizada a validação
 de K-partições.
 Será selecionado aleatoriamente um conjunto de validação composto por 20\% dos
-dados de treinamento, sendo este usado para seleção dos hiperparâmetros.
+dados de treinamento.
 Para reduzir o efeito de \textit{overfitting} será aplicado o \textit{early
-stopping}.
+stopping} utilizando o conjunto de validação como referência de performance
+dos modelos.
 
 Por fim, será avaliada a representação de palavras pela técnica ELMo.
 Como este modelo contêm um número elevado de parâmetros, será utilizado um
@@ -165,11 +167,12 @@ O modelo gera vetores de representações de tamanho $1024$ e foi treinado com
 duas camadas.
 Será utilizada apenas a camada superior do modelo, dado que para tarefa de
 análise de sentimento se faz mais relevante a informação semântica das mensagens.
-Em conjunto com essa representação, será utilizado o modelo de CNN para
-classificação do texto.
-Este seguirá o mesmo método do anterior, limitando as mensagens em tamanho,
-preenchendo com vetores nulos e otimizando hiperparâmetros por busca em
-\textit{grid}.
+Em conjunto com essa representação, a classificação será feita por um modelo de
+redes convolucionais igual ao aplicado com Word2Vec, também incluindo um único
+neurônios de saída.
+Esta combinação seguirá o mesmo método anterior, limitando as mensagens em tamanho,
+preenchendo espaços vazios com vetores nulos e separando 20\% da base de treinamento como
+conjunto de validação para o \textit{early stopping} e acompanhamento das métricas.
 
 Em virtude do alto custo computacional do modelo BERT apresentado no
 Capítulo~\ref{chapter:nlp} não será possível o treinamento do mesmo para
@@ -225,7 +228,7 @@ Este será treinado com parâmetros fixos.
 Os valores de $p$ e $q$ serão $1$.
 Os passeios aleatórios terão $80$ passos e serão realizados $10$ inicializações
 aleatórias por cada nó.
-O treinamento usará janelas de contexto de tamanho $10$ e serão treinados por
+O treinamento usará janelas de contexto de tamanho $10$ e ocorrerá por
 $3$ épocas.
 
 Por fim, será avaliado o método de redes convolucionais aplicadas a grafos.
@@ -240,26 +243,33 @@ Entretanto, essas abordagens não serão exploradas nesse trabalho pela
 indisponibilidade desses dados na base coletada. Usaremos como característica
 o grau do nó na rede.
 
-Desta forma, haveremos treinado os classificadores textuais e as representações
-dos usuários, restando portanto a testar se a combinação dos mesmos dos mesmos
-infere em algum aumento de performance.
-Serão retirados os neurônios da última camada, a camada de classificação, dos
-modelos de CNN e LSTM já treinados.
-Serão concatenadas as camadas restantes dos modelos textuais com as
-representações de usuários e adicionada uma nova camada de classificação.
+Desta forma, serão treinado os classificadores textuais e as representações
+dos usuários, restando portanto avaliar se a combinação dos mesmos infere
+em algum aumento de performance do classificador.
+Para o treinamento dos modelos multimodais serão retirados os neurônios da última
+camada, a camada de classificação, dos modelos de CNN e LSTM já treinados.
+Posteriormente, serão concatenadas as camadas restantes dos modelos textuais com as
+representações de usuários e adicionada duas nova camada de neurônios \textit{feed-forward}
+para classificação.
 A figura~\ref{fig:network_composition} demonstra a arquitetura final resultante
-da composição dos dois classificadores.
-O modelo será treinado novamente nos dados anotados por supervisão distante, com
-os pesos inicializados pelos modelos pré-treinados.
+da composição dos classificadores multimodais.
+O modelo será treinado também nos dados anotados por supervisão distante, com
+os pesos previamente inicializados pelos treinamentos anteriores.
 Concluindo-se, portanto, o conjunto de experimentos realizados nesse trabalho.
 
 \begin{figure}[h]
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.45]{images/network_composition.png}
-    \caption{Arquitetura composto pela combinação de classificadores de
-        informação textual e de usuário concatenados. Adicionou-se também uma
-        camada de neurônios que será treinado para combinar as representações.}
+    \caption{Representação da arquitetura multimodal composta pela combinação de
+        classificadores de informação textual e de usuário concatenados.
+        Em vermelho temos a representação da informação textual de um \textit{tweet}
+        obtida pela camada de saída das redes CNN ou LSTM treinadas na etapa anterior,
+        desconsiderando-se o neurônio de saída das redes.
+        Em azul mostramos as representações do usuário autor do \textit{tweet} obtida
+        pelos modelos de redes.
+        A direita observamos as duas camadas \textit{feed-forward} responsáveis pela
+        classificação.}
     \label{fig:network_composition}
     \end{center}
 }
