@@ -3,8 +3,8 @@
 
 Neste capitulo serão apresentadas as técnicas de Processamento de Linguagem
 Natural que compõem um classificador textual, como a de análise de sentimento.
-Esse processo é comumente formado por 3 fases, como demostrado no
-Diagrama~\ref{fig:nlp_diagram}.
+Esse processo é comumente formado por 3 fases, como demostrado na
+Figura~\ref{fig:nlp_diagram}.
 As seções a seguir descrevem cada uma destas delas.
 
 \begin{figure}[h]
@@ -22,8 +22,8 @@ As seções a seguir descrevem cada uma destas delas.
 
 A primeira etapa aplicada para a elaboração de modelos de NLP é o
 pré-processamento.
-Essa fase consiste na limpeza e preparação dos dados, visando a melhorar a
-performance do classificador, seja retirando ruídos dos textos, reduzindo o
+Essa fase consiste na limpeza e preparação dos dados, visando a melhorar o
+desempenho do classificador, seja retirando ruídos dos textos, reduzindo o
 tamanho do vocabulário ou formatando o documento de maneira a facilitar a modelagem.
 
 O volume do vocabulário adotado costuma ser limitado tanto pelos recursos
@@ -36,7 +36,7 @@ classificadores.
 Como a maior parte dos modelos de NLP trabalham a nível de palavra, é necessário
 separar o documento em frases, com algoritmos como o Punkt~\cite{kiss06}, e,
 posteriormente, em palavras.
-Esse processo, chamado \textit{tokenização}, precisa ser robustos a abreviações,
+Esse processo, chamado \textit{tokenização}, precisa ser robusto a abreviações,
 números e outras características específicas do idioma ao qual será aplicado,
 como a contração de palavras em português.
 Se tratando de redes sociais, também é relevante tratar os links, as
@@ -134,7 +134,7 @@ mensagens como matrizes compostas de vetores \textit{One-Hot} de suas palavras.
 Esta é feita pela soma desses mesmos vetores~\cite{manning10}.
 Portanto, a representação final é dada por um único vetor, de tamanho
 correspondente ao do vocabulário utilizado.
-Esta técnica também tem a vantagem de transformar documentos de tamanho variados
+Esta técnica também tem a vantagem de transformar documentos de tamanhos variados
 em vetores de dimensões fixas, fator que precisa ser contornado em codificações
 baseadas em palavras.
 
@@ -191,7 +191,7 @@ classificação por modelos que levem em conta o contexto de cada palavra.
 \subsection{Word2Vec} \label{sec:w2v}
 
 \textit{Word2Vec}~\cite{mikolov13} foi uma das primeiras técnicas de
-representação densa de palavras amplamente adota pela indústria e pela academia.
+representação densa de palavras amplamente adotada pela indústria e pela academia.
 Representações densas são aquelas em que cada palavra é transformada em um vetor
 de números reais de baixa dimensionalidade, tipicamente dezenas ou poucas
 centenas de dimensões.

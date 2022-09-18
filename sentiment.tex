@@ -34,7 +34,7 @@ Portanto, mesmo as técnicas mais simples como as baseadas em dicionário, como
 serão apresentadas na Seção~\ref{sec:dictionary}, podem obter resultados
 suficientemente bons.
 \citet{taboada11} exemplifica a extração de opinião de documentos a partir de
-técnicas de dicionário aplicadas em diferentes a bases de dados de avaliações de
+técnicas de dicionário aplicadas a diferentes bases de dados de avaliações de
 produtos.
 Por sua vez, \citet{das07} realizam predições de valores de ações a partir de
 análise de sentimento das mensagens de um fórum online de investidores.
@@ -99,6 +99,8 @@ do Twitter que demonstram esses problemas.
 % TODO alterar exemplos para nao ficar igual anterior
 \begin{table}[h]
     \begin{center}
+        \caption{Dificuldades encontradas na classificação de sentimento de
+                 \textit{tweets}.}
         \begin{tabular}{| l | p{10cm} |}
         \hline
         \textbf{Fator} & \textbf{\textit{Tweet}} \\ \hline
@@ -106,8 +108,6 @@ do Twitter que demonstram esses problemas.
         Ambiguidade & Estou igualmente fascinada e enojada. \\ \hline
         Multiplicidade de idiomas & Macarrão de arroz is the new miojo. \\ \hline
         \end{tabular}
-        \caption{Dificuldades encontradas na classificação de sentimento de
-                 \textit{tweets}.}
         \label{tab:sentiment_complexity}
     \end{center}
 \end{table}
@@ -195,6 +195,8 @@ dados anotada manualmente, sendo esta de apenas 359 \textit{tweets}.
 
 \begin{table}[h]
     \begin{center}
+        \caption{Emoticons selecionados por \citet{go09} para supervisão
+        distante de \textit{tweets}.}
         \begin{tabular}{| c c |}
         \hline
         \textbf{Emoticons Positivo} & \textbf{Emoticons Negativos} \\ \hline
@@ -204,14 +206,14 @@ dados anotada manualmente, sendo esta de apenas 359 \textit{tweets}.
         :D& \\
         =)& \\ \hline
         \end{tabular}
-        \caption{Emoticons selecionados por \citet{go09} para supervisão
-        distante de \textit{tweets}.}
         \label{tab:supervision_emoticons}
     \end{center}
 \end{table}
 
 \begin{table}[h]
     \begin{center}
+        \caption{Exemplos de \textit{tweets} anotados por supervisão distante
+        com emoticons selecionados por \citet{go09}.}
         \begin{tabular}{| p{10cm} | c |}
         \hline
         \textbf{\textit{Tweet}} & \textbf{Sentimento} \\ \hline
@@ -220,8 +222,6 @@ dados anotada manualmente, sendo esta de apenas 359 \textit{tweets}.
         To com um mal estar tão grande no corpo desde ontem :-( zero forças & Negativo\\ \hline
         Muito feliz com minha nova tattoo :D & Positivo \\ \hline
         \end{tabular}
-        \caption{Exemplos de \textit{tweets} anotados por supervisão distante
-        com emoticons selecionados por \citet{go09}.}
         \label{tab:supervision_tweets}
     \end{center}
 \end{table}
@@ -238,7 +238,7 @@ Por exemplo, dentro do conjunto de \textit{tweets} positivos, a subclasse de
 \textit{tweets} irônicos positivos pode não conter \textit{emoticons} e assim
 não estar presente no conjunto de treinamento.
 Mesmo com essas limitações, a anotação automática foi fundamental para alavancar
-a performance dos classificadores de sentimento de redes sociais.
+o desempenho dos classificadores de sentimento de redes sociais.
 
 % algumas referencias em Joint Segmentation and Classification Framework for Sentence Level Sentiment Classification
 
@@ -259,7 +259,7 @@ denominado \textit{GloVe} e mais recentemente \textit{ELMo}, produzido por
 A disposição de grandes bases de dados e as representações densas foram a
 condição \textit{sine qua non} para viabilizar a aplicação de modelos de
 \textit{Deep Learning} em análise de sentimento.
-O Aprendizado Profundo foi responsável por romper barreiras de performance
+O Aprendizado Profundo foi responsável por melhorar os resultados
 de aprendizado de máquina em diversas áreas~\cite{lecun15}, como classificação
 de imagem~\cite{krizhevsky12}, reconhecimento de fala~\cite{hinton12a} e detecção
 de doenças~\cite{esteva17}.
@@ -276,7 +276,7 @@ modelo recursivo.
 
 Entretanto, a mistura entre diferentes modalidades de comunicação (texto, imagem,
 video, etc.) gera uma dificuldade adicional para análise das mensagens.
-O texto presente em um \textit{tweet} que possuí uma imagem pode fazer
+O texto presente em um \textit{tweet} que possui uma imagem pode fazer
 interlocução com a mesma.
 Uma mensagem enviada por um usuário pode ter sentido contrário a mesma mensagem
 quando comunicada por alguém que pertença a um grupo opositor.

@@ -27,6 +27,7 @@ positivos.
 
 \begin{table}[h]
     \begin{center}
+        \caption{Emoticons selecionados para aplicação de supervisão distante.}
         \begin{tabular}{| l | c |}
         \hline
         \textbf{Classe} & \textbf{Emoticons} \\ \hline
@@ -77,7 +78,6 @@ positivos.
             \includegraphics[height=1em]{images/emojis/1F630}
         \\ \hline
         \end{tabular}
-        \caption{Emoticons selecionados para aplicação de supervisão distante.}
         \label{tab:emoticons}
     \end{center}
 \end{table}
@@ -105,7 +105,7 @@ são usuários que não receberam nenhum retweets.
 A Figura~\ref{fig:graph_distance} mostra a distribuição de distância entre os
 nós da rede, que tem média $8,8$.
 Conclui-se portanto que dentre os dados captados formou-se uma rede com número
-significativo de usuários e possuí características comumente observadas em redes
+significativo de usuários e possui características comumente observadas em redes
 como a formação de \textit{hubs}, pequena distância média e grande componente
 conexa.
 
@@ -185,7 +185,7 @@ de $0,801$ de área sob curva ROC.
 \end{figure}
 
 Vê-se que há uma diferença de performance entre as diferentes bases, que
-sobressaí a dispersão observada nas partições do treinamento.
+sobressai a dispersão observada nas partições do treinamento.
 % Este aspecto da supervisão distante será discutido no Capítulo~\ref{chapter:conclusion}.
 % TODO: comentar mais pra frente, mas ainda nesse capitulo.
 Concluindo a análise do modelo de Naïve Bayes, utilizou-se os dados de treino
@@ -230,7 +230,7 @@ treino para o intervalo de parâmetro testado.
 
 Observamos que o valor máximo obtido de AUC nos dados de treino foi
 $0,904 \pm 0,001$, para o fator de regularização $7\times10^{-5}$.
-Porém, ao aplicar o modelo aos dados de teste, a performance do modelo cai
+Porém, ao aplicar o modelo aos dados de teste, o desempenho do modelo cai
 consideravelmente, como vemos na Figura~\ref{fig:svm_roc}, com $0,647$ de área
 da curva ROC.
 
@@ -414,7 +414,7 @@ O modelo foi treinado até a finalização por \textit{early stopping}.
 
 Concluímos os experimentos com a Figura~\ref{fig:experiment_results}
 consolidando os resultados obtidos por todos experimentos.
-Há diversas análises há serem feitas a partir destes resultados.
+Há diversas análises a serem feitas a partir destes resultados.
 Primeiramente, observamos que ao contrario do que esperávamos baseados nos
 trabalhos referenciados no Capítulo~\ref{chapter:nlp}, entre os modelos
 puramente textuais vemos que os baseados em redes neurais obtiveram resultados
@@ -455,7 +455,7 @@ para esse experimento.
 \end{figure}
 
 Adicionalmente, observa-se que acrescer as representações dos vértices de
-usuários resultou em performance variadas para os diferentes modelos, não
+usuários resultou em desempenhos variados para os diferentes modelos, não
 havendo conclusão clara sobre sua eficiência.
 Comparando os resultados a partir do modelo de CNN, vemos que os experimentos
 que incluíram os dados do grafo tiveram média de AUC acima do valor médio
