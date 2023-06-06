@@ -30,7 +30,7 @@
 %% Author(s): Vicente Helano,
 %%            George Ainsworth
 %% 
-%% \CheckSum{1416}
+%% \CheckSum{1620}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -48,21 +48,22 @@
 %%   Right brace   \}     Tilde         \~}
 %%
 \def\filename{coppe.dtx}
-\def\fileversion{v2.2}
-\def\filedate{2011/02/08}
+\def\fileversion{v3.1}
+\def\filedate{2022/03/07}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{coppe}[\filedate\ \fileversion\ COPPE Dissertations and Thesis]
 \LoadClass[12pt,a4paper,oneside]{book}
 \RequirePackage[sort&compress]{natbib}
 \RequirePackage{hyphenat}
 \RequirePackage{lastpage}
-\RequirePackage[english,brazil]{babel}
 \RequirePackage{ifthen}
 \RequirePackage{graphicx}
 \RequirePackage{setspace}
 \RequirePackage{tabularx}
+\RequirePackage{etoolbox}
 \RequirePackage{eqparbox}
 \RequirePackage{ltxcmds}
+\RequirePackage[T1]{fontenc}
 \RequirePackage[a4paper,bindingoffset=0.0cm,vcentering=true,%
 top=2.5cm,bottom=2.5cm,left=3.0cm,right=3.0cm]{geometry}
 \def\CoppeTeX{{\rm C\kern-.05em{\sc o\kern-.025em p\kern-.025em
@@ -70,6 +71,8 @@ p\kern-.025em e}}\kern-.08em
 T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
 \newboolean{maledoc}
 \setboolean{maledoc}{false}
+\newif\if@english\@englishfalse
+\DeclareOption{english}{\@englishtrue}
 \DeclareOption{msc}{%
   \newcommand{\@degree}{M.Sc.}
   \newcommand{\@degreename}{Mestrado}
@@ -83,6 +86,15 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \newcommand{\@degreename}{Doutorado}
   \newcommand{\local@degname}{Doutor}
   \newcommand{\foreign@degname}{Doctor}
+  \setboolean{maledoc}{true}
+  \newcommand\local@doctype{Exame de Qualifica{\c c}{\~ a}o}
+  \newcommand\foreign@doctype{Qualifying Exam}
+}
+\DeclareOption{mscexam}{%
+ \newcommand{\@degree}{M.Sc.}
+  \newcommand{\@degreename}{Mestrado}
+  \newcommand{\local@degname}{Mestre}
+  \newcommand{\foreign@degname}{Master}
   \setboolean{maledoc}{true}
   \newcommand\local@doctype{Exame de Qualifica{\c c}{\~ a}o}
   \newcommand\foreign@doctype{Qualifying Exam}
@@ -103,6 +115,14 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \doublespacing
 }
 \ProcessOptions\relax
+\if@english
+  \RequirePackage[english]{babel}
+\else
+  \RequirePackage[english,brazil]{babel}
+\fi
+\addto{\captionsenglish}{%
+  \renewcommand{\bibname}{References}
+}
 \newcommand\department[1]{%
   \ifthenelse{\equal{#1}{PEB}}
     {\global\def\local@deptname{Engenharia Biom{\' e}dica}
@@ -140,6 +160,9 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \ifthenelse{\equal{#1}{PET}}
     {\global\def\local@deptname{Engenharia de Transportes}
      \global\def\foreign@deptname{Transportation Engineering}}{}
+  \ifthenelse{\equal{#1}{PENT}}
+    {\global\def\local@deptname{Engenharia de Nanotecnologia}
+      \global\def\foreign@deptname{Nanotechnology Engineering}}{}
 }
 \renewcommand\title[1]{%
   \global\def\local@title{#1}%
@@ -161,7 +184,7 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
 }
 \newcount\@examiner\@examiner0
 \newcommand\examiner[3]{%
-  \global\@namedef{CoppeExaminer:\expandafter\the\@examiner}{#1\ #2, #3}
+  \global\@namedef{CoppeExaminer:\expandafter\the\@examiner}{#1\ #2}
   \global\advance\@examiner by 1
 }
 \renewcommand\author[2]{%
@@ -182,6 +205,20 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
 \newcommand\keyword[1]{%
   \global\@namedef{CoppeKeyword:\expandafter\the\c@keywords}{#1}
   \global\addtocounter{keywords}{1}
+}
+\newcommand\freeconfig[6]{%
+\providecommand\@degree{}
+\renewcommand\@degree{#1}
+\providecommand\@degreename{}
+\renewcommand\@degreename{#2}
+\providecommand\local@degname{}
+\renewcommand\local@degname{#3}
+\providecommand\foreign@degname{}
+\renewcommand\foreign@degname{#4}
+\providecommand\local@doctype{}
+\renewcommand\local@doctype{#5}
+\providecommand\foreign@doctype{}
+\renewcommand\foreign@doctype{#6}%
 }
 \renewcommand\frontmatter{%
   \cleardoublepage
@@ -218,7 +255,12 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \end{flushleft}
   \vspace{1.05cm}
   \begin{center}
-  \nohyphens{\MakeUppercase\local@title}\par
+  \nohyphens{%
+    \if@english
+      \MakeUppercase\foreign@title
+    \else
+      \MakeUppercase\local@title
+    \fi}\par
   \vspace*{3cm}
   \nohyphens{\@authname\ \@authsurn}\par
   \end{center}
@@ -260,25 +302,59 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \global\let\and\relax}
 \newcommand\makefrontpage{%
   \begin{center}
-    \sloppy\nohyphens{\MakeUppercase\local@title}\par
+    \sloppy\nohyphens{
+      \if@english
+        \MakeUppercase\foreign@title
+      \else
+        \MakeUppercase\local@title
+      \fi}\par
     \vspace*{7mm}
     {\@authname\ \@authsurn}\par
   \end{center}\par
   \vspace*{4mm}
   \frontpage@maintext
-  \vspace*{8mm}
-  \noindent\local@approvedname:\par
-     \begin{center}
-  \begin{flushright}
-        \count1=0
-        \@whilenum \count1<\@examiner \do {
-            \vskip26\p@ \baselineskip12pt
-        \eqmakebox[signture@list][c]{\hrulefill}\\
-        \eqmakebox[signture@list][c]{%
-            \ \ \ \protect\csname CoppeExaminer:\the\count1 \endcsname\ \ \ }\\
-            \advance\count1 by 1}
-  \end{flushright}
-     \end{center}
+  \vspace*{16mm}
+  \nohyphens{%
+  \noindent\begin{tabularx}{\textwidth}[b]{@{}l@{ }>{\raggedright\arraybackslash}X@{}}
+    \local@advisorstring: &
+    \count1=0
+    \toks@={}
+    \@whilenum \count1<\@advisor \do{%
+    \ifcase\count1 % same as \ifnum0=\count1
+      \toks@=\expandafter{\csname CoppeAdvisorName:\the\count1%
+        \expandafter\endcsname\expandafter\space%
+        \csname CoppeAdvisorSurname:\the\count1\endcsname\\}
+    \else
+      \toks@=\expandafter\expandafter\expandafter{%
+        \expandafter\the\expandafter\toks@%
+        \expandafter&\expandafter\space%
+        \csname CoppeAdvisorName:\the\count1\expandafter\endcsname%
+        \expandafter\space\csname CoppeAdvisorSurname:\the\count1\endcsname\\
+      }%
+    \fi
+    \advance\count1 by 1}
+    \the\toks@
+  \end{tabularx}\par
+  \vspace*{20mm}
+  \noindent\begin{tabularx}{\textwidth}[b]{@{}l@{ }>{\raggedright\arraybackslash}X@{}}
+    Aprovada por: &
+    \count1=0
+    \toks@={}
+    \@whilenum \count1<\@examiner \do{%
+    \ifcase\count1 % same as \ifnum0=\count1
+      \toks@=\expandafter{\csname CoppeExaminer:\the\count1%
+        \expandafter\endcsname\expandafter\\}
+    \else
+      \toks@=\expandafter\expandafter\expandafter{%
+        \expandafter\the\expandafter\toks@%
+        \expandafter&\expandafter\space%
+        \csname CoppeExaminer:\the\count1\expandafter\endcsname%
+        \expandafter\space\\
+      }%
+    \fi
+    \advance\count1 by 1}
+    \the\toks@
+    \end{tabularx}}\par
   \vspace*{\fill}
   \frontpage@bottomtext}
 \newcommand\coppe@hypersetup{%
@@ -329,7 +405,12 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
       \setlength{\parindent}{5mm}
       \noindent\sloppy\nohyphens\@authsurn,
       \nohyphens\@authname\par
-      \nohyphens{\local@title/\@authname\ \@authsurn. -- \local@cityname:
+      \nohyphens{%
+        \if@english
+          \foreign@title%
+        \else
+          \local@title%
+        \fi/\@authname\ \@authsurn. -- \local@cityname:
       UFRJ/COPPE, \number\year.}\par
       \pageref{front:pageno},
       \pageref{LastPage}
@@ -361,7 +442,7 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
       \end{tabularx}}\par
       \nohyphens{\local@doctype\ ({\MakeLowercase\@degreename}) --
       UFRJ/COPPE/Programa de \local@deptname, \number\year.}\par
-      \bibname: p. \pageref{bib:begin} -- \pageref{bib:end}.\par
+      Refer{\^ e}ncias Bibliogr{\' a}ficas: p. \pageref{bib:begin} -- \pageref{bib:end}.\par
       \count1=0
       \count2=1
       \nohyphens{\@whilenum \count1<\value{keywords} \do {%
@@ -506,25 +587,26 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
 \def\makelosymbols{%
   \newwrite\@losfile
   \immediate\openout\@losfile=\jobname.syx
-  \def\symbl{\@bsphack\begingroup
-             \@sanitize
-             \@wrlos}\typeout
+  \newcommand\symbl[3][]{\@bsphack\begingroup
+  \ifstrempty{##1}{\def\@tempsymbl{##2=}}{\def\@tempsymbl{##1=}}%
+             \@sanitize%
+             \@wrlos{\@tempsymbl}{##2}{##3}}\typeout%
   {Writing index of symbols file \jobname.syx}%
-  \let\makelosymbols\@empty
-}
+  \let\makelosymbols\@empty%
+}%
 \@onlypreamble\makelosymbols
 \AtBeginDocument{%
 \@ifpackageloaded{hyperref}{%
-  \def\@wrlos#1#2{%
+  \newcommand\@wrlos[3]{%
     \protected@write\@losfile{}%
-      {\string\indexentry{[#1] #2|hyperpage}{\thepage}}%
-    \endgroup
+      {\string\indexentry{#1[#2] #3|hyperpage}{\thepage}}%
+    \endgroup%
     \@esphack}}{%
-  \def\@wrlos#1#2{%
+  \newcommand\@wrlos[3]{%
     \protected@write\@losfile{}%
-      {\string\indexentry{[#1] #2}{\thepage}}%
-    \endgroup
-    \@esphack}}}
+      {\string\indexentry{#1[#2] #3}{\thepage}}%
+    \endgroup%
+    \@esphack}}}%
 \newcommand\printloabbreviations{%
 \renewcommand\glossaryname{\listabbreviationname}%
 \@input@{\jobname.lab}}
@@ -604,6 +686,16 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
        {\@latex@warning{Empty `thebibliography' environment}}%
        \coppe@bibEnd
       \endlist}
+\newlength{\recuolongquote}%
+\setlength{\recuolongquote}{4cm}%
+\newenvironment*{longquote}[1][default]{%
+\list{}%
+\footnotesize%
+\addtolength{\leftskip}{\recuolongquote}%
+\item[]%
+\singlespacing%
+\ifthenelse{\not\equal{#1}{default}}{\itshape\selectlanguage{#1}}{}%
+}{\endlist}%
 \newenvironment{theglossary}{%
   \if@twocolumn%
     \@restonecoltrue\onecolumn%
@@ -639,9 +731,15 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \columnsep 35\p@
   \let\item\@idxitem}
   {\if@restonecol\onecolumn\else\clearpage\fi}
-\newcommand\glossaryname{Glossary}
-\newcommand\listabbreviationname{Lista de Abreviaturas}
-\newcommand\listsymbolname{Lista de S{\' i}mbolos}
+\if@english
+  \newcommand\listabbreviationname{List of Abbreviations}
+  \newcommand\listsymbolname{List of Symbols}
+  \newcommand\glossaryname{Glossary}
+\else
+  \newcommand\listabbreviationname{Lista de Abreviaturas}
+  \newcommand\listsymbolname{Lista de S{\' i}mbolos}
+  \newcommand\glossaryname{Gloss{\' a}rio}
+\fi
 \newcommand\local@advisorstring{Orientador}
 \newcommand\foreign@advisorstring{Advisor}
 \ifthenelse{\boolean{maledoc}}{%
@@ -667,7 +765,7 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \noindent {\MakeUppercase\local@doctype}
   \ifthenelse{\boolean{maledoc}}{SUBMETIDO}{SUBMETIDA}
   \sloppy\nohyphens{AO CORPO DOCENTE DO INSTITUTO ALBERTO LUIZ COIMBRA
-  DE P{\' O}S-GRADUA{\c C}{\~ A}O E PESQUISA DE ENGENHARIA (COPPE) DA
+  DE P{\' O}S-GRADUA{\c C}{\~ A}O E PESQUISA DE ENGENHARIA DA
   UNIVERSIDADE FEDERAL DO RIO DE JANEIRO COMO PARTE DOS REQUISITOS
   NECESS{\' A}RIOS PARA A OBTEN{\c C}{\~ A}O DO GRAU DE
   {\MakeUppercase\local@degname} EM CI{\^E}NCIAS EM

@@ -1,6 +1,6 @@
 %
 % This is file `coppe-unsrt.bst',
-% A modification of `unsrtnat.bst' for use with natbib package 
+% A modification of `unsrtnat.bst' for use with natbib package
 %
 % Numbered BibTeX style for using with CoppeTeX package.
 % It is Natbib compatible.
@@ -219,7 +219,7 @@ FUNCTION {format.names}
 		{
 		  numnames #3 >
 		    {
-			", " * "\MakeLowercase{et~al.}" * 
+			", " * "\MakeLowercase{et~al.}" *
 			#1 'namesleft :=
 		    }
 		    { ", " * t * }
@@ -279,14 +279,14 @@ FUNCTION {format.issn}
 FUNCTION {format.url}
 { url empty$
     { "" }
-    { new.block "Dispon{\' i}vel em: \textless\url{" url * "}\textgreater " * }
+    { new.block "Available at: \textless\url{" url * "}\textgreater " * }
   if$
 }
 
 FUNCTION {format.access}
 { access empty$
     { "" }
-    { new.block "Acesso em: " access * }
+    { new.block "Acessed in: " access * }
   if$
 }
 
@@ -348,7 +348,7 @@ FUNCTION {format.full.names}
               if$
               t "others" =
                 { " et~al." * }
-                { " e " * t * }
+                { " and " * t * }
               if$
             }
           if$
@@ -609,7 +609,7 @@ FUNCTION {format.chapter.pages}
 { chapter empty$
     'format.pages
     { type empty$
-        { "cap." }
+        { "chap." }
         { type "l" change.case$ }
       if$
       chapter tie.or.space.connect
@@ -653,7 +653,7 @@ FUNCTION {format.thesis.type}
 
 FUNCTION {format.tr.number}
 { type empty$
-    { "Relat{\'o}rio T{\'e}cnico" }
+    { "Technical Report" }
     'type
   if$
   number empty$
@@ -962,7 +962,7 @@ FUNCTION {mastersthesis}
   new.block
   format.btitle "title" output.check
   new.block
-  "Tese de Mestrado" format.thesis.type output.nonnull
+  "Masters Thesis" format.thesis.type output.nonnull
   school "school" output.check
   address output
   format.date "year" output.check
@@ -999,7 +999,7 @@ FUNCTION {phdthesis}
   new.block
   format.btitle "title" output.check
   new.block
-  "Tese de Doutorado" format.thesis.type output.nonnull
+  "Ph.D. Thesis" format.thesis.type output.nonnull
   school "school" output.check
   address output
   format.date "year" output.check
@@ -1066,29 +1066,29 @@ FUNCTION {unpublished}
 
 FUNCTION {default.type} { misc }
 
-MACRO {jan} {"jan."}
+MACRO {jan} {"Jan."}
 
-MACRO {feb} {"fev."}
+MACRO {feb} {"Feb."}
 
-MACRO {mar} {"mar."}
+MACRO {mar} {"Mar."}
 
-MACRO {apr} {"abr."}
+MACRO {apr} {"Apr."}
 
-MACRO {may} {"maio"}
+MACRO {may} {"May"}
 
-MACRO {jun} {"jun."}
+MACRO {jun} {"Jun."}
 
-MACRO {jul} {"jul."}
+MACRO {jul} {"Jul."}
 
-MACRO {aug} {"ago."}
+MACRO {aug} {"Aug."}
 
-MACRO {sep} {"set."}
+MACRO {sep} {"Sep."}
 
-MACRO {oct} {"out."}
+MACRO {oct} {"Oct."}
 
-MACRO {nov} {"nov."}
+MACRO {nov} {"Nov."}
 
-MACRO {dec} {"dez."}
+MACRO {dec} {"Dec."}
 
 READ
 
@@ -1118,7 +1118,7 @@ FUNCTION {format.lab.names}
         'skip$
         { s #2 "{ff }{vv }{ll}{ jj}" format.name$ "others" =
             { " et~al." emphasize * }
-            { " e " * s #2 "{vv~}{ll}" format.name$ capify * }
+            { " and " * s #2 "{vv~}{ll}" format.name$ capify * }
           if$
         }
       if$
